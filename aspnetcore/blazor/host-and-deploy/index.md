@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/15/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/index
-ms.openlocfilehash: 77202cd60d357c27237cdb925e0adc00e66d2e56
-ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
+ms.openlocfilehash: 8a5172db22a17138f7462d140fd97316586e5282
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86407712"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014206"
 ---
-# <a name="host-and-deploy-aspnet-core-blazor"></a>ASP.NET Core 호스트 및 배포 Blazor
+# <a name="host-and-deploy-aspnet-core-no-locblazor"></a>ASP.NET Core 호스트 및 배포 Blazor
 
 작성자: [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com) 및 [Daniel Roth](https://github.com/danroth27)
 
@@ -120,6 +122,10 @@ endpoints.MapFallbackToPage("/{RELATIVE PATH}/{**path:nonfile}");
 ```csharp
 endpoints.MapFallbackToPage("/CoolApp/{**path:nonfile}");
 ```
+
+**여러 Blazor WebAssembly 앱 호스트**
+
+호스트된 Blazor 솔루션에서 여러 Blazor WebAssembly 앱을 호스트하는 방법은 <xref:blazor/host-and-deploy/webassembly#hosted-deployment-with-multiple-blazor-webassembly-apps>를 참조하세요.
 
 ## <a name="deployment"></a>배포
 
