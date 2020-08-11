@@ -1,36 +1,36 @@
 ---
-title: ASP.NET Core [Blazor WebAssembly 성능 모범 사례
+title: ASP.NET Core Blazor WebAssembly 성능 모범 사례
 author: pranavkm
-description: ASP.NET Core [Blazor WebAssembly 앱의 성능을 높이고 일반적인 성능 문제를 방지하기 위한 팁입니다.
+description: ASP.NET Core Blazor WebAssembly 앱의 성능을 높이고 일반적인 성능 문제를 방지하기 위한 팁입니다.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/25/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: f7bd0d356030e6ddb95c77d7376995320e3ec40e
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6bd3d2f7902baf16e278e58feb83abb13f6e6821
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401885"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818614"
 ---
-# <a name="aspnet-core-blazor-webassembly-performance-best-practices"></a>ASP.NET Core [Blazor WebAssembly 성능 모범 사례
+# <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>ASP.NET Core Blazor WebAssembly 성능 모범 사례
 
 작성자: [Pranav Krishnamoorthy](https://github.com/pranavkm)
 
-이 문서에서는 ASP.NET Core [Blazor WebAssembly 성능 모범 사례를 위한 지침을 제공합니다.
+이 문서에서는 ASP.NET Core Blazor WebAssembly 성능 모범 사례를 위한 지침을 제공합니다.
 
 ## <a name="avoid-unnecessary-component-renders"></a>불필요한 구성 요소 렌더링 방지
 
-[Blazor의 diff 알고리즘은 알고리즘에서 구성 요소가 변경되지 않았음을 감지하는 경우 구성 요소의 렌더링을 방지합니다. 구성 요소 렌더링을 세밀하게 제어하려면 <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType>를 재정의하세요.
+Blazor의 diff 알고리즘은 알고리즘에서 구성 요소가 변경되지 않았음을 감지하는 경우 구성 요소의 렌더링을 방지합니다. 구성 요소 렌더링을 세밀하게 제어하려면 <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A?displayProperty=nameWithType>를 재정의하세요.
 
 초기 렌더링 이후 변경되지 않는 UI 전용 구성 요소를 작성하는 경우에는 <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>가 `false`를 반환하도록 구성합니다.
 
@@ -85,17 +85,17 @@ ms.locfileid: "85401885"
 
 ## <a name="avoid-javascript-interop-to-marshal-data"></a>JavaScript interop의 데이터 마샬링 방지
 
-[Blazor WebAssembly에서 JS(JavaScript) interop 호출은 WebAssembly-JS 경계를 트래버스해야 합니다. 이 두 가지 컨텍스트에서 콘텐츠를 직렬화 및 역직렬화하는 것은 앱에서 처리 오버헤드를 발생시킵니다. JS interop 호출이 자주 발생하면 성능이 저하되는 경우가 많습니다. 경계 주변에서 데이터 마샬링을 줄이려면 앱이 여러 개의 작은 페이로드를 하나의 큰 페이로드로 통합하여 WebAssembly와 JS 간에 이루어지는 다량의 컨텍스트 전환을 방지할 수 있는지 확인합니다.
+Blazor WebAssembly에서 JS(JavaScript) interop 호출은 WebAssembly-JS 경계를 트래버스해야 합니다. 이 두 가지 컨텍스트에서 콘텐츠를 직렬화 및 역직렬화하는 것은 앱에서 처리 오버헤드를 발생시킵니다. JS interop 호출이 자주 발생하면 성능이 저하되는 경우가 많습니다. 경계 주변에서 데이터 마샬링을 줄이려면 앱이 여러 개의 작은 페이로드를 하나의 큰 페이로드로 통합하여 WebAssembly와 JS 간에 이루어지는 다량의 컨텍스트 전환을 방지할 수 있는지 확인합니다.
 
 ## <a name="use-systemtextjson"></a>System.Text.Json 사용
 
-[Blazor의 JS interop 구현은 메모리 할당이 작은 고성능 JSON serialization 라이브러리인 <xref:System.Text.Json>에 의존합니다. <xref:System.Text.Json>을 사용해도 하나 이상의 대체 JSON 라이브러리를 추가하는 것에 비해 추가 앱 페이로드 크기가 발생하지 않습니다.
+Blazor의 JS interop 구현은 메모리 할당이 작은 고성능 JSON serialization 라이브러리인 <xref:System.Text.Json>에 의존합니다. <xref:System.Text.Json>을 사용해도 하나 이상의 대체 JSON 라이브러리를 추가하는 것에 비해 추가 앱 페이로드 크기가 발생하지 않습니다.
 
 마이그레이션 지침은 [`Newtonsoft.Json`에서 `System.Text.Json`으로 마이그레이션하는 방법](/dotnet/standard/serialization/system-text-json-migrate-from-newtonsoft-how-to)을 참조하세요.
 
 ## <a name="use-synchronous-and-unmarshalled-js-interop-apis-where-appropriate"></a>가능한 경우 동기식 및 역 마샬링된 JS interop API 사용
 
-[Blazor WebAssembly는 [Blazor Server 앱에서 사용 가능한 단일 버전에 더해 두 개의 추가 <xref:Microsoft.JSInterop.IJSRuntime> 버전을 제공합니다.
+Blazor WebAssembly는 Blazor Server 앱에서 사용 가능한 단일 버전에 더해 두 개의 추가 <xref:Microsoft.JSInterop.IJSRuntime> 버전을 제공합니다.
 
 * <xref:Microsoft.JSInterop.IJSInProcessRuntime>을 사용하면 JS interop 호출을 동기식으로 호출할 수 있습니다. 이렇게 하면 비동기식 버전에 비해 오버헤드가 덜 발생합니다.
 
@@ -140,21 +140,25 @@ ms.locfileid: "85401885"
 
 ### <a name="intermediate-language-il-linking"></a>IL(중간 언어) 연결
 
-[[Blazor WebAssembly 앱을 연결](xref:blazor/host-and-deploy/configure-linker)하면 앱의 이진 파일에서 사용되지 않는 코드를 잘라내어 앱 크기를 줄일 수 있습니다. 기본적으로 링커는 `Release` 구성에서 빌드할 때만 사용하도록 설정됩니다. 이 기능의 이점을 활용하려면 [`dotnet publish`](/dotnet/core/tools/dotnet-publish) 명령에서 [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) 옵션을 `Release`로 설정하여 배포를 위해 앱을 게시합니다.
+[Blazor WebAssembly 앱을 연결](xref:blazor/host-and-deploy/configure-linker)하면 앱의 이진 파일에서 사용되지 않는 코드를 잘라내어 앱 크기를 줄일 수 있습니다. 기본적으로 링커는 `Release` 구성에서 빌드할 때만 사용하도록 설정됩니다. 이 기능의 이점을 활용하려면 [`dotnet publish`](/dotnet/core/tools/dotnet-publish) 명령에서 [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) 옵션을 `Release`로 설정하여 배포를 위해 앱을 게시합니다.
 
 ```dotnetcli
 dotnet publish -c Release
 ```
 
+### <a name="lazy-load-assemblies"></a>어셈블리 지연 로드
+
+어셈블리가 경로에 필요한 경우 런타임에 어셈블리를 로드합니다. 자세한 내용은 <xref:blazor/webassembly-lazy-load-assemblies>를 참조하세요.
+
 ### <a name="compression"></a>압축
 
-[Blazor WebAssembly 앱이 게시될 때 게시하는 도중에 출력을 정적으로 압축하여 앱의 크기를 줄이고 런타임 압축의 오버헤드를 제거합니다. [Blazor는 콘텐츠 협상을 수행하고 정적으로 압축된 파일을 처리하기 위해 서버에 의존합니다.
+Blazor WebAssembly 앱이 게시될 때 게시하는 도중에 출력을 정적으로 압축하여 앱의 크기를 줄이고 런타임 압축의 오버헤드를 제거합니다. Blazor는 콘텐츠 협상을 수행하고 정적으로 압축된 파일을 처리하기 위해 서버에 의존합니다.
 
 앱이 배포된 후에는 앱이 압축된 파일을 처리하는지 확인합니다. 브라우저의 개발자 도구에서 네트워크 탭을 조사하여 파일이 `Content-Encoding: br` 또는 `Content-Encoding: gz`로 처리되는지 확인합니다. 호스트가 압축된 파일을 처리하지 않는 경우 <xref:blazor/host-and-deploy/webassembly#compression>의 지침을 따르세요.
 
 ### <a name="disable-unused-features"></a>사용되지 않는 기능을 사용하지 않도록 설정
 
-[Blazor WebAssembly의 런타임에는 앱에서 더 작은 페이로드 크기를 위해 해당 기능이 필요하지 않은 경우 사용하지 않도록 설정할 수 있는 다음과 같은 .NET 기능이 포함되어 있습니다.
+Blazor WebAssembly의 런타임에는 앱에서 더 작은 페이로드 크기를 위해 해당 기능이 필요하지 않은 경우 사용하지 않도록 설정할 수 있는 다음과 같은 .NET 기능이 포함되어 있습니다.
 
 * 정확한 표준 시간대 정보를 위해 데이터 파일이 포함되어 있습니다. 앱에서 이 기능이 필요하지 않은 경우 앱의 프로젝트 파일에서 `BlazorEnableTimeZoneSupport` MSBuild 속성을 `false`로 설정하여 사용하지 않도록 설정하는 것이 좋습니다.
 

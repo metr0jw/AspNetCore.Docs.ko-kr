@@ -5,7 +5,7 @@ description: Blazor 앱을 단계별로 빌드합니다.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/02/2020
+ms.date: 07/30/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/build-a-blazor-app
-ms.openlocfilehash: 174a8e561701bb3ebd68ed05e42dfc3d70a9b450
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: b58c0c3db685d0a5b082aaf2eb434635bd10e2eb
+ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176234"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87444031"
 ---
-# <a name="build-a-blazor-todo-list-app"></a>Blazor 할 일 목록 앱 빌드
+# <a name="build-a-no-locblazor-todo-list-app"></a>Blazor 할 일 목록 앱 빌드
 
 작성자: [Daniel Roth](https://github.com/danroth27) 및 [Luke Latham](https://github.com/guardrex)
 
@@ -32,9 +32,15 @@ ms.locfileid: "86176234"
 > * 할 일 목록 Blazor 앱 프로젝트 만들기
 > * Razor 구성 요소 수정
 > * 구성 요소에서 이벤트 처리 및 데이터 바인딩 사용
-> * Blazor 앱에서 DI(종속성 주입) 및 라우팅 사용
+> * Blazor 앱에서 라우팅 사용
 
 이 자습서의 내용을 마치면 할 일 목록 앱을 실행할 수 있습니다.
+
+## <a name="prerequisites"></a>필수 조건
+
+[!INCLUDE[](~/includes/3.1-SDK.md)]
+
+## <a name="create-a-todo-list-no-locblazor-app"></a>할 일 목록 Blazor 앱 만들기
 
 1. 명령 셸에서 `TodoList`라는 새 Blazor 앱을 만듭니다.
 
@@ -134,13 +140,13 @@ ms.locfileid: "86176234"
 
 ## <a name="next-steps"></a>다음 단계
 
-본 자습서에서는 다음 작업에 관한 방법을 학습했습니다.
+이 자습서에서는 다음 작업 방법을 알아보았습니다.
 
 > [!div class="checklist"]
 > * 할 일 목록 Blazor 앱 프로젝트 만들기
 > * Razor 구성 요소 수정
 > * 구성 요소에서 이벤트 처리 및 데이터 바인딩 사용
-> * Blazor 앱에서 DI(종속성 주입) 및 라우팅 사용
+> * Blazor 앱에서 라우팅 사용
 
 ASP.NET Core Blazor용 도구에 대해 알아보기
 

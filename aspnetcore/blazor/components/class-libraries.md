@@ -5,7 +5,7 @@ description: 외부 구성 요소 라이브러리의 구성 요소를 Blazor 앱
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/23/2020
+ms.date: 07/27/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: b172059407f9a08dacc0fadd804864c7aee7fb90
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 8293d61f88f53e55d94b114ca2143fdfb6fd8468
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944499"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87819069"
 ---
-# <a name="aspnet-core-razor-components-class-libraries"></a>ASP.NET Core Razor 구성 요소 클래스 라이브러리
+# <a name="aspnet-core-no-locrazor-components-class-libraries"></a>ASP.NET Core Razor 구성 요소 클래스 라이브러리
 
 작성자: [Simon Timms](https://github.com/stimms)
 
@@ -41,7 +41,7 @@ ms.locfileid: "85944499"
 1. 새 프로젝트를 만듭니다.
 1. **Razor 클래스 라이브러리**를 선택합니다. **새로 만들기**를 선택합니다.
 1. **새 Razor 클래스 라이브러리 만들기** 대화 상자에서 **만들기**를 선택합니다.
-1. **프로젝트 이름** 필드에 프로젝트 이름을 제공하거나 기본 프로젝트 이름을 수락합니다. 이 항목의 예제에서는 프로젝트 이름으로 `MyComponentLib1`을 사용합니다. **만들기**를 선택합니다.
+1. **프로젝트 이름** 필드에 프로젝트 이름을 제공하거나 기본 프로젝트 이름을 수락합니다. 이 항목의 예제에서는 프로젝트 이름으로 `ComponentLibrary`을 사용합니다. **만들기**를 선택합니다.
 1. 솔루션에 RCL을 추가합니다.
    1. 솔루션을 마우스 오른쪽 단추로 클릭합니다. **추가** > **기존 프로젝트**를 선택합니다.
    1. RCL의 프로젝트 파일로 이동합니다.
@@ -61,10 +61,10 @@ ms.locfileid: "85944499"
 
 # <a name="net-core-cli"></a>[.NET Core CLI](#tab/netcore-cli)
 
-1. 명령 셸에서 [`dotnet new`](/dotnet/core/tools/dotnet-new) 명령을 통해 **Razor 클래스 라이브러리** 템플릿(`razorclasslib`)을 사용합니다. 다음 예제에서는 이름이 `MyComponentLib1`인 RCL을 만듭니다. 명령을 실행하면 `MyComponentLib1`을 포함하는 폴더가 자동으로 생성됩니다.
+1. 명령 셸에서 [`dotnet new`](/dotnet/core/tools/dotnet-new) 명령을 통해 **Razor 클래스 라이브러리** 템플릿(`razorclasslib`)을 사용합니다. 다음 예제에서는 이름이 `ComponentLibrary`인 RCL을 만듭니다. 명령을 실행하면 `ComponentLibrary`을 포함하는 폴더가 자동으로 생성됩니다.
 
    ```dotnetcli
-   dotnet new razorclasslib -o MyComponentLib1
+   dotnet new razorclasslib -o ComponentLibrary
    ```
 
    > [!NOTE]
@@ -91,35 +91,82 @@ ms.locfileid: "85944499"
 * 네임스페이스를 포함하는 전체 형식 이름을 사용합니다.
 * Razor의 [`@using`](xref:mvc/views/razor#using) 지시문을 사용합니다. 개별 구성 요소는 이름으로 추가할 수 있습니다.
 
-다음 예제에서 `MyComponentLib1`은 `SalesReport` 구성 요소가 포함된 구성 요소 라이브러리입니다.
+다음 예제에서 `ComponentLibrary`는 `Component1` 구성 요소(`Component1.razor`)가 포함된 구성 요소 라이브러리입니다. `Component1` 구성 요소는 라이브러리가 만들어질 때 RCL 프로젝트 템플릿에 의해 자동으로 추가되는 예제 구성 요소입니다.
 
-네임스페이스를 포함하는 전체 형식 이름을 사용하여 `SalesReport` 구성 요소를 참조할 수 있습니다.
+네임스페이스를 사용하여 `Component1` 구성 요소를 참조합니다.
 
 ```razor
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<MyComponentLib1.SalesReport />
+<ComponentLibrary.Component1 />
 ```
 
-`@using` 지시문을 사용하여 라이브러리를 범위로 가져온 경우 구성 요소를 참조할 수도 있습니다.
+또는 [`@using`](xref:mvc/views/razor#using) 지시문을 사용하여 라이브러리를 범위로 전환하고 네임스페이스 없이 구성 요소를 사용합니다.
 
 ```razor
-@using MyComponentLib1
+@using ComponentLibrary
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<SalesReport />
+<Component1 />
 ```
 
-최상위 `_Import.razor` 파일에 `@using MyComponentLib1` 지시문을 포함하여 전체 프로젝트에서 라이브러리 구성 요소를 사용할 수 있게 합니다. 임의 수준의 `_Import.razor` 파일에 지시문을 추가하여 폴더 내의 단일 페이지 또는 페이지 집합에 네임스페이스를 적용합니다.
+원하는 경우 최상위 `_Import.razor` 파일에 `@using ComponentLibrary` 지시문을 포함하여 전체 프로젝트에서 라이브러리 구성 요소를 사용할 수 있게 합니다. 임의 수준의 `_Import.razor` 파일에 지시문을 추가하여 폴더 내의 단일 구성 요소 또는 구성 요소 집합에 네임스페이스를 적용합니다.
 
-## <a name="create-a-razor-components-class-library-with-static-assets"></a>정적 자산을 사용하여 Razor 구성 요소 클래스 라이브러리 만들기
+::: moniker range=">= aspnetcore-5.0"
+
+`Component1`의 `my-component` CSS 클래스를 구성 요소에 제공하려면 `Component1.razor`에서 프레임워크의 [`Link` 구성 요소](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements)를 사용하여 라이브러리의 스타일시트에 연결합니다.
+
+```razor
+<div class="my-component">
+    <Link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+
+    <p>
+        This Blazor component is defined in the <strong>ComponentLibrary</strong> package.
+    </p>
+</div>
+```
+
+앱에서 스타일시트를 제공하려면 앱의 `wwwroot/index.html` 파일(Blazor WebAssembly) 또는 `Pages/_Host.cshtml` 파일(Blazor Server)에서 라이브러리의 스타일시트에 연결할 수 있습니다.
+
+```html
+<head>
+    ...
+    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+</head>
+```
+
+자식 구성 요소에서 `Link` 구성 요소가 사용되는 경우 `Link` 구성 요소가 있는 자식이 렌더링되는 한 부모 구성 요소의 다른 모든 자식 구성 요소에서도 연결된 자산을 사용할 수 있습니다. 자식 구성 요소에서 `Link` 구성 요소를 사용하는 것과 `wwwroot/index.html` 또는 `Pages/_Host.cshtml`에 `<link>` HTML 태그를 배치하는 것의 차이는 프레임워크 구성 요소의 렌더링된 HTML 태그입니다.
+
+* 애플리케이션 상태에 의해 수정될 수 있습니다. 하드 코드된 `<link>` HTML 태그는 애플리케이션 상태에 의해 수정될 수 없습니다.
+* 부모 구성 요소가 더 이상 렌더링되지 않으면 HTML `<head>`에서 제거됩니다.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+`Component1`의 `my-component` CSS 클래스를 제공하려면 앱의 `wwwroot/index.html` 파일(Blazor WebAssembly) 또는 `Pages/_Host.cshtml` 파일(Blazor Server)에서 라이브러리의 스타일시트에 연결합니다.
+
+```html
+<head>
+    ...
+    <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+</head>
+```
+
+::: moniker-end
+
+## <a name="create-a-no-locrazor-components-class-library-with-static-assets"></a>정적 자산을 사용하여 Razor 구성 요소 클래스 라이브러리 만들기
 
 RCL에는 정적 자산이 포함될 수 있습니다. 정적 자산은 라이브러리를 사용하는 모든 앱에서 제공됩니다. 자세한 내용은 <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>를 참조하세요.
+
+## <a name="supply-components-and-static-assets-to-multiple-hosted-no-locblazor-apps"></a>호스트된 여러 Blazor 앱에 구성 요소 및 정적 자산 제공
+
+자세한 내용은 <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>를 참조하세요.
 
 ## <a name="build-pack-and-ship-to-nuget"></a>빌드, 패키지 및 NuGet에 제공
 

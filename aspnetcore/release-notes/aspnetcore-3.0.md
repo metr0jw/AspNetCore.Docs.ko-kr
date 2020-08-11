@@ -6,58 +6,58 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: 6e31a8f49ca535f98f4e073af13896386a4a0feb
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: cebfc88a8a8313bfd975001b50db6e41b6939aed
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408216"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87819147"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>ASP.NET Core 3.0의 새로운 기능
 
 이 문서에서는 ASP.NET Core 3.0의 가장 큰 변경 내용을 중점적으로 설명하고 관련 문서의 링크를 제공합니다.
 
-## [Blazor
+## Blazor
 
-[Blazor는 .NET을 사용하여 대화형 클라이언트 쪽 웹 UI를 빌드하기 위한 ASP.NET Core 내의 새로운 프레임워크입니다.
+Blazor는 .NET을 사용하여 대화형 클라이언트 쪽 웹 UI를 빌드하기 위한 ASP.NET Core 내의 새로운 프레임워크입니다.
 
 * JavaScript 대신 C#을 사용하여 풍부한 대화형 UI를 만듭니다.
 * .NET에서 작성된 서버 쪽 및 클라이언트 쪽 앱 논리를 공유합니다.
 * 모바일 브라우저를 포함한 광범위한 브라우저 지원을 위해 UI를 HTML 및 CSS로 렌더링합니다.
 
-[Blazor 프레임워크 지원 시나리오:
+Blazor 프레임워크 지원 시나리오:
 
-* 재사용 가능한 UI 구성 요소([Razor 구성 요소)
+* 재사용 가능한 UI 구성 요소(Razor 구성 요소)
 * 클라이언트 쪽 라우팅
 * 구성 요소 레이아웃
 * 종속성 주입을 위한 지원
 * 양식 및 유효성 검사
-* [Razor 클래스 라이브러리를 사용하여 구성 요소 라이브러리 빌드
+* Razor 클래스 라이브러리를 사용하여 구성 요소 라이브러리 빌드
 * JavaScript interop
 
 자세한 내용은 <xref:blazor/index>를 참조하세요.
 
-### [Blazor Server
+### Blazor Server
 
-[Blazor는 UI 업데이트 적용 방법에서 구성 요소 렌더링 논리를 분리합니다. [Blazor Server에서는 ASP.NET Core 앱의 서버에서 [Razor 구성 요소를 호스팅할 수 있도록 지원합니다. UI 업데이트는 [SignalR 연결을 통해 처리됩니다. [Blazor Server는 ASP.NET Core 3.0에서 지원됩니다.
+Blazor는 UI 업데이트 적용 방법에서 구성 요소 렌더링 논리를 분리합니다. Blazor Server에서는 ASP.NET Core 앱의 서버에서 Razor 구성 요소를 호스팅할 수 있도록 지원합니다. UI 업데이트는 SignalR 연결을 통해 처리됩니다. Blazor Server는 ASP.NET Core 3.0에서 지원됩니다.
 
-### <a name="blazor-webassembly-preview"></a>[Blazor WebAssembly(미리 보기)
+### <a name="no-locblazor-webassembly-preview"></a>Blazor WebAssembly(미리 보기)
 
-[Blazor 앱은 WebAssembly 기반 .NET 런타임을 사용하여 브라우저에서 직접 실행할 수도 있습니다. [Blazor WebAssembly는 미리 보기로 제공되며, ASP.NET Core 3.0에서 지원되지 ‘않습니다’. [Blazor WebAssembly는 ASP.NET Core의 이후 릴리스에서 지원될 예정입니다.
+Blazor 앱은 WebAssembly 기반 .NET 런타임을 사용하여 브라우저에서 직접 실행할 수도 있습니다. Blazor WebAssembly는 미리 보기로 제공되며, ASP.NET Core 3.0에서 지원되지 ‘않습니다’. Blazor WebAssembly는 ASP.NET Core의 이후 릴리스에서 지원될 예정입니다.
 
-### <a name="razor-components"></a>[Razor 구성 요소
+### <a name="no-locrazor-components"></a>Razor 구성 요소
 
-[Blazor 앱은 구성 요소에서 빌드됩니다. 구성 요소는 페이지, 대화 상자 또는 양식과 같은 UI(사용자 인터페이스)의 자체 포함 청크입니다. 구성 요소는 UI 렌더링 논리 및 클라이언트 쪽 이벤트 처리기를 정의하는 일반적인 .NET 클래스입니다. JavaScript 없이 풍부한 대화형 웹앱을 만들 수 있습니다.
+Blazor 앱은 구성 요소에서 빌드됩니다. 구성 요소는 페이지, 대화 상자 또는 양식과 같은 UI(사용자 인터페이스)의 자체 포함 청크입니다. 구성 요소는 UI 렌더링 논리 및 클라이언트 쪽 이벤트 처리기를 정의하는 일반적인 .NET 클래스입니다. JavaScript 없이 풍부한 대화형 웹앱을 만들 수 있습니다.
 
-[Blazor의 구성 요소는 일반적으로 HTML과 C#의 자연 혼합인 [Razor 구문을 사용하여 작성됩니다. [Razor 구성 요소는 둘 다 [Razor를 사용한다는 점에서 [Razor Pages 및 MVC 뷰와 비슷합니다. 요청-응답 모델 기반의 페이지와 보기와는 달리, 구성 요소는 특별히 UI 컴퍼지션을 처리하는 데 사용됩니다.
+Blazor의 구성 요소는 일반적으로 HTML과 C#의 자연 혼합인 Razor 구문을 사용하여 작성됩니다. Razor 구성 요소는 둘 다 Razor를 사용한다는 점에서 Razor Pages 및 MVC 뷰와 비슷합니다. 요청-응답 모델 기반의 페이지와 보기와는 달리, 구성 요소는 특별히 UI 컴퍼지션을 처리하는 데 사용됩니다.
 
 ## <a name="grpc"></a>gRPC
 
@@ -84,11 +84,11 @@ ASP.NET Core 3.0의 gRPC 기능에는 다음이 포함됩니다.
 
 자세한 내용은 <xref:grpc/index>를 참조하세요.
 
-## [SignalR
+## SignalR
 
-마이그레이션 지침은 [[SignalR 코드 업데이트](xref:migration/22-to-30#signalr)를 참조하세요. 이제 [SignalR이 `System.Text.Json`을 사용하여 JSON 메시지를 직렬화 및 역직렬화합니다. `Newtonsoft.Json` 기반 직렬 변환기를 복원하려면 [Newtonsoft.Json으로 전환](xref:migration/22-to-30#switch-to-newtonsoftjson)에서 지침을 참조하세요.
+마이그레이션 지침은 [SignalR 코드 업데이트](xref:migration/22-to-30#signalr)를 참조하세요. 이제 SignalR이 `System.Text.Json`을 사용하여 JSON 메시지를 직렬화 및 역직렬화합니다. `Newtonsoft.Json` 기반 직렬 변환기를 복원하려면 [Newtonsoft.Json으로 전환](xref:migration/22-to-30#switch-to-newtonsoftjson)에서 지침을 참조하세요.
 
-[SignalR용 JavaScript 및 .NET Clients에서 자동 다시 연결을 위해 지원이 추가되었습니다. 기본적으로 클라이언트는 즉시 다시 연결을 시도하고 필요한 경우 2, 10, 30초 후에 다시 시도합니다. 클라이언트는 다시 연결되면 새로운 연결 ID를 수신합니다. 자동 다시 연결 옵트인(opt-in:):
+SignalR용 JavaScript 및 .NET Clients에서 자동 다시 연결을 위해 지원이 추가되었습니다. 기본적으로 클라이언트는 즉시 다시 연결을 시도하고 필요한 경우 2, 10, 30초 후에 다시 시도합니다. 클라이언트는 다시 연결되면 새로운 연결 ID를 수신합니다. 자동 다시 연결 옵트인(opt-in:):
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -113,7 +113,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 다시 연결을 시도하는 동안 다시 연결을 시도하고 있음을 사용자에게 알리기 위해 앱 UI를 업데이트합니다.
 
-연결이 중단될 때 UI 피드백을 제공하기 위해 [SignalR 클라이언트 API는 다음과 같은 이벤트 처리기를 포함하도록 확장되었습니다.
+연결이 중단될 때 UI 피드백을 제공하기 위해 SignalR 클라이언트 API는 다음과 같은 이벤트 처리기를 포함하도록 확장되었습니다.
 
 * `onreconnecting`:  개발자에게 UI를 사용하지 않도록 설정하거나 사용자에게 해당 앱이 오프라인 상태임을 알릴 수 있는 기회를 제공합니다.
 * `onreconnected`: 개발자에게 연결이 다시 구축되면 UI를 업데이트할 수 있는 기회를 제공합니다.
@@ -140,7 +140,7 @@ connection.onreconnected((connectionId) => {
 });
 ```
 
-[SignalR 3.0 이상에서는 허브 메서드에 권한 부여가 필요할 때 권한 부여 처리기에 사용자 지정 리소스를 제공합니다. 리소스가 `HubInvocationContext`의 인스턴스인 경우 `HubInvocationContext`는 다음을 포함합니다.
+SignalR 3.0 이상에서는 허브 메서드에 권한 부여가 필요할 때 권한 부여 처리기에 사용자 지정 리소스를 제공합니다. 리소스가 `HubInvocationContext`의 인스턴스인 경우 `HubInvocationContext`는 다음을 포함합니다.
 
 * `HubCallerContext`
 * 호출되는 허브 메서드의 이름
@@ -157,12 +157,12 @@ public class DomainRestrictedRequirement :
         DomainRestrictedRequirement requirement,
         HubInvocationContext resource)
     {
-        if (context.User?.[Identity?.Name == null)
+        if (context.User?.Identity?.Name == null)
         {
             return Task.CompletedTask;
         }
 
-        if (IsUserAllowedToDoThis(resource.HubMethodName, context.User.[Identity.Name))
+        if (IsUserAllowedToDoThis(resource.HubMethodName, context.User.Identity.Name))
         {
             context.Succeed(requirement);
         }
@@ -230,7 +230,7 @@ services
     });
 ```
 
-[SignalR 허브는 [엔드포인트 라우팅](xref:fundamentals/routing)을 사용합니다. [SignalR 허브 연결은 이전에 명시적으로 수행되었습니다.
+SignalR 허브는 [엔드포인트 라우팅](xref:fundamentals/routing)을 사용합니다. SignalR 허브 연결은 이전에 명시적으로 수행되었습니다.
 
 ```csharp
 app.UseSignalR(routes =>
@@ -239,7 +239,7 @@ app.UseSignalR(routes =>
 });
 ```
 
-이전 버전에서는 개발자가 다양한 위치에서 컨트롤러, [Razor Pages 및 허브를 연결해야 했습니다. 명시적 연결로 인해 다음과 같이 거의 동일한 일련의 라우팅 세그먼트가 생성됩니다.
+이전 버전에서는 개발자가 다양한 위치에서 컨트롤러, Razor Pages 및 허브를 연결해야 했습니다. 명시적 연결로 인해 다음과 같이 거의 동일한 일련의 라우팅 세그먼트가 생성됩니다.
 
 ```csharp
 app.UseSignalR(routes =>
@@ -253,7 +253,7 @@ app.UseRouting(routes =>
 });
 ```
 
-[SignalR 3.0 허브는 엔드포인트 라우팅을 통해 라우팅할 수 있습니다. 엔드포인트 라우팅을 사용하면 일반적으로 모든 라우팅을 `UseRouting`에서 구성할 수 있습니다.
+SignalR 3.0 허브는 엔드포인트 라우팅을 통해 라우팅할 수 있습니다. 엔드포인트 라우팅을 사용하면 일반적으로 모든 라우팅을 `UseRouting`에서 구성할 수 있습니다.
 
 ```csharp
 app.UseRouting(routes =>
@@ -263,7 +263,7 @@ app.UseRouting(routes =>
 });
 ```
 
-ASP.NET Core 3.0 [SignalR에는 다음 기능이 추가되었습니다.
+ASP.NET Core 3.0 SignalR에는 다음 기능이 추가되었습니다.
 
 클라이언트-서버 스트리밍 클라이언트-서버 스트리밍을 사용하는 경우 서버 쪽 메서드는 `IAsyncEnumerable<T>` 또는 `ChannelReader<T>`의 인스턴스를 사용할 수 있습니다. 다음 C# 샘플에서 허브에 있는 `UploadStream` 메서드는 다음 클라이언트로부터 문자열 스트림을 받게 됩니다.
 
@@ -294,7 +294,7 @@ async IAsyncEnumerable<string> clientStreamData()
 await connection.SendAsync("UploadStream", clientStreamData());
 ```
 
-JavaScript 클라이언트 앱은 위의 `UploadStream` 허브 메서드의 `stream` 인수에 대해 [SignalR `Subject`(또는 [RxJS Subject](https://rxjs.dev/api/index/class/Subject))를 사용합니다.
+JavaScript 클라이언트 앱은 위의 `UploadStream` 허브 메서드의 `stream` 인수에 대해 SignalR `Subject`(또는 [RxJS Subject](https://rxjs.dev/api/index/class/Subject))를 사용합니다.
 
 ```javascript
 let subject = new signalR.Subject();
@@ -320,16 +320,16 @@ ASP.NET Core 3.0은 이제 JSON 직렬화를 위해 기본적으로 <xref:System
 
 Json.NET을 ASP.NET Core 3.0에 추가하려면 [Newtonsoft.Json 기반 JSON 형식 지원](xref:web-api/advanced/formatting#add-newtonsoftjson-based-json-format-support)을 참조하세요.
 
-## <a name="new-razor-directives"></a>새 [Razor 지시문
+## <a name="new-no-locrazor-directives"></a>새 Razor 지시문
 
-다음 목록에는 새 [Razor 지시문이 포함되어 있습니다.
+다음 목록에는 새 Razor 지시문이 포함되어 있습니다.
 
 * [`@attribute`](xref:mvc/views/razor#attribute): `@attribute` 지시문은 지정된 특성을 생성된 페이지 또는 보기의 클래스에 추가합니다. 예: `@attribute [Authorize]`.
 * [`@implements`](xref:mvc/views/razor#implements): `@implements` 지시문은 생성된 클래스의 인터페이스를 구현합니다. 예: `@implements IDisposable`.
 
-## <a name="identityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4는 웹 API 및 SPA에 대한 인증 및 권한 부여를 지원합니다.
+## <a name="no-locidentityserver4-supports-authentication-and-authorization-for-web-apis-and-spas"></a>IdentityServer4의 웹 API 및 SPA에 대한 인증 및 권한 부여 지원
 
-ASP.NET Core 3.0에서는 웹 API 권한 부여에 대한 지원을 사용하여 SPA(단일 페이지 앱)의 인증을 제공합니다. 사용자를 인증하고 저장하기 위한 ASP.NET Core [Identity는 Open ID Connect 구현하기 위해 [IdentityServer4](https://identityserver.io/)와 통합됩니다.
+ASP.NET Core 3.0에서는 웹 API 권한 부여에 대한 지원을 사용하여 SPA(단일 페이지 앱)의 인증을 제공합니다. 사용자를 인증하고 저장하기 위한 ASP.NET Core Identity는 OpenID Connect 구현을 위해 [IdentityServer4](https://identityserver.io/)와 통합됩니다.
 
 IdentityServer4는 ASP.NET Core 3.0용 OpenID Connect 및 OAuth 2.0 프레임워크입니다. 다음과 같은 보안 기능을 제공합니다.
 
@@ -338,7 +338,7 @@ IdentityServer4는 ASP.NET Core 3.0용 OpenID Connect 및 OAuth 2.0 프레임워
 * API에 대한 액세스 제어
 * 페더레이션 게이트웨이
 
-자세한 내용은[IdentityServer4 설명서](http://docs.identityserver.io/en/latest/index.html) 또는 [SPA의 인증 및 권한 부여](xref:security/authentication/identity/spa)를 참조하세요.
+자세한 내용은 [IdentityServer4 설명서](http://docs.identityserver.io/en/latest/index.html) 또는 [SPA에 대한 인증 및 권한 부여](xref:security/authentication/identity/spa)를 참조하세요.
 
 ## <a name="certificate-and-kerberos-authentication"></a>인증서 및 Kerberos 인증
 
@@ -400,14 +400,14 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 ## <a name="template-changes"></a>템플릿 변경 사항
 
-웹 UI 템플릿(컨트롤러 및 뷰를 사용하는 [Razor Pages, MVC)에서 다음이 제거되었습니다.
+웹 UI 템플릿(컨트롤러 및 뷰를 사용하는 Razor Pages, MVC)에서 다음이 제거되었습니다.
 
 * 쿠키 동의 UI가 더 이상 포함되지 않습니다. ASP.NET Core 3.0 템플릿에서 생성한 앱에서 쿠키 동의 기능을 사용하려면 <xref:security/gdpr>을 참조하세요.
 * 스크립트 및 관련 정적 자산은 이제 CDN을 사용하는 대신 로컬 파일로 참조됩니다. 자세한 내용은 [스크립트 및 관련 정적 자산은 현재 환경을 기반으로 CDN을 사용하는 대신 로컬 파일로 참조됩니다(aspnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350)를 참조하세요.
 
 Angular 템플릿은 Angular 8을 사용하는 것으로 업데이트되었습니다.
 
-RCL([Razor 클래스 라이브러리) 템플릿은 기본적으로 [Razor 구성 요소 개발로 설정됩니다. Visual Studio의 새 템플릿 옵션은 페이지 및 보기에 대한 템플릿 지원을 제공합니다. 명령 셸의 템플릿으로부터 RCL을 생성할 때 `--support-pages-and-views` 옵션(`dotnet new razorclasslib --support-pages-and-views`)을 전달합니다.
+RCL(Razor 클래스 라이브러리) 템플릿은 기본적으로 Razor 구성 요소 개발로 설정됩니다. Visual Studio의 새 템플릿 옵션은 페이지 및 보기에 대한 템플릿 지원을 제공합니다. 명령 셸의 템플릿으로부터 RCL을 생성할 때 `--support-pages-and-views` 옵션(`dotnet new razorclasslib --support-pages-and-views`)을 전달합니다.
 
 ## <a name="generic-host"></a>제네릭 호스트
 

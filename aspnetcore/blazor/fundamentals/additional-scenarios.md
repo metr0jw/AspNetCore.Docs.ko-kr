@@ -15,20 +15,20 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: b28e4e43b88fcf8eab9e8959142cca21223c57ff
-ms.sourcegitcommit: e216e8f4afa21215dc38124c28d5ee19f5ed7b1e
+ms.openlocfilehash: b32710e515d111b7dd6556f1db55082cd56a82b5
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86239636"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87819004"
 ---
-# <a name="aspnet-core-blazor-hosting-model-configuration"></a>ASP.NET Core Blazor 호스팅 모델 구성
+# <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>ASP.NET Core Blazor 호스팅 모델 구성
 
-작성자: [Daniel Roth](https://github.com/danroth27) 및 [Luke Latham](https://github.com/guardrex)
+[Daniel Roth](https://github.com/danroth27), [Mackinnon Buck](https://github.com/MackinnonBuck) 및 [Luke Latham](https://github.com/guardrex)
 
 이 문서에서는 호스팅 모델 구성에 대해 설명합니다.
 
-### <a name="signalr-cross-origin-negotiation-for-authentication"></a>SignalR 인증에 대한 원본 간 협상
+### <a name="no-locsignalr-cross-origin-negotiation-for-authentication"></a>SignalR 인증에 대한 원본 간 협상
 
 ‘이 섹션은 Blazor WebAssembly에 적용됩니다.’
 
@@ -125,7 +125,7 @@ Blazor Server 앱은 기본적으로 클라이언트가 서버에 연결되기 �
 
 정적 HTML 페이지에서 서버 구성 요소를 렌더링할 수는 없습니다.
 
-## <a name="configure-the-signalr-client-for-blazor-server-apps"></a>Blazor Server 앱에 적합하게 SignalR 클라이언트 구성
+## <a name="configure-the-no-locsignalr-client-for-no-locblazor-server-apps"></a>Blazor Server 앱에 적합하게 SignalR 클라이언트 구성
 
 ‘이 섹션은 Blazor Server에 적용됩니다.’
 
@@ -141,7 +141,7 @@ SignalR 클라이언트 로깅을 구성하려면
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         configureSignalR: function (builder) {
@@ -169,7 +169,7 @@ SignalR 클라이언트 로깅을 구성하려면
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         reconnectionHandler: {
@@ -191,7 +191,7 @@ SignalR 클라이언트 로깅을 구성하려면
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       Blazor.start({
         reconnectionOptions: {
@@ -213,7 +213,7 @@ SignalR 클라이언트 로깅을 구성하려면
 ```cshtml
     ...
 
-    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script autostart="false" src="_framework/blazor.server.js"></script>
     <script>
       window.addEventListener('beforeunload', function () {
         Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
@@ -231,6 +231,41 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 
 자리 표시자 `{ELEMENT ID}`는 표시할 HTML 요소의 ID입니다.
 
-## <a name="additional-resources"></a>추가 자료
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="influence-html-head-tag-elements"></a>HTML `<head>` 태그 요소에 영향
+
+이 섹션은 *Blazor WebAssembly 및 Blazor Server* 에 적용됩니다.
+
+렌더링된 `Title`, `Link` 및 `Meta` 구성 요소는 HTML `<head>` 태그 요소에서 데이터를 추가하거나 업데이트합니다.
+
+```razor
+@using Microsoft.AspNetCore.Components.Web.Extensions.Head
+
+<Title Value="{TITLE}" />
+<Link href="{URL}" rel="stylesheet" />
+<Meta content="{DESCRIPTION}" name="description" />
+```
+
+앞의 예제에서 `{TITLE}`, `{URL}` 및 `{DESCRIPTION}`의 자리 표시자는 문자열 값, Razor 변수 또는 Razor 식입니다.
+
+다음 특성이 적용됩니다.
+
+* 서버 쪽 사전 렌더링이 지원됩니다.
+* `Value` 매개 변수는 `Title` 구성 요소의 유일하게 유효한 매개 변수입니다.
+* `Meta` 및 `Link` 구성 요소에 제공되는 HTML 특성은 [추가 특성](xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters)에서 캡처되고 렌더링된 HTML 태그로 전달됩니다.
+* 여러 `Title` 구성 요소의 경우 페이지 제목은 렌더링된 마지막 `Title` 구성 요소의 `Value`를 반영합니다.
+* 특성이 동일한 여러 `Meta` 또는 `Link` 구성 요소가 포함된 경우 `Meta` 또는 `Link` 구성 요소마다 정확히 하나의 HTML 태그가 렌더링됩니다. 두 개의 `Meta` 또는 `Link` 구성 요소는 렌더링된 동일한 HTML 태그를 참조할 수 없습니다.
+* 기존 `Meta` 또는 `Link` 구성 요소의 매개 변수에 대한 변경 내용은 렌더링된 HTML 태그에 반영됩니다.
+* `Link` 또는 `Meta` 구성 요소가 더 이상 렌더링되지 않아 프레임워크에서 삭제되는 경우 렌더링된 HTML 태그가 제거됩니다.
+
+프레임워크 구성 요소 중 하나가 자식 구성 요소에서 사용되는 경우 렌더링된 HTML 태그는 프레임워크 구성 요소를 포함하는 자식 구성 요소가 렌더링되는 한 부모 구성 요소의 다른 모든 자식 구성 요소에 영향을 미칩니다. 자식 구성 요소에서 이러한 프레임워크 구성 요소 중 하나를 사용하는 것과 `wwwroot/index.html` 또는 `Pages/_Host.cshtml`에 HTML 태그를 배치하는 것의 차이는 프레임워크 구성 요소의 렌더링된 HTML 태그입니다.
+
+* 애플리케이션 상태에 의해 수정될 수 있습니다. 하드 코드된 HTML 태그는 애플리케이션 상태에 의해 수정될 수 없습니다.
+* 부모 구성 요소가 더 이상 렌더링되지 않으면 HTML `<head>`에서 제거됩니다.
+
+::: moniker-end
+
+## <a name="additional-resources"></a>추가 리소스
 
 * <xref:fundamentals/logging/index>

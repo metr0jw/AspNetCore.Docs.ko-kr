@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 56681e713e008188d57166da9c8fd4eb6923928c
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 6e3753131388c294130f11aa913a0bb7e8127fa3
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944219"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818952"
 ---
-# <a name="aspnet-core-blazor-hosting-models"></a>ASP.NET Core Blazor 호스팅 모델
+# <a name="aspnet-core-no-locblazor-hosting-models"></a>ASP.NET Core Blazor 호스팅 모델
 
 작성자: [Daniel Roth](https://github.com/danroth27)
 
@@ -57,13 +57,13 @@ Blazor WebAssembly 호스팅에는 다음과 같은 단점이 있습니다.
 * 다운로드 크기가 더 크고 앱 로드 시간이 더 깁니다.
 * .NET 런타임 및 도구 지원의 완성도가 더 낮습니다. 예를 들어 [.NET Standard](/dotnet/standard/net-standard) 지원 및 디버깅에 대한 제한 사항이 있습니다.
 
-Blazor가 호스트하는 앱 모델은 [Docker 컨테이너](/dotnet/standard/microservices-architecture/container-docker-introduction/index)를 지원합니다. Visual Studio에서 서버 프로젝트를 마우스 오른쪽 단추로 클릭하고 **추가** > **Docker 지원**을 선택합니다.
+호스트된 Blazor 앱 모델은 [Docker 컨테이너](/dotnet/standard/microservices-architecture/container-docker-introduction/index)를 지원합니다. Visual Studio에서 서버 프로젝트를 마우스 오른쪽 단추로 클릭하고 **추가** > **Docker 지원**을 선택합니다.
 
 ## Blazor Server
 
 Blazor Server 호스팅 모델을 사용하는 경우 서버의 ASP.NET Core 앱 내에서 앱이 실행됩니다. UI 업데이트, 이벤트 처리 및 JavaScript 호출은 [SignalR](xref:signalr/introduction) 연결을 통해 처리됩니다.
 
-![브라우저는 SignalR 연결을 통해 서버의 앱(ASP.NET Core 앱 내에서 호스트)과 상호 작용합니다.](hosting-models/_static/blazor-server.png)
+![브라우저는 SignalR 연결을 통해 서버의 앱(ASP.NET Core 앱 내에서 호스트됨)과 상호 작용합니다.](hosting-models/_static/blazor-server.png)
 
 Blazor Server 호스팅 모델을 사용하여 Blazor 앱을 만들려면 ASP.NET Core **Blazor Server 앱** 템플릿을 사용합니다([`dotnet new blazorserver`](/dotnet/core/tools/dotnet-new)). ASP.NET Core 앱은 Blazor Server 앱을 호스트하고 클라이언트가 연결되는 SignalR 엔드포인트를 만듭니다.
 

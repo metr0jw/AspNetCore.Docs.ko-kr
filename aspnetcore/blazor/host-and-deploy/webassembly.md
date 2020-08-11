@@ -5,7 +5,7 @@ description: ASP.NET Core, CDN(콘텐츠 배달 네트워크), 파일 서버 및
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/09/2020
+ms.date: 08/03/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 2a2b0dabc26c14624144ce7eceb5861fe56f1054
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 9d596e38a1d8350cd4a27f2fec4b262a0edf1015
+ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445140"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87818848"
 ---
-# <a name="host-and-deploy-aspnet-core-blazor-webassembly"></a>ASP.NET Core 호스트 및 배포 Blazor WebAssembly
+# <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core 호스트 및 배포 Blazor WebAssembly
 
 작성자: [Luke Latham](https://github.com/guardrex), [Rainer Stropek](https://www.timecockpit.com), [Daniel Roth](https://github.com/danroth27), [Ben Adams](https://twitter.com/ben_a_adams) 및 [Safia Abdalla](https://safia.rocks)
 
@@ -48,32 +48,32 @@ Blazor는 호스트를 사용하여 적절한 압축 파일을 제공합니다. 
 * IIS `web.config` 압축 구성에 대해서는 [IIS: Brotli 및 Gzip 압축](#brotli-and-gzip-compression) 섹션을 참조하세요. 
 * GitHub 페이지와 같이 정적으로 압축된 파일 콘텐츠 협상을 지원하지 않는 정적 호스팅 솔루션에서 호스트하는 경우 Brotli로 압축된 파일을 가져와 디코딩하는 앱을 구성하는 것이 좋습니다.
 
-  * 앱의 [google/brotli GitHub 리포지토리](https://github.com/google/brotli/)에서 Brotli 디코더를 참조합니다.
+  * [google/brotli GitHub 리포지토리](https://github.com/google/brotli)에서 JavaScript Brotli 디코더를 가져옵니다. 2020년 7월부터 디코더 파일의 이름은 `decode.min.js`이며 리포지토리의 [`js` 폴더](https://github.com/google/brotli/tree/master/js)에 있습니다.
   * 디코더를 사용하도록 앱을 업데이트합니다. `wwwroot/index.html`에서 닫는 `<body>` 태그 내부의 태그를 다음과 같이 변경합니다.
   
     ```html
-    <script src="brotli.decode.min.js"></script>
+    <script src="decode.min.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
-    Blazor.start({
-      loadBootResource: function (type, name, defaultUri, integrity) {
-        if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
-          return (async function () {
-            const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
-            if (!response.ok) {
-              throw new Error(response.statusText);
-            }
-            const originalResponseBuffer = await response.arrayBuffer();
-            const originalResponseArray = new Int8Array(originalResponseBuffer);
-            const decompressedResponseArray = BrotliDecode(originalResponseArray);
-            const contentType = type === 
-              'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
-            return new Response(decompressedResponseArray, 
-              { headers: { 'content-type': contentType } });
-          })();
+      Blazor.start({
+        loadBootResource: function (type, name, defaultUri, integrity) {
+          if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
+            return (async function () {
+              const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
+              if (!response.ok) {
+                throw new Error(response.statusText);
+              }
+              const originalResponseBuffer = await response.arrayBuffer();
+              const originalResponseArray = new Int8Array(originalResponseBuffer);
+              const decompressedResponseArray = BrotliDecode(originalResponseArray);
+              const contentType = type === 
+                'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+              return new Response(decompressedResponseArray, 
+                { headers: { 'content-type': contentType } });
+            })();
+          }
         }
-      }
-    });
+      });
     </script>
     ```
  
@@ -116,6 +116,289 @@ IIS 서버에 배포하는 경우 앱의 게시된 `web.config` 파일과 함께
 ASP.NET Core 앱 호스팅 및 배포에 대한 자세한 내용은 <xref:host-and-deploy/index>를 참조하세요.
 
 Azure App Service 배포에 대한 자세한 내용은 <xref:tutorials/publish-to-azure-webapp-using-vs>를 참조하세요.
+
+## <a name="hosted-deployment-with-multiple-no-locblazor-webassembly-apps"></a>여러 Blazor WebAssembly 앱을 사용하여 호스트된 배포
+
+### <a name="app-configuration"></a>앱 구성
+
+여러 Blazor WebAssembly 앱을 제공하도록 호스트된 Blazor 솔루션을 구성하려면 다음을 수행합니다.
+
+* 호스트된 기존 Blazor 솔루션을 사용하거나 Blazor 호스트 프로젝트 템플릿에서 새 솔루션을 만듭니다.
+
+* 클라이언트 앱의 프로젝트 파일에서 값이 `FirstApp`인 `<PropertyGroup>`에 `<StaticWebAssetBasePath>` 속성을 추가하여 프로젝트의 정적 자산에 대한 기본 경로를 설정합니다.
+
+  ```xml
+  <PropertyGroup>
+    ...
+    <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
+  </PropertyGroup>
+  ```
+
+* 두 번째 클라이언트 앱을 솔루션에 추가합니다.
+
+  * `SecondClient`라는 폴더를 솔루션의 폴더에 추가합니다.
+  * Blazor WebAssembly 프로젝트 템플릿의 `SecondClient` 폴더에 `SecondBlazorApp.Client`라는 Blazor WebAssembly 앱을 만듭니다.
+  * 앱의 프로젝트 파일에서:
+
+    * `SecondApp` 값을 사용하여 `<PropertyGroup>`에 `<StaticWebAssetBasePath>` 속성을 추가합니다.
+
+      ```xml
+      <PropertyGroup>
+        ...
+        <StaticWebAssetBasePath>SecondApp</StaticWebAssetBasePath>
+      </PropertyGroup>
+      ```
+
+    * `Shared` 프로젝트에 프로젝트 참조를 추가합니다.
+
+      ```xml
+      <ItemGroup>
+        <ProjectReference Include="..\Shared\{SOLUTION NAME}.Shared.csproj" />
+      </ItemGroup>
+      ```
+
+      자리 표시자 `{SOLUTION NAME}`은 솔루션의 이름입니다.
+
+* 서버 앱의 프로젝트 파일에서 추가된 클라이언트 앱에 대한 프로젝트 참조를 만듭니다.
+
+  ```xml
+  <ItemGroup>
+    ...
+    <ProjectReference Include="..\SecondClient\SecondBlazorApp.Client.csproj" />
+  </ItemGroup>
+  ```
+
+* 서버 앱의 `Properties/launchSettings.json` 파일에서 포트 5001 및 5002의 클라이언트 앱에 액세스하도록 Kestrel 프로필(`{SOLUTION NAME}.Server`)의 `applicationUrl`을 구성합니다.
+
+  ```json
+  "applicationUrl": "https://localhost:5001;https://localhost:5002",
+  ```
+
+* 서버 앱의 `Startup.Configure` 메서드(`Startup.cs`)에서 <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>에 대한 호출 뒤에 표시되는 다음 줄을 제거합니다.
+
+  ```csharp
+  app.UseBlazorFrameworkFiles();
+  app.UseStaticFiles();
+
+  app.UseRouting();
+
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapRazorPages();
+      endpoints.MapControllers();
+      endpoints.MapFallbackToFile("index.html");
+  });
+  ```
+
+  클라이언트 앱에 요청을 매핑하는 미들웨어를 추가합니다. 다음 예제는 다음 경우에 실행되도록 미들웨어를 구성합니다.
+
+  * 요청 포트가 원래 클라이언트 앱의 경우 5001이고 추가된 클라이언트 앱의 경우 5002입니다.
+  * 요청 호스트가 원래 클라이언트 앱의 경우 `firstapp.com`이고 추가된 클라이언트 앱의 경우 `secondapp.com`입니다.
+
+    > [!NOTE]
+    > 이 섹션에 표시된 예제에는 다음에 대한 추가 구성이 필요합니다.
+    >
+    > * 예제 호스트 도메인, `firstapp.com` 및 `secondapp.com`에 있는 앱에 액세스.
+    > * TLS 보안(HTTPS)을 사용하도록 설정하는 클라이언트 앱 인증서.
+    >
+    > 필요한 구성은 이 문서의 범위를 벗어나며 솔루션이 호스트되는 방법에 따라 달라집니다. 자세한 내용은 [호스트 및 배포 문서](xref:host-and-deploy/index)를 참조하세요.
+
+  이전에 줄이 제거된 곳에 다음 코드를 넣습니다.
+
+  ```csharp
+  app.MapWhen(ctx => ctx.Request.Host.Port == 5001 || 
+      ctx.Request.Host.Equals("firstapp.com"), first =>
+  {
+      first.Use((ctx, nxt) =>
+      {
+          ctx.Request.Path = "/FirstApp" + ctx.Request.Path;
+          return nxt();
+      });
+
+      first.UseBlazorFrameworkFiles("/FirstApp");
+      first.UseStaticFiles();
+      first.UseStaticFiles("/FirstApp");
+      first.UseRouting();
+
+      first.UseEndpoints(endpoints =>
+      {
+          endpoints.MapControllers();
+          endpoints.MapFallbackToFile("/FirstApp/{*path:nonfile}", 
+              "FirstApp/index.html");
+      });
+  });
+  
+  app.MapWhen(ctx => ctx.Request.Host.Port == 5002 || 
+      ctx.Request.Host.Equals("secondapp.com"), second =>
+  {
+      second.Use((ctx, nxt) =>
+      {
+          ctx.Request.Path = "/SecondApp" + ctx.Request.Path;
+          return nxt();
+      });
+
+      second.UseBlazorFrameworkFiles("/SecondApp");
+      second.UseStaticFiles();
+      second.UseStaticFiles("/SecondApp");
+      second.UseRouting();
+
+      second.UseEndpoints(endpoints =>
+      {
+          endpoints.MapControllers();
+          endpoints.MapFallbackToFile("/SecondApp/{*path:nonfile}", 
+              "SecondApp/index.html");
+      });
+  });
+  ```
+
+* 서버 앱의 일기 예보 컨트롤러(`Controllers/WeatherForecastController.cs`)에서 기존 `WeatherForecastController` 경로(`[Route("[controller]")]`)를 다음 경로로 바꿉니다.
+
+  ```csharp
+  [Route("FirstApp/[controller]")]
+  [Route("SecondApp/[controller]")]
+  ```
+
+  이전에 서버 앱의 `Startup.Configure` 메서드에 추가된 미들웨어는 `/WeatherForecast`로 들어오는 요청을 포트(5001/5002) 또는 도메인(`firstapp.com`/`secondapp.com`)에 따라 `/FirstApp/WeatherForecast` 또는 `/SecondApp/WeatherForecast`로 수정합니다. 서버 앱에서 클라이언트 앱으로 날씨 데이터를 반환하려면 이전 컨트롤러 경로가 필요합니다.
+
+### <a name="static-assets-and-class-libraries"></a>정적 자산 및 클래스 라이브러리
+
+정적 자산에는 다음 방법을 사용합니다.
+
+* 자산이 클라이언트 앱의 `wwwroot` 폴더에 있는 경우 정상적으로 해당 경로를 제공합니다.
+
+  ```razor
+  <img alt="..." src="/{ASSET FILE NAME}" />
+  ```
+
+* 자산이 [Razor 클래스 라이브러리(RCL)](xref:blazor/components/class-libraries)의 `wwwroot` 폴더에 있는 경우 [RCL 문서](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl)의 지침에 따라 클라이언트 앱에서 정적 자산을 참조합니다.
+
+  ```razor
+  <img alt="..." src="_content/{LIBRARY NAME}/{ASSET FILE NAME}" />
+  ```
+
+::: moniker range=">= aspnetcore-5.0"
+
+클래스 라이브러리에 의해 클라이언트 앱에 제공된 구성 요소는 정상적으로 참조됩니다. 구성 요소에 스타일시트 또는 JavaScript 파일이 필요한 경우 다음 방법 중 하나를 사용하여 정적 자산을 가져옵니다.
+
+* 클라이언트 앱의 `wwwroot/index.html` 파일은 정적 자산에 연결(`<link>`)할 수 있습니다.
+* 구성 요소는 프레임워크의 [`Link` 구성 요소](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements)를 사용하여 정적 자산을 가져올 수 있습니다.
+
+다음 예제에서는 앞의 방법을 보여 줍니다.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+클래스 라이브러리에 의해 클라이언트 앱에 제공된 구성 요소는 정상적으로 참조됩니다. 구성 요소에 스타일시트 또는 JavaScript 파일이 필요한 경우 클라이언트 앱의 `wwwroot/index.html` 파일은 올바른 정적 자산 링크를 포함해야 합니다. 다음 예제에서는 이러한 방법을 보여 줍니다.
+
+::: moniker-end
+
+클라이언트 앱 중 하나에 다음 `Jeep` 구성 요소를 추가합니다. `Jeep` 구성 요소는 다음을 사용합니다.
+
+* 클라이언트 앱의 `wwwroot` 폴더(`jeep-cj.png`)에 있는 이미지.
+* [추가된 Razor 구성 요소 라이브러리](xref:blazor/components/class-libraries)(`JeepImage`) `wwwroot` 폴더(`jeep-yj.png`)의 이미지.
+* 예제 구성 요소(`Component1`)는 `JeepImage` 라이브러리가 솔루션에 추가될 때 RCL 프로젝트 템플릿에 의해 자동으로 만들어집니다.
+
+```razor
+@page "/Jeep"
+
+<h1>1979 Jeep CJ-5&trade;</h1>
+
+<p>
+    <img alt="1979 Jeep CJ-5&trade;" src="/jeep-cj.png" />
+</p>
+
+<h1>1991 Jeep YJ&trade;</h1>
+
+<p>
+    <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+</p>
+
+<p>
+    <em>Jeep CJ-5</em> and <em>Jeep YJ</em> are a trademarks of 
+    <a href="https://www.fcagroup.com">Fiat Chrysler Automobiles</a>.
+</p>
+
+<JeepImage.Component1 />
+```
+
+> [!WARNING]
+> 이미지를 소유하고 있지 않다면 차량 이미지를 공개적으로 게시하지 **마세요**. 게시할 경우 저작권 침해의 위험이 있습니다.
+
+::: moniker range=">= aspnetcore-5.0"
+
+라이브러리의 `jeep-yj.png` 이미지를 라이브러리의 `Component1` 구성 요소(`Component1.razor`)에 추가할 수도 있습니다. 클라이언트 앱의 페이지에 `my-component` CSS 클래스를 제공하려면 프레임워크의 [`Link` 구성 요소](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements)를 사용하여 라이브러리의 스타일시트에 연결합니다.
+
+```razor
+<div class="my-component">
+    <Link href="_content/JeepImage/styles.css" rel="stylesheet" />
+
+    <h1>JeepImage.Component1</h1>
+
+    <p>
+        This Blazor component is defined in the <strong>JeepImage</strong> package.
+    </p>
+
+    <p>
+        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+    </p>
+</div>
+```
+
+[`Link` 구성 요소](xref:blazor/fundamentals/additional-scenarios#influence-html-head-tag-elements)를 사용하는 대신 클라이언트 앱의 `wwwroot/index.html` 파일에서 스타일시트를 로드할 수 있습니다. 이 방법을 사용하면 클라이언트 앱의 모든 구성 요소에서 스타일시트를 사용할 수 있습니다.
+
+```html
+<head>
+    ...
+    <link href="_content/JeepImage/styles.css" rel="stylesheet" />
+</head>
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+라이브러리의 `jeep-yj.png` 이미지를 라이브러리의 `Component1` 구성 요소(`Component1.razor`)에 추가할 수도 있습니다.
+
+```razor
+<div class="my-component">
+    <h1>JeepImage.Component1</h1>
+
+    <p>
+        This Blazor component is defined in the <strong>JeepImage</strong> package.
+    </p>
+
+    <p>
+        <img alt="1991 Jeep YJ&trade;" src="_content/JeepImage/jeep-yj.png" />
+    </p>
+</div>
+```
+
+클라이언트 앱의 `wwwroot/index.html` 파일은 추가된 다음 `<link>` 태그를 사용하여 라이브러리의 스타일시트를 요청합니다.
+
+```html
+<head>
+    ...
+    <link href="_content/JeepImage/styles.css" rel="stylesheet" />
+</head>
+```
+
+::: moniker-end
+
+클라이언트 앱의 `NavMenu` 구성 요소(`Shared/NavMenu.razor`)에 `Jeep` 구성 요소에 대한 탐색을 추가합니다.
+
+```razor
+<li class="nav-item px-3">
+    <NavLink class="nav-link" href="Jeep">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Jeep
+    </NavLink>
+</li>
+```
+
+RCL에 대한 자세한 내용은 다음을 참조하세요.
+
+* <xref:blazor/components/class-libraries>
+* <xref:razor-pages/ui-class>
 
 ## <a name="standalone-deployment"></a>독립 실행형 배포
 
@@ -333,9 +616,15 @@ CentOS 7 이상에 Blazor WebAssembly 앱을 배포하려면 다음을 수행합
 
 ### <a name="github-pages"></a>GitHub 페이지
 
-URL 다시 쓰기를 처리하려면 `index.html` 페이지로 요청 리디렉션을 처리하는 스크립트를 사용하여 `404.html` 파일을 추가합니다. 커뮤니티에서 제공하는 예제 구현은 [GitHub 페이지에 대한 단일 페이지 앱](https://spa-github-pages.rafrex.com/)([rafrex/spa-github-pages on GitHub](https://github.com/rafrex/spa-github-pages#readme))을 참조하세요. 커뮤니티 방식을 사용하는 예는 [blazor-demo/blazor-demo.github.io on GitHub](https://github.com/blazor-demo/blazor-demo.github.io)([실시간 사이트](https://blazor-demo.github.io/))를 참조하세요.
+URL 다시 쓰기를 처리하려면 `index.html` 페이지로 요청 리디렉션을 처리하는 스크립트를 사용하여 `wwwroot/404.html` 파일을 추가합니다. 예제는 [SteveSandersonMS/BlazorOnGitHubPages GitHub 리포지토리](https://github.com/SteveSandersonMS/BlazorOnGitHubPages)를 참조하세요.
 
-조직 사이트 대신 프로젝트 사이트를 사용하는 경우 `index.html`의 `<base>` 태그를 추가하거나 업데이트합니다. `href` 특성 값을 후행 슬래시가 있는 GitHub 리포지토리 이름으로 설정합니다(예: `my-repository/`).
+* [`wwwroot/404.html`](https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/wwwroot/404.html)
+* [라이브 사이트](https://stevesandersonms.github.io/BlazorOnGitHubPages/))
+
+조직 사이트 대신 프로젝트 사이트를 사용하는 경우 `wwwroot/index.html`의 `<base>` 태그를 업데이트합니다. `href` 특성 값을 후행 슬래시가 있는 GitHub 리포지토리 이름으로 설정합니다(예: `/my-repository/`). [SteveSandersonMS/BlazorOnGitHubPages GitHub 리포지토리](https://github.com/SteveSandersonMS/BlazorOnGitHubPages)에서 기본 `href`는 [`.github/workflows/main.yml` 구성 파일](https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/.github/workflows/main.yml)에 의해 게시 시 업데이트됩니다.
+
+> [!NOTE]
+> [SteveSandersonMS/BlazorOnGitHubPages GitHub 리포지토리](https://github.com/SteveSandersonMS/BlazorOnGitHubPages)는 .NET Foundation 또는 Microsoft에서 소유, 유지 관리 또는 지원하지 않습니다.
 
 ## <a name="host-configuration-values"></a>호스트 구성 값
 
@@ -552,4 +841,3 @@ Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
 ```
 
 피드백을 제공하려면 [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477)을 방문하세요.
- 

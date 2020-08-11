@@ -5,7 +5,7 @@ description: ASP.NET Core Blazor 앱 템플릿 및 Blazor 프로젝트 구조에
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/19/2020
+ms.date: 08/04/2020
 no-loc:
 - Blazor
 - Blazor Server
@@ -15,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/templates
-ms.openlocfilehash: f1b131947a242323295a763ba2f2473af0ccfb4f
-ms.sourcegitcommit: 66fca14611eba141d455fe0bd2c37803062e439c
+ms.openlocfilehash: 65d6a3156419b57eae6c7e41a9778fa25fd88f4f
+ms.sourcegitcommit: 6eacadf1be61679ab8e6f781ece76b7395512879
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85944525"
+ms.lasthandoff: 08/04/2020
+ms.locfileid: "87758530"
 ---
-# <a name="aspnet-core-blazor-templates"></a>ASP.NET Core Blazor 템플릿
+# <a name="aspnet-core-no-locblazor-templates"></a>ASP.NET Core Blazor 템플릿
 
 작성자: [Daniel Roth](https://github.com/danroth27) 및 [Luke Latham](https://github.com/guardrex)
 
@@ -40,17 +40,16 @@ dotnet new blazorwasm --help
 dotnet new blazorserver --help
 ```
 
-## <a name="blazor-project-structure"></a>Blazor 프로젝트 구조
+## <a name="no-locblazor-project-structure"></a>Blazor 프로젝트 구조
 
-다음 파일 및 폴더는 Blazor 템플릿에서 생성된 Blazor 앱을 구성합니다.
+다음 파일 및 폴더는 Blazor 프로젝트 템플릿에서 생성된 Blazor 앱을 구성합니다.
 
 * `Program.cs`: 다음을 설정하는 앱의 진입점입니다.
 
   * ASP.NET Core [호스트](xref:fundamentals/host/generic-host)(Blazor Server)
   * WebAssembly 호스트(Blazor WebAssembly): 이 파일의 코드는 Blazor WebAssembly 템플릿(`blazorwasm`)에서 만든 앱에 고유합니다.
-    * 앱의 루트 구성 요소인 `App` 구성 요소는 `Add` 메서드에 대한 `app` DOM 요소로 지정됩니다.
-    * 호스트 작성기(예: `builder.Services.AddSingleton<IMyDependency, MyDependency>();`)의 `ConfigureServices` 메서드로 서비스를 구성할 수 있습니다.
-    * 호스트 작성기(`builder.Configuration`)를 통해 구성을 제공할 수 있습니다.
+    * `App` 구성 요소는 앱의 루트 구성 요소입니다. `App` 구성 요소는 루트 구성 요소 컬렉션(`builder.RootComponents.Add<App>("app")`)에 대한 `app` DOM 요소(`<app>...</app>`)로 지정됩니다.
+    * [서비스](xref:blazor/fundamentals/dependency-injection)가 추가되고 구성됩니다(예: `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 * `Startup.cs`(Blazor Server): 앱의 시작 논리를 포함합니다. `Startup` 클래스는 다음 두 가지 메서드를 정의합니다.
 
@@ -61,7 +60,7 @@ dotnet new blazorserver --help
 
 * `wwwroot/index.html`(Blazor WebAssembly): HTML 페이지로 구현된 앱의 루트 페이지입니다.
   * 앱의 페이지를 처음 요청되면 이 페이지가 렌더링되어 응답으로 반환됩니다.
-  * 이 페이지는 루트 `App` 구성 요소가 렌더링되는 위치를 지정합니다. `App` 구성 요소(`App.razor`)는 `Startup.Configure`에서 `AddComponent` 메서드에 대한 `app` DOM 요소로 지정됩니다.
+  * 이 페이지는 루트 `App` 구성 요소가 렌더링되는 위치를 지정합니다. 구성 요소는 `app` DOM 요소(`<app>...</app>`)의 위치에서 렌더링됩니다.
   * `_framework/blazor.webassembly.js` JavaScript 파일이 로드되며, 다음을 수행합니다.
     * .NET 런타임, 앱 및 앱의 종속성을 다운로드합니다.
     * 런타임을 초기화하여 앱을 실행합니다.
@@ -77,9 +76,11 @@ dotnet new blazorserver --help
   * `Error`(`Error.razor`, Blazor Server 앱에만 해당): 앱에서 처리되지 않은 예외가 발생할 때 렌더링됩니다.
   * `FetchData`(`Pages/FetchData.razor`): 데이터 가져오기 페이지를 구현합니다.
   * `Index`(`Pages/Index.razor`): 홈페이지를 구현합니다.
+  
+* `Properties/launchSettings.json`: [개발 환경 구성](xref:fundamentals/environments#development-and-launchsettingsjson)을 보관합니다.
 
 * `Shared` 폴더: 앱에서 사용되는 다른 UI 구성 요소(`.razor`)를 포함합니다.
-  * `MainLayout`(`MainLayout.razor`): 앱의 레이아웃 구성 요소입니다.
+  * `MainLayout`(`MainLayout.razor`): 앱의 [레이아웃 구성 요소](xref:blazor/layouts)입니다.
   * `NavMenu`(`NavMenu.razor`): 사이드바 탐색을 구현합니다. 다른 Razor 구성 요소의 탐색 링크를 렌더링하는 [`NavLink` 구성 요소](xref:blazor/fundamentals/routing#navlink-component)(<xref:Microsoft.AspNetCore.Components.Routing.NavLink>)를 포함합니다. <xref:Microsoft.AspNetCore.Components.Routing.NavLink> 구성 요소는 해당 구성 요소가 로드될 때 선택된 상태를 자동으로 나타내므로 사용자가 현재 표시되는 구성 요소를 파악하는 데 도움이 됩니다.
 
 * `_Imports.razor`: 네임스페이스의 [`@using`](xref:mvc/views/razor#using) 지시문과 같은 앱의 구성 요소(`.razor`)에 포함할 일반적인 Razor 지시문을 포함합니다.
@@ -88,4 +89,4 @@ dotnet new blazorserver --help
 
 * `wwwroot`: 앱의 퍼블릭 정적 자산을 포함하는 앱의 [웹 루트](xref:fundamentals/index#web-root) 폴더입니다.
 
-* `appsettings.json`(Blazor Server): 앱의 구성 설정입니다.
+* `appsettings.json`: 앱의 [구성 설정](xref:blazor/fundamentals/configuration)을 보관합니다. Blazor WebAssembly 앱에서 앱 설정 파일은 `wwwroot` 폴더에 있습니다. Blazor Server 앱에서 앱 설정 파일은 프로젝트 루트에 있습니다.
