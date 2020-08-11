@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/index
-ms.openlocfilehash: 85446ac18608b39c469da766e1a9f2e92a1f5e11
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: d2ebb5d3c3a1c3629a5bf563aecfd6fc147715d6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445114"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014024"
 ---
-# <a name="aspnet-core-blazor-authentication-and-authorization"></a>ASP.NET Core Blazor 인증 및 권한 부여
+# <a name="aspnet-core-no-locblazor-authentication-and-authorization"></a>ASP.NET Core Blazor 인증 및 권한 부여
 
 작성자: [Steve Sanderson](https://github.com/SteveSandersonMS) 및 [Luke Latham](https://github.com/guardrex)
 
@@ -44,7 +46,7 @@ Blazor WebAssembly 앱이 클라이언트에서 실행됩니다. 권한 부여�
 
 Blazor는 기존 ASP.NET Core 인증 메커니즘을 사용하여 사용자 ID를 설정합니다. 정확한 메커니즘은 Blazor 앱이 호스트되는 방법, Blazor WebAssembly 또는 Blazor Server에 따라 달라집니다.
 
-### <a name="blazor-webassembly-authentication"></a>Blazor WebAssembly 인증
+### <a name="no-locblazor-webassembly-authentication"></a>Blazor WebAssembly 인증
 
 Blazor WebAssembly 앱에서는 사용자가 클라이언트 쪽 코드를 모두 수정할 수 있기 때문에 인증 확인을 무시할 수 있습니다. JavaScript SPA 프레임워크 또는 모든 운영 체제의 네이티브 앱을 포함하여 모든 클라이언트 쪽 앱 기술에는 동일하게 적용됩니다.
 
@@ -53,19 +55,19 @@ Blazor WebAssembly 앱에서는 사용자가 클라이언트 쪽 코드를 모�
 * 앱의 프로젝트 파일에 대한 [`Microsoft.AspNetCore.Components.Authorization`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Authorization/) 패키지 참조
 * 앱의 `_Imports.razor` 파일에 대한 `Microsoft.AspNetCore.Components.Authorization` 네임스페이스
 
-인증을 처리하려면 이어지는 섹션에서 설명하는 기본 제공 또는 사용자 지정 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> 서비스의 구현 방법을 참조하세요.
+인증을 처리하려면 이어지는 섹션에서 설명하는 기본 제공 또는 사용자 지정 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> 서비스의 사용 방법을 참조하세요.
 
 앱 및 구성을 만드는 방법에 대한 자세한 내용은 <xref:blazor/security/webassembly/index> 문서를 참조하세요.
 
-### <a name="blazor-server-authentication"></a>Blazor Server 인증
+### <a name="no-locblazor-server-authentication"></a>Blazor Server 인증
 
-Blazor Server 앱은 SignalR를 사용하여 생성된 실시간 연결을 통해 작동합니다. [SignalR 기반 앱](xref:signalr/authn-and-authz)의 인증은 연결 시 처리됩니다. 인증은 쿠키 또는 다른 전달자 토큰을 기반으로 할 수 있습니다.
+Blazor Server 앱은 SignalR를 사용하여 생성된 실시간 연결을 통해 작동합니다. [SignalR 기반 앱](xref:signalr/authn-and-authz)의 인증은 연결 시 처리됩니다. 인증은 cookie 또는 다른 전달자 토큰을 기반으로 할 수 있습니다.
+
+Blazor Server 앱용 기본 제공 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> 서비스는 ASP.NET Core의 `HttpContext.User`에서 인증 상태 데이터를 가져옵니다. 이것이 바로 인증 상태가 기존의 ASP.NET Core 인증 메커니즘과 통합되는 방식입니다.
 
 앱 및 구성을 만드는 방법에 대한 자세한 내용은 <xref:blazor/security/server/index> 문서를 참조하세요.
 
 ## <a name="authenticationstateprovider-service"></a>AuthenticationStateProvider 서비스
-
-기본 제공 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> 서비스는 ASP.NET Core's `HttpContext.User`에서 인증 상태 데이터를 가져옵니다. 이것이 바로 인증 상태가 기존의 ASP.NET Core 인증 메커니즘과 통합되는 방식입니다.
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>는 <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> 구성 요소와 <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> 구성 요소가 인증 상태를 가져오는 데 사용하는 기본 서비스입니다.
 

@@ -5,6 +5,8 @@ description: 기존 ASP.NET MVC 또는 Web API 앱을 ASP.NET Core.web으로 마
 ms.author: scaddie
 ms.date: 10/18/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 1530a5e6cc4b241b916ed7c64587b515186cc6ca
-ms.sourcegitcommit: d306407dc5bfe6fdfbac482214b3f59371b582bc
+ms.openlocfilehash: defdb190acf915eaa7c4aa8469ee47888f771526
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/04/2020
-ms.locfileid: "85951930"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014921"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>ASP.NET에서 ASP.NET Core로 마이그레이션
 
@@ -163,9 +165,9 @@ ASP.NET Core에서 정적 파일은 별도로 구성되지 않는 한 “웹 루
 > [!NOTE]
 > ASP.NET Core의 정적 파일 지원에 대한 자세한 내용은 [정적 파일](xref:fundamentals/static-files)을 참조하세요.
 
-## <a name="multi-value-cookies"></a>다중 값 쿠키
+## <a name="multi-value-no-loccookies"></a>다중 값 cookie 여부
 
-[다중 값 쿠키](xref:System.Web.HttpCookie.Values)는 ASP.NET Core에서 지원되지 않습니다. 값마다 하나의 쿠키를 만듭니다.
+[다중 값 cookie](xref:System.Web.HttpCookie.Values)는 ASP.NET Core에서 지원되지 않습니다. 값마다 하나의 cookie를 만듭니다.
 
 ## <a name="partial-app-migration"></a>부분 앱 마이그레이션
 
