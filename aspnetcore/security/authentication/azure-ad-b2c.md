@@ -3,7 +3,7 @@ title: ASP.NET Core에서 Azure Active Directory B2C를 사용 하는 클라우�
 author: camsoper
 description: ASP.NET Core를 사용 하 여 Azure Active Directory B2C 인증을 설정 하는 방법을 알아봅니다.
 ms.author: casoper
-ms.custom: mvc
+ms.custom: devx-track-csharp, mvc
 ms.date: 01/21/2019
 no-loc:
 - cookie
@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/azure-ad-b2c
-ms.openlocfilehash: 78fe4d5dd9e3f64789956e58a4490bef6bdbca1e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ccd3868c4b3294098e692f7a20e06d59ba482e7c
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021707"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130524"
 ---
 # <a name="cloud-authentication-with-azure-active-directory-b2c-in-aspnet-core"></a>ASP.NET Core에서 Azure Active Directory B2C를 사용 하는 클라우드 인증
 
@@ -40,7 +40,7 @@ ms.locfileid: "88021707"
 > * Visual Studio를 사용 하 여 인증을 위해 Azure AD B2C 테 넌 트를 사용 하도록 구성 된 ASP.NET Core 웹 앱 만들기
 > * Azure AD B2C 테 넌 트의 동작을 제어 하는 정책 구성
 
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>전제 조건
 
 이 연습을 수행 하려면 다음이 필요 합니다.
 
@@ -57,7 +57,7 @@ ms.locfileid: "88021707"
 
 다음 값을 사용합니다.
 
-| Setting                       | 값                     | 참고                                                                                                                                                                                              |
+| 설정                       | 값                     | 메모                                                                                                                                                                                              |
 |-------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **이름**                      | *&lt;앱 이름&gt;*        | 소비자에 게 앱을 설명 하는 앱의 **이름을** 입력 합니다.                                                                                                                                 |
 | **웹앱/웹 API 포함** | 예                       |                                                                                                                                                                                                    |
@@ -91,7 +91,7 @@ Visual Studio에서 다음을 수행합니다.
 
 5. 다음 값을 사용 하 여 양식을 작성 합니다.
     
-    | Setting                       | 값                                                 |
+    | 설정                       | 값                                                 |
     |-------------------------------|-------------------------------------------------------|
     | **도메인 이름**               | *&lt;B2C 테 넌 트의 도메인 이름&gt;*          |
     | **애플리케이션 ID**            | *&lt;클립보드에서 응용 프로그램 ID 붙여넣기&gt;* |
