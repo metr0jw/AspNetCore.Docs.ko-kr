@@ -163,9 +163,14 @@
         - name: 웹 API 앱>>
           displayName: tutorial
           href: /learn/modules/build-web-api-net-core/
-        - name: 클라우드 네이티브 마이크로 서비스 >>
-          displayName: 'tutorial, kubernetes, aks, acr, docker'
-          href: /learn/modules/microservices-aspnet-core/
+        - name: 클라우드 네이티브 마이크로 서비스
+          items:
+            - name: 만들기 및 배포 >>
+              displayName: 'tutorial, kubernetes, aks, acr, docker'
+              href: /learn/modules/microservices-aspnet-core/
+            - name: 복원력 구현 >>
+              displayName: 'tutorial, kubernetes, aks, acr, docker'
+              href: /learn/modules/microservices-resiliency-aspnet-core/
         - name: 데이터 액세스 >>
           displayName: 'tutorial, ef, entity framework'
           href: /learn/modules/persist-data-ef-core/
@@ -1191,6 +1196,8 @@
       uid: performance/diagnostic-tools
     - name: 로드 및 스트레스 테스트
       uid: test/loadtests
+    - name: 이벤트 카운터
+      href: /dotnet/core/diagnostics/event-counter-perf
 - name: 전역화 및 지역화
   items:
     - name: 개요
