@@ -5,6 +5,8 @@ description: Razor Pages 및 Entity Framework 자습서 시리즈의 7부입니�
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: b442a4ce1f63c047c123315626f559155fd06424
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 3807c52bb843c4d6403e8236fde50c034a8d1e2b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060139"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017742"
 ---
-# <a name="part-7-razor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>7부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 관련 데이터 업데이트
+# <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>7부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 관련 데이터 업데이트
 
 작성자: [Tom Dykstra](https://github.com/tdykstra) 및 [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -65,7 +67,7 @@ ms.locfileid: "86060139"
 * [초과 게시](xref:data/ef-rp/crud#overposting)를 방지하도록 `TryUpdateModelAsync`를 사용합니다.
 * `ViewData["DepartmentID"]`을 제거합니다. 기본 클래스의 `DepartmentNameSL`은 강력한 형식의 모델이며 Razor 페이지에서 사용됩니다. 강력한 형식의 모델은 약한 형식보다 선호됩니다. 자세한 내용은 [약한 형식의 데이터(ViewData 및 ViewBag)](xref:mvc/views/overview#VD_VB)를 참조하세요.
 
-### <a name="update-the-course-create-razor-page"></a>과정 만들기 Razor 페이지 업데이트
+### <a name="update-the-course-create-no-locrazor-page"></a>과정 만들기 Razor 페이지 업데이트
 
 다음 코드로 *Pages/Courses/Create.cshtml*을 업데이트합니다.
 
@@ -92,7 +94,7 @@ Razor 페이지는 [Select 태그 도우미](xref:mvc/views/working-with-forms#t
 
 변경 내용은 만들기 페이지 모델에서 만든 것과 비슷합니다. 앞의 코드에서 `PopulateDepartmentsDropDownList`는 드롭다운 목록에서 부서를 선택하는 부서 ID를 전달합니다.
 
-### <a name="update-the-course-edit-razor-page"></a>과정 편집 Razor 페이지 업데이트
+### <a name="update-the-course-edit-no-locrazor-page"></a>과정 편집 Razor 페이지 업데이트
 
 다음 코드로 *Pages/Courses/Edit.cshtml*을 업데이트합니다.
 
@@ -120,7 +122,7 @@ Razor 페이지는 [Select 태그 도우미](xref:mvc/views/working-with-forms#t
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/Details.cshtml.cs?highlight=28)]
 
-### <a name="update-the-course-razor-pages"></a>과정 Razor Pages 업데이트
+### <a name="update-the-course-no-locrazor-pages"></a>과정 Razor Pages 업데이트
 
 다음 코드로 *Pages/Courses/Delete.cshtml*을 업데이트합니다.
 
@@ -197,7 +199,7 @@ Razor 페이지에는 과정 엔터티의 컬렉션이 없으므로 모델 바�
 * `OnPostAsync`에서 `UpdateInstructorCourses`를 호출하여 확인란의 정보를 편집 중인 Instructor 엔터티에 적용합니다.
 * `TryUpdateModel`이 실패하는 경우 `OnPostAsync`에서 `PopulateAssignedCourseData` 및 `UpdateInstructorCourses`를 호출합니다. 이 메서드 호출은 오류 메시지와 함께 다시 표시될 때 페이지에 입력된 할당된 과정 데이터를 복원합니다.
 
-### <a name="update-the-instructor-edit-razor-page"></a>강사 편집 Razor 페이지 업데이트
+### <a name="update-the-instructor-edit-no-locrazor-page"></a>강사 편집 Razor 페이지 업데이트
 
 다음 코드로 *Pages/Instructors/Edit.cshtml*을 업데이트합니다.
 

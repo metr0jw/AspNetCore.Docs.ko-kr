@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/28/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 171607544bfe89fdd0a1ed9efb68f7a532f9aee1
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: d2594dd05ee6d7e8e0dbd3c279ecd8783d182b62
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212660"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017833"
 ---
-# <a name="part-6-razor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>6부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 관련 데이터 읽기
+# <a name="part-6-no-locrazor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>6부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 관련 데이터 읽기
 
 작성자: [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) 및 [Rick Anderson](https://twitter.com/RickAndMSFT)
 

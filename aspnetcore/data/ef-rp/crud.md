@@ -5,6 +5,8 @@ description: Razor Pages 및 Entity Framework 자습서 시리즈의 2부입니�
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/crud
-ms.openlocfilehash: 46846d99230620e45d8a2baab46df320425cfb6c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f205e7741c8e901e9219bec2028c7bee98129161
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401209"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018366"
 ---
-# <a name="part-2-razor-pages-with-ef-core-in-aspnet-core---crud"></a>2부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - CRUD
+# <a name="part-2-no-locrazor-pages-with-ef-core-in-aspnet-core---crud"></a>2부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - CRUD
 
 작성자: [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) 및 [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -393,7 +395,7 @@ DB 컨텍스트는 메모리의 엔터티가 해당하는 DB의 행과 동기화
 * DB 예외가 catch되었습니다.
 * 삭제 페이지 `OnGetAsync` 메서드가 `saveChangesError=true`로 호출됩니다.
 
-### <a name="update-the-delete-razor-page"></a>삭제 Razor 페이지 업데이트
+### <a name="update-the-delete-no-locrazor-page"></a>삭제 Razor 페이지 업데이트
 
 다음 강조 표시된 오류 메시지를 삭제 Razor 페이지에 추가합니다.
 <!--

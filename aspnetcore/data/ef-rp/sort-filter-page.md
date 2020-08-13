@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/sort-filter-page
-ms.openlocfilehash: 496221bb4e34e1f9e4177d1934786a77d8c9b411
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 5bfea63cc1ff85adbe5ce572858b78a8e86b2280
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212542"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017729"
 ---
-# <a name="part-3-razor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>3부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 정렬, 필터, 페이징
+# <a name="part-3-no-locrazor-pages-with-ef-core-in-aspnet-core---sort-filter-paging"></a>3부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 정렬, 필터, 페이징
 
 작성자: [Tom Dykstra](https://github.com/tdykstra), [Rick Anderson](https://twitter.com/RickAndMSFT) 및 [Jon P Smith](https://twitter.com/thereformedprog)
 
@@ -134,7 +136,7 @@ Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())`
 
 자세한 내용은 [SQLite 공급자를 사용하여 대/소문자를 구분하지 않는 쿼리를 사용하는 방법](https://github.com/aspnet/EntityFrameworkCore/issues/11414)을 참조하세요.
 
-### <a name="update-the-razor-page"></a>Razor 페이지 업데이트
+### <a name="update-the-no-locrazor-page"></a>Razor 페이지 업데이트
 
 *Pages/Students/Index.cshtml*의 코드를 바꿔서 **검색** 단추와 다양한 크롬을 만듭니다.
 
@@ -211,7 +213,7 @@ https://localhost:<port>/Students?SearchString=an
 
   `PaginatedList.CreateAsync`에서 `pageIndex` 뒤에 있는 두 개의 물음표는 [Null 병합 연산자](/dotnet/csharp/language-reference/operators/null-conditional-operator)를 나타냅니다. Null 병합 연산자는 null 허용 형식에 대한 기본값을 정의합니다. 식 `(pageIndex ?? 1)`은 값이 있는 경우 `pageIndex`의 값을 반환함을 의미합니다. `pageIndex`에 값이 없으면 1을 반환합니다.
 
-### <a name="add-paging-links-to-the-razor-page"></a>Razor Page에 페이징 링크 추가
+### <a name="add-paging-links-to-the-no-locrazor-page"></a>Razor Page에 페이징 링크 추가
 
 *Students/Index.cshtml*의 코드를 다음 코드로 바꿉니다. 변경 내용이 강조 표시되어 있습니다.
 
@@ -247,7 +249,7 @@ https://localhost:<port>/Students?SearchString=an
 
 [!code-csharp[Main](intro/samples/cu30/Models/SchoolViewModels/EnrollmentDateGroup.cs)]
 
-### <a name="create-the-razor-page"></a>Razor Page 만들기
+### <a name="create-the-no-locrazor-page"></a>Razor Page 만들기
 
 다음 코드로 *Pages/About.cshtml* 파일을 만듭니다.
 
@@ -467,7 +469,7 @@ http://localhost:5000/Students?SearchString=an
 
 `PaginatedList.CreateAsync`에서 두 개의 물음표는 [Null 병합 연산자](/dotnet/csharp/language-reference/operators/null-conditional-operator)를 나타냅니다. Null 병합 연산자는 null 허용 형식에 대한 기본값을 정의합니다. 식 `(pageIndex ?? 1)`은 값이 있는 경우 `pageIndex`의 값을 반환함을 의미합니다. `pageIndex`에 값이 없으면 1을 반환합니다.
 
-## <a name="add-paging-links-to-the-student-razor-page"></a>학생 Razor 페이지에 페이징 링크 추가
+## <a name="add-paging-links-to-the-student-no-locrazor-page"></a>학생 Razor 페이지에 페이징 링크 추가
 
 *Students/Index.cshtml*의 표시를 업데이트합니다. 변경 내용은 강조 표시되어 있습니다.
 
@@ -521,7 +523,7 @@ ASP.NET Core 2.2의 웹 템플릿에는 정보 페이지가 포함되지 않습�
 
 LINQ 문은 등록 날짜별로 학생 엔터티를 그룹화하고 각 그룹의 엔터티 수를 계산하며 결과를 `EnrollmentDateGroup` 뷰 모델 개체의 컬렉션에 저장합니다.
 
-### <a name="modify-the-about-razor-page"></a>Razor 페이지 정보 수정
+### <a name="modify-the-about-no-locrazor-page"></a>Razor 페이지 정보 수정
 
 *Pages/About.cshtml* 파일의 코드를 다음 코드로 바꿉니다.
 

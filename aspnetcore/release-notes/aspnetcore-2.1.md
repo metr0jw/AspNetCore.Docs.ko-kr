@@ -6,28 +6,30 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: bf041965b009d5c10b96ad4f2a349c6efb346eb5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 3fb524748b9e2aa2c12b64f67a7960c4f0f911b0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408164"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021161"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>ASP.NET Core 2.1의 새로운 기능
 
 이 아티클에서는 ASP.NET Core 2.1의 가장 큰 변경 내용을 중점적으로 설명하고 관련 문서의 링크를 제공합니다.
 
-## [SignalR
+## SignalR
 
-[SignalR은 ASP.NET Core 2.1에 대해 다시 작성되었습니다. ASP.NET Core [SignalR에는 여러 가지 향상된 기능이 포함됩니다.
+SignalR은 ASP.NET Core 2.1에 대해 다시 작성되었습니다. ASP.NET Core SignalR에는 여러 가지 향상된 기능이 포함됩니다.
 
 * 간소화된 스케일 아웃 모델
 * JQuery에 종속되지 않는 새 JavaScript 클라이언트
@@ -36,24 +38,24 @@ ms.locfileid: "85408164"
 * 새 스트리밍 응답 모델
 * 기본 Websocket에 기반한 클라이언트에 대한 지원
 
-자세한 내용은 [ASP.NET Core [SignalR](xref:signalr/introduction)을 참조하세요.
+자세한 내용은 [ASP.NET Core SignalR](xref:signalr/introduction)을 참조하세요.
 
-## <a name="razor-class-libraries"></a>[Razor 클래스 라이브러리
+## <a name="no-locrazor-class-libraries"></a>Razor 클래스 라이브러리
 
-ASP.NET Core 2.1을 통해 [Razor 기반 UI를 빌드하고 라이브러리에 포함하고 여러 프로젝트 간에 공유합니다. 새로운 [Razor SDK를 사용하면 NuGet 패키지에 포함될 수 있는 클래스 라이브러리 프로젝트에 [Razor 파일을 빌드할 수 있습니다. 라이브러리의 보기 및 페이지는 자동으로 검색되고 앱에서 재정의할 수 있습니다. [Razor 컴파일을 빌드에 통합하여 다음을 수행합니다.
+ASP.NET Core 2.1을 통해 Razor 기반 UI를 빌드하고 라이브러리에 포함하고 여러 프로젝트 간에 공유합니다. 새로운 Razor SDK를 사용하면 NuGet 패키지에 포함될 수 있는 클래스 라이브러리 프로젝트에 Razor 파일을 빌드할 수 있습니다. 라이브러리의 보기 및 페이지는 자동으로 검색되고 앱에서 재정의할 수 있습니다. Razor 컴파일을 빌드에 통합하여 다음을 수행합니다.
 
 * 앱 시작 시간이 훨씬 더 빠릅니다.
-* 런타임 시 [Razor 뷰 및 Pages에 대한 빠른 업데이트는 반복 개발 워크플로의 일부로 사용할 수 있습니다.
+* 런타임 시 Razor 뷰 및 Pages에 대한 빠른 업데이트는 반복 개발 워크플로의 일부로 사용할 수 있습니다.
 
-자세한 내용은 [[Razor 클래스 라이브러리 프로젝트를 사용하여 재사용 가능한 UI 만들기](xref:razor-pages/ui-class)를 참조하세요.
+자세한 내용은 [Razor 클래스 라이브러리 프로젝트를 사용하여 재사용 가능한 UI 만들기](xref:razor-pages/ui-class)를 참조하세요.
 
-## <a name="identity-ui-library--scaffolding"></a>[Identity UI 라이브러리 및 스캐폴딩
+## <a name="no-locidentity-ui-library--scaffolding"></a>Identity UI 라이브러리 및 스캐폴딩
 
-ASP.NET Core 2.1에서는 [ASP.NET Core [Identity](xref:security/authentication/identity)[를 [Razor 클래스 라이브러리](xref:razor-pages/ui-class)로 제공합니다. [Identity가 포함되는 앱은 선택적으로 [Identity RCL([Razor 클래스 라이브러리)에 포함된 소스 코드를 추가하기 위해 새 [Identity 스캐폴더를 적용할 수 있습니다. 코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다. 예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다. 생성된 코드는 [Identity RCL의 동일한 코드보다 우선합니다.
+ASP.NET Core 2.1에서는 [ASP.NET Core Identity](xref:security/authentication/identity)[를 Razor 클래스 라이브러리](xref:razor-pages/ui-class)로 제공합니다. Identity가 포함되는 앱은 선택적으로 Identity RCL(Razor 클래스 라이브러리)에 포함된 소스 코드를 추가하기 위해 새 Identity 스캐폴더를 적용할 수 있습니다. 코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다. 예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다. 생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다.
 
-인증을 포함하지 **않는** 앱은 RCL [Identity 패키지를 추가하기 위해 [Identity 스캐폴더를 적용할 수 있습니다. 선택한 [Identity 코드의 옵션이 생성되어야 합니다.
+인증을 포함하지 **않는** 앱은 RCL Identity 패키지를 추가하기 위해 Identity 스캐폴더를 적용할 수 있습니다. 선택한 Identity 코드의 옵션이 생성되어야 합니다.
 
-자세한 내용은 [ASP.NET Core 프로젝트에서 [Identity 스캐폴드](xref:security/authentication/scaffold-identity)를 참조하세요.
+자세한 내용은 [ASP.NET Core 프로젝트에서 Identity 스캐폴드](xref:security/authentication/scaffold-identity)를 참조하세요.
 
 ## <a name="https"></a>HTTPS
 
@@ -159,17 +161,17 @@ Angular 템플릿은 Angular CLI에 기반하고 React 템플릿은 create-react
 * <xref:spa/react>
 * <xref:spa/react-with-redux>
 
-## <a name="razor-pages-search-for-razor-assets"></a>[Razor 자산에 대한 [Razor Pages 검색
+## <a name="no-locrazor-pages-search-for-no-locrazor-assets"></a>Razor 자산에 대한 Razor Pages 검색
 
-2\.1에서는 나열된 순서로 다음 디렉터리에 있는 [Razor 자산(예: 레이아웃 및 부분)에 대한 [Razor Pages 검색은 다음과 같습니다.
+2\.1에서는 나열된 순서로 다음 디렉터리에 있는 Razor 자산(예: 레이아웃 및 부분)에 대한 Razor Pages 검색은 다음과 같습니다.
 
 1. 현재 Pages 폴더
 1. */Pages/Shared/*
 1. */Views/Shared/*
 
-## <a name="razor-pages-in-an-area"></a>영역의 [Razor Pages
+## <a name="no-locrazor-pages-in-an-area"></a>영역의 Razor Pages
 
-이제 [Razor Pages는 [영역](xref:mvc/controllers/areas)을 지원합니다. 영역의 예제를 보려면 개별 사용자 계정을 사용하여 새 [Razor Pages 웹앱을 만듭니다. 개별 사용자 계정을 사용하는 [Razor Pages 웹앱에는 */Areas/[Identity/Pages*가 포함됩니다.
+이제 Razor Pages는 [영역](xref:mvc/controllers/areas)을 지원합니다. 영역의 예제를 보려면 개별 사용자 계정을 사용하여 새 Razor Pages 웹앱을 만듭니다. 개별 사용자 계정을 사용하는 Razor Pages 웹앱에는 */Areas/Identity/Pages*가 포함됩니다.
 
 ## <a name="mvc-compatibility-version"></a>MVC 호환성 버전
 

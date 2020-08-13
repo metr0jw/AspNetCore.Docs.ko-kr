@@ -5,6 +5,8 @@ description: Razor Pages에 대한 자습서 시리즈의 6부입니다.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/search
-ms.openlocfilehash: b0ee3294a4646b199f85d6a023e152e5eabaa225
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b28d228449549e1071df4100ee2d52626c50845b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408788"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021642"
 ---
-# <a name="part-6-add-search-to-aspnet-core-razor-pages"></a>6부. ASP.NET Core Razor Pages에 검색 추가
+# <a name="part-6-add-search-to-aspnet-core-no-locrazor-pages"></a>6부. ASP.NET Core Razor Pages에 검색 추가
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -109,7 +111,7 @@ HTML `<form>` 태그는 다음과 같은 [태그 도우미](xref:mvc/views/tag-h
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Razor 페이지에 장르별 검색 추가
+### <a name="add-search-by-genre-to-the-no-locrazor-page"></a>Razor 페이지에 장르별 검색 추가
 
 다음과 같이 *Index.cshtml*을 업데이트합니다.
 
@@ -211,7 +213,7 @@ HTML `<form>` 태그는 다음과 같은 [태그 도우미](xref:mvc/views/tag-h
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie22/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
-### <a name="add-search-by-genre-to-the-razor-page"></a>Razor 페이지에 장르별 검색 추가
+### <a name="add-search-by-genre-to-the-no-locrazor-page"></a>Razor 페이지에 장르별 검색 추가
 
 다음과 같이 *Index.cshtml*을 업데이트합니다.
 

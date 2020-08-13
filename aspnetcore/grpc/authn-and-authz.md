@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 05/26/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/authn-and-authz
-ms.openlocfilehash: 4216a6f28d7c4fdcd45fbd639617fa99b91e784c
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: edaf96fb9c7f0f175efe82f8b85d4d1a41da87a5
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407488"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016351"
 ---
 # <a name="authentication-and-authorization-in-grpc-for-aspnet-core"></a>ASP.NET Core용 gRPC의 인증 및 권한 부여
 
@@ -148,7 +150,7 @@ ASP.NET Core를 지원하는 많은 인증 메커니즘은 gRPC에서 작동합�
 
 * Azure Active Directory
 * 클라이언트 인증서
-* IdentityServer
+* Identity서버
 * JWT 토큰
 * OAuth 2.0
 * OpenID Connect

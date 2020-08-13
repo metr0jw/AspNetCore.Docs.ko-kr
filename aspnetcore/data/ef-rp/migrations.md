@@ -5,6 +5,8 @@ description: Razor Pages 및 Entity Framework 자습서 시리즈의 4부입니�
 ms.author: riande
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: 7d326bd5d8204d98e2f13b433f49fd740557905f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ebdcf5605e8b4067c52841b138184e51668f9c25
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85405681"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019653"
 ---
-# <a name="part-4-razor-pages-with-ef-core-migrations-in-aspnet-core"></a>4부. ASP.NET Core에서 EF Core 마이그레이션을 사용한 Razor Pages
+# <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a>4부. ASP.NET Core에서 EF Core 마이그레이션을 사용한 Razor Pages
 
 작성자: [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog) 및 [Rick Anderson](https://twitter.com/RickAndMSFT)
 

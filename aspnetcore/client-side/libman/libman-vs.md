@@ -6,20 +6,22 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: client-side/libman/libman-vs
-ms.openlocfilehash: 504c34ccd8813273161b86504700704f8a932538
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2dc944ffd4307aa108a54b70d58f298c26959ce0
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403172"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013348"
 ---
 # <a name="use-libman-with-aspnet-core-in-visual-studio"></a>Visual Studio에서 ASP.NET Core와 함께 LibMan 사용
 
@@ -68,7 +70,7 @@ Visual Studio에는 ASP.NET Core 프로젝트의 [LibMan](xref:client-side/libma
     * *wwwroot*가 없으면 *lib*가 사용됩니다.
   * 프로젝트 폴더에서 시작한 경우 해당 폴더 이름이 사용됩니다.
 
-  폴더 제안에 라이브러리 이름이 접미사로 추가됩니다. 다음 표에는 [Razor Pages 프로젝트에 jQuery를 설치하는 경우의 폴더 제안이 나와 있습니다.
+  폴더 제안에 라이브러리 이름이 접미사로 추가됩니다. 다음 표에는 Razor Pages 프로젝트에 jQuery를 설치하는 경우의 폴더 제안이 나와 있습니다.
   
   |시작 위치                           |제안된 폴더      |
   |------------------------------------------|----------------------|

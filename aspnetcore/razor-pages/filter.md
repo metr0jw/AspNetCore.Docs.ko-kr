@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 2/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/filter
-ms.openlocfilehash: 626003ad75333cfaf17a3ea97549ca82650469a8
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b8942020e98d0f985e5445bb1816c540bcb7829b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407371"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021408"
 ---
-# <a name="filter-methods-for-razor-pages-in-aspnet-core"></a>ASP.NET Core에서 Razor Pages를 위한 필터 메서드
+# <a name="filter-methods-for-no-locrazor-pages-in-aspnet-core"></a>ASP.NET Core에서 Razor Pages를 위한 필터 메서드
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -57,7 +59,7 @@ Razor 페이지 필터는 전역 또는 페이지 수준에서 적용할 수 있
 
 필터 인터페이스의 동기 또는 비동기 버전을 모두 구현하지 **말고** 그 중 **한 가지**만 구현하세요. 프레임워크는 먼저 필터가 비동기 인터페이스를 구현하는지를 확인하고 그렇다면 이를 호출합니다. 그렇지 않으면 동기 인터페이스의 메서드를 호출합니다. 두 인터페이스가 구현되는 경우 비동기 메서드만 호출됩니다. 페이지의 재정의에 동일한 규칙이 적용되며, 재정의의 동기 또는 비동기 버전 중 하나만 구현합니다.
 
-## <a name="implement-razor-page-filters-globally"></a>Razor 페이지 필터를 전역으로 구현
+## <a name="implement-no-locrazor-page-filters-globally"></a>Razor 페이지 필터를 전역으로 구현
 
 다음 코드는 `IAsyncPageFilter`를 구현합니다.
 
@@ -81,7 +83,7 @@ Razor 페이지 필터는 전역 또는 페이지 수준에서 적용할 수 있
 
 [!code-csharp[Main](filter/3.1sample/PageFilter/StartupSync.cs?name=snippet2)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>필터 메서드를 재정의하여 Razor 페이지 필터 구현
+## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>필터 메서드를 재정의하여 Razor 페이지 필터 구현
 
 다음 코드는 비동기 Razor 페이지 필터를 재정의합니다.
 
@@ -149,7 +151,7 @@ Razor 페이지 필터는 전역 또는 페이지 수준에서 적용할 수 있
 > [!NOTE]
 > 필터 인터페이스의 동기 또는 비동기 버전 중 **하나**를 구현합니다. 프레임워크는 먼저 필터가 비동기 인터페이스를 구현하는지를 확인하고 그렇다면 이를 호출합니다. 그렇지 않으면 동기 인터페이스의 메서드를 호출합니다. 두 인터페이스가 구현되는 경우 비동기 메서드만 호출됩니다. 페이지의 재정의에 동일한 규칙이 적용되며, 재정의의 동기 또는 비동기 버전 중 하나만 구현합니다.
 
-## <a name="implement-razor-page-filters-globally"></a>Razor 페이지 필터를 전역으로 구현
+## <a name="implement-no-locrazor-page-filters-globally"></a>Razor 페이지 필터를 전역으로 구현
 
 다음 코드는 `IAsyncPageFilter`를 구현합니다.
 
@@ -177,7 +179,7 @@ Razor 페이지 필터는 전역 또는 페이지 수준에서 적용할 수 있
 
 [!code-csharp[Main](filter/sample/PageFilter/StartupSync.cs?name=snippet2&highlight=11)]
 
-## <a name="implement-razor-page-filters-by-overriding-filter-methods"></a>필터 메서드를 재정의하여 Razor 페이지 필터 구현
+## <a name="implement-no-locrazor-page-filters-by-overriding-filter-methods"></a>필터 메서드를 재정의하여 Razor 페이지 필터 구현
 
 다음 코드는 동기 Razor 페이지 필터를 재정의합니다.
 

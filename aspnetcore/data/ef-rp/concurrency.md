@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: ff9e01df002ac0fc94ced6d5d093099d66a14f36
-ms.sourcegitcommit: 14c3d111f9d656c86af36ecb786037bf214f435c
+ms.openlocfilehash: bb29001e30578e0992e578c2f98cda82c5dcf185
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86176286"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018665"
 ---
-# <a name="part-8-razor-pages-with-ef-core-in-aspnet-core---concurrency"></a>8부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 동시성
+# <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a>8부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 동시성
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT), [Tom Dykstra](https://github.com/tdykstra) 및 [Jon P Smith](https://twitter.com/thereformedprog)
 

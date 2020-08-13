@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/23/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/validation
-ms.openlocfilehash: 1bc9b2b081c58392bd2c226ebedc804b43810bc2
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: dad2e667cb6fa3ace7cb5e5dcb982511357ed49b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408853"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021525"
 ---
-# <a name="part-8-add-validation-to-an-aspnet-core-razor-page"></a>8부. ASP.NET Core Razor Page에 유효성 검사 추가
+# <a name="part-8-add-validation-to-an-aspnet-core-no-locrazor-page"></a>8부. ASP.NET Core Razor Page에 유효성 검사 추가
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -63,7 +65,7 @@ DataAnnotations 네임스페이스는 클래스 또는 속성에 선언적으로
 
 ASP.NET Core가 자동으로 적용하는 유효성 검사 규칙을 사용하면 앱을 더욱 강력하게 만들 수 있습니다. 또한 무언가의 유효성 검사를 잊거나, 실수로 데이터베이스에 불량 데이터가 들어가지 않도록 할 수 있습니다.
 
-### <a name="validation-error-ui-in-razor-pages"></a>Razor Pages에서 유효성 검사 오류 UI
+### <a name="validation-error-ui-in-no-locrazor-pages"></a>Razor Pages에서 유효성 검사 오류 UI
 
 앱을 실행하고 Pages/Movies로 이동합니다.
 

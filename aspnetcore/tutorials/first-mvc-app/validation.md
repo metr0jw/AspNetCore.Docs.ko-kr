@@ -5,6 +5,8 @@ description: ASP.NET Core MVC에 대한 자습서 시리즈의 9부입니다.
 ms.author: riande
 ms.date: 04/13/2017
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/validation
-ms.openlocfilehash: 9a04beab6c00c24e47acca11cfa61d7ca59ab333
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 43e8fbb46a3154cf2c4a50cc1683defeb5f898b6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407930"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020784"
 ---
 # <a name="part-9-add-validation-to-an-aspnet-core-mvc-app"></a>9부. ASP.NET Core MVC 앱에 유효성 검사 추가
 

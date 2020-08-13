@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -16,18 +18,18 @@ no-loc:
 - SignalR
 uid: blazor/tooling
 zone_pivot_groups: operating-systems
-ms.openlocfilehash: 33245e669b317ed577a8a1652b2eed8f9ea5b915
-ms.sourcegitcommit: 6fb27ea41a92f6d0e91dfd0eba905d2ac1a707f7
+ms.openlocfilehash: 077d8943e424df4d5a14950dfadc2dd73d2ce4d6
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86407647"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013400"
 ---
-# <a name="tooling-for-aspnet-core-blazor"></a>ASP.NET Core Blazor용 도구
+# <a name="tooling-for-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor용 도구
 
 작성자: [Daniel Roth](https://github.com/danroth27) 및 [Luke Latham](https://github.com/guardrex)
 
-::: zone pivot="os-windows"
+::: zone pivot="windows"
 
 1. **ASP.NET 및 웹 개발** 워크로드가 있는 최신 버전의 [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)를 설치합니다.
 
@@ -47,7 +49,7 @@ ASP.NET Core HTTPS 개발 인증서 신뢰에 대한 자세한 내용은 <xref:s
 
 ::: zone-end
 
-::: zone pivot="os-linux"
+::: zone pivot="linux"
 
 1. [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core/3.1)의 최신 버전을 설치합니다. 이전에 SDK를 설치한 경우 명령 셸에서 다음 명령을 실행하여 설치된 버전을 확인할 수 있습니다.
 
@@ -91,7 +93,7 @@ Linux에서 인증서를 신뢰할 수 있는 중앙 집중식 방법은 없습�
 
 ::: zone-end
 
-::: zone pivot="os-macos"
+::: zone pivot="macos"
 
 1. [Mac용 Visual Studio](https://visualstudio.microsoft.com/vs/mac/)를 설치합니다.
 

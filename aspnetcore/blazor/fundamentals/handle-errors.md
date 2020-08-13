@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/23/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/handle-errors
-ms.openlocfilehash: e3ce3a62f351255fd059adaa6e9b0a8e9bdc2ce7
-ms.sourcegitcommit: fa89d6553378529ae86b388689ac2c6f38281bb9
+ms.openlocfilehash: 5f7112d9a072f28d387e07bdf69ec0b7595ff6b4
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86059879"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014440"
 ---
-# <a name="handle-errors-in-aspnet-core-blazor-apps"></a>ASP.NET Core Blazor 앱에서 오류 처리
+# <a name="handle-errors-in-aspnet-core-no-locblazor-apps"></a>ASP.NET Core Blazor 앱에서 오류 처리
 
 작성자: [Steve Sanderson](https://github.com/SteveSandersonMS)
 
@@ -85,7 +87,7 @@ Blazor Server 앱에서 `Pages/_Host.cshtml` 파일의 환경을 사용자 지�
 }
 ```
 
-## <a name="how-a-blazor-server-app-reacts-to-unhandled-exceptions"></a>Blazor Server 앱이 처리되지 않은 예외에 반응하는 방법
+## <a name="how-a-no-locblazor-server-app-reacts-to-unhandled-exceptions"></a>Blazor Server 앱이 처리되지 않은 예외에 반응하는 방법
 
 Blazor Server는 상태 저장 프레임워크입니다. 사용자가 앱과 상호 작용하는 동안 *회로*라는 서버에 대한 연결이 유지됩니다. 회로는 활성 구성 요소 인스턴스와 다음과 같은 상태의 여러 다양한 측면을 포함합니다.
 
@@ -221,7 +223,7 @@ Blazor가 구성 요소의 인스턴스를 만들 경우
 * <xref:blazor/call-javascript-from-dotnet>
 * <xref:blazor/call-dotnet-from-javascript>
 
-### <a name="blazor-server-prerendering"></a>Blazor Server 미리 렌더링
+### <a name="no-locblazor-server-prerendering"></a>Blazor Server 미리 렌더링
 
 렌더링된 HTML 태그가 사용자의 초기 HTTP 요청 일부로 반환되도록 [구성 요소 태그 도우미](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper)를 사용하여 Blazor 구성 요소를 미리 렌더링할 수 있습니다. 이 작업은 다음을 통해 진행됩니다.
 

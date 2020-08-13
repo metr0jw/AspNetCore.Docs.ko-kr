@@ -6,6 +6,8 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 09/23/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: ca87ba5b03e7657132e5ebaba72370bde85c85d4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: bf8068375da81288f2fbfa2c1bfafe97c03c70fc
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85406773"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016182"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>.NET의 gRPC에서 로깅 및 진단
 
@@ -165,7 +167,7 @@ Application Insights와 같은 관리형 서비스에서 추적을 볼 수 있�
 > [!NOTE]
 > 원격 분석 라이브러리는 현재 gRPC 특정 `Grpc.Net.Client.GrpcOut` 원격 분석을 캡처하지 않습니다. 이 추적을 캡처하도록 원격 분석 라이브러리를 개선하기 위해 노력하고 있습니다.
 
-## <a name="metrics"></a>metrics
+## <a name="metrics"></a>메트릭
 
 메트릭은 시간 간격에 따른 데이터 측정값 표시입니다(예: 초당 요청 수). 메트릭 데이터를 통해 앱 상태를 상위 수준에서 확인할 수 있습니다. `EventCounter`를 사용하여 .NET gRPC 메트릭을 내보냅니다.
 
@@ -173,14 +175,14 @@ Application Insights와 같은 관리형 서비스에서 추적을 볼 수 있�
 
 gRPC 서버 메트릭은 `Grpc.AspNetCore.Server` 이벤트 원본에 보고됩니다.
 
-| name                      | 설명                   |
+| 이름                      | 설명                   |
 | --------------------------|-------------------------------|
 | `total-calls`             | 총 호출                   |
 | `current-calls`           | 현재 호출 수                 |
 | `calls-failed`            | 실패한 호출의 총수            |
 | `calls-deadline-exceeded` | 최종 기한을 넘긴 호출의 총수 |
-| `messages-sent`           | 보낸 메시지의 총수           |
-| `messages-received`       | 받은 메시지의 총수       |
+| `messages-sent`           | 총 보낸 메시지           |
+| `messages-received`       | 받은 총 메시지 수       |
 | `calls-unimplemented`     | 구현되지 않은 호출의 총수     |
 
 ASP.NET Core는 `Microsoft.AspNetCore.Hosting` 이벤트 원본에 대한 고유한 메트릭도 제공합니다.
@@ -189,14 +191,14 @@ ASP.NET Core는 `Microsoft.AspNetCore.Hosting` 이벤트 원본에 대한 고유
 
 gRPC 클라이언트 메트릭은 `Grpc.Net.Client` 이벤트 원본에 보고됩니다.
 
-| name                      | 설명                   |
+| 이름                      | 설명                   |
 | --------------------------|-------------------------------|
 | `total-calls`             | 총 호출                   |
 | `current-calls`           | 현재 호출 수                 |
 | `calls-failed`            | 실패한 호출의 총수            |
 | `calls-deadline-exceeded` | 최종 기한을 넘긴 호출의 총수 |
-| `messages-sent`           | 보낸 메시지의 총수           |
-| `messages-received`       | 받은 메시지의 총수       |
+| `messages-sent`           | 총 보낸 메시지           |
+| `messages-received`       | 받은 총 메시지 수       |
 
 ### <a name="observe-metrics"></a>메트릭 확인
 

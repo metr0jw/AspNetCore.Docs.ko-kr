@@ -1,35 +1,37 @@
 ---
-title: ASP.NET Core [Blazor 환경
+title: ASP.NET Core Blazor 환경
 author: guardrex
-description: '[Blazor WebAssembly 앱의 환경을 설정하는 방법을 포함하여 [Blazor의 환경에 대해 알아봅니다.'
+description: Blazor WebAssembly 앱의 환경을 설정하는 방법을 포함하여 Blazor의 환경에 대해 알아봅니다.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/fundamentals/environments
-ms.openlocfilehash: f8d0fc3cba22973628f405b4399cef39d562d6ed
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 8a672b3d2aff4dd2b80465b0f6dac038d299eaa9
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402899"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014427"
 ---
-# <a name="aspnet-core-blazor-environments"></a>ASP.NET Core [Blazor 환경
+# <a name="aspnet-core-no-locblazor-environments"></a>ASP.NET Core Blazor 환경
 
 > [!NOTE]
-> 이 항목은 [Blazor WebAssembly에 적용됩니다. ASP.NET Core 앱 구성에 대한 일반적인 지침은 <xref:fundamentals/environments>의 내용을 참조하세요.
+> 이 항목은 Blazor WebAssembly에 적용됩니다. ASP.NET Core 앱 구성에 대한 일반적인 지침은 <xref:fundamentals/environments>의 내용을 참조하세요.
 
 앱을 로컬에서 실행하면 환경이 기본적으로 개발로 설정됩니다. 앱이 게시되면 환경이 기본적으로 프로덕션으로 설정됩니다.
 
-호스트된 [Blazor WebAssembly 앱은 `blazor-environment` 헤더를 추가하여 브라우저에 환경을 전달하는 미들웨어를 통해 서버에서 환경을 선택합니다. 헤더의 값은 해당 환경입니다. 호스트된 [Blazor 앱과 서버 앱은 동일한 환경을 공유합니다. 환경을 구성하는 방법을 비롯한 자세한 내용은 <xref:fundamentals/environments> 문서를 참조하세요.
+호스트된 Blazor WebAssembly 앱은 `blazor-environment` 헤더를 추가하여 브라우저에 환경을 전달하는 미들웨어를 통해 서버에서 환경을 선택합니다. 헤더의 값은 해당 환경입니다. 호스트된 Blazor 앱과 서버 앱은 동일한 환경을 공유합니다. 환경을 구성하는 방법을 비롯한 자세한 내용은 <xref:fundamentals/environments> 문서를 참조하세요.
 
 로컬에서 실행되는 독립 실행형 앱의 경우 개발 서버는 `blazor-environment` 헤더를 추가하여 개발 환경을 지정합니다. 다른 호스팅 환경을 위한 환경을 지정하려면 `blazor-environment` 헤더를 추가합니다.
 

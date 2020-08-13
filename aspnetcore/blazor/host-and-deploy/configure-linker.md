@@ -1,38 +1,40 @@
 ---
-title: ASP.NET Core [Blazor용 링커 구성
+title: ASP.NET Core Blazor용 링커 구성
 author: guardrex
-description: '[Blazor 앱을 빌드할 때 IL(중간 언어) 링커를 제어하는 방법을 알아봅니다.'
+description: Blazor 앱을 빌드할 때 IL(중간 언어) 링커를 제어하는 방법을 알아봅니다.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: 568efe9971aefc11841c42789ac7f2af3004003f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: e76d25dbbf5c7a166e5f58a5ad1f9b5a2ecacf79
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402704"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014257"
 ---
-# <a name="configure-the-linker-for-aspnet-core-blazor"></a>ASP.NET Core [Blazor용 링커 구성
+# <a name="configure-the-linker-for-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor용 링커 구성
 
 [Luke Latham](https://github.com/guardrex)으로
 
-[Blazor WebAssembly는 빌드 중에 [IL(중간 언어)](/dotnet/standard/managed-code#intermediate-language--execution) 연결을 수행하여 앱의 출력 어셈블리에서 불필요한 IL을 잘라냅니다. 디버그 구성에서 빌드할 때 링커를 사용할 수 없습니다. 링커를 사용하도록 설정하려면 앱이 릴리스 구성으로 빌드해야 합니다. [Blazor WebAssembly 앱을 배포할 때 릴리스에서 빌드하는 것이 좋습니다. 
+Blazor WebAssembly는 빌드 중에 [IL(중간 언어)](/dotnet/standard/managed-code#intermediate-language--execution) 연결을 수행하여 앱의 출력 어셈블리에서 불필요한 IL을 잘라냅니다. 디버그 구성에서 빌드할 때 링커를 사용할 수 없습니다. 링커를 사용하도록 설정하려면 앱이 릴리스 구성으로 빌드해야 합니다. Blazor WebAssembly 앱을 배포할 때 릴리스에서 빌드하는 것이 좋습니다. 
 
 앱 연결은 크기에 맞게 최적화되지만 부작용이 발생할 수 있습니다. 링커는 이 동적 동작에 대한 정보를 알지 못하고 일반적으로 런타임에서 리플렉션에 필요한 형식을 결정할 수 없기 때문에, 리플렉션 또는 관련 동적 기능을 사용하는 앱은 잘린 경우 중단될 수 있습니다. 이러한 앱을 잘라내려면 링커에서는 앱이 의존하는 코드 및 패키지 또는 프레임워크의 리플렉션에서 필요로 하는 형식에 대해 알고 있어야 합니다. 
 
 잘린 앱이 배포된 후 올바로 작동하도록 하려면 개발하는 동안 앱의 릴리스 빌드를 자주 테스트하는 것이 중요합니다.
 
-다음 MSBuild 기능을 사용하여 [Blazor 앱에 대한 연결을 구성할 수 있습니다.
+다음 MSBuild 기능을 사용하여 Blazor 앱에 대한 연결을 구성할 수 있습니다.
 
 * [MSBuild 속성](#control-linking-with-an-msbuild-property)을 사용하여 전역적으로 연결을 구성합니다.
 * [구성 파일](#control-linking-with-a-configuration-file)을 사용하여 어셈블리별로 연결을 제어합니다.
@@ -62,7 +64,7 @@ XML 구성 파일을 제공하고 프로젝트 파일에서 해당 파일을 MSB
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  This file specifies which parts of the BCL or [Blazor packages must not be
+  This file specifies which parts of the BCL or Blazor packages must not be
   stripped by the IL Linker even if they aren't referenced by user code.
 -->
 <linker>
@@ -107,7 +109,7 @@ XML 구성 파일을 제공하고 프로젝트 파일에서 해당 파일을 MSB
 
 ### <a name="configure-the-linker-for-internationalization"></a>국제화를 위한 링커 구성
 
-기본적으로 [Blazor WebAssembly 앱에 대한 [Blazor의 링커 구성은 명시적으로 요청된 로캘을 제외하고 국제화 정보를 제거합니다. 이 어셈블리를 제거하면 앱 크기를 최소화합니다.
+기본적으로 Blazor WebAssembly 앱에 대한 Blazor의 링커 구성은 명시적으로 요청된 로캘을 제외하고 국제화 정보를 제거합니다. 이 어셈블리를 제거하면 앱 크기를 최소화합니다.
 
 유지되는 I18N 어셈블리 종류를 제어하려면 프로젝트 파일에서 `<BlazorWebAssemblyI18NAssemblies>` MSBuild 속성을 설정합니다.
 

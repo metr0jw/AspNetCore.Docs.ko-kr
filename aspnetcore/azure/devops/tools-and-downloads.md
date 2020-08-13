@@ -3,9 +3,11 @@ title: 도구 및 다운로드 - ASP.NET Core 및 Azure와 DevOps
 author: CamSoper
 description: ASP.NET Core 및 Azure를 사용하는 DevOps에 필요한 도구 및 다운로드입니다.
 ms.author: casoper
-ms.custom: mvc, seodec18
+ms.custom: devx-track-csharp, mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: azure/devops/tools-and-downloads
-ms.openlocfilehash: ed8aee214ff9b9e941aeea01887882c3bdfc56a7
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 0820e9647d0171634e40d4e3aa31ffe65c5a9ec4
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400299"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130420"
 ---
 # <a name="tools-and-downloads"></a>도구 및 다운로드
 

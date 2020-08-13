@@ -7,20 +7,22 @@ ms.author: scaddie
 ms.custom: H1Hack27Feb2017
 ms.date: 09/06/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: client-side/spa-services
-ms.openlocfilehash: 05f76a7d341fc5c55b8234b6ff6d2be5aa61d6fd
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2c91fa13c6fcb92c5985cae21c175c0a2a2a313e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401833"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013270"
 ---
 # <a name="use-javascript-services-to-create-single-page-applications-in-aspnet-core"></a>JavaScript Services를 사용하여 ASP.NET Core에서 단일 페이지 애플리케이션 만들기
 
@@ -105,7 +107,7 @@ npm i -S aspnet-prerendering
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/_ViewImports.cshtml?highlight=3)]
 
-이 태그 도우미는 [Razor 뷰 내에서 HTML 유사 구문을 활용하여 하위 수준 API와 직접 통신할 때의 복잡성을 추상화합니다.
+이 태그 도우미는 Razor 뷰 내에서 HTML 유사 구문을 활용하여 하위 수준 API와 직접 통신할 때의 복잡성을 추상화합니다.
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=5)]
 
@@ -121,7 +123,7 @@ npm i -S aspnet-prerendering
 
 ### <a name="asp-prerender-data-tag-helper"></a>asp-prerender-data 태그 도우미
 
-`asp-prerender-module` 태그 도우미와 함께 `asp-prerender-data` 태그 도우미를 사용하여 [Razor 뷰에서 서버 쪽 JavaScript로 컨텍스트 정보를 전달할 수 있습니다. 예를 들어, 다음 태그는 사용자 데이터를 `main-server` 모듈에 전달합니다.
+`asp-prerender-module` 태그 도우미와 함께 `asp-prerender-data` 태그 도우미를 사용하여 Razor 뷰에서 서버 쪽 JavaScript로 컨텍스트 정보를 전달할 수 있습니다. 예를 들어, 다음 태그는 사용자 데이터를 `main-server` 모듈에 전달합니다.
 
 [!code-cshtml[](../client-side/spa-services/sample/SpaServicesSampleApp/Views/Home/Index.cshtml?range=9-12)]
 

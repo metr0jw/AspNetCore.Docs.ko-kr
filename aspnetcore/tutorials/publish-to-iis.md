@@ -7,20 +7,22 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/03/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: tutorials/publish-to-iis
-ms.openlocfilehash: 837a66ef36f1394df87d56132e146ef23a5d5659
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: fc8573625328fe18970cd6bcd5627b71680d5ca7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407891"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020238"
 ---
 # <a name="publish-an-aspnet-core-app-to-iis"></a>IIS에 ASP.NET Core 앱 게시
 
@@ -67,9 +69,9 @@ IIS 서버에 *.NET Core 호스팅 번들*을 설치합니다. 번들은 .NET Co
 
 1. **사이트 이름**을 입력하고 **실제 경로**를 만든 앱의 배포 폴더로 설정합니다. **바인딩** 구성을 제공하고 **확인**을 선택하여 웹 사이트를 만듭니다.
 
-## <a name="create-an-aspnet-core-razor-pages-app"></a>ASP.NET Core [Razor Pages 앱 만들기
+## <a name="create-an-aspnet-core-no-locrazor-pages-app"></a>ASP.NET Core Razor Pages 앱 만들기
 
-<xref:getting-started> 자습서에 따라 [Razor Pages 앱을 만듭니다.
+<xref:getting-started> 자습서에 따라 Razor Pages 앱을 만듭니다.
 
 ## <a name="publish-and-deploy-the-app"></a>앱 게시 및 배포
 

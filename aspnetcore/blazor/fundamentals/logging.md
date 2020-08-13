@@ -1,32 +1,34 @@
 ---
-title: ASP.NET Core [Blazor 로깅
+title: ASP.NET Core Blazor 로깅
 author: guardrex
-description: 로그 수준 구성, [Razor 구성 요소로부터 로그 메시지를 작성하는 방법을 포함하여 [Blazor 앱의 로깅에 대해 알아봅니다.
+description: 로그 수준 구성, Razor 구성 요소로부터 로그 메시지를 작성하는 방법을 포함하여 Blazor 앱의 로깅에 대해 알아봅니다.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/fundamentals/logging
-ms.openlocfilehash: 1f4b18bdea02016fb76b75dd01a8fcbeab9b2bc9
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: c2e8ee24c135b3c2f9b6be5b0e0efa54750c68b2
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402834"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014361"
 ---
-# <a name="aspnet-core-blazor-logging"></a>ASP.NET Core [Blazor 로깅
+# <a name="aspnet-core-no-locblazor-logging"></a>ASP.NET Core Blazor 로깅
 
-## [Blazor WebAssembly
+## Blazor WebAssembly
 
-`Program.Main`의 `WebAssemblyHostBuilder.Logging` 속성을 사용하여 [Blazor WebAssembly 앱에서 로깅을 구성합니다.
+`Program.Main`의 `WebAssemblyHostBuilder.Logging` 속성을 사용하여 Blazor WebAssembly 앱에서 로깅을 구성합니다.
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -43,13 +45,13 @@ builder.Logging.AddProvider(new CustomLoggingProvider());
 
 로깅 구성은 앱 설정 파일에서 로드할 수 있습니다. 자세한 내용은 <xref:blazor/fundamentals/configuration#logging-configuration>를 참조하세요.
 
-## [Blazor Server
+## Blazor Server
 
 일반적인 ASP.NET Core 로깅 지침은 <xref:fundamentals/logging/index>을 참조하세요.
 
-## <a name="blazor-webassembly-signalr-net-client-logging"></a>[Blazor WebAssembly [SignalR .NET 클라이언트 로깅
+## <a name="no-locblazor-webassembly-no-locsignalr-net-client-logging"></a>Blazor WebAssembly SignalR .NET 클라이언트 로깅
 
-<xref:Microsoft.Extensions.Logging.ILoggerProvider>를 삽입하여 <xref:Microsoft.AspNetCore.[SignalR.Client.HubConnectionBuilder>로 전달된 로깅 공급자에 `WebAssemblyConsoleLogger`를 추가합니다. 기존의 <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>와 달리 `WebAssemblyConsoleLogger`는 브라우저별 로깅 API 주위의 래퍼입니다(예: `console.log`). `WebAssemblyConsoleLogger`를 사용하면 브라우저 컨텍스트의 Mono 내에서 로깅을 수행할 수 있습니다.
+<xref:Microsoft.Extensions.Logging.ILoggerProvider>를 삽입하여 <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>로 전달된 로깅 공급자에 `WebAssemblyConsoleLogger`를 추가합니다. 기존의 <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>와 달리 `WebAssemblyConsoleLogger`는 브라우저별 로깅 API 주위의 래퍼입니다(예: `console.log`). `WebAssemblyConsoleLogger`를 사용하면 브라우저 컨텍스트의 Mono 내에서 로깅을 수행할 수 있습니다.
 
 ```csharp
 @using Microsoft.Extensions.Logging
@@ -63,13 +65,13 @@ var connection = new HubConnectionBuilder()
     .Build();
 ```
 
-## <a name="log-in-razor-components"></a>[Razor 구성 요소의 로그
+## <a name="log-in-no-locrazor-components"></a>Razor 구성 요소의 로그
 
 로거는 앱 시작 구성을 사용합니다.
 
 <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> 및 <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A>와 같은 API의 Intellisense 작성을 지원하려면 <xref:Microsoft.Extensions.Logging>의 `using` 지시문이 필요합니다.
 
-다음 예제에서는 [Razor 구성 요소에서 <xref:Microsoft.Extensions.Logging.ILogger>를 사용하여 로깅하는 방법을 보여 줍니다.
+다음 예제에서는 Razor 구성 요소에서 <xref:Microsoft.Extensions.Logging.ILogger>를 사용하여 로깅하는 방법을 보여 줍니다.
 
 ```razor
 @page "/counter"
@@ -94,7 +96,7 @@ var connection = new HubConnectionBuilder()
 }
 ```
 
-다음 예제에서는 [Razor 구성 요소에서 <xref:Microsoft.Extensions.Logging.ILoggerFactory>를 사용하여 로깅하는 방법을 보여 줍니다.
+다음 예제에서는 Razor 구성 요소에서 <xref:Microsoft.Extensions.Logging.ILoggerFactory>를 사용하여 로깅하는 방법을 보여 줍니다.
 
 ```razor
 @page "/counter"

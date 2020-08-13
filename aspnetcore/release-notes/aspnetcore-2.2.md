@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.2
-ms.openlocfilehash: c2e23871866565a3f4ea0b0c72af5ec4fb770e6f
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 354839abe295b4adcbf6becfd3bd926330f0823f
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408710"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021148"
 ---
 # <a name="whats-new-in-aspnet-core-22"></a>ASP.NET Core 2.2의 새로운 기능
 
@@ -87,7 +89,7 @@ HTTP/2는 HTTP의 의미 체계(예: HTTP 헤더 및 메서드)를 유지하지�
 
 자세한 내용은 [IIS에 대한 In-process 호스팅](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model)을 참조하세요.
 
-## <a name="signalr-java-client"></a>SignalR Java 클라이언트
+## <a name="no-locsignalr-java-client"></a>SignalR Java 클라이언트
 
 ASP.NET Core 2.2는 SignalR용 Java 클라이언트를 도입합니다. 이 클라이언트는 Android 앱을 포함하여 Java 코드에서 ASP.NET Core SignalR 서버에 연결할 수 있도록 지원합니다.
 

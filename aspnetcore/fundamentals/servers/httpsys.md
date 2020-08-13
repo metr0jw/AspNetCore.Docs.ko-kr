@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/servers/httpsys
-ms.openlocfilehash: 27ee69130bc455ab2570556091692053d59e89a5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 384b6559b4ee6140da5cf785ffda3978aafbb132
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408229"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016767"
 ---
 # <a name="httpsys-web-server-implementation-in-aspnet-core"></a>ASP.NET Core에서 HTTP.sys 웹 서버 구현
 
@@ -169,7 +171,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
 
    `UrlPrefixes`의 설정은 `UseUrls`/`urls`/`ASPNETCORE_URLS` 설정을 재정의합니다. 따라서 `UseUrls`, `urls` 및 `ASPNETCORE_URLS` 환경 변수의 장점은 Kestrel과 HTTP.sys 간을 쉽게 전환할 수 있다는 점입니다.
 
-   HTTP.sys는 [HTTP Server API UrlPrefix 문자열 형식](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)을 사용합니다.
+   HTTP.sys는 [HTTP Server API UrlPrefix 문자열 형식](/windows/win32/http/urlprefix-strings)을 사용합니다.
 
    > [!WARNING]
    > 최상위 와일드카드 바인딩(`http://*:80/` 및 `http://+:80`)을 사용하지 **않아야** 합니다. 최상위 와일드카드 바인딩으로 인해 앱 보안 취약성이 생길 수 있습니다. 강력한 와일드카드와 약한 와일드카드 모두에 적용됩니다. 와일드카드보다는 명시적 호스트 이름 또는 IP 주소를 사용합니다. 전체 부모 도메인을 제어하는 경우 하위 도메인 와일드카드 바인딩(예: `*.mysub.com`)은 보안 위험이 아닙니다(취약한 `*.com`과 반대임). 자세한 내용은 [RFC 7230: Section 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4)(RFC 7230: 섹션 5.4: 호스트)를 참조하세요.
@@ -253,7 +255,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
    *netsh.exe*에 대한 참조 문서입니다.
 
    * [HTTP(Hypertext Transfer Protocol)에 대한 Netsh 명령](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix 문자열](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [UrlPrefix 문자열](/windows/win32/http/urlprefix-strings)
 
 1. 앱을 실행합니다.
 
@@ -272,7 +274,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
 ## <a name="additional-resources"></a>추가 자료
 
 * [HTTP.sys에서 Windows 인증 사용](xref:security/authentication/windowsauth#httpsys)
-* [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)(HTTP 서버 API)
+* [HTTP Server API](/windows/win32/http/http-api-start-page)(HTTP 서버 API)
 * [aspnet/HttpSysServer GitHub 리포지토리(소스 코드)](https://github.com/aspnet/HttpSysServer/)
 * [호스트](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -420,7 +422,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
 
    `UrlPrefixes`의 설정은 `UseUrls`/`urls`/`ASPNETCORE_URLS` 설정을 재정의합니다. 따라서 `UseUrls`, `urls` 및 `ASPNETCORE_URLS` 환경 변수의 장점은 Kestrel과 HTTP.sys 간을 쉽게 전환할 수 있다는 점입니다.
 
-   HTTP.sys는 [HTTP Server API UrlPrefix 문자열 형식](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)을 사용합니다.
+   HTTP.sys는 [HTTP Server API UrlPrefix 문자열 형식](/windows/win32/http/urlprefix-strings)을 사용합니다.
 
    > [!WARNING]
    > 최상위 와일드카드 바인딩(`http://*:80/` 및 `http://+:80`)을 사용하지 **않아야** 합니다. 최상위 와일드카드 바인딩으로 인해 앱 보안 취약성이 생길 수 있습니다. 강력한 와일드카드와 약한 와일드카드 모두에 적용됩니다. 와일드카드보다는 명시적 호스트 이름 또는 IP 주소를 사용합니다. 전체 부모 도메인을 제어하는 경우 하위 도메인 와일드카드 바인딩(예: `*.mysub.com`)은 보안 위험이 아닙니다(취약한 `*.com`과 반대임). 자세한 내용은 [RFC 7230: Section 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4)(RFC 7230: 섹션 5.4: 호스트)를 참조하세요.
@@ -504,7 +506,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
    *netsh.exe*에 대한 참조 문서입니다.
 
    * [HTTP(Hypertext Transfer Protocol)에 대한 Netsh 명령](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix 문자열](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [UrlPrefix 문자열](/windows/win32/http/urlprefix-strings)
 
 1. 앱을 실행합니다.
 
@@ -523,7 +525,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
 ## <a name="additional-resources"></a>추가 자료
 
 * [HTTP.sys에서 Windows 인증 사용](xref:security/authentication/windowsauth#httpsys)
-* [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)(HTTP 서버 API)
+* [HTTP Server API](/windows/win32/http/http-api-start-page)(HTTP 서버 API)
 * [aspnet/HttpSysServer GitHub 리포지토리(소스 코드)](https://github.com/aspnet/HttpSysServer/)
 * [호스트](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -673,7 +675,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
 
    `UrlPrefixes`의 설정은 `UseUrls`/`urls`/`ASPNETCORE_URLS` 설정을 재정의합니다. 따라서 `UseUrls`, `urls` 및 `ASPNETCORE_URLS` 환경 변수의 장점은 Kestrel과 HTTP.sys 간을 쉽게 전환할 수 있다는 점입니다.
 
-   HTTP.sys는 [HTTP Server API UrlPrefix 문자열 형식](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)을 사용합니다.
+   HTTP.sys는 [HTTP Server API UrlPrefix 문자열 형식](/windows/win32/http/urlprefix-strings)을 사용합니다.
 
    > [!WARNING]
    > 최상위 와일드카드 바인딩(`http://*:80/` 및 `http://+:80`)을 사용하지 **않아야** 합니다. 최상위 와일드카드 바인딩으로 인해 앱 보안 취약성이 생길 수 있습니다. 강력한 와일드카드와 약한 와일드카드 모두에 적용됩니다. 와일드카드보다는 명시적 호스트 이름 또는 IP 주소를 사용합니다. 전체 부모 도메인을 제어하는 경우 하위 도메인 와일드카드 바인딩(예: `*.mysub.com`)은 보안 위험이 아닙니다(취약한 `*.com`과 반대임). 자세한 내용은 [RFC 7230: Section 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4)(RFC 7230: 섹션 5.4: 호스트)를 참조하세요.
@@ -757,7 +759,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
    *netsh.exe*에 대한 참조 문서입니다.
 
    * [HTTP(Hypertext Transfer Protocol)에 대한 Netsh 명령](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix 문자열](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [UrlPrefix 문자열](/windows/win32/http/urlprefix-strings)
 
 1. 앱을 실행합니다.
 
@@ -776,7 +778,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
 ## <a name="additional-resources"></a>추가 자료
 
 * [HTTP.sys에서 Windows 인증 사용](xref:security/authentication/windowsauth#httpsys)
-* [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)(HTTP 서버 API)
+* [HTTP Server API](/windows/win32/http/http-api-start-page)(HTTP 서버 API)
 * [aspnet/HttpSysServer GitHub 리포지토리(소스 코드)](https://github.com/aspnet/HttpSysServer/)
 * [호스트](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
@@ -926,7 +928,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
 
    `UrlPrefixes`의 설정은 `UseUrls`/`urls`/`ASPNETCORE_URLS` 설정을 재정의합니다. 따라서 `UseUrls`, `urls` 및 `ASPNETCORE_URLS` 환경 변수의 장점은 Kestrel과 HTTP.sys 간을 쉽게 전환할 수 있다는 점입니다.
 
-   HTTP.sys는 [HTTP Server API UrlPrefix 문자열 형식](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)을 사용합니다.
+   HTTP.sys는 [HTTP Server API UrlPrefix 문자열 형식](/windows/win32/http/urlprefix-strings)을 사용합니다.
 
    > [!WARNING]
    > 최상위 와일드카드 바인딩(`http://*:80/` 및 `http://+:80`)을 사용하지 **않아야** 합니다. 최상위 와일드카드 바인딩으로 인해 앱 보안 취약성이 생길 수 있습니다. 강력한 와일드카드와 약한 와일드카드 모두에 적용됩니다. 와일드카드보다는 명시적 호스트 이름 또는 IP 주소를 사용합니다. 전체 부모 도메인을 제어하는 경우 하위 도메인 와일드카드 바인딩(예: `*.mysub.com`)은 보안 위험이 아닙니다(취약한 `*.com`과 반대임). 자세한 내용은 [RFC 7230: Section 5.4: Host](https://tools.ietf.org/html/rfc7230#section-5.4)(RFC 7230: 섹션 5.4: 호스트)를 참조하세요.
@@ -1010,7 +1012,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
    *netsh.exe*에 대한 참조 문서입니다.
 
    * [HTTP(Hypertext Transfer Protocol)에 대한 Netsh 명령](https://technet.microsoft.com/library/cc725882.aspx)
-   * [UrlPrefix 문자열](https://msdn.microsoft.com/library/windows/desktop/aa364698.aspx)
+   * [UrlPrefix 문자열](/windows/win32/http/urlprefix-strings)
 
 1. 앱을 실행합니다.
 
@@ -1029,7 +1031,7 @@ Visual Studio에서 기본 실행 프로필은 IIS Express용입니다. 프로�
 ## <a name="additional-resources"></a>추가 자료
 
 * [HTTP.sys에서 Windows 인증 사용](xref:security/authentication/windowsauth#httpsys)
-* [HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)(HTTP 서버 API)
+* [HTTP Server API](/windows/win32/http/http-api-start-page)(HTTP 서버 API)
 * [aspnet/HttpSysServer GitHub 리포지토리(소스 코드)](https://github.com/aspnet/HttpSysServer/)
 * [호스트](xref:fundamentals/index#host)
 * <xref:test/troubleshoot>
