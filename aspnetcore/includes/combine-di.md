@@ -1,0 +1,17 @@
+<a name="csc"></a>
+
+## <a name="combining-service-collection"></a><span data-ttu-id="23b11-101">서비스 컬렉션 결합</span><span class="sxs-lookup"><span data-stu-id="23b11-101">Combining service collection</span></span>
+
+<span data-ttu-id="23b11-102">몇 가지 서비스 컬렉션을 포함하는 다음 `ConfigureServices`를 살펴보겠습니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-102">Consider the following `ConfigureServices` that contains several service collections:</span></span>
+
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Startup2.cs?name=snippet)]
+
+<span data-ttu-id="23b11-103">관련 등록 그룹을 확장 메서드로 이동하여 서비스를 등록할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-103">Related groups of registrations can be moved to an extension method to register services.</span></span> <span data-ttu-id="23b11-104">예를 들어, 구성 서비스는 다음 클래스에 추가됩니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-104">For example, the configuration services are added to the following class:</span></span>
+
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Options/MyConfgServiceCollectionExtensions.cs)]
+
+<span data-ttu-id="23b11-105">나머지 서비스는 유사한 클래스에 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-105">The remaining services are registered in a similar class.</span></span> <span data-ttu-id="23b11-106">다음 `ConfigureServices`는 새 확장 메서드를 사용하여 서비스를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-106">The following `ConfigureServices` uses the new extension methods to register the services:</span></span>
+
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Startup4.cs?name=snippet)]
+
+<span data-ttu-id="23b11-107">***참고:*** 각 `services.Add{SERVICE_NAME}` 확장 메서드는 서비스를 추가하고 잠재적으로 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-107">***Note:*** Each `services.Add{SERVICE_NAME}` extension method adds and potentially configures services.</span></span> <span data-ttu-id="23b11-108">예를 들어 <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A>는 뷰가 있는 MVC 컨트롤러에 필요한 서비스를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-108">For example, <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> adds the services MVC controllers with views require.</span></span> <span data-ttu-id="23b11-109"><xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>는 Razor Pages에 필요한 서비스를 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-109"><xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> adds the services Razor Pages require.</span></span> <span data-ttu-id="23b11-110">앱에서 이 명명 규칙을 따르는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-110">We recommended that apps follow this naming convention.</span></span> <span data-ttu-id="23b11-111">확장 메서드를 [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) 네임스페이스에 배치하여 서비스 등록 그룹을 캡슐화합니다.</span><span class="sxs-lookup"><span data-stu-id="23b11-111">Place extension methods in the [Microsoft.Extensions.DependencyInjection](/dotnet/api/microsoft.extensions.dependencyinjection) namespace to encapsulate groups of service registrations.</span></span>
