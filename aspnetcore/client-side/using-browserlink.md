@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 01/09/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,54 +16,54 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/using-browserlink
-ms.openlocfilehash: 95ddf379d7cab336356cbfd3853311cb0911552a
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 737abc8b9abea45654a86a4dc20584948ece9fc5
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401716"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013179"
 ---
-# <a name="browser-link-in-aspnet-core"></a><span data-ttu-id="e52cc-103">ASP.NET Core의 브라우저 링크</span><span class="sxs-lookup"><span data-stu-id="e52cc-103">Browser Link in ASP.NET Core</span></span>
+# <a name="browser-link-in-aspnet-core"></a><span data-ttu-id="38a7e-103">ASP.NET Core의 브라우저 링크</span><span class="sxs-lookup"><span data-stu-id="38a7e-103">Browser Link in ASP.NET Core</span></span>
 
-<span data-ttu-id="e52cc-104">작성자: [Nicolò Carandini](https://github.com/ncarandini), [Mike Wasson](https://github.com/MikeWasson), [Tom Dykstra](https://github.com/tdykstra)</span><span class="sxs-lookup"><span data-stu-id="e52cc-104">By [Nicolò Carandini](https://github.com/ncarandini), [Mike Wasson](https://github.com/MikeWasson), and [Tom Dykstra](https://github.com/tdykstra)</span></span>
+<span data-ttu-id="38a7e-104">작성자: [Nicolò Carandini](https://github.com/ncarandini), [Mike Wasson](https://github.com/MikeWasson), [Tom Dykstra](https://github.com/tdykstra)</span><span class="sxs-lookup"><span data-stu-id="38a7e-104">By [Nicolò Carandini](https://github.com/ncarandini), [Mike Wasson](https://github.com/MikeWasson), and [Tom Dykstra](https://github.com/tdykstra)</span></span>
 
-<span data-ttu-id="e52cc-105">브라우저 링크는 Visual Studio 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-105">Browser Link is a Visual Studio feature.</span></span> <span data-ttu-id="e52cc-106">개발 환경과 하나 이상의 웹 브라우저 간에 통신 채널을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-106">It creates a communication channel between the development environment and one or more web browsers.</span></span> <span data-ttu-id="e52cc-107">브라우저 링크를 사용하여 여러 브라우저에서 웹앱을 한 번에 새로 고칠 수 있으며, 이 기능은 브라우저 간 테스트에 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-107">You can use Browser Link to refresh your web app in several browsers at once, which is useful for cross-browser testing.</span></span>
+<span data-ttu-id="38a7e-105">브라우저 링크는 Visual Studio 기능입니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-105">Browser Link is a Visual Studio feature.</span></span> <span data-ttu-id="38a7e-106">개발 환경과 하나 이상의 웹 브라우저 간에 통신 채널을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-106">It creates a communication channel between the development environment and one or more web browsers.</span></span> <span data-ttu-id="38a7e-107">브라우저 링크를 사용하여 여러 브라우저에서 웹앱을 한 번에 새로 고칠 수 있으며, 이 기능은 브라우저 간 테스트에 유용합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-107">You can use Browser Link to refresh your web app in several browsers at once, which is useful for cross-browser testing.</span></span>
 
-## <a name="browser-link-setup"></a><span data-ttu-id="e52cc-108">브라우저 링크 설정</span><span class="sxs-lookup"><span data-stu-id="e52cc-108">Browser Link setup</span></span>
+## <a name="browser-link-setup"></a><span data-ttu-id="38a7e-108">브라우저 링크 설정</span><span class="sxs-lookup"><span data-stu-id="38a7e-108">Browser Link setup</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="e52cc-109">[Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) 패키지를 프로젝트에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-109">Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project.</span></span> <span data-ttu-id="e52cc-110">또한 ASP.NET Core Razor Pages 또는 MVC 프로젝트의 경우, <xref:mvc/views/view-compilation>에 설명된 대로 Razor( *.cshtml*) 파일의 런타임 컴파일을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-110">For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (*.cshtml*) files as described in <xref:mvc/views/view-compilation>.</span></span> Razor<span data-ttu-id="e52cc-111"> 구문 변경 내용은 런타임 컴파일을 사용하도록 설정한 경우에만 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-111"> syntax changes are applied only when runtime compilation has been enabled.</span></span>
+<span data-ttu-id="38a7e-109">[Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) 패키지를 프로젝트에 추가합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-109">Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project.</span></span> <span data-ttu-id="38a7e-110">또한 ASP.NET Core Razor Pages 또는 MVC 프로젝트의 경우, <xref:mvc/views/view-compilation>에 설명된 대로 Razor( *.cshtml*) 파일의 런타임 컴파일을 사용하도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-110">For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (*.cshtml*) files as described in <xref:mvc/views/view-compilation>.</span></span> <span data-ttu-id="38a7e-111">Razor 구문 변경 내용은 런타임 컴파일을 사용하도록 설정한 경우에만 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-111">Razor syntax changes are applied only when runtime compilation has been enabled.</span></span>
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-<span data-ttu-id="e52cc-112">ASP.NET Core 2.0 프로젝트를 ASP.NET Core 2.1로 변환하고 [Microsoft.AspNetCore.App 메타패키지](xref:fundamentals/metapackage-app)로 전환하는 경우, 브라우저 링크 기능을 위해 [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/)를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-112">When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for Browser Link functionality.</span></span> <span data-ttu-id="e52cc-113">ASP.NET Core 2.1 프로젝트 템플릿은 기본적으로 `Microsoft.AspNetCore.App` 메타패키지를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-113">The ASP.NET Core 2.1 project templates use the `Microsoft.AspNetCore.App` metapackage by default.</span></span>
+<span data-ttu-id="38a7e-112">ASP.NET Core 2.0 프로젝트를 ASP.NET Core 2.1로 변환하고 [Microsoft.AspNetCore.App 메타패키지](xref:fundamentals/metapackage-app)로 전환하는 경우, 브라우저 링크 기능을 위해 [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/)를 설치합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-112">When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for Browser Link functionality.</span></span> <span data-ttu-id="38a7e-113">ASP.NET Core 2.1 프로젝트 템플릿은 기본적으로 `Microsoft.AspNetCore.App` 메타패키지를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-113">The ASP.NET Core 2.1 project templates use the `Microsoft.AspNetCore.App` metapackage by default.</span></span>
 
 ::: moniker-end
 
 ::: moniker range="= aspnetcore-2.0"
 
-<span data-ttu-id="e52cc-114">ASP.NET Core 2.0 **웹 애플리케이션**, **비어 있음** 및 **웹 API** 프로젝트 템플릿은 [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/)의 패키지 참조를 포함하는 [Microsoft.AspNetCore.All 메타패키지](xref:fundamentals/metapackage)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-114">The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/).</span></span> <span data-ttu-id="e52cc-115">따라서 `Microsoft.AspNetCore.All` 메타패키지를 사용하는 경우, 브라우저 링크를 사용할 수 있도록 설정하는 추가 작업이 필요하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-115">Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.</span></span>
+<span data-ttu-id="38a7e-114">ASP.NET Core 2.0 **웹 애플리케이션**, **비어 있음** 및 **웹 API** 프로젝트 템플릿은 [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/)의 패키지 참조를 포함하는 [Microsoft.AspNetCore.All 메타패키지](xref:fundamentals/metapackage)를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-114">The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/).</span></span> <span data-ttu-id="38a7e-115">따라서 `Microsoft.AspNetCore.All` 메타패키지를 사용하는 경우, 브라우저 링크를 사용할 수 있도록 설정하는 추가 작업이 필요하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-115">Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.</span></span>
 
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-1.1"
 
-<span data-ttu-id="e52cc-116">ASP.NET Core 1.x **웹 애플리케이션** 프로젝트 템플릿에는 [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) 패키지의 패키지 참조가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-116">The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package.</span></span> <span data-ttu-id="e52cc-117">다른 프로젝트 형식의 경우, `Microsoft.VisualStudio.Web.BrowserLink`의 패키지 참조를 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-117">Other project types require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.</span></span>
+<span data-ttu-id="38a7e-116">ASP.NET Core 1.x **웹 애플리케이션** 프로젝트 템플릿에는 [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) 패키지의 패키지 참조가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-116">The ASP.NET Core 1.x **Web Application** project template has a package reference for the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package.</span></span> <span data-ttu-id="38a7e-117">다른 프로젝트 형식의 경우, `Microsoft.VisualStudio.Web.BrowserLink`의 패키지 참조를 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-117">Other project types require you to add a package reference to `Microsoft.VisualStudio.Web.BrowserLink`.</span></span>
 
 ::: moniker-end
 
-### <a name="configuration"></a><span data-ttu-id="e52cc-118">Configuration</span><span class="sxs-lookup"><span data-stu-id="e52cc-118">Configuration</span></span>
+### <a name="configuration"></a><span data-ttu-id="38a7e-118">Configuration</span><span class="sxs-lookup"><span data-stu-id="38a7e-118">Configuration</span></span>
 
-<span data-ttu-id="e52cc-119">`Startup.Configure` 메서드에서 `UseBrowserLink`를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-119">Call `UseBrowserLink` in the `Startup.Configure` method:</span></span>
+<span data-ttu-id="38a7e-119">`Startup.Configure` 메서드에서 `UseBrowserLink`를 호출합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-119">Call `UseBrowserLink` in the `Startup.Configure` method:</span></span>
 
 ```csharp
 app.UseBrowserLink();
 ```
 
-<span data-ttu-id="e52cc-120">`UseBrowserLink` 호출은 일반적으로 개발 환경에서만 브라우저 링크를 사용하도록 설정하는 `if` 블록 내에 배치됩니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-120">The `UseBrowserLink` call is typically placed inside an `if` block that only enables Browser Link in the Development environment.</span></span> <span data-ttu-id="e52cc-121">예를 들어:</span><span class="sxs-lookup"><span data-stu-id="e52cc-121">For example:</span></span>
+<span data-ttu-id="38a7e-120">`UseBrowserLink` 호출은 일반적으로 개발 환경에서만 브라우저 링크를 사용하도록 설정하는 `if` 블록 내에 배치됩니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-120">The `UseBrowserLink` call is typically placed inside an `if` block that only enables Browser Link in the Development environment.</span></span> <span data-ttu-id="38a7e-121">예를 들어:</span><span class="sxs-lookup"><span data-stu-id="38a7e-121">For example:</span></span>
 
 ```csharp
 if (env.IsDevelopment())
@@ -71,72 +73,72 @@ if (env.IsDevelopment())
 }
 ```
 
-<span data-ttu-id="e52cc-122">자세한 내용은 <xref:fundamentals/environments>를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="e52cc-122">For more information, see <xref:fundamentals/environments>.</span></span>
+<span data-ttu-id="38a7e-122">자세한 내용은 <xref:fundamentals/environments>를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="38a7e-122">For more information, see <xref:fundamentals/environments>.</span></span>
 
-## <a name="how-to-use-browser-link"></a><span data-ttu-id="e52cc-123">브라우저 링크 사용 방법</span><span class="sxs-lookup"><span data-stu-id="e52cc-123">How to use Browser Link</span></span>
+## <a name="how-to-use-browser-link"></a><span data-ttu-id="38a7e-123">브라우저 링크 사용 방법</span><span class="sxs-lookup"><span data-stu-id="38a7e-123">How to use Browser Link</span></span>
 
-<span data-ttu-id="e52cc-124">ASP.NET Core 프로젝트를 열면 Visual Studio에서 **디버그 대상** 도구 모음 컨트롤 옆에 브라우저 링크 도구 모음 컨트롤이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-124">When you have an ASP.NET Core project open, Visual Studio shows the Browser Link toolbar control next to the **Debug Target** toolbar control:</span></span>
+<span data-ttu-id="38a7e-124">ASP.NET Core 프로젝트를 열면 Visual Studio에서 **디버그 대상** 도구 모음 컨트롤 옆에 브라우저 링크 도구 모음 컨트롤이 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-124">When you have an ASP.NET Core project open, Visual Studio shows the Browser Link toolbar control next to the **Debug Target** toolbar control:</span></span>
 
 ![브라우저 링크 드롭다운 메뉴](using-browserlink/_static/browserLink-dropdown-menu.png)
 
-<span data-ttu-id="e52cc-126">브라우저 링크 도구 모음 컨트롤에서 다음을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-126">From the Browser Link toolbar control, you can:</span></span>
+<span data-ttu-id="38a7e-126">브라우저 링크 도구 모음 컨트롤에서 다음을 수행할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-126">From the Browser Link toolbar control, you can:</span></span>
 
-* <span data-ttu-id="e52cc-127">한 번에 여러 브라우저에서 웹앱을 새로 고칩니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-127">Refresh the web app in several browsers at once.</span></span>
-* <span data-ttu-id="e52cc-128">**브라우저 링크 대시보드**를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-128">Open the **Browser Link Dashboard**.</span></span>
-* <span data-ttu-id="e52cc-129">**브라우저 링크**를 사용하거나 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-129">Enable or disable **Browser Link**.</span></span> <span data-ttu-id="e52cc-130">참고: Visual Studio에서 브라우저 링크는 기본적으로 사용되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-130">Note: Browser Link is disabled by default in Visual Studio.</span></span>
-* <span data-ttu-id="e52cc-131">[CSS 자동 동기화](#enable-or-disable-css-auto-sync)를 사용하거나 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-131">Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).</span></span>
+* <span data-ttu-id="38a7e-127">한 번에 여러 브라우저에서 웹앱을 새로 고칩니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-127">Refresh the web app in several browsers at once.</span></span>
+* <span data-ttu-id="38a7e-128">**브라우저 링크 대시보드**를 엽니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-128">Open the **Browser Link Dashboard**.</span></span>
+* <span data-ttu-id="38a7e-129">**브라우저 링크**를 사용하거나 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-129">Enable or disable **Browser Link**.</span></span> <span data-ttu-id="38a7e-130">참고: Visual Studio에서 브라우저 링크는 기본적으로 사용되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-130">Note: Browser Link is disabled by default in Visual Studio.</span></span>
+* <span data-ttu-id="38a7e-131">[CSS 자동 동기화](#enable-or-disable-css-auto-sync)를 사용하거나 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-131">Enable or disable [CSS Auto-Sync](#enable-or-disable-css-auto-sync).</span></span>
 
-## <a name="refresh-the-web-app-in-several-browsers-at-once"></a><span data-ttu-id="e52cc-132">한 번에 여러 브라우저에서 웹앱 새로 고침</span><span class="sxs-lookup"><span data-stu-id="e52cc-132">Refresh the web app in several browsers at once</span></span>
+## <a name="refresh-the-web-app-in-several-browsers-at-once"></a><span data-ttu-id="38a7e-132">한 번에 여러 브라우저에서 웹앱 새로 고침</span><span class="sxs-lookup"><span data-stu-id="38a7e-132">Refresh the web app in several browsers at once</span></span>
 
-<span data-ttu-id="e52cc-133">프로젝트를 시작할 때 실행할 단일 웹 브라우저를 선택하려면 **디버그 대상** 도구 모음 컨트롤의 드롭다운 메뉴를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-133">To choose a single web browser to launch when starting the project, use the drop-down menu in the **Debug Target** toolbar control:</span></span>
+<span data-ttu-id="38a7e-133">프로젝트를 시작할 때 실행할 단일 웹 브라우저를 선택하려면 **디버그 대상** 도구 모음 컨트롤의 드롭다운 메뉴를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-133">To choose a single web browser to launch when starting the project, use the drop-down menu in the **Debug Target** toolbar control:</span></span>
 
 ![F5 드롭다운 메뉴](using-browserlink/_static/debug-target-dropdown-menu.png)
 
-<span data-ttu-id="e52cc-135">한 번에 여러 브라우저를 열려면 동일한 드롭다운에서 **브라우저 선택...** 을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-135">To open multiple browsers at once, choose **Browse with...** from the same drop-down.</span></span> <span data-ttu-id="e52cc-136"><kbd>Ctrl</kbd> 키를 누른 채 원하는 브라우저를 선택하고 **찾아보기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-136">Hold down the <kbd>Ctrl</kbd> key to select the browsers you want, and then click **Browse**:</span></span>
+<span data-ttu-id="38a7e-135">한 번에 여러 브라우저를 열려면 동일한 드롭다운에서 **브라우저 선택...** 을 선택합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-135">To open multiple browsers at once, choose **Browse with...** from the same drop-down.</span></span> <span data-ttu-id="38a7e-136"><kbd>Ctrl</kbd> 키를 누른 채 원하는 브라우저를 선택하고 **찾아보기**를 클릭합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-136">Hold down the <kbd>Ctrl</kbd> key to select the browsers you want, and then click **Browse**:</span></span>
 
 ![한 번에 많은 브라우저 열기](using-browserlink/_static/open-many-browsers-at-once.png)
 
-<span data-ttu-id="e52cc-138">다음 스크린샷은 인덱스 뷰가 열려 있는 Visual Studio와 두 개의 열린 브라우저를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-138">The following screenshot shows Visual Studio with the Index view open and two open browsers:</span></span>
+<span data-ttu-id="38a7e-138">다음 스크린샷은 인덱스 뷰가 열려 있는 Visual Studio와 두 개의 열린 브라우저를 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-138">The following screenshot shows Visual Studio with the Index view open and two open browsers:</span></span>
 
 ![두 브라우저와 동기화 예제](using-browserlink/_static/sync-with-two-browsers-example.png)
 
-<span data-ttu-id="e52cc-140">브라우저 링크 도구 모음 컨트롤을 마우스로 가리켜 프로젝트에 연결된 브라우저를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-140">Hover over the Browser Link toolbar control to see the browsers that are connected to the project:</span></span>
+<span data-ttu-id="38a7e-140">브라우저 링크 도구 모음 컨트롤을 마우스로 가리켜 프로젝트에 연결된 브라우저를 확인합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-140">Hover over the Browser Link toolbar control to see the browsers that are connected to the project:</span></span>
 
 ![가리키기 팁](using-browserlink/_static/hoover-tip.png)
 
-<span data-ttu-id="e52cc-142">인덱스 뷰를 변경하고 브라우저 링크 새로 고침 단추를 클릭하면 연결된 모든 브라우저가 업데이트됩니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-142">Change the Index view, and all connected browsers are updated when you click the Browser Link refresh button:</span></span>
+<span data-ttu-id="38a7e-142">인덱스 뷰를 변경하고 브라우저 링크 새로 고침 단추를 클릭하면 연결된 모든 브라우저가 업데이트됩니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-142">Change the Index view, and all connected browsers are updated when you click the Browser Link refresh button:</span></span>
 
 ![browsers-sync-to-changes](using-browserlink/_static/browsers-sync-to-changes.png)
 
-<span data-ttu-id="e52cc-144">브라우저 링크는 Visual Studio 외부에서 시작하여 앱 URL로 이동하는 브라우저에서도 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-144">Browser Link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.</span></span>
+<span data-ttu-id="38a7e-144">브라우저 링크는 Visual Studio 외부에서 시작하여 앱 URL로 이동하는 브라우저에서도 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-144">Browser Link also works with browsers that you launch from outside Visual Studio and navigate to the app URL.</span></span>
 
-### <a name="the-browser-link-dashboard"></a><span data-ttu-id="e52cc-145">브라우저 링크 대시보드</span><span class="sxs-lookup"><span data-stu-id="e52cc-145">The Browser Link Dashboard</span></span>
+### <a name="the-browser-link-dashboard"></a><span data-ttu-id="38a7e-145">브라우저 링크 대시보드</span><span class="sxs-lookup"><span data-stu-id="38a7e-145">The Browser Link Dashboard</span></span>
 
-<span data-ttu-id="e52cc-146">브라우저 링크 드롭다운 메뉴에서 **브라우저 링크 대시보드** 창을 열고 열린 브라우저와의 연결을 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-146">Open the **Browser Link Dashboard** window from the Browser Link drop down menu to manage the connection with open browsers:</span></span>
+<span data-ttu-id="38a7e-146">브라우저 링크 드롭다운 메뉴에서 **브라우저 링크 대시보드** 창을 열고 열린 브라우저와의 연결을 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-146">Open the **Browser Link Dashboard** window from the Browser Link drop down menu to manage the connection with open browsers:</span></span>
 
 ![open-browserslink-dashboard](using-browserlink/_static/open-browserlink-dashboard.png)
 
-<span data-ttu-id="e52cc-148">연결된 브라우저가 없는 경우, **브라우저에서 보기** 링크를 선택하여 디버깅하지 않는 세션을 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-148">If no browser is connected, you can start a non-debugging session by selecting the **View in Browser** link:</span></span>
+<span data-ttu-id="38a7e-148">연결된 브라우저가 없는 경우, **브라우저에서 보기** 링크를 선택하여 디버깅하지 않는 세션을 시작할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-148">If no browser is connected, you can start a non-debugging session by selecting the **View in Browser** link:</span></span>
 
 ![browserlink-dashboard-no-connections](using-browserlink/_static/browserlink-dashboard-no-connections.png)
 
-<span data-ttu-id="e52cc-150">그러지 않으면 연결된 브라우저가 각 브라우저에 표시되는 페이지의 경로와 함께 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-150">Otherwise, the connected browsers are shown with the path to the page that each browser is showing:</span></span>
+<span data-ttu-id="38a7e-150">그러지 않으면 연결된 브라우저가 각 브라우저에 표시되는 페이지의 경로와 함께 표시됩니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-150">Otherwise, the connected browsers are shown with the path to the page that each browser is showing:</span></span>
 
 ![browserlink-dashboard-two-connections](using-browserlink/_static/browserlink-dashboard-two-connections.png)
 
-<span data-ttu-id="e52cc-152">개별 브라우저 이름을 클릭하여 해당 브라우저만 새로 고칠 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-152">You can also click on an individual browser name to refresh only that browser.</span></span>
+<span data-ttu-id="38a7e-152">개별 브라우저 이름을 클릭하여 해당 브라우저만 새로 고칠 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-152">You can also click on an individual browser name to refresh only that browser.</span></span>
 
-### <a name="enable-or-disable-browser-link"></a><span data-ttu-id="e52cc-153">브라우저 링크 사용 또는 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="e52cc-153">Enable or disable Browser Link</span></span>
+### <a name="enable-or-disable-browser-link"></a><span data-ttu-id="38a7e-153">브라우저 링크 사용 또는 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="38a7e-153">Enable or disable Browser Link</span></span>
 
-<span data-ttu-id="e52cc-154">브라우저 링크를 사용하지 않도록 설정한 후 다시 사용하도록 설정하는 경우, 브라우저를 새로 고쳐 다시 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-154">When you re-enable Browser Link after disabling it, you must refresh the browsers to reconnect them.</span></span>
+<span data-ttu-id="38a7e-154">브라우저 링크를 사용하지 않도록 설정한 후 다시 사용하도록 설정하는 경우, 브라우저를 새로 고쳐 다시 연결해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-154">When you re-enable Browser Link after disabling it, you must refresh the browsers to reconnect them.</span></span>
 
-### <a name="enable-or-disable-css-auto-sync"></a><span data-ttu-id="e52cc-155">CSS 자동 동기화 사용 또는 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="e52cc-155">Enable or disable CSS Auto-Sync</span></span>
+### <a name="enable-or-disable-css-auto-sync"></a><span data-ttu-id="38a7e-155">CSS 자동 동기화 사용 또는 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="38a7e-155">Enable or disable CSS Auto-Sync</span></span>
 
-<span data-ttu-id="e52cc-156">CSS 자동 동기화를 사용하도록 설정한 경우, CSS 파일을 변경하면 연결된 브라우저가 자동으로 새로 고쳐집니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-156">When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.</span></span>
+<span data-ttu-id="38a7e-156">CSS 자동 동기화를 사용하도록 설정한 경우, CSS 파일을 변경하면 연결된 브라우저가 자동으로 새로 고쳐집니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-156">When CSS Auto-Sync is enabled, connected browsers are automatically refreshed when you make any change to CSS files.</span></span>
 
-## <a name="how-it-works"></a><span data-ttu-id="e52cc-157">작동 방법</span><span class="sxs-lookup"><span data-stu-id="e52cc-157">How it works</span></span>
+## <a name="how-it-works"></a><span data-ttu-id="38a7e-157">작동 방법</span><span class="sxs-lookup"><span data-stu-id="38a7e-157">How it works</span></span>
 
-<span data-ttu-id="e52cc-158">브라우저 링크는 [SignalR](xref:signalr/introduction)를 사용하여 Visual Studio와 브라우저 간에 통신 채널을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-158">Browser Link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser.</span></span> <span data-ttu-id="e52cc-159">브라우저 링크를 사용하도록 설정한 경우, Visual Studio는 여러 클라이언트(브라우저)가 연결할 수 있는 SignalR 서버 역할을 합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-159">When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to.</span></span> <span data-ttu-id="e52cc-160">또한 브라우저 링크는 ASP.NET Core 요청 파이프라인에 미들웨어 구성 요소를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-160">Browser Link also registers a middleware component in the ASP.NET Core request pipeline.</span></span> <span data-ttu-id="e52cc-161">이 구성 요소는 서버의 모든 페이지 요청에 특수 `<script>` 참조를 삽입합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-161">This component injects special `<script>` references into every page request from the server.</span></span> <span data-ttu-id="e52cc-162">브라우저에서 **소스 보기**를 선택하고 `<body>` 태그 콘텐츠의 끝으로 스크롤하면 스크립트 참조를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-162">You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:</span></span>
+<span data-ttu-id="38a7e-158">브라우저 링크는 [SignalR](xref:signalr/introduction)를 사용하여 Visual Studio와 브라우저 간에 통신 채널을 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-158">Browser Link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser.</span></span> <span data-ttu-id="38a7e-159">브라우저 링크를 사용하도록 설정한 경우, Visual Studio는 여러 클라이언트(브라우저)가 연결할 수 있는 SignalR 서버 역할을 합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-159">When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to.</span></span> <span data-ttu-id="38a7e-160">또한 브라우저 링크는 ASP.NET Core 요청 파이프라인에 미들웨어 구성 요소를 등록합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-160">Browser Link also registers a middleware component in the ASP.NET Core request pipeline.</span></span> <span data-ttu-id="38a7e-161">이 구성 요소는 서버의 모든 페이지 요청에 특수 `<script>` 참조를 삽입합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-161">This component injects special `<script>` references into every page request from the server.</span></span> <span data-ttu-id="38a7e-162">브라우저에서 **소스 보기**를 선택하고 `<body>` 태그 콘텐츠의 끝으로 스크롤하면 스크립트 참조를 확인할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-162">You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:</span></span>
 
 ```html
     <!-- Visual Studio Browser Link -->
@@ -148,6 +150,6 @@ if (env.IsDevelopment())
 </body>
 ```
 
-<span data-ttu-id="e52cc-163">소스 파일은 수정되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-163">Your source files aren't modified.</span></span> <span data-ttu-id="e52cc-164">미들웨어 구성 요소는 스크립트 참조를 동적으로 삽입합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-164">The middleware component injects the script references dynamically.</span></span>
+<span data-ttu-id="38a7e-163">소스 파일은 수정되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-163">Your source files aren't modified.</span></span> <span data-ttu-id="38a7e-164">미들웨어 구성 요소는 스크립트 참조를 동적으로 삽입합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-164">The middleware component injects the script references dynamically.</span></span>
 
-<span data-ttu-id="e52cc-165">브라우저 쪽 코드는 모두 JavaScript이므로, 브라우저 플러그 인을 요구하지 않고 SignalR를 지원하는 모든 브라우저에서 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="e52cc-165">Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.</span></span>
+<span data-ttu-id="38a7e-165">브라우저 쪽 코드는 모두 JavaScript이므로, 브라우저 플러그 인을 요구하지 않고 SignalR를 지원하는 모든 브라우저에서 작동합니다.</span><span class="sxs-lookup"><span data-stu-id="38a7e-165">Because the browser-side code is all JavaScript, it works on all browsers that SignalR supports without requiring a browser plug-in.</span></span>

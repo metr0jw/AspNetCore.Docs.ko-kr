@@ -5,6 +5,8 @@ description: Microsoft.NET.Sdk.Web의 개요
 ms.author: riande
 ms.date: 01/25/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,23 +15,23 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/web-sdk
-ms.openlocfilehash: 2d154ebdbcb564ff5174940691b63ecce4154987
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: a717d9dc0e326e62ec920d2a838e8b18be3db013
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403731"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020693"
 ---
-# <a name="aspnet-core-web-sdk"></a><span data-ttu-id="ebf5b-103">ASP.NET Core 웹 SDK</span><span class="sxs-lookup"><span data-stu-id="ebf5b-103">ASP.NET Core Web SDK</span></span>
+# <a name="aspnet-core-web-sdk"></a><span data-ttu-id="cc8cb-103">ASP.NET Core 웹 SDK</span><span class="sxs-lookup"><span data-stu-id="cc8cb-103">ASP.NET Core Web SDK</span></span>
 
-### <a name="overview"></a><span data-ttu-id="ebf5b-104">개요</span><span class="sxs-lookup"><span data-stu-id="ebf5b-104">Overview</span></span>
+### <a name="overview"></a><span data-ttu-id="cc8cb-104">개요</span><span class="sxs-lookup"><span data-stu-id="cc8cb-104">Overview</span></span>
 
-<span data-ttu-id="ebf5b-105">`Microsoft.NET.Sdk.Web`은 ASP.NET Core 앱을 빌드하기 위한 [MSBuild 프로젝트 SDK](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk)입니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-105">`Microsoft.NET.Sdk.Web` is an [MSBuild project SDK](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) for building ASP.NET Core apps.</span></span> <span data-ttu-id="ebf5b-106">이 SDK를 사용하지 않고 ASP.NET Core 앱을 빌드할 수는 있지만 웹 SDK에는 다음이 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-106">It's possible to build an ASP.NET Core app without this SDK, however, the Web SDK is:</span></span>
+<span data-ttu-id="cc8cb-105">`Microsoft.NET.Sdk.Web`은 ASP.NET Core 앱을 빌드하기 위한 [MSBuild 프로젝트 SDK](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk)입니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-105">`Microsoft.NET.Sdk.Web` is an [MSBuild project SDK](https://docs.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) for building ASP.NET Core apps.</span></span> <span data-ttu-id="cc8cb-106">이 SDK를 사용하지 않고 ASP.NET Core 앱을 빌드할 수는 있지만 웹 SDK에는 다음이 적용됩니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-106">It's possible to build an ASP.NET Core app without this SDK, however, the Web SDK is:</span></span>
 
-* <span data-ttu-id="ebf5b-107">최고 수준의 환경을 제공하도록 조정되었습니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-107">Tailored towards providing a first-class experience.</span></span>
-* <span data-ttu-id="ebf5b-108">대부분의 사용자에게 권장되는 대상입니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-108">The recommended target for most users.</span></span>
+* <span data-ttu-id="cc8cb-107">최고 수준의 환경을 제공하도록 조정되었습니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-107">Tailored towards providing a first-class experience.</span></span>
+* <span data-ttu-id="cc8cb-108">대부분의 사용자에게 권장되는 대상입니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-108">The recommended target for most users.</span></span>
 
-<span data-ttu-id="ebf5b-109">프로젝트에서 웹 SDK를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-109">Use the Web.SDK in a project:</span></span>
+<span data-ttu-id="cc8cb-109">프로젝트에서 웹 SDK를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-109">Use the Web.SDK in a project:</span></span>
 
   ```xml
   <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -37,18 +39,18 @@ ms.locfileid: "85403731"
   </Project>
   ```
 
-<span data-ttu-id="ebf5b-110">웹 SDK를 사용하여 다음과 같은 기능이 사용하도록 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-110">Features enabled by using the Web SDK:</span></span>
+<span data-ttu-id="cc8cb-110">웹 SDK를 사용하여 다음과 같은 기능이 사용하도록 설정됩니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-110">Features enabled by using the Web SDK:</span></span>
 
-* <span data-ttu-id="ebf5b-111">.NET Core 3.0 이상을 대상으로 하는 프로젝트는 암시적으로 다음을 참조합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-111">Projects targeting .NET Core 3.0 or later implicitly reference:</span></span>
+* <span data-ttu-id="cc8cb-111">.NET Core 3.0 이상을 대상으로 하는 프로젝트는 암시적으로 다음을 참조합니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-111">Projects targeting .NET Core 3.0 or later implicitly reference:</span></span>
 
-  * <span data-ttu-id="ebf5b-112">[ASP.NET Core 공유 프레임워크](xref:fundamentals/metapackage-app)</span><span class="sxs-lookup"><span data-stu-id="ebf5b-112">The [ASP.NET Core shared framework](xref:fundamentals/metapackage-app).</span></span>
-  * <span data-ttu-id="ebf5b-113">ASP.NET Core 앱을 빌드하기 위해 디자인된 [분석기](/visualstudio/extensibility/getting-started-with-roslyn-analyzers)</span><span class="sxs-lookup"><span data-stu-id="ebf5b-113">[Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.</span></span>
-* <span data-ttu-id="ebf5b-114">웹 SDK는 게시 프로필을 사용하도록 설정하고 WebDeploy를 사용하여 게시하도록 하는 MSBuild 대상을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-114">The Web SDK imports MSBuild targets that enable the use of publish profiles and publishing using WebDeploy.</span></span>
+  * <span data-ttu-id="cc8cb-112">[ASP.NET Core 공유 프레임워크](xref:fundamentals/metapackage-app)</span><span class="sxs-lookup"><span data-stu-id="cc8cb-112">The [ASP.NET Core shared framework](xref:fundamentals/metapackage-app).</span></span>
+  * <span data-ttu-id="cc8cb-113">ASP.NET Core 앱을 빌드하기 위해 디자인된 [분석기](/visualstudio/extensibility/getting-started-with-roslyn-analyzers)</span><span class="sxs-lookup"><span data-stu-id="cc8cb-113">[Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.</span></span>
+* <span data-ttu-id="cc8cb-114">웹 SDK는 게시 프로필을 사용하도록 설정하고 WebDeploy를 사용하여 게시하도록 하는 MSBuild 대상을 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-114">The Web SDK imports MSBuild targets that enable the use of publish profiles and publishing using WebDeploy.</span></span>
 
-### <a name="properties"></a><span data-ttu-id="ebf5b-115">속성</span><span class="sxs-lookup"><span data-stu-id="ebf5b-115">Properties</span></span>
+### <a name="properties"></a><span data-ttu-id="cc8cb-115">속성</span><span class="sxs-lookup"><span data-stu-id="cc8cb-115">Properties</span></span>
 
-| <span data-ttu-id="ebf5b-116">속성</span><span class="sxs-lookup"><span data-stu-id="ebf5b-116">Property</span></span> | <span data-ttu-id="ebf5b-117">설명</span><span class="sxs-lookup"><span data-stu-id="ebf5b-117">Description</span></span> |
+| <span data-ttu-id="cc8cb-116">속성</span><span class="sxs-lookup"><span data-stu-id="cc8cb-116">Property</span></span> | <span data-ttu-id="cc8cb-117">설명</span><span class="sxs-lookup"><span data-stu-id="cc8cb-117">Description</span></span> |
 | -------- | ----------- |
-| `DisableImplicitFrameworkReferences` | <span data-ttu-id="ebf5b-118">`Microsoft.AspNetCore.App` 공유 프레임워크에 대한 암시적 참조를 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-118">Disables implicit reference to the `Microsoft.AspNetCore.App` shared framework.</span></span> |
-| `DisableImplicitAspNetCoreAnalyzers` | <span data-ttu-id="ebf5b-119">ASP.NET Core 분석기에 대한 암시적 참조를 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-119">Disables implicit reference to ASP.NET Core analyzers.</span></span> |
-| `DisableImplicitComponentsAnalyzers` | <span data-ttu-id="ebf5b-120">Blazor(서버) 애플리케이션을 빌드할 때 Razor 구성 요소 분석기에 대한 암시적 참조를 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="ebf5b-120">Disables implicit reference to Razor Components analyzers when building Blazor (server) applications.</span></span> |
+| `DisableImplicitFrameworkReferences` | <span data-ttu-id="cc8cb-118">`Microsoft.AspNetCore.App` 공유 프레임워크에 대한 암시적 참조를 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-118">Disables implicit reference to the `Microsoft.AspNetCore.App` shared framework.</span></span> |
+| `DisableImplicitAspNetCoreAnalyzers` | <span data-ttu-id="cc8cb-119">ASP.NET Core 분석기에 대한 암시적 참조를 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-119">Disables implicit reference to ASP.NET Core analyzers.</span></span> |
+| `DisableImplicitComponentsAnalyzers` | <span data-ttu-id="cc8cb-120">Blazor(서버) 애플리케이션을 빌드할 때 Razor 구성 요소 분석기에 대한 암시적 참조를 사용하지 않도록 설정합니다.</span><span class="sxs-lookup"><span data-stu-id="cc8cb-120">Disables implicit reference to Razor Components analyzers when building Blazor (server) applications.</span></span> |
