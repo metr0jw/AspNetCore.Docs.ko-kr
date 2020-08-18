@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/03/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/additional-scenarios
-ms.openlocfilehash: 81ab2bb139dfcbea712d4eb51acfc9d7f6767d46
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: 15531c39a66a9f6dfd0f5c20cf960e4db5a78074
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87818835"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013803"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-additional-security-scenarios"></a>ASP.NET Core Blazor WebAssembly 추가 보안 시나리오
 
@@ -444,7 +446,7 @@ Fetch API 옵션에 대한 자세한 내용은 [MDN 웹 설명서: WindowOrWorke
 
 ## <a name="cross-origin-resource-sharing-cors"></a>CORS(원본 간 리소스 공유)
 
-CORS 요청에 대한 자격 증명(권한 부여 쿠키/헤더)을 보낼 때 CORS 정책에서 `Authorization` 헤더를 허용해야 합니다.
+CORS 요청에 대한 자격 증명(권한 부여 cookie/헤더)을 보낼 때 CORS 정책에서 `Authorization` 헤더를 허용해야 합니다.
 
 다음 정책에는 해당 구성이 포함되어 있습니다.
 
@@ -467,13 +469,13 @@ Blazor 호스트 프로젝트 템플릿에 기반한 호스트된 Blazor 솔루�
 
 ## <a name="handle-token-request-errors"></a>토큰 요청 오류 처리
 
-SPA(단일 페이지 애플리케이션)가 OIDC(OpenID Connect)를 사용하여 사용자를 인증하는 경우 인증 상태는 SPA 내에서 로컬로 유지 관리되는 동시에 IP(Identity 공급자)에서 사용자가 자격 증명을 제공한 결과 설정된 세션 쿠키 형식으로 유지 관리됩니다.
+SPA(단일 페이지 애플리케이션)가 OIDC(OpenID Connect)를 사용하여 사용자를 인증하는 경우 인증 상태는 SPA 내에서 로컬로 유지 관리되는 동시에 IP(Identity 공급자)에서 사용자가 자격 증명을 제공한 결과 설정된 세션 cookie 형식으로 유지 관리됩니다.
 
 일반적으로 사용자에 대해 IP가 내보내는 토큰은 짧은 시간 동안(보통 1시간 동안) 유효하므로 클라이언트 앱이 정기적으로 새 토큰을 페치해야 합니다. 그러지 않으면 부여된 토큰이 만료된 후에 사용자가 로그아웃됩니다. 대부분의 경우 OIDC 클라이언트는 IP 내에 유지되는 인증 상태 또는 “세션” 덕분에 사용자에게 다시 인증하도록 요구하지 않고 새 토큰을 프로비저닝할 수 있습니다.
 
 클라이언트가 사용자 조작 없이는 토큰을 가져올 수 없는 경우도 있습니다. 사용자가 어떤 이유로든 IP에서 명시적으로 로그아웃하는 경우가 그 예입니다. 이 시나리오는 사용자가 `https://login.microsoftonline.com`을 방문한 후 로그아웃하는 경우에 발생합니다. 이러한 시나리오에서 앱은 사용자가 로그아웃했다는 사실을 즉시 인식하지 못합니다. 이때 클라이언트가 보유하고 있는 토큰은 모두 더 이상 유효하지 않을 수 있습니다. 또한 클라이언트는 현재 토큰이 만료된 후 사용자 조작 없이는 새 토큰을 프로비저닝할 수 없습니다.
 
-이러한 시나리오는 토큰 기반 인증에만 국한되지 않으며, SPA의 특성에 해당합니다. 쿠키를 사용하는 SPA도 인증 쿠키가 제거된 경우 서버 API를 호출하지 못합니다.
+이러한 시나리오는 토큰 기반 인증에만 국한되지 않으며, SPA의 특성에 해당합니다. cookie를 사용하는 SPA도 인증 cookie가 제거된 경우 서버 API를 호출하지 못합니다.
 
 앱에서 보호된 리소스에 대해 API 호출을 수행하는 경우에는 다음 사항에 유의해야 합니다.
 
@@ -727,7 +729,7 @@ builder.Services.AddSingleton<StateContainer>();
 }
 ```
 
-`Program.Main`(`Program.cs`):
+`Program.Main` (`Program.cs`):
 
 ```csharp
 builder.Services.AddApiAuthorization(options => { 

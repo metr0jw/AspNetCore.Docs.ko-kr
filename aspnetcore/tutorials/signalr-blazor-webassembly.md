@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/signalr-blazor-webassembly
-ms.openlocfilehash: d5aa7520a637b18e014519134dfe2d2139e7c11d
-ms.sourcegitcommit: f7873c02c1505c99106cbc708f37e18fc0a496d1
+ms.openlocfilehash: 3d7ae49142849c589a1a20c33d30e87747ad1935
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86147784"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021629"
 ---
-# <a name="use-aspnet-core-signalr-with-blazor-webassembly"></a>Blazor WebAssembly와 함께 ASP.NET Core SignalR 사용
+# <a name="use-aspnet-core-no-locsignalr-with-no-locblazor-webassembly"></a>Blazor WebAssembly와 함께 ASP.NET Core SignalR 사용
 
 작성자: [Daniel Roth](https://github.com/danroth27) 및 [Luke Latham](https://github.com/guardrex)
 
@@ -61,7 +63,7 @@ ms.locfileid: "86147784"
 
 ---
 
-## <a name="create-a-hosted-blazor-webassembly-app-project"></a>호스트된 Blazor WebAssembly 앱 프로젝트 만들기
+## <a name="create-a-hosted-no-locblazor-webassembly-app-project"></a>호스트된 Blazor WebAssembly 앱 프로젝트 만들기
 
 선택한 도구의 지침을 따르세요.
 
@@ -122,7 +124,7 @@ dotnet new blazorwasm --hosted --output BlazorSignalRApp
 
 ---
 
-## <a name="add-the-signalr-client-library"></a>SignalR 클라이언트 라이브러리 추가
+## <a name="add-the-no-locsignalr-client-library"></a>SignalR 클라이언트 라이브러리 추가
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio/)
 
@@ -169,13 +171,13 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
 ---
 
-## <a name="add-a-signalr-hub"></a>SignalR 허브 추가
+## <a name="add-a-no-locsignalr-hub"></a>SignalR 허브 추가
 
 `BlazorSignalRApp.Server` 프로젝트에서 `Hubs`(복수형) 폴더를 만들고 다음 `ChatHub` 클래스(`Hubs/ChatHub.cs`)를 추가합니다.
 
 [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Hubs/ChatHub.cs)]
 
-## <a name="add-services-and-an-endpoint-for-the-signalr-hub"></a>서비스 및 SignalR 허브에 대한 엔드포인트 추가
+## <a name="add-services-and-an-endpoint-for-the-no-locsignalr-hub"></a>서비스 및 SignalR 허브에 대한 엔드포인트 추가
 
 1. `BlazorSignalRApp.Server` 프로젝트에서 `Startup.cs` 파일을 엽니다.
 
@@ -196,7 +198,7 @@ dotnet add Client package Microsoft.AspNetCore.SignalR.Client
 
    [!code-csharp[](signalr-blazor-webassembly/samples/3.x/BlazorSignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
 
-## <a name="add-razor-component-code-for-chat"></a>채팅을 위한 Razor 구성 요소 코드 추가
+## <a name="add-no-locrazor-component-code-for-chat"></a>채팅을 위한 Razor 구성 요소 코드 추가
 
 1. `BlazorSignalRApp.Client` 프로젝트에서 `Pages/Index.razor` 파일을 엽니다.
 

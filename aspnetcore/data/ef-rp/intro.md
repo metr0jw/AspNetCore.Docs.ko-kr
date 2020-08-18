@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 700370fd11a0df40a45c47e8c378d5bdd0c60009
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: cd6624d107fb19da92a7e58a747cc85e876a6ba4
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212695"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88018639"
 ---
-# <a name="razor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>ASP.NET Core에서 Entity Framework Core를 사용한 Razor Pages - 자습서 1/8
+# <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>ASP.NET Core에서 Entity Framework Core를 사용한 Razor Pages - 자습서 1/8
 
 작성자: [Tom Dykstra](https://github.com/tdykstra) 및 [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -498,7 +500,7 @@ Contoso University 샘플 웹앱은 EF(Entity Framework) Core를 사용하여 AS
 
 이 사이트의 UI 스타일은 기본 제공 템플릿에서 생성된 것과 가깝습니다. 이 자습서에서는 UI가 아닌 Razor 페이지를 사용한 EF Core를 중점적으로 다룹니다.
 
-## <a name="create-the-contosouniversity-razor-pages-web-app"></a>ContosoUniversity Razor Pages 웹앱 만들기
+## <a name="create-the-contosouniversity-no-locrazor-pages-web-app"></a>ContosoUniversity Razor Pages 웹앱 만들기
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -673,7 +675,7 @@ ASP.NET Core는 [종속성 주입](xref:fundamentals/dependency-injection)을 �
 
 ### <a name="test-the-app"></a>앱 테스트
 
-앱을 실행하고 쿠키 방침에 동의합니다. 이 앱은 개인 정보를 보관하지 않습니다. [EU GDPR(일반 데이터 보호 규정) 지원](xref:security/gdpr)에서 쿠키 정책을 확인할 수 있습니다.
+앱을 실행하고 cookie 정책에 동의합니다. 이 앱은 개인 정보를 보관하지 않습니다. [EU GDPR(일반 데이터 보호 규정) 지원](xref:security/gdpr)에서 cookie 정책을 확인할 수 있습니다.
 
 * **학생** 링크 및 **새로 만들기**를 차례로 선택합니다.
 * 편집, 세부 정보 및 삭제 링크를 테스트합니다.

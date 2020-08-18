@@ -5,20 +5,22 @@ description: ASP.NET Core에서 다른 언어와 문화권으로의 콘텐츠 �
 ms.author: riande
 ms.date: 11/30/2019
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 412cd7a39a0eed6800e15d235102ed367da5f746
-ms.sourcegitcommit: 895e952aec11c91d703fbdd3640a979307b8cc67
+ms.openlocfilehash: 9fd68d3b412c2cef6125c657653f605689ca6e70
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793480"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017222"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>ASP.NET Core에서 세계화 및 지역화
 
@@ -75,7 +77,7 @@ HTML을 포함하는 리소스에 대해 `IHtmlLocalizer<T>` 구현을 사용합
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Home/About.cshtml)]
 
-`IViewLocalizer`의 기본 구현은 보기의 파일 이름에 따라 리소스 파일을 찾습니다. 전역 공유 리소스 파일을 사용할 수 있는 옵션이 없습니다. `ViewLocalizer`는 `IHtmlLocalizer`를 사용하여 로컬라이저를 구현하므로 [Razor는 지역화된 문자열을 HTML 인코딩하지 않습니다. 리소스 문자열을 매개 변수화할 수 있으며 `IViewLocalizer`는 리소스 문자열이 아닌 매개 변수를 HTML 인코딩합니다. 다음 [Razor 태그를 살펴보세요.
+`IViewLocalizer`의 기본 구현은 보기의 파일 이름에 따라 리소스 파일을 찾습니다. 전역 공유 리소스 파일을 사용할 수 있는 옵션이 없습니다. `ViewLocalizer`는 `IHtmlLocalizer`를 사용하여 로컬라이저를 구현하므로 Razor는 지역화된 문자열을 HTML 인코딩하지 않습니다. 리소스 문자열을 매개 변수화할 수 있으며 `IViewLocalizer`는 리소스 문자열이 아닌 매개 변수를 HTML 인코딩합니다. 다음 Razor 태그를 살펴보세요.
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -163,7 +165,7 @@ ASP.NET Core를 사용하면 두 문화권 값 `SupportedCultures` 및 `Supporte
 | Resources/Controllers.HomeController.fr.resx | 점  |
 | Resources/Controllers/HomeController.fr.resx  | 경로 |
 
-[Razor 뷰에서 `@inject IViewLocalizer`를 사용하는 리소스 파일은 유사한 패턴을 따릅니다. 보기에 대한 리소스 파일은 점 이름 지정 또는 경로 이름 지정을 사용하여 이름이 지정될 수 있습니다. [Razor 뷰 리소스 파일은 연결된 보기 파일의 경로를 모방합니다. `ResourcesPath`를 "리소스"로 설정했다고 가정하면, *Views/Home/About.cshtml* 보기와 연결된 프랑스어 리소스 파일은 다음 중 하나가 될 수 있습니다.
+Razor 뷰에서 `@inject IViewLocalizer`를 사용하는 리소스 파일은 유사한 패턴을 따릅니다. 보기에 대한 리소스 파일은 점 이름 지정 또는 경로 이름 지정을 사용하여 이름이 지정될 수 있습니다. Razor 뷰 리소스 파일은 연결된 보기 파일의 경로를 모방합니다. `ResourcesPath`를 "리소스"로 설정했다고 가정하면, *Views/Home/About.cshtml* 보기와 연결된 프랑스어 리소스 파일은 다음 중 하나가 될 수 있습니다.
 
 * Resources/Views/Home/About.fr.resx
 
@@ -247,7 +249,7 @@ using Microsoft.Extensions.Localization;
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-일부 앱은 쿼리 문자열을 사용하여 [문화권 및 UI 문화권](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx)을 설정합니다. 쿠키 또는 수용-언어 헤더 방식을 사용하는 앱의 경우 URL에 쿼리 문자열을 추가하는 것은 코드 디버깅 및 테스트에 유용합니다. 기본적으로 `QueryStringRequestCultureProvider`는 `RequestCultureProvider` 목록에서 첫 번째 지역화 공급자로 등록됩니다. `culture` 및 `ui-culture`에 쿼리 문자열 매개 변수를 전달합니다. 다음 예제는 특정 문화권(언어 및 지역)을 스페인어/멕시코로 설정합니다.
+일부 앱은 쿼리 문자열을 사용하여 [문화권 및 UI 문화권](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx)을 설정합니다. cookie 또는 수용-언어 헤더 방식을 사용하는 앱의 경우 URL에 쿼리 문자열을 추가하는 것은 코드 디버깅 및 테스트에 유용합니다. 기본적으로 `QueryStringRequestCultureProvider`는 `RequestCultureProvider` 목록에서 첫 번째 지역화 공급자로 등록됩니다. `culture` 및 `ui-culture`에 쿼리 문자열 매개 변수를 전달합니다. 다음 예제는 특정 문화권(언어 및 지역)을 스페인어/멕시코로 설정합니다.
 
    `http://localhost:5000/?culture=es-MX&ui-culture=es-MX`
 
@@ -257,13 +259,13 @@ using Microsoft.Extensions.Localization;
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-프로덕션 앱은 종종 메커니즘을 제공하여 ASP.NET Core 문화권 쿠키로 문화권을 설정합니다. `MakeCookieValue` 메서드를 사용하여 쿠키를 만듭니다.
+프로덕션 앱은 종종 메커니즘을 제공하여 ASP.NET Core 문화권 cookie로 문화권을 설정합니다. `MakeCookieValue` 메서드를 사용하여 cookie를 만듭니다.
 
-`CookieRequestCultureProvider` `DefaultCookieName`은 사용자의 기본 문화권 정보를 추적하는 데 사용되는 기본 쿠키 이름을 반환합니다. 기본 쿠키 이름은 `.AspNetCore.Culture`입니다.
+`CookieRequestCultureProvider` `DefaultCookieName`은 사용자의 기본 문화권 정보를 추적하는 데 사용되는 기본 cookie 이름을 반환합니다. 기본 cookie 이름은 `.AspNetCore.Culture`입니다.
 
-쿠키 형식은 `c=%LANGCODE%|uic=%LANGCODE%`이며 여기서 `c`는 `Culture`이며 `uic`는 `UICulture`입니다. 예를 들면 다음과 같습니다.
+cookie 형식은 `c=%LANGCODE%|uic=%LANGCODE%`이며, 여기서 `c`는 `Culture`이고 `uic`는 `UICulture`입니다. 예를 들면 다음과 같습니다.
 
 ```
 c=en-UK|uic=en-US
@@ -330,11 +332,11 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
-`SetLanguage` 메서드는 문화권 쿠키를 설정합니다.
+`SetLanguage` 메서드는 문화권 cookie를 설정합니다.
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-*_SelectLanguagePartial.cshtml*을 이 프로젝트에 대한 샘플 코드에 플러그 인할 수 없습니다. [GitHub](https://github.com/aspnet/entropy)의 **Localization.StarterWeb** 프로젝트에는 [종속성 주입](dependency-injection.md) 컨테이너를 통해 [Razor 부분에 `RequestLocalizationOptions`를 흐르도록 하는 코드가 있습니다.
+*_SelectLanguagePartial.cshtml*을 이 프로젝트에 대한 샘플 코드에 플러그 인할 수 없습니다. [GitHub](https://github.com/aspnet/entropy)의 **Localization.StarterWeb** 프로젝트에는 [종속성 주입](dependency-injection.md) 컨테이너를 통해 Razor 부분에 `RequestLocalizationOptions`를 흐르도록 하는 코드가 있습니다.
 
 ## <a name="model-binding-route-data-and-query-strings"></a>모델 바인딩 경로 데이터 및 쿼리 문자열
 
@@ -429,7 +431,7 @@ HTML을 포함하는 리소스에 대해 `IHtmlLocalizer<T>` 구현을 사용합
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Home/About.cshtml)]
 
-`IViewLocalizer`의 기본 구현은 보기의 파일 이름에 따라 리소스 파일을 찾습니다. 전역 공유 리소스 파일을 사용할 수 있는 옵션이 없습니다. `ViewLocalizer`는 `IHtmlLocalizer`를 사용하여 로컬라이저를 구현하므로 [Razor는 지역화된 문자열을 HTML 인코딩하지 않습니다. 리소스 문자열을 매개 변수화할 수 있으며 `IViewLocalizer`는 리소스 문자열이 아닌 매개 변수를 HTML 인코딩합니다. 다음 [Razor 태그를 살펴보세요.
+`IViewLocalizer`의 기본 구현은 보기의 파일 이름에 따라 리소스 파일을 찾습니다. 전역 공유 리소스 파일을 사용할 수 있는 옵션이 없습니다. `ViewLocalizer`는 `IHtmlLocalizer`를 사용하여 로컬라이저를 구현하므로 Razor는 지역화된 문자열을 HTML 인코딩하지 않습니다. 리소스 문자열을 매개 변수화할 수 있으며 `IViewLocalizer`는 리소스 문자열이 아닌 매개 변수를 HTML 인코딩합니다. 다음 Razor 태그를 살펴보세요.
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -517,7 +519,7 @@ ASP.NET Core를 사용하면 두 문화권 값 `SupportedCultures` 및 `Supporte
 | Resources/Controllers.HomeController.fr.resx | 점  |
 | Resources/Controllers/HomeController.fr.resx  | 경로 |
 
-[Razor 뷰에서 `@inject IViewLocalizer`를 사용하는 리소스 파일은 유사한 패턴을 따릅니다. 보기에 대한 리소스 파일은 점 이름 지정 또는 경로 이름 지정을 사용하여 이름이 지정될 수 있습니다. [Razor 뷰 리소스 파일은 연결된 보기 파일의 경로를 모방합니다. `ResourcesPath`를 "리소스"로 설정했다고 가정하면, *Views/Home/About.cshtml* 보기와 연결된 프랑스어 리소스 파일은 다음 중 하나가 될 수 있습니다.
+Razor 뷰에서 `@inject IViewLocalizer`를 사용하는 리소스 파일은 유사한 패턴을 따릅니다. 보기에 대한 리소스 파일은 점 이름 지정 또는 경로 이름 지정을 사용하여 이름이 지정될 수 있습니다. Razor 뷰 리소스 파일은 연결된 보기 파일의 경로를 모방합니다. `ResourcesPath`를 "리소스"로 설정했다고 가정하면, *Views/Home/About.cshtml* 보기와 연결된 프랑스어 리소스 파일은 다음 중 하나가 될 수 있습니다.
 
 * Resources/Views/Home/About.fr.resx
 
@@ -601,7 +603,7 @@ using Microsoft.Extensions.Localization;
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-일부 앱은 쿼리 문자열을 사용하여 [문화권 및 UI 문화권](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx)을 설정합니다. 쿠키 또는 수용-언어 헤더 방식을 사용하는 앱의 경우 URL에 쿼리 문자열을 추가하는 것은 코드 디버깅 및 테스트에 유용합니다. 기본적으로 `QueryStringRequestCultureProvider`는 `RequestCultureProvider` 목록에서 첫 번째 지역화 공급자로 등록됩니다. `culture` 및 `ui-culture`에 쿼리 문자열 매개 변수를 전달합니다. 다음 예제는 특정 문화권(언어 및 지역)을 스페인어/멕시코로 설정합니다.
+일부 앱은 쿼리 문자열을 사용하여 [문화권 및 UI 문화권](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx)을 설정합니다. cookie 또는 수용-언어 헤더 방식을 사용하는 앱의 경우 URL에 쿼리 문자열을 추가하는 것은 코드 디버깅 및 테스트에 유용합니다. 기본적으로 `QueryStringRequestCultureProvider`는 `RequestCultureProvider` 목록에서 첫 번째 지역화 공급자로 등록됩니다. `culture` 및 `ui-culture`에 쿼리 문자열 매개 변수를 전달합니다. 다음 예제는 특정 문화권(언어 및 지역)을 스페인어/멕시코로 설정합니다.
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -613,13 +615,13 @@ http://localhost:5000/?culture=es-MX&ui-culture=es-MX
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-프로덕션 앱은 종종 메커니즘을 제공하여 ASP.NET Core 문화권 쿠키로 문화권을 설정합니다. `MakeCookieValue` 메서드를 사용하여 쿠키를 만듭니다.
+프로덕션 앱은 종종 메커니즘을 제공하여 ASP.NET Core 문화권 cookie로 문화권을 설정합니다. `MakeCookieValue` 메서드를 사용하여 cookie를 만듭니다.
 
-`CookieRequestCultureProvider` `DefaultCookieName`은 사용자의 기본 문화권 정보를 추적하는 데 사용되는 기본 쿠키 이름을 반환합니다. 기본 쿠키 이름은 `.AspNetCore.Culture`입니다.
+`CookieRequestCultureProvider` `DefaultCookieName`은 사용자의 기본 문화권 정보를 추적하는 데 사용되는 기본 cookie 이름을 반환합니다. 기본 cookie 이름은 `.AspNetCore.Culture`입니다.
 
-쿠키 형식은 `c=%LANGCODE%|uic=%LANGCODE%`이며 여기서 `c`는 `Culture`이며 `uic`는 `UICulture`입니다. 예를 들면 다음과 같습니다.
+cookie 형식은 `c=%LANGCODE%|uic=%LANGCODE%`이며, 여기서 `c`는 `Culture`이고 `uic`는 `UICulture`입니다. 예를 들면 다음과 같습니다.
 
 ```
 c=en-UK|uic=en-US
@@ -686,11 +688,11 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
-`SetLanguage` 메서드는 문화권 쿠키를 설정합니다.
+`SetLanguage` 메서드는 문화권 cookie를 설정합니다.
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-*_SelectLanguagePartial.cshtml*을 이 프로젝트에 대한 샘플 코드에 플러그 인할 수 없습니다. [GitHub](https://github.com/aspnet/entropy)의 **Localization.StarterWeb** 프로젝트에는 [종속성 주입](dependency-injection.md) 컨테이너를 통해 [Razor 부분에 `RequestLocalizationOptions`를 흐르도록 하는 코드가 있습니다.
+*_SelectLanguagePartial.cshtml*을 이 프로젝트에 대한 샘플 코드에 플러그 인할 수 없습니다. [GitHub](https://github.com/aspnet/entropy)의 **Localization.StarterWeb** 프로젝트에는 [종속성 주입](dependency-injection.md) 컨테이너를 통해 Razor 부분에 `RequestLocalizationOptions`를 흐르도록 하는 코드가 있습니다.
 
 ## <a name="model-binding-route-data-and-query-strings"></a>모델 바인딩 경로 데이터 및 쿼리 문자열
 
@@ -784,7 +786,7 @@ HTML을 포함하는 리소스에 대해 `IHtmlLocalizer<T>` 구현을 사용합
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Home/About.cshtml)]
 
-`IViewLocalizer`의 기본 구현은 보기의 파일 이름에 따라 리소스 파일을 찾습니다. 전역 공유 리소스 파일을 사용할 수 있는 옵션이 없습니다. `ViewLocalizer`는 `IHtmlLocalizer`를 사용하여 로컬라이저를 구현하므로 [Razor는 지역화된 문자열을 HTML 인코딩하지 않습니다. 리소스 문자열을 매개 변수화할 수 있으며 `IViewLocalizer`는 리소스 문자열이 아닌 매개 변수를 HTML 인코딩합니다. 다음 [Razor 태그를 살펴보세요.
+`IViewLocalizer`의 기본 구현은 보기의 파일 이름에 따라 리소스 파일을 찾습니다. 전역 공유 리소스 파일을 사용할 수 있는 옵션이 없습니다. `ViewLocalizer`는 `IHtmlLocalizer`를 사용하여 로컬라이저를 구현하므로 Razor는 지역화된 문자열을 HTML 인코딩하지 않습니다. 리소스 문자열을 매개 변수화할 수 있으며 `IViewLocalizer`는 리소스 문자열이 아닌 매개 변수를 HTML 인코딩합니다. 다음 Razor 태그를 살펴보세요.
 
 ```cshtml
 @Localizer["<i>Hello</i> <b>{0}!</b>", UserManager.GetUserName(User)]
@@ -872,7 +874,7 @@ ASP.NET Core를 사용하면 두 문화권 값 `SupportedCultures` 및 `Supporte
 | Resources/Controllers.HomeController.fr.resx | 점  |
 | Resources/Controllers/HomeController.fr.resx  | 경로 |
 
-[Razor 뷰에서 `@inject IViewLocalizer`를 사용하는 리소스 파일은 유사한 패턴을 따릅니다. 보기에 대한 리소스 파일은 점 이름 지정 또는 경로 이름 지정을 사용하여 이름이 지정될 수 있습니다. [Razor 뷰 리소스 파일은 연결된 보기 파일의 경로를 모방합니다. `ResourcesPath`를 "리소스"로 설정했다고 가정하면, *Views/Home/About.cshtml* 보기와 연결된 프랑스어 리소스 파일은 다음 중 하나가 될 수 있습니다.
+Razor 뷰에서 `@inject IViewLocalizer`를 사용하는 리소스 파일은 유사한 패턴을 따릅니다. 보기에 대한 리소스 파일은 점 이름 지정 또는 경로 이름 지정을 사용하여 이름이 지정될 수 있습니다. Razor 뷰 리소스 파일은 연결된 보기 파일의 경로를 모방합니다. `ResourcesPath`를 "리소스"로 설정했다고 가정하면, *Views/Home/About.cshtml* 보기와 연결된 프랑스어 리소스 파일은 다음 중 하나가 될 수 있습니다.
 
 * Resources/Views/Home/About.fr.resx
 
@@ -956,7 +958,7 @@ using Microsoft.Extensions.Localization;
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-일부 앱은 쿼리 문자열을 사용하여 [문화권 및 UI 문화권](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx)을 설정합니다. 쿠키 또는 수용-언어 헤더 방식을 사용하는 앱의 경우 URL에 쿼리 문자열을 추가하는 것은 코드 디버깅 및 테스트에 유용합니다. 기본적으로 `QueryStringRequestCultureProvider`는 `RequestCultureProvider` 목록에서 첫 번째 지역화 공급자로 등록됩니다. `culture` 및 `ui-culture`에 쿼리 문자열 매개 변수를 전달합니다. 다음 예제는 특정 문화권(언어 및 지역)을 스페인어/멕시코로 설정합니다.
+일부 앱은 쿼리 문자열을 사용하여 [문화권 및 UI 문화권](https://msdn.microsoft.com/library/system.globalization.cultureinfo.aspx)을 설정합니다. cookie 또는 수용-언어 헤더 방식을 사용하는 앱의 경우 URL에 쿼리 문자열을 추가하는 것은 코드 디버깅 및 테스트에 유용합니다. 기본적으로 `QueryStringRequestCultureProvider`는 `RequestCultureProvider` 목록에서 첫 번째 지역화 공급자로 등록됩니다. `culture` 및 `ui-culture`에 쿼리 문자열 매개 변수를 전달합니다. 다음 예제는 특정 문화권(언어 및 지역)을 스페인어/멕시코로 설정합니다.
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
@@ -968,13 +970,13 @@ http://localhost:5000/?culture=es-MX&ui-culture=es-MX
 http://localhost:5000/?culture=es-MX
 ```
 
-### <a name="cookierequestcultureprovider"></a>CookieRequestCultureProvider
+### <a name="no-loccookierequestcultureprovider"></a>CookieRequestCultureProvider
 
-프로덕션 앱은 종종 메커니즘을 제공하여 ASP.NET Core 문화권 쿠키로 문화권을 설정합니다. `MakeCookieValue` 메서드를 사용하여 쿠키를 만듭니다.
+프로덕션 앱은 종종 메커니즘을 제공하여 ASP.NET Core 문화권 cookie로 문화권을 설정합니다. `MakeCookieValue` 메서드를 사용하여 cookie를 만듭니다.
 
-`CookieRequestCultureProvider` `DefaultCookieName`은 사용자의 기본 문화권 정보를 추적하는 데 사용되는 기본 쿠키 이름을 반환합니다. 기본 쿠키 이름은 `.AspNetCore.Culture`입니다.
+`CookieRequestCultureProvider` `DefaultCookieName`은 사용자의 기본 문화권 정보를 추적하는 데 사용되는 기본 cookie 이름을 반환합니다. 기본 cookie 이름은 `.AspNetCore.Culture`입니다.
 
-쿠키 형식은 `c=%LANGCODE%|uic=%LANGCODE%`이며 여기서 `c`는 `Culture`이며 `uic`는 `UICulture`입니다. 예를 들면 다음과 같습니다.
+cookie 형식은 `c=%LANGCODE%|uic=%LANGCODE%`이며, 여기서 `c`는 `Culture`이고 `uic`는 `UICulture`입니다. 예를 들면 다음과 같습니다.
 
 ```
 c=en-UK|uic=en-US
@@ -1064,11 +1066,11 @@ services.Configure<RequestLocalizationOptions>(options =>
 
 [!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
-`SetLanguage` 메서드는 문화권 쿠키를 설정합니다.
+`SetLanguage` 메서드는 문화권 cookie를 설정합니다.
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-*_SelectLanguagePartial.cshtml*을 이 프로젝트에 대한 샘플 코드에 플러그 인할 수 없습니다. [GitHub](https://github.com/aspnet/entropy)의 **Localization.StarterWeb** 프로젝트에는 [종속성 주입](dependency-injection.md) 컨테이너를 통해 [Razor 부분에 `RequestLocalizationOptions`를 흐르도록 하는 코드가 있습니다.
+*_SelectLanguagePartial.cshtml*을 이 프로젝트에 대한 샘플 코드에 플러그 인할 수 없습니다. [GitHub](https://github.com/aspnet/entropy)의 **Localization.StarterWeb** 프로젝트에는 [종속성 주입](dependency-injection.md) 컨테이너를 통해 Razor 부분에 `RequestLocalizationOptions`를 흐르도록 하는 코드가 있습니다.
 
 ## <a name="model-binding-route-data-and-query-strings"></a>모델 바인딩 경로 데이터 및 쿼리 문자열
 

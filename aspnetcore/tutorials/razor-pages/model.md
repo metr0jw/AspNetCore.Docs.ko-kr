@@ -5,6 +5,8 @@ description: Razor Pages에 대한 자습서 시리즈의 2부입니다.
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/model
-ms.openlocfilehash: 053e35e78b2bf58fded49c9a2860060d6a81c544
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 6b50f46863a6dabb01bcf0976a42abb504e6f7b7
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408112"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020459"
 ---
-# <a name="part-2-add-a-model-to-a-razor-pages-app-in-aspnet-core"></a>2부. ASP.NET Core에서 Razor Pages 앱에 모델 추가
+# <a name="part-2-add-a-model-to-a-no-locrazor-pages-app-in-aspnet-core"></a>2부. ASP.NET Core에서 Razor Pages 앱에 모델 추가
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -466,7 +468,7 @@ Add-Migration Initial
 Update-Database
 ```
 
-`Add-Migration` 명령은 초기 데이터베이스 스키마를 만드는 코드를 생성합니다. 스키마는 `DbContext`에 지정된 모델을 기반으로 합니다(*RazorPagesMovieContext.cs* 파일). `InitialCreate` 인수는 마이그레이션 이름을 지정하는 데 사용됩니다. 모든 이름을 사용할 수 있지만 규칙에 따라 마이그레이션을 설명하는 이름을 사용합니다. 자세한 내용은 <xref:data/ef-mvc/migrations>를 참조하세요.
+`Add-Migration` 명령은 초기 데이터베이스 스키마를 만드는 코드를 생성합니다. 스키마는 `DbContext`에 지정된 모델을 기반으로 합니다( *RazorPagesMovieContext.cs* 파일). `InitialCreate` 인수는 마이그레이션 이름을 지정하는 데 사용됩니다. 모든 이름을 사용할 수 있지만 규칙에 따라 마이그레이션을 설명하는 이름을 사용합니다. 자세한 내용은 <xref:data/ef-mvc/migrations>를 참조하세요.
 
 `Update-Database` 명령은 *Migrations/\<time-stamp>_InitialCreate.cs* 파일에서 `Up` 메서드를 실행합니다. `Up` 메서드는 데이터베이스를 만듭니다.
 

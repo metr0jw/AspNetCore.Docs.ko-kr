@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/30/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: cb0a8737fb975db285986d18b995e488f09580e8
-ms.sourcegitcommit: 37f6f2e13ceb4eae268d20973d76e4b83acf6a24
+ms.openlocfilehash: 225916411550cc8e89c604e1426316843bb0ff52
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526292"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014544"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly 디버그
 
@@ -76,6 +78,10 @@ Visual Studio에서 Blazor WebAssembly 앱을 디버그하려면:
 
 1. 새 ASP.NET Core 호스트된 Blazor WebAssembly 앱을 만듭니다.
 1. <kbd>F5</kbd> 키를 눌러 디버거에서 앱을 실행합니다.
+
+   > [!NOTE]
+   > **디버깅하지 않고 시작**(<kbd>Ctrl</kbd>+<kbd>F5</kbd>)은 지원되지 않습니다.
+
 1. `IncrementCount` 메서드의 `Pages/Counter.razor`에서 중단점을 설정합니다.
 1. **`Counter`** 탭으로 이동하여 중단점을 적중시키도록 단추를 선택합니다.
 
@@ -116,10 +122,13 @@ Blazor WebAssembly 앱을 디버그하는 동안 서버 코드도 디버그할 �
    이러한 알림이 표시되면 다음을 수행합니다.
 
    * 최신 [Visual Studio Code용 C# 확장](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)이 설치되어 있는지 확인합니다. 설치된 확장을 검사하려면 메뉴 모음에서 **보기** > **확장**을 열거나 **작업** 사이드바에서 **확장** 아이콘을 선택합니다.
-   * JavaScript 미리 보기 디버깅이 사용되는지 확인합니다. 메뉴 모음에서 설정을 엽니다(**파일** > **기본 설정** > **설정**). `debug preview` 키워드를 사용하여 검색합니다. 검색 결과에서 **디버그 > JavaScript: 미리 보기 사용** 확인란이 선택되어 있는지 확인합니다.
+   * JavaScript 미리 보기 디버깅이 사용되는지 확인합니다. 메뉴 모음에서 설정을 엽니다(**파일** > **기본 설정** > **설정**). `debug preview` 키워드를 사용하여 검색합니다. 검색 결과에서 **디버그 > JavaScript: 미리 보기 사용** 확인란이 선택되어 있는지 확인합니다. 미리 보기 디버깅을 사용하도록 설정하는 옵션이 없는 경우 최신 버전의 VS Code로 업그레이드하거나 [JavaScript 디버거 확장](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug-nightly)(VS Code 버전 1.46 이전)을 설치합니다.
    * 윈도우를 다시 로드합니다.
 
 1. <kbd>F5</kbd> 바로 가기 키 또는 메뉴 항목을 사용하여 디버깅을 시작합니다.
+
+   > [!NOTE]
+   > **디버깅하지 않고 실행**(<kbd>Ctrl</kbd>+<kbd>F5</kbd>)은 지원되지 않습니다.
 
 1. 메시지가 표시되면 **Blazor WebAssembly 디버그** 옵션을 선택하여 디버깅을 시작합니다.
 

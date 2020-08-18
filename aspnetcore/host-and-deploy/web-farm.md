@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/web-farm
-ms.openlocfilehash: 13c4a8e287e4b62a1429f67fbe83ff5b0dc65f52
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 58409b5c47d71c96ece6f4ecfab6f18df47f798b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85408281"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88015441"
 ---
 # <a name="host-aspnet-core-in-a-web-farm"></a>웹 팜에 ASP.NET Core 호스트
 
@@ -70,8 +72,8 @@ ms.locfileid: "85408281"
 | -------- | ------------------- |
 | 인증 | 데이터 보호(<xref:security/data-protection/configuration/overview> 참조).<br><br>자세한 내용은 <xref:security/authentication/cookie> 및 <xref:security/cookie-sharing>를 참조하세요. |
 | Identity | 인증 및 데이터베이스 구성.<br><br>자세한 내용은 <xref:security/authentication/identity>를 참조하세요. |
-| 세션 | 데이터 보호(암호화된 쿠키)(<xref:security/data-protection/configuration/overview> 참조) 및 캐싱(<xref:performance/caching/distributed> 참조).<br><br>자세한 내용은 [세션 및 앱 상태: 세션 상태](xref:fundamentals/app-state#session-state)를 참조하세요. |
-| TempData | 데이터 보호(암호화된 쿠키)(<xref:security/data-protection/configuration/overview> 참조) 또는 세션([세션 및 앱 상태: 세션 상태](xref:fundamentals/app-state#session-state) 참조).<br><br>자세한 내용은 [세션 및 앱 상태: TempData](xref:fundamentals/app-state#tempdata)를 참조하세요. |
+| 세션 | 데이터 보호(암호화된 cookie)(<xref:security/data-protection/configuration/overview> 참조) 및 캐싱(<xref:performance/caching/distributed> 참조).<br><br>자세한 내용은 [세션 및 앱 상태: 세션 상태](xref:fundamentals/app-state#session-state)를 참조하세요. |
+| TempData | 데이터 보호(암호화된 cookie)(<xref:security/data-protection/configuration/overview> 참조) 또는 세션([세션 및 앱 상태: 세션 상태](xref:fundamentals/app-state#session-state) 참조).<br><br>자세한 내용은 [세션 및 앱 상태: TempData](xref:fundamentals/app-state#tempdata)를 참조하세요. |
 | 위조 방지 | 데이터 보호(<xref:security/data-protection/configuration/overview> 참조).<br><br>자세한 내용은 <xref:security/anti-request-forgery>를 참조하세요. |
 
 ## <a name="troubleshoot"></a>문제 해결
@@ -80,11 +82,11 @@ ms.locfileid: "85408281"
 
 데이터 보호 또는 캐싱이 웹 팜 환경에 맞게 구성되어 있지 않으면 요청을 처리할 때 간헐적인 오류가 발생합니다. 이 오류의 원인은 노드가 동일한 리소스를 공유하지 않고 사용자 요청이 항상 동일한 노드로 다시 라우팅되지는 않기 때문입니다.
 
-쿠키 인증을 사용하여 앱에 로그인하는 사용자를 가정해 보겠습니다. 사용자는 하나의 웹 팜 노드에서 앱에 로그인합니다. 다음 요청이 사용자가 로그인한 동일한 노드에 도착하면 앱은 인증 쿠키를 암호 해독할 수 있고 앱의 리소스에 액세스할 수 있습니다. 다음 요청이 다른 노드에 도착하면 앱은 사용자가 로그인한 노드의 인증 쿠키를 암호 해독할 수 없으며 요청된 리소스에 대한 권한 부여가 실패합니다.
+cookie 인증을 사용하여 앱에 로그인하는 사용자를 가정해 보겠습니다. 사용자는 하나의 웹 팜 노드에서 앱에 로그인합니다. 다음 요청이 사용자가 로그인한 동일한 노드에 도착하면 앱은 인증 cookie를 암호 해독할 수 있고 앱의 리소스에 액세스할 수 있습니다. 다음 요청이 다른 노드에 도착하면 앱은 사용자가 로그인한 노드의 인증 cookie를 암호 해독할 수 없으며 요청된 리소스에 대한 권한 부여가 실패합니다.
 
 다음 증상 중 하나라도 **간헐적**으로 발생할 경우 일반적으로 웹 팜 환경에 대한 부적절한 데이터 보호 또는 캐싱 구성 문제로 추적됩니다.
 
-* 인증 중단: 인증 쿠키가 잘못 구성되었거나 암호를 해독할 수 없습니다. OAuth(Facebook, Microsoft, Twitter) 또는 OpenIdConnect 로그인이 “상관 관계 실패” 오류로 인해 실패합니다.
+* 인증 중단: 인증 cookie가 잘못 구성되었거나 암호를 해독할 수 없습니다. OAuth(Facebook, Microsoft, Twitter) 또는 OpenIdConnect 로그인이 “상관 관계 실패” 오류로 인해 실패합니다.
 * 권한 부여 중단: Identity가 손실되었습니다.
 * 세션 상태에서 데이터가 손실됩니다.
 * 캐시된 항목이 사라집니다.

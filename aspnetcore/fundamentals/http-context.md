@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/5/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/httpcontext
-ms.openlocfilehash: d4512c9fa136e518fa0230c0cf9c607519eed6d8
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 2b8ac1d6c6cdeee14b74c5b14206bff51982c711
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85399454"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017248"
 ---
 # <a name="access-httpcontext-in-aspnet-core"></a>ASP.NET Core에서 HttpContext에 액세스
 
 ASP.NET Core 앱은 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> 인터페이스 및 기본 구현 <xref:Microsoft.AspNetCore.Http.HttpContextAccessor>을(를) 통해 `HttpContext`에 액세스합니다. 서비스 내에서 `HttpContext`에 액세스가 필요한 경우에만 `IHttpContextAccessor`를 사용할 필요가 있습니다.
 
-## <a name="use-httpcontext-from-razor-pages"></a>Razor Pages에서 HttpContext 사용
+## <a name="use-httpcontext-from-no-locrazor-pages"></a>Razor Pages에서 HttpContext 사용
 
 Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel>은 <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext> 속성을 공개합니다.
 
@@ -42,7 +44,7 @@ public class AboutModel : PageModel
 }
 ```
 
-## <a name="use-httpcontext-from-a-razor-view"></a>Razor 뷰에서 HttpContext 사용
+## <a name="use-httpcontext-from-a-no-locrazor-view"></a>Razor 뷰에서 HttpContext 사용
 
 Razor 뷰는 뷰에서 [RazorPage.Context](xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context) 속성을 통해 `HttpContext`를 직접 공개합니다. 다음 예제에서는 Windows 인증을 사용하여 인트라넷 앱에서 현재 사용자 이름을 검색합니다.
 
@@ -173,6 +175,6 @@ public class EmailController : Controller
 }
 ```
 
-## <a name="blazor-and-shared-state"></a>Blazor 및 공유 상태
+## <a name="no-locblazor-and-shared-state"></a>Blazor 및 공유 상태
 
 [!INCLUDE[](~/includes/blazor-security/blazor-shared-state.md)]

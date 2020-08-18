@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/14/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: c050665f630c0973abe6c9d08a4652597441639f
-ms.sourcegitcommit: 384833762c614851db653b841cc09fbc944da463
+ms.openlocfilehash: 508c2d2cb668f5dbf416d341c1d9a966f9d16fd4
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86445283"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021044"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>ASP.NET Core의 통합 테스트
 
@@ -140,11 +142,11 @@ SUT의 [환경](xref:fundamentals/environments)이 설정되지 않은 경우 �
 
 다음 테스트 클래스 `BasicTests`에서는 `WebApplicationFactory`를 사용하여 SUT를 부트스트랩하고 [HttpClient](/dotnet/api/system.net.http.httpclient)를 테스트 메서드 `Get_EndpointsReturnSuccessAndCorrectContentType`에 제공합니다. 메서드는 응답 상태 코드가 성공(200-299 범위의 상태 코드)인지 `Content-Type` 헤더가 여러 앱 페이지에 대해 `text/html; charset=utf-8`인지를 확인합니다.
 
-[CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient)는 자동으로 리디렉션을 따르고 쿠키를 처리하는 `HttpClient`의 인스턴스를 만듭니다.
+[CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient)는 자동으로 리디렉션을 따르고 cookie를 처리하는 `HttpClient`의 인스턴스를 만듭니다.
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
-기본적으로 [GDPR 동의 정책](xref:security/gdpr)을 사용하도록 설정한 경우에는 필요하지 않은 쿠키가 요청에서 유지되지 않습니다. TempData 공급자가 사용하는 쿠키와 같이 필수가 아닌 쿠키를 유지하려면 테스트에서 필수로 표시합니다. 쿠키를 필수로 표시하는 방법에 대한 지침은 [필수 쿠키](xref:security/gdpr#essential-cookies)를 참조하세요.
+기본적으로 [GDPR 동의 정책](xref:security/gdpr)을 사용하도록 설정한 경우에는 필요하지 않은 cookie가 요청에서 유지되지 않습니다. TempData 공급자가 사용하는 쿠키와 같이 필수가 아닌 cookie를 유지하려면 테스트에서 필수로 표시합니다. cookie를 필수로 표시하는 방법에 대한 지침은 [필수 cookie](xref:security/gdpr#essential-cookies)를 참조하세요.
 
 ## <a name="customize-webapplicationfactory"></a>WebApplicationFactory 사용자 지정
 
@@ -188,8 +190,8 @@ SUT의 [환경](xref:fundamentals/environments)이 설정되지 않은 경우 �
 SUT에 대한 POST 요청은 앱의 [데이터 보호 위조 방지 시스템](xref:security/data-protection/introduction)에서 자동으로 수행하는 위조 방지 검사를 충족해야 합니다. 테스트의 POST 요청을 정렬하기 위해 테스트 앱은 다음을 수행해야 합니다.
 
 1. 페이지에 대한 요청을 만듭니다.
-1. 위조 방지 쿠키를 구문 분석하고 응답에서 유효성 검사 토큰을 요청합니다.
-1. 위조 방지 쿠키 및 요청 유효성 검사 토큰을 사용하여 POST 요청을 수행합니다.
+1. 위조 방지 cookie를 구문 분석하고 응답에서 유효성 검사 토큰을 요청합니다.
+1. 위조 방지 cookie 및 요청 유효성 검사 토큰을 사용하여 POST 요청을 수행합니다.
 
 [샘플 앱](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/)의 `SendAsync` 도우미 확장 메서드(*Helpers/HttpClientExtensions.cs*) 및 `GetDocumentAsync` 도우미 메서드(*Helpers/HtmlHelpers.cs*)는 [AngleSharp](https://anglesharp.github.io/) 파서를 사용하여 다음 메서드를 사용한 위조 방지 확인을 처리합니다.
 
@@ -200,7 +202,7 @@ SUT에 대한 POST 요청은 앱의 [데이터 보호 위조 방지 시스템](x
   * 제출 단추(`IHtmlElement`) 및 양식 값(`IEnumerable<KeyValuePair<string, string>>`)
 
 > [!NOTE]
-> [AngleSharp](https://anglesharp.github.io/)는 이 항목 및 샘플 앱에서 데모용으로 사용되는 타사 구문 분석 라이브러리입니다. AngleSharp는 ASP.NET Core 앱의 통합 테스트에 대해 지원되지 않거나 필요하지 않습니다. [HAP(Html Agility Pack)](https://html-agility-pack.net/)와 같은 기타 파서를 사용할 수 있습니다. 또 다른 방법은 위조 방지 시스템의 요청 확인 토큰과 위조 방지 쿠키를 직접 처리하는 코드를 작성하는 것입니다.
+> [AngleSharp](https://anglesharp.github.io/)는 이 항목 및 샘플 앱에서 데모용으로 사용되는 타사 구문 분석 라이브러리입니다. AngleSharp는 ASP.NET Core 앱의 통합 테스트에 대해 지원되지 않거나 필요하지 않습니다. [HAP(Html Agility Pack)](https://html-agility-pack.net/)와 같은 기타 파서를 사용할 수 있습니다. 또 다른 방법은 위조 방지 시스템의 요청 확인 토큰과 위조 방지 cookie를 직접 처리하는 코드를 작성하는 것입니다.
 
 ## <a name="customize-the-client-with-withwebhostbuilder"></a>WithWebHostBuilder를 사용하여 클라이언트 사용자 지정
 
@@ -220,7 +222,7 @@ SUT에 대한 POST 요청은 앱의 [데이터 보호 위조 방지 시스템](x
 | ------ | ----------- | ------- |
 | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | `HttpClient` 인스턴스가 자동으로 리디렉션 응답을 따르는지 여부를 가져오거나 설정합니다. | `true` |
 | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | `HttpClient` 인스턴스의 기준 주소를 가져오거나 설정합니다. | `http://localhost` |
-| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | `HttpClient` 인스턴스에서 쿠키를 처리할지 여부를 가져오거나 설정합니다. | `true` |
+| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | `HttpClient` 인스턴스에서 cookie를 처리할지 여부를 가져오거나 설정합니다. | `true` |
 | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | `HttpClient` 인스턴스에서 따라야 하는 리디렉션 응답의 최대 수를 가져오거나 설정합니다. | 7 |
 
 `WebApplicationFactoryClientOptions` 클래스를 만들고 [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) 메서드에 전달합니다(기본값은 코드 예제에 표시됨).
@@ -522,11 +524,11 @@ SUT의 [환경](xref:fundamentals/environments)이 설정되지 않은 경우 �
 
 다음 테스트 클래스 `BasicTests`에서는 `WebApplicationFactory`를 사용하여 SUT를 부트스트랩하고 [HttpClient](/dotnet/api/system.net.http.httpclient)를 테스트 메서드 `Get_EndpointsReturnSuccessAndCorrectContentType`에 제공합니다. 메서드는 응답 상태 코드가 성공(200-299 범위의 상태 코드)인지 `Content-Type` 헤더가 여러 앱 페이지에 대해 `text/html; charset=utf-8`인지를 확인합니다.
 
-[CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient)는 자동으로 리디렉션을 따르고 쿠키를 처리하는 `HttpClient`의 인스턴스를 만듭니다.
+[CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient)는 자동으로 리디렉션을 따르고 cookie를 처리하는 `HttpClient`의 인스턴스를 만듭니다.
 
 [!code-csharp[](integration-tests/samples/2.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
-기본적으로 [GDPR 동의 정책](xref:security/gdpr)을 사용하도록 설정한 경우에는 필요하지 않은 쿠키가 요청에서 유지되지 않습니다. TempData 공급자가 사용하는 쿠키와 같이 필수가 아닌 쿠키를 유지하려면 테스트에서 필수로 표시합니다. 쿠키를 필수로 표시하는 방법에 대한 지침은 [필수 쿠키](xref:security/gdpr#essential-cookies)를 참조하세요.
+기본적으로 [GDPR 동의 정책](xref:security/gdpr)을 사용하도록 설정한 경우에는 필요하지 않은 cookie가 요청에서 유지되지 않습니다. TempData 공급자가 사용하는 쿠키와 같이 필수가 아닌 cookie를 유지하려면 테스트에서 필수로 표시합니다. cookie를 필수로 표시하는 방법에 대한 지침은 [필수 cookie](xref:security/gdpr#essential-cookies)를 참조하세요.
 
 ## <a name="customize-webapplicationfactory"></a>WebApplicationFactory 사용자 지정
 
@@ -551,8 +553,8 @@ SUT의 [환경](xref:fundamentals/environments)이 설정되지 않은 경우 �
 SUT에 대한 POST 요청은 앱의 [데이터 보호 위조 방지 시스템](xref:security/data-protection/introduction)에서 자동으로 수행하는 위조 방지 검사를 충족해야 합니다. 테스트의 POST 요청을 정렬하기 위해 테스트 앱은 다음을 수행해야 합니다.
 
 1. 페이지에 대한 요청을 만듭니다.
-1. 위조 방지 쿠키를 구문 분석하고 응답에서 유효성 검사 토큰을 요청합니다.
-1. 위조 방지 쿠키 및 요청 유효성 검사 토큰을 사용하여 POST 요청을 수행합니다.
+1. 위조 방지 cookie를 구문 분석하고 응답에서 유효성 검사 토큰을 요청합니다.
+1. 위조 방지 cookie 및 요청 유효성 검사 토큰을 사용하여 POST 요청을 수행합니다.
 
 [샘플 앱](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/test/integration-tests/samples/)의 `SendAsync` 도우미 확장 메서드(*Helpers/HttpClientExtensions.cs*) 및 `GetDocumentAsync` 도우미 메서드(*Helpers/HtmlHelpers.cs*)는 [AngleSharp](https://anglesharp.github.io/) 파서를 사용하여 다음 메서드를 사용한 위조 방지 확인을 처리합니다.
 
@@ -563,7 +565,7 @@ SUT에 대한 POST 요청은 앱의 [데이터 보호 위조 방지 시스템](x
   * 제출 단추(`IHtmlElement`) 및 양식 값(`IEnumerable<KeyValuePair<string, string>>`)
 
 > [!NOTE]
-> [AngleSharp](https://anglesharp.github.io/)는 이 항목 및 샘플 앱에서 데모용으로 사용되는 타사 구문 분석 라이브러리입니다. AngleSharp는 ASP.NET Core 앱의 통합 테스트에 대해 지원되지 않거나 필요하지 않습니다. [HAP(Html Agility Pack)](https://html-agility-pack.net/)와 같은 기타 파서를 사용할 수 있습니다. 또 다른 방법은 위조 방지 시스템의 요청 확인 토큰과 위조 방지 쿠키를 직접 처리하는 코드를 작성하는 것입니다.
+> [AngleSharp](https://anglesharp.github.io/)는 이 항목 및 샘플 앱에서 데모용으로 사용되는 타사 구문 분석 라이브러리입니다. AngleSharp는 ASP.NET Core 앱의 통합 테스트에 대해 지원되지 않거나 필요하지 않습니다. [HAP(Html Agility Pack)](https://html-agility-pack.net/)와 같은 기타 파서를 사용할 수 있습니다. 또 다른 방법은 위조 방지 시스템의 요청 확인 토큰과 위조 방지 cookie를 직접 처리하는 코드를 작성하는 것입니다.
 
 ## <a name="customize-the-client-with-withwebhostbuilder"></a>WithWebHostBuilder를 사용하여 클라이언트 사용자 지정
 
@@ -583,7 +585,7 @@ SUT에 대한 POST 요청은 앱의 [데이터 보호 위조 방지 시스템](x
 | ------ | ----------- | ------- |
 | [AllowAutoRedirect](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.allowautoredirect) | `HttpClient` 인스턴스가 자동으로 리디렉션 응답을 따르는지 여부를 가져오거나 설정합니다. | `true` |
 | [BaseAddress](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.baseaddress) | `HttpClient` 인스턴스의 기준 주소를 가져오거나 설정합니다. | `http://localhost` |
-| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | `HttpClient` 인스턴스에서 쿠키를 처리할지 여부를 가져오거나 설정합니다. | `true` |
+| [HandleCookies](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.handlecookies) | `HttpClient` 인스턴스에서 cookie를 처리할지 여부를 가져오거나 설정합니다. | `true` |
 | [MaxAutomaticRedirections](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactoryclientoptions.maxautomaticredirections) | `HttpClient` 인스턴스에서 따라야 하는 리디렉션 응답의 최대 수를 가져오거나 설정합니다. | 7 |
 
 `WebApplicationFactoryClientOptions` 클래스를 만들고 [CreateClient](/dotnet/api/microsoft.aspnetcore.mvc.testing.webapplicationfactory-1.createclient) 메서드에 전달합니다(기본값은 코드 예제에 표시됨).

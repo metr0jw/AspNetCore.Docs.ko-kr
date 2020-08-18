@@ -5,6 +5,8 @@ description: 이 자습서 시리즈는 ASP.NET Core에서 Razor Pages를 사용
 ms.author: riande
 ms.date: 11/12/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/razor-pages-start
-ms.openlocfilehash: 77b230f14b4eef60d771daf8fe09288a9dd3c69c
-ms.sourcegitcommit: 50e7c970f327dbe92d45eaf4c21caa001c9106d0
+ms.openlocfilehash: 5fb841de2fa9a04cf05aaf08f255041ee1952638
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86212989"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021096"
 ---
-# <a name="tutorial-get-started-with-razor-pages-in-aspnet-core"></a>자습서: ASP.NET Core에서 Razor Pages 시작
+# <a name="tutorial-get-started-with-no-locrazor-pages-in-aspnet-core"></a>자습서: ASP.NET Core에서 Razor Pages 시작
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -60,7 +62,7 @@ ASP.NET Core Razor Pages 웹앱을 빌드하는 작업의 기본 사항을 설�
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Razor Pages 웹앱 만들기
+## <a name="create-a-no-locrazor-pages-web-app"></a>Razor Pages 웹앱 만들기
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -204,7 +206,7 @@ HTML 파일, JavaScript 파일 및 CSS 파일과 같은 정적 파일을 포함�
 
 ---
 
-## <a name="create-a-razor-pages-web-app"></a>Razor Pages 웹앱 만들기
+## <a name="create-a-no-locrazor-pages-web-app"></a>Razor Pages 웹앱 만들기
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -356,7 +358,7 @@ HTML 파일, JavaScript 파일 및 CSS 파일과 같은 정적 파일을 포함�
 
 ### <a name="startupcs"></a>Startup.cs
 
-쿠키에 대한 동의 필요 여부 등 앱 동작을 구성하는 코드를 포함합니다. 자세한 내용은 <xref:fundamentals/startup>를 참조하세요.
+cookie에 대한 동의 필요 여부 등 앱 동작을 구성하는 코드를 포함합니다. 자세한 내용은 <xref:fundamentals/startup>를 참조하세요.
 
 ## <a name="additional-resources"></a>추가 자료
 

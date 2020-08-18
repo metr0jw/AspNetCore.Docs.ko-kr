@@ -7,6 +7,8 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 02/09/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/http-requests
-ms.openlocfilehash: fb9001c06228b4290ca1e0c7cfb6b1338f431cd6
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: ef6ed0911c2615ea543b1c2cea31a9a453f0c604
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444110"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017235"
 ---
 # <a name="make-http-requests-using-ihttpclientfactory-in-aspnet-core"></a>ASP.NET Core에서 IHttpClientFactory를 사용하여 HTTP 요청 만들기
 
@@ -359,14 +361,14 @@ DI 지원 앱에서 `IHttpClientFactory`을(를) 사용하면 다음이 방지�
 - `SocketsHttpHandler`은(는) `HttpClient` 인스턴스 간에 연결을 공유합니다. 이와 같이 공유하면 소켓이 소모되지 않도록 합니다.
 - 오래된 DNS 문제를 방지하기 위해 `SocketsHttpHandler`에서 `PooledConnectionLifetime`에 따라 연결을 순환합니다.
 
-### <a name="cookies"></a>쿠키
+### <a name="no-loccookies"></a>Cookies
 
-풀링된 `HttpMessageHandler` 인스턴스는 `CookieContainer` 개체를 공유합니다. 예상치 못한 `CookieContainer` 개체 공유로 잘못된 코드가 발생하는 경우가 많습니다. 쿠키가 필요한 앱의 경우 다음 중 하나를 고려하세요.
+풀링된 `HttpMessageHandler` 인스턴스는 `CookieContainer` 개체를 공유합니다. 예상치 못한 `CookieContainer` 개체 공유로 잘못된 코드가 발생하는 경우가 많습니다. cookie가 필요한 앱의 경우 다음 중 하나를 고려하세요.
 
- - 자동 쿠키 처리 사용 안 함
+ - 자동 cookie 처리 사용 안 함
  - `IHttpClientFactory` 방지
 
-<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>을(를) 호출하여 자동 쿠키 처리를 사용하지 않도록 설정합니다.
+<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>를 호출하여 자동 cookie 처리를 사용하지 않도록 설정합니다.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
@@ -677,14 +679,14 @@ DI 지원 앱에서 `IHttpClientFactory`을(를) 사용하면 다음이 방지�
 - `SocketsHttpHandler`은(는) `HttpClient` 인스턴스 간에 연결을 공유합니다. 이와 같이 공유하면 소켓이 소모되지 않도록 합니다.
 - 오래된 DNS 문제를 방지하기 위해 `SocketsHttpHandler`에서 `PooledConnectionLifetime`에 따라 연결을 순환합니다.
 
-### <a name="cookies"></a>쿠키
+### <a name="no-loccookies"></a>Cookies
 
-풀링된 `HttpMessageHandler` 인스턴스는 `CookieContainer` 개체를 공유합니다. 예상치 못한 `CookieContainer` 개체 공유로 잘못된 코드가 발생하는 경우가 많습니다. 쿠키가 필요한 앱의 경우 다음 중 하나를 고려하세요.
+풀링된 `HttpMessageHandler` 인스턴스는 `CookieContainer` 개체를 공유합니다. 예상치 못한 `CookieContainer` 개체 공유로 잘못된 코드가 발생하는 경우가 많습니다. cookie가 필요한 앱의 경우 다음 중 하나를 고려하세요.
 
- - 자동 쿠키 처리 사용 안 함
+ - 자동 cookie 처리 사용 안 함
  - `IHttpClientFactory` 방지
 
-<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>을(를) 호출하여 자동 쿠키 처리를 사용하지 않도록 설정합니다.
+<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>를 호출하여 자동 cookie 처리를 사용하지 않도록 설정합니다.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 
@@ -985,14 +987,14 @@ DI 지원 앱에서 `IHttpClientFactory`을(를) 사용하면 다음이 방지�
 - `SocketsHttpHandler`은(는) `HttpClient` 인스턴스 간에 연결을 공유합니다. 이와 같이 공유하면 소켓이 소모되지 않도록 합니다.
 - 오래된 DNS 문제를 방지하기 위해 `SocketsHttpHandler`에서 `PooledConnectionLifetime`에 따라 연결을 순환합니다.
 
-### <a name="cookies"></a>쿠키
+### <a name="no-loccookies"></a>Cookies
 
-풀링된 `HttpMessageHandler` 인스턴스는 `CookieContainer` 개체를 공유합니다. 예상치 못한 `CookieContainer` 개체 공유로 잘못된 코드가 발생하는 경우가 많습니다. 쿠키가 필요한 앱의 경우 다음 중 하나를 고려하세요.
+풀링된 `HttpMessageHandler` 인스턴스는 `CookieContainer` 개체를 공유합니다. 예상치 못한 `CookieContainer` 개체 공유로 잘못된 코드가 발생하는 경우가 많습니다. cookie가 필요한 앱의 경우 다음 중 하나를 고려하세요.
 
- - 자동 쿠키 처리 사용 안 함
+ - 자동 cookie 처리 사용 안 함
  - `IHttpClientFactory` 방지
 
-<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>을(를) 호출하여 자동 쿠키 처리를 사용하지 않도록 설정합니다.
+<xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*>를 호출하여 자동 cookie 처리를 사용하지 않도록 설정합니다.
 
 [!code-csharp[](http-requests/samples/2.x/HttpClientFactorySample/Startup.cs?name=snippet13)]
 

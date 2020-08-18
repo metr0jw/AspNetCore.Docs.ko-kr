@@ -5,6 +5,8 @@ description: ASP.NET Core 앱에서 지역화 관련 문제를 진단하는 방�
 ms.author: riande
 ms.date: 01/24/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/troubleshoot-aspnet-core-localization
-ms.openlocfilehash: 48f75b4fbfdb2078f07efeffd8d4105366998876
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 801ae3a708d23308cbf909ceeace160e3c0db1bd
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407085"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88016468"
 ---
 # <a name="troubleshoot-aspnet-core-localization"></a>ASP.NET Core 지역화 문제 해결
 
@@ -58,7 +60,7 @@ ASP.NET Core에는 지역화 리소스 파일 이름 지정에 대해 미리 정
 - 리소스가 일부 언어의 경우 `resx`에서 누락되었지만 다른 언어에서 존재합니다.
 - 여전히 문제가 있는 경우 누락된 리소스에 대한 자세한 내용은 `Debug` 로그 수준의 지역화 로그 메시지를 확인하세요.
 
-_**힌트:** `CookieRequestCultureProvider`를 사용하는 경우 지역화 쿠키 값 안의 문화권에서 작은따옴표를 사용하지 않았는지 확인합니다. 예를 들어 `c='en-UK'|uic='en-US'`가 잘못된 쿠키 값인 반면, `c=en-UK|uic=en-US`는 유효합니다._
+_**힌트:** `CookieRequestCultureProvider`를 사용하는 경우 지역화 cookie 값 안의 문화권에서 작은따옴표를 사용하지 않았는지 확인합니다. 예를 들어 `c='en-UK'|uic='en-US'`가 잘못된 cookie 값인 반면, `c=en-UK|uic=en-US`는 유효합니다._
 
 ## <a name="resources--class-libraries-issues"></a>리소스 및 클래스 라이브러리 문제
 

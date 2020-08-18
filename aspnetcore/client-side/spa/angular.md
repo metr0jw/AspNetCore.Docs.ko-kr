@@ -7,6 +7,8 @@ ms.author: stevesa
 ms.custom: mvc
 ms.date: 02/06/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: spa/angular
-ms.openlocfilehash: 1c91f1adadca8b339e4daf33207ca60008679810
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: ce29d891b0fba2581d352637c2ae50ac792b785e
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85401781"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88013166"
 ---
 # <a name="use-the-angular-project-template-with-aspnet-core"></a>ASP.NET Core에서 Angular 프로젝트 템플릿 사용
 
@@ -129,7 +131,7 @@ ASP.NET Core 앱을 시작할 때 Angular CLI 서버는 시작되지 않습니�
 
 ### <a name="pass-data-from-net-code-into-typescript-code"></a>.NET 코드의 데이터를 TypeScript 코드로 전달
 
-SSR 중에 ASP.NET Core 앱에서 요청별 데이터를 Angular 앱으로 전달할 수 있습니다. 예를 들어 쿠키 정보를 전달하거나 데이터베이스에서 무언가를 읽을 수 있습니다. 이를 수행하려면 *Startup* 클래스를 편집합니다. `UseSpaPrerendering`에 대한 콜백에서 다음과 같은 `options.SupplyData` 값을 설정합니다.
+SSR 중에 ASP.NET Core 앱에서 요청별 데이터를 Angular 앱으로 전달할 수 있습니다. 예를 들어 cookie 정보를 전달하거나 데이터베이스에서 무언가를 읽을 수 있습니다. 이를 수행하려면 *Startup* 클래스를 편집합니다. `UseSpaPrerendering`에 대한 콜백에서 다음과 같은 `options.SupplyData` 값을 설정합니다.
 
 ```csharp
 options.SupplyData = (context, data) =>

@@ -1,34 +1,36 @@
 ---
-title: ASP.NET Core [Blazor 고급 시나리오
+title: ASP.NET Core Blazor 고급 시나리오
 author: guardrex
-description: 수동 RenderTreeBuilder 논리를 앱에 통합하는 방법을 포함하여 [Blazor의 고급 시나리오에 대해 알아봅니다.
+description: 수동 RenderTreeBuilder 논리를 앱에 통합하는 방법을 포함하여 Blazor의 고급 시나리오에 대해 알아봅니다.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/18/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/advanced-scenarios
-ms.openlocfilehash: bdea9f2fe5c552b56414bb49588733c8dc2a34db
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 4bd73acd821a8791d7f6cc93545edc2e39a6f2c7
+ms.sourcegitcommit: 68d03d1aee8906b53bda66f8f1e0747efc3007e6
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400221"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88051786"
 ---
-# <a name="aspnet-core-blazor-advanced-scenarios"></a>ASP.NET Core [Blazor 고급 시나리오
+# <a name="aspnet-core-no-locblazor-advanced-scenarios"></a>ASP.NET Core Blazor 고급 시나리오
 
 작성자: [Luke Latham](https://github.com/guardrex) 및 [Daniel Roth](https://github.com/danroth27)
 
-## <a name="blazor-server-circuit-handler"></a>[Blazor Server 회로 처리기
+## <a name="no-locblazor-server-circuit-handler"></a>Blazor Server 회로 처리기
 
-[Blazor Server에서는 코드를 통해 사용자 회로 상태 변경 시 코드를 실행할 수 있게 해주는 ‘회로 처리기’를 정의할 수 있습니다. 회로 처리기는 `CircuitHandler`에서 파생되고 앱의 서비스 컨테이너에 클래스를 등록하여 구현됩니다. 다음 회로 처리기 예제에서는 열린 [SignalR 연결을 추적합니다.
+Blazor Server에서는 코드를 통해 사용자 회로 상태 변경 시 코드를 실행할 수 있게 해주는 ‘회로 처리기’를 정의할 수 있습니다. 회로 처리기는 `CircuitHandler`에서 파생되고 앱의 서비스 컨테이너에 클래스를 등록하여 구현됩니다. 다음 회로 처리기 예제에서는 열린 SignalR 연결을 추적합니다.
 
 ```csharp
 using System.Collections.Generic;
@@ -70,7 +72,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-사용자 지정 회로 처리기의 메서드에서 처리되지 않은 예외가 throw될 경우 이 예외는 [Blazor Server 회로에 치명적입니다. 처리기의 코드 또는 호출된 메서드에서 예외를 허용하려면 오류 처리 및 로깅 기능을 사용하여 하나 이상의 [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) 문에 코드를 래핑합니다.
+사용자 지정 회로 처리기의 메서드에서 처리되지 않은 예외가 throw될 경우 이 예외는 Blazor Server 회로에 치명적입니다. 처리기의 코드 또는 호출된 메서드에서 예외를 허용하려면 오류 처리 및 로깅 기능을 사용하여 하나 이상의 [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) 문에 코드를 래핑합니다.
 
 사용자가 연결을 끊었으며 프레임워크에서 회로 상태를 정리하고 있어서 회로가 종료될 경우 프레임워크는 회로의 DI 범위를 삭제합니다. 범위를 삭제하면 <xref:System.IDisposable?displayProperty=fullName>을 구현하는, 회로 범위가 지정된 DI 서비스가 모두 삭제됩니다. 삭제하는 동안 처리되지 않은 예외를 throw하는 DI 서비스가 있을 경우 프레임워크에서 예외를 기록합니다.
 
@@ -95,7 +97,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-다음 예제에서 `CreateComponent` 메서드의 루프는 세 개의 `PetDetails` 구성 요소를 생성합니다. <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> 메서드를 호출하여 구성 요소(`OpenComponent` 및 `AddAttribute`)를 만드는 경우 시퀀스 번호는 소스 코드 줄 번호입니다. [Blazor diff 알고리즘은 개별 호출이 아니라 개별 코드 줄에 해당하는 시퀀스 번호를 사용합니다. <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> 메서드를 사용하여 구성 요소를 만드는 경우 시퀀스 번호의 인수를 하드 코딩합니다. **계산 또는 카운터를 사용하여 시퀀스 번호를 생성하면 성능이 저하될 수 있습니다.** 자세한 내용은 [시퀀스 번호는 실행 순서가 아니라 코드 줄 번호와 관련이 있음](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) 섹션을 참조하세요.
+다음 예제에서 `CreateComponent` 메서드의 루프는 세 개의 `PetDetails` 구성 요소를 생성합니다. 시퀀스 번호를 사용하는 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> 메서드에서 시퀀스 번호는 소스 코드 줄 번호입니다. Blazor diff 알고리즘은 개별 호출이 아니라 개별 코드 줄에 해당하는 시퀀스 번호를 사용합니다. <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> 메서드를 사용하여 구성 요소를 만드는 경우 시퀀스 번호의 인수를 하드 코딩합니다. **계산 또는 카운터를 사용하여 시퀀스 번호를 생성하면 성능이 저하될 수 있습니다.** 자세한 내용은 [시퀀스 번호는 실행 순서가 아니라 코드 줄 번호와 관련이 있음](#sequence-numbers-relate-to-code-line-numbers-and-not-execution-order) 섹션을 참조하세요.
 
 `BuiltContent` 구성 요소:
 
@@ -131,15 +133,15 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!WARNING]
-> <xref:Microsoft.AspNetCore.Components.RenderTree>의 형식을 사용하여 렌더링 작업 ‘결과’를 처리할 수 있습니다. 해당 형식은 [Blazor 프레임워크 구현의 내부 세부 정보이며, ‘불안정’하고 이후 릴리스에서 변경될 수 있는 것으로 간주되어야 합니다.
+> <xref:Microsoft.AspNetCore.Components.RenderTree>의 형식을 사용하여 렌더링 작업 ‘결과’를 처리할 수 있습니다. 해당 형식은 Blazor 프레임워크 구현의 내부 세부 정보이며, ‘불안정’하고 이후 릴리스에서 변경될 수 있는 것으로 간주되어야 합니다.
 
 ### <a name="sequence-numbers-relate-to-code-line-numbers-and-not-execution-order"></a>시퀀스 번호는 실행 순서가 아니라 코드 줄 번호와 관련이 있음
 
-[Razor 구성 요소 파일(`.razor`)은 항상 컴파일됩니다. 컴파일 단계를 사용하여 런타임에 앱 성능을 개선하는 정보를 삽입할 수 있으므로 컴파일은 코드 해석보다 잠재적 이점이 있습니다.
+Razor 구성 요소 파일(`.razor`)은 항상 컴파일됩니다. 컴파일 단계를 사용하여 런타임에 앱 성능을 개선하는 정보를 삽입할 수 있으므로 컴파일은 코드 해석보다 잠재적 이점이 있습니다.
 
 해당 개선 사항의 주요 예로 ‘시퀀스 번호’가 있습니다. 시퀀스 번호는 정렬된 개별 코드 줄에서 생성된 해당 출력을 런타임에 표시합니다. 런타임은 이 정보를 사용하여 선형 시간으로 효율적인 트리 diff를 생성하며, 일반적인 트리 diff 알고리즘에서 가능한 속도보다 훨씬 더 빠릅니다.
 
-다음 [Razor 구성 요소(`.razor`) 파일을 고려해 보세요.
+다음 Razor 구성 요소(`.razor`) 파일을 고려해 보세요.
 
 ```razor
 @if (someFlag)
@@ -221,18 +223,18 @@ builder.AddContent(seq++, "Second");
 * 컴파일 시간에 캡처하지 않는 한, 필요한 정보가 없기 때문에 프레임워크에서 런타임에 고유한 시퀀스 번호를 자동으로 만들 수 없습니다.
 * 수동으로 구현된 긴 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> 논리 블록을 작성하면 안 됩니다. `.razor` 파일을 사용하고 컴파일러를 통해 시퀀스 번호를 처리하는 것이 좋습니다. 수동 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder> 논리를 사용해야 하는 경우, 긴 코드 블록을 <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.OpenRegion%2A>/<xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.CloseRegion%2A> 호출에 래핑된 작은 조각으로 분할합니다. 영역마다 고유한 시퀀스 번호 공간이 있으므로, 각 영역 내에서 0(또는 다른 임의 숫자)부터 다시 시작할 수 있습니다.
 * 시퀀스 번호를 하드 코딩한 경우, 시퀀스 번호의 값만 증가하면 diff 알고리즘을 사용할 수 있습니다. 초기 값과 간격은 관련이 없습니다. 한 가지 타당한 옵션은 코드 줄 번호를 시퀀스 번호로 사용하거나 0부터 시작하고 1씩, 100씩 또는 선호하는 간격만큼 늘리는 것입니다. 
-* [Blazor는 시퀀스 번호를 사용하는 반면, 다른 트리 diff UI 프레임워크는 시퀀스 번호를 사용하지 않습니다. diff는 시퀀스 번호를 사용할 때 훨씬 더 빠르며, [Blazor는 `.razor` 파일을 작성하는 개발자를 위해 시퀀스 번호를 자동으로 처리하는 컴파일 단계의 이점이 있습니다.
+* Blazor는 시퀀스 번호를 사용하는 반면, 다른 트리 diff UI 프레임워크는 시퀀스 번호를 사용하지 않습니다. diff는 시퀀스 번호를 사용할 때 훨씬 더 빠르며, Blazor는 `.razor` 파일을 작성하는 개발자를 위해 시퀀스 번호를 자동으로 처리하는 컴파일 단계의 이점이 있습니다.
 
-## <a name="perform-large-data-transfers-in-blazor-server-apps"></a>[Blazor Server 앱에서 대량 데이터 전송 수행
+## <a name="perform-large-data-transfers-in-no-locblazor-server-apps"></a>Blazor Server 앱에서 대량 데이터 전송 수행
 
-일부 시나리오에서는 JavaScript와 [Blazor 간에 대량 데이터를 전송해야 합니다. 일반적으로 다음과 같은 경우 대량 데이터 전송이 발생합니다.
+일부 시나리오에서는 JavaScript와 Blazor 간에 대량 데이터를 전송해야 합니다. 일반적으로 다음과 같은 경우 대량 데이터 전송이 발생합니다.
 
 * 브라우저 파일 시스템 API를 사용하여 파일을 업로드하거나 다운로드하는 경우
 * 타사 라이브러리와의 interop이 필요한 경우
 
-[Blazor Server에는 성능 문제를 일으킬 수 있는 큰 단일 메시지의 전달을 방지하기 위한 제한 사항이 있습니다.
+Blazor Server에는 성능 문제를 일으킬 수 있는 큰 단일 메시지의 전달을 방지하기 위한 제한 사항이 있습니다.
 
-JavaScript와 [Blazor 간에 데이터를 전송하는 코드를 개발하는 경우 다음 지침을 확인합니다.
+JavaScript와 Blazor 간에 데이터를 전송하는 코드를 개발하는 경우 다음 지침을 확인합니다.
 
 * 데이터를 작은 조각으로 분할하고, 서버가 모든 데이터를 받을 때까지 데이터 세그먼트를 순차적으로 보냅니다.
 * JavaScript 및 C# 코드에서 큰 개체를 할당하면 안 됩니다.

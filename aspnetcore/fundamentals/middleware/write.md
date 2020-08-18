@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/18/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/middleware/write
-ms.openlocfilehash: aeebc7d5a7cbfaaab6d48b8da76d35c47c2c552b
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 480120718959a364ce8008949c3b76c558c0e995
+ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407852"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88130589"
 ---
 # <a name="write-custom-aspnet-core-middleware"></a>사용자 지정 ASP.NET Core 미들웨어 작성
 
@@ -83,6 +85,8 @@ public class CustomMiddleware
 }
 ```
 
+[수명 및 등록 옵션](xref:fundamentals/dependency-injection#lifetime-and-registration-options)에는 ‘범위가 지정된’ 수명 서비스를 사용하는 미들웨어의 전체 샘플이 포함되어 있습니다.
+
 ## <a name="middleware-extension-method"></a>미들웨어 확장 메서드
 
 다음 확장 메서드는 <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>를 통해 미들웨어를 공개합니다.
@@ -95,6 +99,7 @@ public class CustomMiddleware
 
 ## <a name="additional-resources"></a>추가 자료
 
+* [수명 및 등록 옵션](xref:fundamentals/dependency-injection#lifetime-and-registration-options) ‘범위가 지정되고’, ‘일시적인’ *singleton* 수명 서비스를 사용하는 미들웨어의 전체 샘플이 포함되어 있습니다. 
 * <xref:fundamentals/middleware/index>
 * <xref:test/middleware>
 * <xref:migration/http-modules>

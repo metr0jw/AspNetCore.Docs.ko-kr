@@ -6,6 +6,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-3.0
-ms.openlocfilehash: cebfc88a8a8313bfd975001b50db6e41b6939aed
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: 10741cfc701bf261484b9e6c73a2347e2dd7083d
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87819147"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019838"
 ---
 # <a name="whats-new-in-aspnet-core-30"></a>ASP.NET Core 3.0의 새로운 기능
 
@@ -402,7 +404,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 웹 UI 템플릿(컨트롤러 및 뷰를 사용하는 Razor Pages, MVC)에서 다음이 제거되었습니다.
 
-* 쿠키 동의 UI가 더 이상 포함되지 않습니다. ASP.NET Core 3.0 템플릿에서 생성한 앱에서 쿠키 동의 기능을 사용하려면 <xref:security/gdpr>을 참조하세요.
+* cookie 동의 UI가 더 이상 포함되지 않습니다. ASP.NET Core 3.0 템플릿에서 생성한 앱에서 cookie 동의 기능을 사용하려면 <xref:security/gdpr>을 참조하세요.
 * 스크립트 및 관련 정적 자산은 이제 CDN을 사용하는 대신 로컬 파일로 참조됩니다. 자세한 내용은 [스크립트 및 관련 정적 자산은 현재 환경을 기반으로 CDN을 사용하는 대신 로컬 파일로 참조됩니다(aspnet/AspNetCore.Docs #14350)](https://github.com/dotnet/AspNetCore.Docs/issues/14350)를 참조하세요.
 
 Angular 템플릿은 Angular 8을 사용하는 것으로 업데이트되었습니다.

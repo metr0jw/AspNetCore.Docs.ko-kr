@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/26/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/sdk
-ms.openlocfilehash: 56b4d4c13023918a4ac25c8c5d8ad1ee2c346ac6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: b960460a50558a11bc47f9a1844931aa32e3d696
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403042"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88021421"
 ---
-# <a name="aspnet-core-razor-sdk"></a>ASP.NET Core Razor SDK
+# <a name="aspnet-core-no-locrazor-sdk"></a>ASP.NET Core Razor SDK
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -52,7 +54,7 @@ Razor SDK에는 `Include` 특성이 `**\*.cshtml` 와일드카드 사용 패턴�
 
 [!INCLUDE[](~/includes/2.1-SDK.md)]
 
-## <a name="use-the-razor-sdk"></a>Razor SDK 사용
+## <a name="use-the-no-locrazor-sdk"></a>Razor SDK 사용
 
 대부분의 웹앱은 Razor SDK를 명시적으로 참조할 필요가 없습니다.
 
@@ -177,13 +179,13 @@ Razor SDK는 두 기본 대상을 정의합니다.
 * `RazorCompile`: 생성된 *.cs* 파일을 Razor 어셈블리로 컴파일합니다. 이 대상 전후에 실행할 수 있는 추가 대상을 지정하려면 `RazorCompileDependsOn`을 사용합니다.
 * `RazorComponentGenerate`: 코드는 `RazorComponent` 항목 요소에 대한 *.cs* 파일을 생성합니다. 이 대상 전후에 실행할 수 있는 추가 대상을 지정하려면 `RazorComponentGenerateDependsOn` 속성을 사용합니다.
 
-### <a name="runtime-compilation-of-razor-views"></a>Razor 뷰의 런타임 컴파일
+### <a name="runtime-compilation-of-no-locrazor-views"></a>Razor 뷰의 런타임 컴파일
 
 * 기본적으로 Razor SDK는 런타임 컴파일을 수행하는 데 필요한 참조 어셈블리를 게시하지 않습니다. 이로 인해 애플리케이션 모델이 런타임 컴파일을 사용하는 경우 컴파일 오류가 발생합니다&mdash;(예: 앱이 게시된 후에 앱에서는 포함된 보기 또는 변경 내용 보기를 사용함). `CopyRefAssembliesToPublishDirectory`를 `true`로 설정하여 계속 참조 어셈블리를 게시합니다.
 
 * 웹앱의 경우 앱이 `Microsoft.NET.Sdk.Web` SDK를 대상으로 지정하도록 합니다.
 
-## <a name="razor-language-version"></a>Razor 언어 버전
+## <a name="no-locrazor-language-version"></a>Razor 언어 버전
 
 `Microsoft.NET.Sdk.Web` SDK를 대상으로 지정하는 경우 앱의 대상 프레임워크 버전에서 Razor 언어 버전이 유추됩니다. `Microsoft.NET.Sdk.Razor` SDK를 대상으로 하는 프로젝트 또는 앱이 유추된 값과는 다른 Razor 언어 버전이 필요한 드문 경우에 앱의 프로젝트 파일에서 `<RazorLangVersion>` 속성을 설정하여 버전을 구성할 수 있습니다.
 

@@ -5,6 +5,8 @@ description: ASP.NET Core MVC에 대한 자습서 시리즈의 2부입니다.
 ms.author: riande
 ms.date: 08/05/2017
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/adding-controller
-ms.openlocfilehash: 30272900b2ff19879921f1954a1c9b3eba203ca4
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 46f8cbc5ef3d9fe00a5151160a9119f68a9fe572
+ms.sourcegitcommit: 68d03d1aee8906b53bda66f8f1e0747efc3007e6
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85400455"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88051812"
 ---
 # <a name="part-2-add-a-controller-to-an-aspnet-core-mvc-app"></a>2부. ASP.NET Core MVC 앱에 컨트롤러 추가
 
@@ -45,7 +47,7 @@ MVC 패턴을 사용하면 앱의 다양한 측면(입력 논리, 비즈니스 �
 * **솔루션 탐색기** 에서 **컨트롤러 > 추가 > 컨트롤러**
   ![바로 가기 메뉴](adding-controller/_static/add_controller.png)를 오른쪽 단추로 클릭
 
-* **스캐폴드 추가** 대화 상자에서 **MVC 컨트롤러 - 비어 있음**을 선택합니다.
+* **스캐폴드 추가** 대화 상자에서 **컨트롤러 클래스 - 비어 있음**을 선택합니다.
 
   ![MVC 컨트롤러 추가 및 이름 지정](adding-controller/_static/ac.png)
 
@@ -62,7 +64,7 @@ MVC 패턴을 사용하면 앱의 다양한 측면(입력 논리, 비즈니스 �
 **솔루션 탐색기** 에서 **컨트롤러 > 추가 > 새 파일** 을 마우스 오른쪽 단추로 클릭합니다.
 ![상황에 맞는 메뉴](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
-**ASP.NET Core** 및 **MVC 컨트롤러 클래스**를 선택합니다.
+**ASP.NET Core** 및 **컨트롤러 클래스**를 선택합니다.
 
 컨트롤러의 이름을 **HelloWorldController**로 지정합니다.
 

@@ -5,6 +5,8 @@ description: ASP.NET Core 1.1의 새로운 기능에 대해 알아봅니다.
 ms.author: riande
 ms.date: 12/18/2018
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-1.1
-ms.openlocfilehash: ea9605c60e05f2a9cea962aa744850e07ef4d2f5
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 9b3e0a368fdcd9e1044cfe6bf6a13ca11d3039cc
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85403666"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020667"
 ---
 # <a name="whats-new-in-aspnet-core-11"></a>ASP.NET Core 1.1의 새로운 기능
 
@@ -28,7 +30,7 @@ ASP.NET Core 1.1에는 다음과 같은 새로운 기능이 포함됩니다.
 - [응답 캐싱 미들웨어](xref:performance/caching/middleware)
 - [태그 도우미인 구성 요소 보기](xref:mvc/views/view-components#invoking-a-view-component-as-a-tag-helper)
 - [MVC 필터인 미들웨어](xref:mvc/controllers/filters#using-middleware-in-the-filter-pipeline)
-- [쿠키 기반 TempData 공급자](xref:fundamentals/app-state#tempdata)
+- [Cookie 기반 TempData 공급자](xref:fundamentals/app-state#tempdata)
 - [Azure App Service 로깅 공급자](xref:fundamentals/logging/index#azure-app-service-provider)
 - [Azure Key Vault 구성 공급자](xref:security/key-vault-configuration)
 - [Azure 및 Redis 스토리지 데이터 보호 키 리포지토리](xref:security/data-protection/implementation/key-storage-providers)

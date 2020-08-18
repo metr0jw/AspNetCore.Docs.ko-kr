@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: 7bc21901fe1e9ddf604abf3b5bfecdb8a319f12c
-ms.sourcegitcommit: ca6a1f100c1a3f59999189aa962523442dd4ead1
+ms.openlocfilehash: 2e6aabda449a24496916c6ea9fcbd38062b54c04
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87444106"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88017456"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>ASP.NET Core에서 오류 처리
 
@@ -45,7 +47,7 @@ ms.locfileid: "87444106"
 
 * 스택 추적
 * 쿼리 문자열 매개 변수(있는 경우)
-* 쿠키(있는 경우)
+* Cookie(있는 경우)
 * 헤더
 
 [샘플 앱](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/error-handling/samples)에서 개발자 예외 페이지를 확인하려면 `DevEnvironment` 전처리기 지시문을 사용하고 홈페이지에서 **Trigger an exception**을 선택합니다.

@@ -5,6 +5,8 @@ description: Razor Pages에 대한 자습서 시리즈의 3부입니다.
 ms.author: riande
 ms.date: 08/17/2019
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -13,14 +15,14 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/page
-ms.openlocfilehash: 898f3be045755a0ee14c738b6ffc104408ded7b6
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: f8942e52b3b438817e3d1041a2c6b568eb662469
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407774"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88020394"
 ---
-# <a name="part-3-scaffolded-razor-pages-in-aspnet-core"></a>3부. ASP.NET Core의 스캐폴드된 Razor Pages
+# <a name="part-3-scaffolded-no-locrazor-pages-in-aspnet-core"></a>3부. ASP.NET Core의 스캐폴드된 Razor Pages
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -72,7 +74,7 @@ Razor는 HTML에서 C# 또는 Razor 관련 태그로 전환될 수 있습니다.
 
 ### <a name="the-layout-page"></a>레이아웃 페이지
 
-메뉴 링크를 선택합니다(**RazorPagesMovie**, **홈** 및 **개인 정보**). 각 페이지는 동일한 메뉴 레이아웃을 보여줍니다. 메뉴 레이아웃은 *Pages/Shared/_Layout.cshtml* 파일에서 구현됩니다. *Pages/Shared/_Layout.cshtml* 파일을 엽니다.
+메뉴 링크를 선택합니다( **RazorPagesMovie**, **홈** 및 **개인 정보**). 각 페이지는 동일한 메뉴 레이아웃을 보여줍니다. 메뉴 레이아웃은 *Pages/Shared/_Layout.cshtml* 파일에서 구현됩니다. *Pages/Shared/_Layout.cshtml* 파일을 엽니다.
 
 [레이아웃](xref:mvc/views/layout) 템플릿을 사용하여 HTML 컨테이너 레이아웃을 다음과 같이 지정할 수 있습니다.
 
@@ -153,7 +155,7 @@ changing in in the next step.
 
 모델 오류가 없는 경우 데이터가 저장되고 브라우저가 인덱스 페이지로 리디렉션됩니다.
 
-### <a name="the-create-razor-page"></a>Create Razor Page
+### <a name="the-create-no-locrazor-page"></a>Create Razor Page
 
 *Pages/Movies/Create.cshtml* Razor Page 파일을 살펴봅니다.
 
@@ -263,7 +265,7 @@ Razor는 HTML에서 C# 또는 Razor 관련 태그로 전환될 수 있습니다.
 
 ### <a name="the-layout-page"></a>레이아웃 페이지
 
-메뉴 링크를 선택합니다(**RazorPagesMovie**, **홈** 및 **개인 정보**). 각 페이지는 동일한 메뉴 레이아웃을 보여줍니다. 메뉴 레이아웃은 *Pages/Shared/_Layout.cshtml* 파일에서 구현됩니다. *Pages/Shared/_Layout.cshtml* 파일을 엽니다.
+메뉴 링크를 선택합니다( **RazorPagesMovie**, **홈** 및 **개인 정보**). 각 페이지는 동일한 메뉴 레이아웃을 보여줍니다. 메뉴 레이아웃은 *Pages/Shared/_Layout.cshtml* 파일에서 구현됩니다. *Pages/Shared/_Layout.cshtml* 파일을 엽니다.
 
 [레이아웃](xref:mvc/views/layout) 템플릿을 사용하면 한 곳에서 사이트의 HTML 컨테이너 레이아웃을 지정한 다음 사이트의 여러 페이지에 걸쳐 적용할 수 있습니다. `@RenderBody()` 줄을 찾습니다. `RenderBody`는 사용자가 만드는 모든 페이지 특정 보기가 표시되는 자리 표시자이며 레이아웃 페이지에서 ‘래핑됩니다’. 예를 들어 **개인 정보** 링크를 선택하는 경우 **Pages/Privacy.cshtml** 보기는 `RenderBody` 메서드 내에서 렌더링됩니다.
 
@@ -339,7 +341,7 @@ changing in in the next step.
 
 모델 오류가 없는 경우 데이터가 저장되고 브라우저가 인덱스 페이지로 리디렉션됩니다.
 
-### <a name="the-create-razor-page"></a>Create Razor Page
+### <a name="the-create-no-locrazor-page"></a>Create Razor Page
 
 *Pages/Movies/Create.cshtml* Razor Page 파일을 살펴봅니다.
 

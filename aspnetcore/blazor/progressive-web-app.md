@@ -1,32 +1,34 @@
 ---
-title: ASP.NET Core [Blazor WebAssembly를 사용하여 프로그레시브 웹 애플리케이션 빌드
+title: ASP.NET Core Blazor WebAssembly를 사용하여 프로그레시브 웹 애플리케이션 빌드
 author: guardrex
-description: 최신 브라우저 기능을 사용하여 데스크톱 앱과 같은 동작을 하는 [Blazor 기반 PWA(프로그레시브 웹 애플리케이션)를 빌드하는 방법을 알아봅니다.
+description: 최신 브라우저 기능을 사용하여 데스크톱 앱과 같은 동작을 하는 Blazor 기반 PWA(프로그레시브 웹 애플리케이션)를 빌드하는 방법을 알아봅니다.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 06/10/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 237a8fceb75ba724625f018cf94c8d5bc5acfdad
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 1c33a3abd2ebee60a4025d4598495d276663dc9b
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85402587"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014167"
 ---
-# <a name="build-progressive-web-applications-with-aspnet-core-blazor-webassembly"></a>ASP.NET Core [Blazor WebAssembly를 사용하여 프로그레시브 웹 애플리케이션 빌드
+# <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly를 사용하여 프로그레시브 웹 애플리케이션 빌드
 
 작성자: [Steve Sanderson](https://github.com/SteveSandersonMS)
 
-일반적으로 PWA(프로그레시브 웹 애플리케이션)는 최신 브라우저 API 및 기능을 사용하여 데스크톱 앱처럼 동작하는 SPA(단일 페이지 애플리케이션)입니다. [Blazor WebAssembly는 표준 기반 클라이언트 쪽 웹앱 플랫폼이므로 다음 기능에 필요한 PWA API를 비롯한 모든 브라우저 API를 사용할 수 있습니다.
+일반적으로 PWA(프로그레시브 웹 애플리케이션)는 최신 브라우저 API 및 기능을 사용하여 데스크톱 앱처럼 동작하는 SPA(단일 페이지 애플리케이션)입니다. Blazor WebAssembly는 표준 기반 클라이언트 쪽 웹앱 플랫폼이므로 다음 기능에 필요한 PWA API를 비롯한 모든 브라우저 API를 사용할 수 있습니다.
 
 * 네트워크 속도와 상관없이 오프라인으로 작동하고 항상 즉시 로드
 * 브라우저 창뿐만 아니라 자체 앱 창에서 실행
@@ -43,7 +45,7 @@ ms.locfileid: "85402587"
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-**새 프로젝트 만들기** 대화 상자에서 새 **[Blazor WebAssembly 앱**을 만들 때 **프로그레시브 웹 애플리케이션** 확인란을 선택합니다.
+**새 프로젝트 만들기** 대화 상자에서 새 **Blazor WebAssembly 앱**을 만들 때 **프로그레시브 웹 애플리케이션** 확인란을 선택합니다.
 
 ![‘프로그레시브 웹 애플리케이션’ 확인란은 Visual Studio 새 프로젝트 대화 상자에서 선택합니다.](progressive-web-app/_static/image1.png)
 
@@ -87,7 +89,7 @@ iOS에서 방문자는 Safari의 **‘공유’** 단추 및 **‘홈 화면에 
 > 개발 지원은 변경을 수행하고 테스트하는 일반적인 개발 주기를 방해할 수 있습니다. 따라서 오프라인 지원은 ‘게시된’ 앱에 대해서만 사용할 수 있습니다. 
 
 > [!WARNING]
-> 오프라인 사용 가능 PWA를 배포하려는 경우 [몇 가지 중요한 경고 및 주의 사항](#caveats-for-offline-pwas)을 이해해야 합니다. 이러한 시나리오는 오프라인 PWA에 해당하는 것으로 [Blazor에 국한되지 않습니다. 오프라인 지원 앱이 작동하는 방식에 대해 가정하기 전에 해당 주의 사항을 읽고 이해해야 합니다.
+> 오프라인 사용 가능 PWA를 배포하려는 경우 [몇 가지 중요한 경고 및 주의 사항](#caveats-for-offline-pwas)을 이해해야 합니다. 이러한 시나리오는 오프라인 PWA에 해당하는 것으로 Blazor에 국한되지 않습니다. 오프라인 지원 앱이 작동하는 방식에 대해 가정하기 전에 해당 주의 사항을 읽고 이해해야 합니다.
 
 오프라인 지원의 작동 방식을 확인하려면 다음을 수행합니다.
 
@@ -108,9 +110,9 @@ iOS에서 방문자는 Safari의 **‘공유’** 단추 및 **‘홈 화면에 
 
    ![브라우저 모드 드롭다운이 ‘온라인’에서 ‘오프라인’으로 변경된 Google Chrome 개발자 도구 ‘네트워크’ 탭](progressive-web-app/_static/image6.png)
 
-서비스 작업자를 사용하는 오프라인 지원은 [Blazor에 국한되지 않는 웹 표준입니다. 서비스 작업자에 대한 자세한 내용은 [MDN 웹 문서: 서비스 작업자 API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API)를 참조하세요. 서비스 작업자의 일반적인 사용 패턴에 대한 자세한 내용은 [Google Web: 서비스 작업자 수명 주기](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle)를 참조하세요.
+서비스 작업자를 사용하는 오프라인 지원은 Blazor에 국한되지 않는 웹 표준입니다. 서비스 작업자에 대한 자세한 내용은 [MDN 웹 문서: 서비스 작업자 API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API)를 참조하세요. 서비스 작업자의 일반적인 사용 패턴에 대한 자세한 내용은 [Google Web: 서비스 작업자 수명 주기](https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle)를 참조하세요.
 
-[Blazor의 PWA 템플릿은 다음 두 개의 서비스 작업자 파일을 생성합니다.
+Blazor의 PWA 템플릿은 다음 두 개의 서비스 작업자 파일을 생성합니다.
 
 * 개발 중에 사용되는 `wwwroot/service-worker.js`
 * 앱이 게시된 후에 사용되는 `wwwroot/service-worker.published.js`
@@ -139,7 +141,7 @@ iOS에서 방문자는 Safari의 **‘공유’** 단추 및 **‘홈 화면에 
 
 멘탈 모델로서는, 오프라인 중심 PWA가 설치할 수 있는 모바일 앱처럼 동작한다고 생각할 수 있습니다. 앱은 네트워크 연결과 관계없이 항상 즉시 시작되지만, 설치된 앱 논리는 최신 버전이 아닐 수도 있는 지정 시간 스냅샷에서 제공됩니다.
 
-[Blazor PWA 템플릿은 사용자가 방문하여 네트워크에 연결되어 있을 때마다 백그라운드에서 자동으로 업데이트를 시도하는 앱을 생성합니다. 이렇게 작동하는 방법은 다음과 같습니다.
+Blazor PWA 템플릿은 사용자가 방문하여 네트워크에 연결되어 있을 때마다 백그라운드에서 자동으로 업데이트를 시도하는 앱을 생성합니다. 이렇게 작동하는 방법은 다음과 같습니다.
 
 * 컴파일하는 동안 프로젝트는 ‘서비스 작업자 자산 매니페스트’를 생성합니다. 기본적으로 `service-worker-assets.js`라고 합니다. 앱에서 콘텐츠 해시를 포함하여 .NET 어셈블리, JavaScript 파일, CSS 등이 오프라인에서 기능하는 데 필요한 모든 정적 리소스를 매니페스트에서 나열합니다. 이 리소스 목록은 캐시할 리소스를 알 수 있도록 서비스 작업자에 의해 로드됩니다.
 * 사용자가 앱을 방문할 때마다 브라우저는 백그라운드에서 `service-worker.js` 및 `service-worker-assets.js`를 다시 요청합니다. 이 파일은 설치된 기존 서비스 작업자와 바이트 단위로 비교됩니다. 서버에서 이러한 파일 중 하나에 대해 변경된 콘텐츠를 반환하는 경우 서비스 작업자는 새 버전의 파일을 설치하려고 합니다.
@@ -147,24 +149,24 @@ iOS에서 방문자는 Safari의 **‘공유’** 단추 및 **‘홈 화면에 
 * 모든 리소스가 오류 없이 로드되고 모든 콘텐츠 해시가 일치하면 프로세스가 성공적으로 완료됩니다. 성공하면 새 서비스 작업자는 ‘활성화 대기’ 상태로 전환됩니다. 사용자가 앱을 닫으면(남아 있는 앱 탭 또는 창 없음) 새 서비스 작업자는 ‘활성’ 상태가 되며 이후 앱 방문에 사용됩니다. 이전 서비스 작업자 및 해당 캐시가 삭제됩니다.
 * 프로세스가 성공적으로 완료되지 않으면 새 서비스 작업자 인스턴스가 삭제됩니다. 클라이언트에서 요청을 완료할 수 있는 더 나은 네트워크 연결을 사용할 수 있게 되면 사용자의 다음 방문에서 업데이트 프로세스가 다시 시도됩니다.
 
-서비스 작업자 논리를 편집하여 이 프로세스의 사용자 지정할 수 있습니다. 위의 동작은 [Blazor에 국한되지 않지만 PWA 템플릿 옵션에서 제공하는 기본 환경입니다. 자세한 내용은 [MDN 웹 문서: 서비스 작업자 API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API)를 참조하세요.
+서비스 작업자 논리를 편집하여 이 프로세스의 사용자 지정할 수 있습니다. 위의 동작은 Blazor에 국한되지 않지만 PWA 템플릿 옵션에서 제공하는 기본 환경입니다. 자세한 내용은 [MDN 웹 문서: 서비스 작업자 API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API)를 참조하세요.
 
 ### <a name="how-requests-are-resolved"></a>요청을 해결하는 방법
 
 [캐시 우선 페치 전략](#cache-first-fetch-strategy) 단원에서 설명한 대로 기본 서비스 작업자는 ‘캐시 우선’ 전략을 사용합니다. 즉, 사용 가능한 경우 캐시된 콘텐츠를 제공하려고 시도합니다. 백엔드 API에서 데이터를 요청하는 경우와 같이 특정 URL에 대해 캐시된 콘텐츠가 없는 경우 서비스 작업자는 일반 네트워크 요청으로 대체합니다. 서버에 연결할 수 있는 경우 네트워크 요청이 성공합니다. 이 논리는 `service-worker.published.js` 내의 `onFetch` 함수 안에서 구현됩니다.
 
-앱의 [Razor 구성 요소가 백엔드 API의 데이터 요청에 의존하며 네트워크 사용 불가로 인해 실패한 요청에 대해 친숙한 사용자 환경을 제공하려는 경우에는 앱의 구성 요소 내에서 논리를 구현해야 합니다. 예를 들어 <xref:System.Net.Http.HttpClient> 요청에 대해 `try/catch`를 사용합니다.
+앱의 Razor 구성 요소가 백엔드 API의 데이터 요청에 의존하며 네트워크 사용 불가로 인해 실패한 요청에 대해 친숙한 사용자 환경을 제공하려는 경우에는 앱의 구성 요소 내에서 논리를 구현해야 합니다. 예를 들어 <xref:System.Net.Http.HttpClient> 요청에 대해 `try/catch`를 사용합니다.
 
 ### <a name="support-server-rendered-pages"></a>서버에서 렌더링된 페이지 지원
 
-사용자가 `/counter`와 같은 URL 또는 앱의 기타 딥 링크로 처음 이동할 때 발생하는 상황을 고려합니다. 이 경우에는 `/counter`로 캐시된 콘텐츠를 반환하지 않고 대신 [Blazor WebAssembly 앱을 시작하기 위해 `/index.html`로 캐시된 콘텐츠를 로드하는 브라우저가 필요합니다. 이러한 초기 요청은 다음과 달리 ‘탐색’ 요청이라고 합니다.
+사용자가 `/counter`와 같은 URL 또는 앱의 기타 딥 링크로 처음 이동할 때 발생하는 상황을 고려합니다. 이 경우에는 `/counter`로 캐시된 콘텐츠를 반환하지 않고 대신 Blazor WebAssembly 앱을 시작하기 위해 `/index.html`로 캐시된 콘텐츠를 로드하는 브라우저가 필요합니다. 이러한 초기 요청은 다음과 달리 ‘탐색’ 요청이라고 합니다.
 
 * 이미지, 스타일시트 또는 기타 파일에 대한 `subresource` 요청
 * API 데이터에 대한 `fetch/XHR` 요청
 
 기본 서비스 작업자는 탐색 요청에 대한 특별 사례 논리를 포함합니다. 서비스 작업자는 요청한 URL과 관계없이 `/index.html`에 대해 캐시된 콘텐츠를 반환하여 요청을 확인합니다. 이 논리는 `service-worker.published.js` 내의 `onFetch` 함수에서 구현됩니다.
 
-앱에 서버에서 렌더링된 HTML을 반환해야 하고 캐시에서 `/index.html`을 제공하지 않는 특정 URL이 있는 경우 서비스 작업자에서 논리를 편집해야 합니다. `/[Identity/`를 포함하는 모든 URL을 서버에 대한 일반 온라인 전용 요청으로 처리해야 하는 경우 `service-worker.published.js` `onFetch` 논리를 수정합니다. 다음 코드를 찾습니다.
+앱에 서버에서 렌더링된 HTML을 반환해야 하고 캐시에서 `/index.html`을 제공하지 않는 특정 URL이 있는 경우 서비스 작업자에서 논리를 편집해야 합니다. `/Identity/`를 포함하는 모든 URL을 서버에 대한 일반 온라인 전용 요청으로 처리해야 하는 경우 `service-worker.published.js` `onFetch` 논리를 수정합니다. 다음 코드를 찾습니다.
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate';
@@ -174,14 +176,14 @@ const shouldServeIndexHtml = event.request.mode === 'navigate';
 
 ```javascript
 const shouldServeIndexHtml = event.request.mode === 'navigate'
-    && !event.request.url.includes('/[Identity/');
+    && !event.request.url.includes('/Identity/');
 ```
 
 이렇게 하지 않으면 네트워크 연결과 관계없이 서비스 작업자는 URL에 대한 요청을 가로채서 `/index.html`을 사용하여 이를 확인합니다.
 
 ### <a name="control-asset-caching"></a>자산 캐싱 제어
 
-프로젝트에서 `ServiceWorkerAssetsManifest` MSBuild 속성을 정의하는 경우 [Blazor의 빌드 도구는 지정된 이름을 사용하여 서비스 작업자 자산 매니페스트를 생성합니다. 기본 PWA 템플릿은 다음 속성을 포함하는 프로젝트 파일을 생성합니다.
+프로젝트에서 `ServiceWorkerAssetsManifest` MSBuild 속성을 정의하는 경우 Blazor의 빌드 도구는 지정된 이름을 사용하여 서비스 작업자 자산 매니페스트를 생성합니다. 기본 PWA 템플릿은 다음 속성을 포함하는 프로젝트 파일을 생성합니다.
 
 ```xml
 <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
@@ -191,10 +193,10 @@ const shouldServeIndexHtml = event.request.mode === 'navigate'
 
 기본적으로 이 매니페스트는 다음을 나열합니다.
 
-* 오프라인에서 작동하는 데 필요한 .NET 어셈블리 및 .NET WebAssembly 런타임 파일 등의 [Blazor 관리되는 리소스
+* 오프라인에서 작동하는 데 필요한 .NET 어셈블리 및 .NET WebAssembly 런타임 파일 등의 Blazor 관리되는 리소스
 * 외부 프로젝트 및 NuGet 패키지에서 제공하는 정적 웹 자산을 비롯하여 앱의 `wwwroot` 디렉터리에 게시하기 위한 모든 리소스(예: 이미지, 스타일시트 및 JavaScript 파일)
 
-`service-worker.published.js`의 `onInstall`에서 논리를 편집하여 서비스 작업자에서 이 리소스 중 어떤 항목을 페치하고 캐시하도록 할지 제어할 수 있습니다. 기본적으로 서비스 작업자는 일반적인 웹 파일 이름 확장명(예: `.html`, `.css`, `.js`, `.wasm`) 및 [Blazor WebAssembly 고유의 파일 형식(`.dll`, `.pdb`)과 일치하는 파일을 페치 및 캐시합니다.
+`service-worker.published.js`의 `onInstall`에서 논리를 편집하여 서비스 작업자에서 이 리소스 중 어떤 항목을 페치하고 캐시하도록 할지 제어할 수 있습니다. 기본적으로 서비스 작업자는 일반적인 웹 파일 이름 확장명(예: `.html`, `.css`, `.js`, `.wasm`) 및 Blazor WebAssembly 고유의 파일 형식(`.dll`, `.pdb`)과 일치하는 파일을 페치 및 캐시합니다.
 
 앱의 `wwwroot` 디렉터리에 없는 추가 리소스를 포함하려면 다음 예제와 같이 추가 MSBuild `ItemGroup` 항목을 정의합니다.
 
@@ -212,11 +214,11 @@ const shouldServeIndexHtml = event.request.mode === 'navigate'
 
 ## <a name="push-notifications"></a>푸시 알림
 
-다른 PWA와 마찬가지로 [Blazor WebAssembly PWA는 백 엔드 서버에서 푸시 알림을 받을 수 있습니다. 사용자가 앱을 활발히 사용하지 않는 경우에도 서버는 언제든지 푸시 알림을 보낼 수 있습니다. 예를 들어 다른 사용자가 관련 작업을 수행하는 경우 푸시 알림을 보낼 수 있습니다.
+다른 PWA와 마찬가지로 Blazor WebAssembly PWA는 백 엔드 서버에서 푸시 알림을 받을 수 있습니다. 사용자가 앱을 활발히 사용하지 않는 경우에도 서버는 언제든지 푸시 알림을 보낼 수 있습니다. 예를 들어 다른 사용자가 관련 작업을 수행하는 경우 푸시 알림을 보낼 수 있습니다.
 
-푸시 알림을 전송하는 메커니즘은 모든 기술을 사용할 수 있는 백 엔드 서버에서 구현되기 때문에 [Blazor WebAssembly와는 완전히 독립적입니다. ASP.NET Core 서버에서 푸시 알림을 보내려면 [Blazing Pizza 워크숍에서 사용하는 접근 방식과 유사한 기법을 사용](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#sending-push-notifications)하는 것이 좋습니다.
+푸시 알림을 전송하는 메커니즘은 모든 기술을 사용할 수 있는 백 엔드 서버에서 구현되기 때문에 Blazor WebAssembly와는 완전히 독립적입니다. ASP.NET Core 서버에서 푸시 알림을 보내려면 [Blazing Pizza 워크숍에서 사용하는 접근 방식과 유사한 기법을 사용](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#sending-push-notifications)하는 것이 좋습니다.
 
-클라이언트에서 푸시 알림을 수신하고 표시하는 메커니즘은 JavaScript 파일인 서비스 작업자에서 구현되기 때문에 이 경우 역시 [Blazor WebAssembly와 무관합니다. 예제를 보려면 [Blazing Pizza 워크숍에서 사용하는 접근 방식](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#displaying-notifications)을 참조하세요.
+클라이언트에서 푸시 알림을 수신하고 표시하는 메커니즘은 JavaScript 파일인 서비스 작업자에서 구현되기 때문에 이 경우 역시 Blazor WebAssembly와 무관합니다. 예제를 보려면 [Blazing Pizza 워크숍에서 사용하는 접근 방식](https://github.com/dotnet-presentations/blazor-workshop/blob/master/docs/09-progressive-web-app.md#displaying-notifications)을 참조하세요.
 
 ## <a name="caveats-for-offline-pwas"></a>오프라인 PWA에 대한 주의 사항
 
@@ -232,7 +234,7 @@ const shouldServeIndexHtml = event.request.mode === 'navigate'
 
 ### <a name="offline-support-only-when-published"></a>게시된 경우에만 오프라인 지원
 
-개발 중에 백그라운드 업데이트 프로세스를 거치지 않고 브라우저에 즉시 반영되는 각 변경 내용을 확인하려고 합니다. 따라서 [Blazor의 PWA 템플릿에서는 게시된 경우에만 오프라인 지원을 사용할 수 있습니다.
+개발 중에 백그라운드 업데이트 프로세스를 거치지 않고 브라우저에 즉시 반영되는 각 변경 내용을 확인하려고 합니다. 따라서 Blazor의 PWA 템플릿에서는 게시된 경우에만 오프라인 지원을 사용할 수 있습니다.
 
 오프라인 지원 앱을 빌드하는 경우 개발 환경에서 앱을 테스트하는 것에 충분하지 않습니다. 게시된 상태에서 앱을 테스트하여 다른 네트워크 조건에 어떻게 반응하는지 이해해야 합니다.
 
@@ -240,7 +242,7 @@ const shouldServeIndexHtml = event.request.mode === 'navigate'
 
 사용자가 모든 탭에서 앱을 닫을 때까지는 업데이트가 완료되지 않습니다. [백그라운드 업데이트](#background-updates) 단원에 설명된 대로 업데이트를 앱에 배포한 후 브라우저에서 업데이트된 서비스 작업자 파일을 페치하여 업데이트 프로세스를 시작합니다.
 
-많은 개발자가 놀라워하는 부분은 이 업데이트가 완료되는 경우에도 사용자가 모든 탭에서 나갈 때까지 업데이트가 적용되지 **않는다**는 점입니다. 앱을 표시하는 유일한 탭인 경우에도 앱을 표시하는 탭을 새로 고치는 것으로 충분하지 **않습니다**. 앱이 완전히 닫힐 때까지 새 서비스 작업자는 ‘활성화 대기’ 상태로 유지됩니다. **이는 [Blazor에 한정되지 않는 표준 웹 플랫폼 동작입니다.**
+많은 개발자가 놀라워하는 부분은 이 업데이트가 완료되는 경우에도 사용자가 모든 탭에서 나갈 때까지 업데이트가 적용되지 **않는다**는 점입니다. 앱을 표시하는 유일한 탭인 경우에도 앱을 표시하는 탭을 새로 고치는 것으로 충분하지 **않습니다**. 앱이 완전히 닫힐 때까지 새 서비스 작업자는 ‘활성화 대기’ 상태로 유지됩니다. **이는 Blazor에 한정되지 않는 표준 웹 플랫폼 동작입니다.**
 
 이는 서비스 작업자 또는 오프라인으로 캐시된 리소스에 대한 업데이트를 테스트하려는 개발자를 난감하게 만듭니다. 브라우저의 개발자 도구를 체크 인하면 다음과 같은 내용이 표시될 수 있습니다.
 
@@ -297,4 +299,4 @@ PWA 템플릿은 인증과 함께 사용할 수 있습니다. 사용자가 초�
 
 ## <a name="additional-resources"></a>추가 자료
 
-* [[SignalR 인증에 대한 원본 간 협상](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)
+* [SignalR 인증에 대한 원본 간 협상](xref:blazor/fundamentals/additional-scenarios#signalr-cross-origin-negotiation-for-authentication)

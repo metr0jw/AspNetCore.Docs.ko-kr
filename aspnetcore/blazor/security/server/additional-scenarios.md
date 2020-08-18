@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/04/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 8f112a4d71e44cae112e9854fc77dfda4af5a47a
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: 16896577c56c638cae6824c58f4d3a6ce1489458
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87818913"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014011"
 ---
 # <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>ASP.NET Core Blazor Server 추가 보안 시나리오
 
@@ -30,7 +32,7 @@ ms.locfileid: "87818913"
 
 Blazor Server 앱의 Razor 구성 요소 외부에서 사용할 수 있는 토큰은 이 섹션에서 설명하는 방법을 통해 구성 요소로 전달할 수 있습니다. 완전한 `Startup.ConfigureServices` 예제와 샘플 코드를 보려면 [Passing tokens to a server-side Blazor application](https://github.com/javiercn/blazor-server-aad-sample)(서버 쪽 Blazor 애플리케이션으로 토큰 전달)을 참조하세요.
 
-일반 Razor Pages나 MVC 앱을 인증하는 것처럼 Blazor Server 앱을 인증합니다. 토큰을 프로비저닝하고 인증 쿠키에 저장합니다. 예를 들어:
+일반 Razor Pages나 MVC 앱을 인증하는 것처럼 Blazor Server 앱을 인증합니다. 토큰을 프로비저닝하고 인증 cookie에 저장합니다. 예를 들어:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;

@@ -7,6 +7,8 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/10/2020
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -15,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: b32710e515d111b7dd6556f1db55082cd56a82b5
-ms.sourcegitcommit: 84150702757cf7a7b839485382420e8db8e92b9c
+ms.openlocfilehash: dbad91e46a95d9ab5ec62d66e0d9a18938ff4520
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87819004"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88014466"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>ASP.NET Core Blazor 호스팅 모델 구성
 
@@ -32,7 +34,7 @@ ms.locfileid: "87819004"
 
 ‘이 섹션은 Blazor WebAssembly에 적용됩니다.’
 
-쿠키 또는 HTTP 인증 헤더와 같은 자격 증명을 보내도록 SignalR의 기본 클라이언트를 구성하려면 다음을 수행합니다.
+cookie 또는 HTTP 인증 헤더와 같은 자격 증명을 보내도록 SignalR의 기본 클라이언트를 구성하려면 다음을 수행합니다.
 
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A>를 사용하여 원본 간 [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) 요청에 <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include>를 설정합니다.
 
@@ -231,11 +233,9 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 
 자리 표시자 `{ELEMENT ID}`는 표시할 HTML 요소의 ID입니다.
 
-::: moniker range=">= aspnetcore-5.0"
-
 ## <a name="influence-html-head-tag-elements"></a>HTML `<head>` 태그 요소에 영향
 
-이 섹션은 *Blazor WebAssembly 및 Blazor Server* 에 적용됩니다.
+‘이 섹션은 Blazor WebAssembly 및 Blazor Server의 예정된 ASP.NET Core 5.0 릴리스에 적용됩니다.’
 
 렌더링된 `Title`, `Link` 및 `Meta` 구성 요소는 HTML `<head>` 태그 요소에서 데이터를 추가하거나 업데이트합니다.
 
@@ -263,8 +263,6 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 
 * 애플리케이션 상태에 의해 수정될 수 있습니다. 하드 코드된 HTML 태그는 애플리케이션 상태에 의해 수정될 수 없습니다.
 * 부모 구성 요소가 더 이상 렌더링되지 않으면 HTML `<head>`에서 제거됩니다.
-
-::: moniker-end
 
 ## <a name="additional-resources"></a>추가 리소스
 

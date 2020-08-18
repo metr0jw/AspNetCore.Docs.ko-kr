@@ -6,32 +6,34 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/12/2020
 no-loc:
-- '[Blazor'
-- '[Blazor Server'
-- '[Blazor WebAssembly'
-- '[Identity'
-- "[Let's Encrypt"
-- '[Razor'
-- '[SignalR'
+- cookie
+- Cookie
+- Blazor
+- Blazor Server
+- Blazor WebAssembly
+- Identity
+- Let's Encrypt
+- Razor
+- SignalR
 uid: aspnetcore-3.1
-ms.openlocfilehash: 92804d168381526100ddb8a368f71d201bd4cad9
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 68373c39461be896a52627e21577fdda89cbb661
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85407670"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019590"
 ---
 # <a name="whats-new-in-aspnet-core-31"></a>ASP.NET Core 3.1의 새로운 기능
 
 이 문서에서는 ASP.NET Core 3.1의 가장 큰 변경 내용을 중점적으로 설명하고 관련 문서의 링크를 제공합니다.
 
-## <a name="partial-class-support-for-razor-components"></a>[Razor 구성 요소에 대한 partial 클래스 지원
+## <a name="partial-class-support-for-no-locrazor-components"></a>Razor 구성 요소에 대한 partial 클래스 지원
 
-이제 [Razor 구성 요소가 partial 클래스로 생성됩니다. 단일 파일에서 구성 요소의 모든 코드를 정의하는 대신 partial 클래스로 정의된 코드 숨김 파일을 사용하여 [Razor 구성 요소의 코드를 작성할 수 있습니다. 자세한 내용은 [partial 클래스 지원](xref:blazor/components/index#partial-class-support)을 참조하세요.
+이제 Razor 구성 요소가 partial 클래스로 생성됩니다. 단일 파일에서 구성 요소의 모든 코드를 정의하는 대신 partial 클래스로 정의된 코드 숨김 파일을 사용하여 Razor 구성 요소의 코드를 작성할 수 있습니다. 자세한 내용은 [partial 클래스 지원](xref:blazor/components/index#partial-class-support)을 참조하세요.
 
-## <a name="blazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>[Blazor 구성 요소 태그 도우미 및 최상위 구성 요소에 매개 변수 전달
+## <a name="no-locblazor-component-tag-helper-and-pass-parameters-to-top-level-components"></a>Blazor 구성 요소 태그 도우미 및 최상위 구성 요소에 매개 변수 전달
 
-ASP.NET Core 3.0을 사용하는 [Blazor에서, 구성 요소가 HTML 도우미(`Html.RenderComponentAsync`)를 사용하여 페이지와 보기로 렌더링되었습니다. ASP.NET Core 3.1에서, 새 구성 요소 태그 도우미를 사용하여 페이지 또는 보기에서 구성 요소를 렌더링합니다.
+ASP.NET Core 3.0을 사용하는 Blazor에서, 구성 요소가 HTML 도우미(`Html.RenderComponentAsync`)를 사용하여 페이지와 보기로 렌더링되었습니다. ASP.NET Core 3.1에서, 새 구성 요소 태그 도우미를 사용하여 페이지 또는 보기에서 구성 요소를 렌더링합니다.
 
 ```cshtml
 <component type="typeof(Counter)" render-mode="ServerPrerendered" />
@@ -39,7 +41,7 @@ ASP.NET Core 3.0을 사용하는 [Blazor에서, 구성 요소가 HTML 도우미(
 
 HTML 도우미는 ASP.NET Core 3.1에서 계속 지원되지만, 구성 요소 태그 도우미를 권장합니다.
 
-[Blazor Server 앱에서 이제 초기 렌더링 중에 최상위 수준 구성 요소에 매개 변수를 전달할 수 있습니다. 이전에는 [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static)을 사용하여 최상위 구성 요소에만 매개 변수를 전달할 수 있었습니다. 이 릴리스에서는 [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) 및 [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered)가 모두 지원됩니다. 지정된 모든 매개 변수 값은 JSON으로 직렬화되고 초기 응답에 포함됩니다.
+Blazor Server 앱에서 이제 초기 렌더링 중에 최상위 수준 구성 요소에 매개 변수를 전달할 수 있습니다. 이전에는 [RenderMode.Static](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Static)을 사용하여 최상위 구성 요소에만 매개 변수를 전달할 수 있었습니다. 이 릴리스에서는 [RenderMode.Server](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server) 및 [RenderMode.ServerPrerendered](xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered)가 모두 지원됩니다. 지정된 모든 매개 변수 값은 JSON으로 직렬화되고 초기 응답에 포함됩니다.
 
 예를 들어, 증분 크기(`IncrementAmount`)를 사용하여 `Counter` 구성 요소를 미리 렌더링합니다.
 
@@ -48,7 +50,7 @@ HTML 도우미는 ASP.NET Core 3.1에서 계속 지원되지만, 구성 요소 �
     param-IncrementAmount="10" />
 ```
 
-자세한 내용은 [구성 요소를 [Razor Pages 및 MVC 앱에 통합](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps)을 참조하세요.
+자세한 내용은 [구성 요소를 Razor Pages 및 MVC 앱에 통합](xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps)을 참조하세요.
 
 ## <a name="support-for-shared-queues-in-httpsys"></a>HTTP.sys에서 공유 큐에 대한 지원
 
@@ -56,11 +58,11 @@ HTML 도우미는 ASP.NET Core 3.1에서 계속 지원되지만, 구성 요소 �
 
 [!code-csharp[](sample/Program.cs?name=snippet)]
 
-## <a name="breaking-changes-for-samesite-cookies"></a>SameSite 쿠키의 호환성이 손상되는 변경
+## <a name="breaking-changes-for-samesite-no-loccookies"></a>SameSite cookie의 호환성이 손상되는 변경
 
-SameSite 쿠키의 동작이 예정된 브라우저 변경 내용을 반영하도록 변경되었습니다. 이는 AzureAd, OpenIdConnect 또는 WsFederation 등의 인증 시나리오에 영향을 줄 수 있습니다. 자세한 내용은 <xref:security/samesite>를 참조하세요.
+SameSite cookie의 동작이 예정된 브라우저 변경 내용을 반영하도록 변경되었습니다. 이는 AzureAd, OpenIdConnect 또는 WsFederation 등의 인증 시나리오에 영향을 줄 수 있습니다. 자세한 내용은 <xref:security/samesite>를 참조하세요.
 
-## <a name="prevent-default-actions-for-events-in-blazor-apps"></a>[Blazor 앱에서 이벤트의 기본 동작 방지
+## <a name="prevent-default-actions-for-events-in-no-locblazor-apps"></a>Blazor 앱에서 이벤트의 기본 동작 방지
 
 이벤트의 기본 동작을 방지하려면 `@on{EVENT}:preventDefault` 지시문 특성을 사용합니다. 다음 예에서는, 텍스트 상자에 키 문자를 표시하는 기본 작업을 수행할 수 없습니다.
 
@@ -70,7 +72,7 @@ SameSite 쿠키의 동작이 예정된 브라우저 변경 내용을 반영하�
 
 자세한 내용은 [기본 작업 방지](xref:blazor/components/event-handling#prevent-default-actions)를 참조하세요.
 
-## <a name="stop-event-propagation-in-blazor-apps"></a>[Blazor 앱에서 이벤트 전파 중지
+## <a name="stop-event-propagation-in-no-locblazor-apps"></a>Blazor 앱에서 이벤트 전파 중지
 
 `@on{EVENT}:stopPropagation` 지시문 특성을 사용하여 이벤트 전파를 중지합니다. 다음 예제에서, 확인란을 선택하면 하위 `<div>`의 클릭 이벤트가 상위 `<div>`에 전파되지 않도록 합니다.
 
@@ -90,9 +92,9 @@ SameSite 쿠키의 동작이 예정된 브라우저 변경 내용을 반영하�
 
 자세한 내용은 [이벤트 전파 중지](xref:blazor/components/event-handling#stop-event-propagation)를 참조하세요.
 
-## <a name="detailed-errors-during-blazor-app-development"></a>[Blazor 앱을 개발 중에 발생한 자세한 오류 정보
+## <a name="detailed-errors-during-no-locblazor-app-development"></a>Blazor 앱을 개발 중에 발생한 자세한 오류 정보
 
-[Blazor 앱이 개발 중에 올바르게 작동하지 않는 경우 앱에서 자세한 오류 정보를 수신하면 문제를 해결하고 수정하는 데 도움이 됩니다. 오류가 발생하면 [Blazor 앱의 화면 아래쪽에 금색 막대가 표시됩니다.
+Blazor 앱이 개발 중에 올바르게 작동하지 않는 경우 앱에서 자세한 오류 정보를 수신하면 문제를 해결하고 수정하는 데 도움이 됩니다. 오류가 발생하면 Blazor 앱의 화면 아래쪽에 금색 막대가 표시됩니다.
 
 * 개발 중에 금색 막대를 누르면 예외를 볼 수 있는 브라우저 콘솔로 연결됩니다.
 * 프로덕션에서, 금색 막대는 오류가 발생했음을 알려주고 브라우저를 새로 고치도록 권장합니다.
