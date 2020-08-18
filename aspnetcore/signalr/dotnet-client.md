@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/dotnet-client
-ms.openlocfilehash: a03598f887d628c8a2b6720d99826d4aef4e52fa
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e27748e8267a931390f831119a3fd1d45e87745a
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020004"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504738"
 ---
 # <a name="aspnet-core-no-locsignalr-net-client"></a>ASP.NET Core SignalR .Net 클라이언트
 
@@ -172,9 +172,9 @@ HubConnection connection= new HubConnectionBuilder()
 
 자동 다시 연결 시도의 타이밍과 수를 더 많이 제어 하려는 경우는 `WithAutomaticReconnect` 라는 단일 메서드가 있는 인터페이스를 구현 하는 개체를 허용 `IRetryPolicy` `NextRetryDelay` 합니다.
 
-`NextRetryDelay`는 형식의 단일 인수를 사용 `RetryContext` 합니다. 에는, `RetryContext` 및의 세 가지 속성이 있습니다 .이 속성은 `PreviousRetryCount` `ElapsedTime` `RetryReason` `long` 각각, 및 `TimeSpan` `Exception` 입니다. 첫 번째 다시 연결을 시도 하기 전에와는 모두 0이 되며 `PreviousRetryCount` `ElapsedTime` 은 `RetryReason` 연결이 끊어지는 원인이 되는 예외입니다. 실패 한 각 재시도 후에는 `PreviousRetryCount` 1 씩 증가 하 `ElapsedTime` 고, 지금까지 다시 연결 하는 데 걸린 시간을 반영 하도록 업데이트 되며,는 `RetryReason` 마지막 다시 연결 시도가 실패 한 원인이 됩니다.
+`NextRetryDelay` 는 형식의 단일 인수를 사용 `RetryContext` 합니다. 에는, `RetryContext` 및의 세 가지 속성이 있습니다 .이 속성은 `PreviousRetryCount` `ElapsedTime` `RetryReason` `long` 각각, 및 `TimeSpan` `Exception` 입니다. 첫 번째 다시 연결을 시도 하기 전에와는 모두 0이 되며 `PreviousRetryCount` `ElapsedTime` 은 `RetryReason` 연결이 끊어지는 원인이 되는 예외입니다. 실패 한 각 재시도 후에는 `PreviousRetryCount` 1 씩 증가 하 `ElapsedTime` 고, 지금까지 다시 연결 하는 데 걸린 시간을 반영 하도록 업데이트 되며,는 `RetryReason` 마지막 다시 연결 시도가 실패 한 원인이 됩니다.
 
-`NextRetryDelay`는 다음 다시 연결 시도 전에 대기 시간을 나타내는 TimeSpan을 반환 해야 합니다. 그렇지 않으면이 다시 연결을 중지 해야 합니다 `null` `HubConnection` .
+`NextRetryDelay` 는 다음 다시 연결 시도 전에 대기 시간을 나타내는 TimeSpan을 반환 해야 합니다. 그렇지 않으면이 다시 연결을 중지 해야 합니다 `null` `HubConnection` .
 
 ```csharp
 public class RandomRetryPolicy : IRetryPolicy
@@ -237,7 +237,7 @@ connection.Closed += (error) => {
 
 ## <a name="call-hub-methods-from-client"></a>클라이언트에서 허브 메서드 호출
 
-`InvokeAsync`허브에서 메서드를 호출 합니다. 허브 메서드 이름 및 허브 메서드에 정의 된 모든 인수를에 전달 `InvokeAsync` 합니다. SignalR는 비동기 이므로를 `async` 호출 하 `await` 는 경우 및를 사용 합니다.
+`InvokeAsync` 허브에서 메서드를 호출 합니다. 허브 메서드 이름 및 허브 메서드에 정의 된 모든 인수를에 전달 `InvokeAsync` 합니다. SignalR 는 비동기 이므로를 `async` 호출 하 `await` 는 경우 및를 사용 합니다.
 
 [!code-csharp[InvokeAsync method](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_InvokeAsync)]
 
@@ -246,7 +246,7 @@ connection.Closed += (error) => {
 `SendAsync`메서드는 `Task` 메시지가 서버로 전송 될 때 완료 되는를 반환 합니다. `Task`서버 메서드가 완료 될 때까지 기다리지 않으므로 반환 값이 제공 되지 않습니다. 메시지를 보내는 동안 클라이언트에서 throw 되는 모든 예외에 오류가 발생 `Task` 합니다. `await`및 `try...catch` 구문을 사용 하 여 보내기 오류를 처리 합니다.
 
 > [!NOTE]
-> SignalR *서버 리스 모드*에서 Azure 서비스를 사용 하는 경우 클라이언트에서 허브 메서드를 호출할 수 없습니다. 자세한 내용은 [ SignalR 서비스 설명서](/azure/azure-signalr/signalr-concept-serverless-development-config)를 참조 하세요.
+> 클라이언트에서 허브 메서드를 호출 하는 것은 SignalR *기본* 모드에서 Azure 서비스를 사용 하는 경우에만 지원 됩니다. 자세한 내용은 질문과 [대답 (azure-Signalr GitHub 리포지토리)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose)을 참조 하세요.
 
 ## <a name="call-client-methods-from-hub"></a>허브에서 클라이언트 메서드 호출
 
@@ -264,7 +264,7 @@ Try-catch 문으로 오류를 처리 합니다. 개체를 검사 `Exception` 하
 
 [!code-csharp[Logging](dotnet-client/sample/signalrchatclient/MainWindow.xaml.cs?name=snippet_ErrorHandling)]
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [허브](xref:signalr/hubs)
 * [JavaScript 클라이언트](xref:signalr/javascript-client)

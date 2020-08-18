@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: 04200ced41113eb9a68cefc2f485f2d3798476c6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e6feeb0009034d9ea92f09c44ed0ca882d80fe1b
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022344"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504764"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>SignalRJavaScript 클라이언트 ASP.NET Core
 
@@ -62,7 +62,7 @@ npm 패키지 콘텐츠를 *node_modules \\ @aspnet\signalr\dist\browser * 폴�
 
 ::: moniker-end
 
-SignalR요소에서 JavaScript 클라이언트를 참조 `<script>` 합니다. 예:
+SignalR요소에서 JavaScript 클라이언트를 참조 `<script>` 합니다. 예를 들어:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -70,7 +70,7 @@ SignalR요소에서 JavaScript 클라이언트를 참조 `<script>` 합니다. �
 
 ### <a name="use-a-content-delivery-network-cdn"></a>CDN (Content Delivery Network) 사용
 
-Npm 필수 구성 요소 없이 클라이언트 라이브러리를 사용 하려면 클라이언트 라이브러리의 CDN 호스트 복사본을 참조 합니다. 예:
+Npm 필수 구성 요소 없이 클라이언트 라이브러리를 사용 하려면 클라이언트 라이브러리의 CDN 호스트 복사본을 참조 합니다. 예를 들어:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>
@@ -122,7 +122,7 @@ JavaScript 클라이언트는 [HubConnection](/javascript/api/%40aspnet/signalr/
   [!code-javascript[Call hub methods](javascript-client/sample/wwwroot/js/chat.js?range=24)]
 
 > [!NOTE]
-> SignalR *서버 리스 모드*에서 Azure 서비스를 사용 하는 경우 클라이언트에서 허브 메서드를 호출할 수 없습니다. 자세한 내용은 [ SignalR 서비스 설명서](/azure/azure-signalr/signalr-concept-serverless-development-config)를 참조 하세요.
+> 클라이언트에서 허브 메서드를 호출 하는 것은 SignalR *기본* 모드에서 Azure 서비스를 사용 하는 경우에만 지원 됩니다. 자세한 내용은 질문과 [대답 (azure-Signalr GitHub 리포지토리)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose)을 참조 하세요.
 
 `invoke`메서드는 JavaScript [약속](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)을 반환 합니다. 는 `Promise` 서버의 메서드가 반환 될 때 반환 값 (있는 경우)으로 확인 됩니다. 서버에서 메서드가 오류를 throw 하는 경우 `Promise` 오류 메시지와 함께이 거부 됩니다. `then` `catch` `Promise` 이러한 경우 또는 구문을 처리 하려면 자체에서 및 메서드를 사용 `await` 합니다.
 
@@ -144,7 +144,7 @@ JavaScript 클라이언트는 [HubConnection](/javascript/api/%40aspnet/signalr/
 
 [!code-csharp[Call client-side](javascript-client/sample/hubs/chathub.cs?range=8-11)]
 
-SignalR및에 정의 된 메서드 이름과 인수를 일치 시켜 호출할 클라이언트 메서드를 결정 `SendAsync` 합니다 `connection.on` .
+SignalR 및에 정의 된 메서드 이름과 인수를 일치 시켜 호출할 클라이언트 메서드를 결정 `SendAsync` 합니다 `connection.on` .
 
 > [!NOTE]
 > 모범 사례에 따라 이후에서 [start](/javascript/api/%40aspnet/signalr/hubconnection#start) 메서드를 호출 합니다 `HubConnection` `on` . 이렇게 하면 메시지를 받기 전에 처리기가 등록 됩니다.
@@ -267,9 +267,9 @@ const connection = new signalR.HubConnectionBuilder()
 
 자동 다시 연결 시도의 타이밍과 수를 더 많이 제어 하려는 경우는 `withAutomaticReconnect` 라는 단일 메서드가 있는 인터페이스를 구현 하는 개체를 허용 `IRetryPolicy` `nextRetryDelayInMilliseconds` 합니다.
 
-`nextRetryDelayInMilliseconds`는 형식의 단일 인수를 사용 `RetryContext` 합니다. 에는 `RetryContext` `previousRetryCount` , `elapsedMilliseconds` 및 `retryReason` `number` `number` `Error` 각각, 및 인 세 가지 속성이 있습니다. 첫 번째 다시 연결을 시도 하기 전에와는 모두 0이 되며 `previousRetryCount` `elapsedMilliseconds` 은 `retryReason` 연결이 끊어지는 원인이 되는 오류입니다. 실패 한 각 재시도 후에는 `previousRetryCount` 1 씩 증가 하 `elapsedMilliseconds` 고, 지금까지 밀리초 단위로 다시 연결 하는 데 걸린 시간을 반영 하도록 업데이트 되며,는 `retryReason` 마지막 다시 연결 시도가 실패 한 원인이 되는 오류입니다.
+`nextRetryDelayInMilliseconds` 는 형식의 단일 인수를 사용 `RetryContext` 합니다. 에는 `RetryContext` `previousRetryCount` , `elapsedMilliseconds` 및 `retryReason` `number` `number` `Error` 각각, 및 인 세 가지 속성이 있습니다. 첫 번째 다시 연결을 시도 하기 전에와는 모두 0이 되며 `previousRetryCount` `elapsedMilliseconds` 은 `retryReason` 연결이 끊어지는 원인이 되는 오류입니다. 실패 한 각 재시도 후에는 `previousRetryCount` 1 씩 증가 하 `elapsedMilliseconds` 고, 지금까지 밀리초 단위로 다시 연결 하는 데 걸린 시간을 반영 하도록 업데이트 되며,는 `retryReason` 마지막 다시 연결 시도가 실패 한 원인이 되는 오류입니다.
 
-`nextRetryDelayInMilliseconds`는 다음 다시 연결 시도 전에 대기 하는 시간 (밀리초)을 나타내는 숫자를 반환 해야 합니다. 그렇지 않으면에서 다시 연결을 중지 해야 합니다 `null` `HubConnection` .
+`nextRetryDelayInMilliseconds` 는 다음 다시 연결 시도 전에 대기 하는 시간 (밀리초)을 나타내는 숫자를 반환 해야 합니다. 그렇지 않으면에서 다시 연결을 중지 해야 합니다 `null` `HubConnection` .
 
 ```javascript
 const connection = new signalR.HubConnectionBuilder()
@@ -311,7 +311,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 실제 구현에서는 지 수 백오프를 사용 하거나 지정 된 횟수 만큼 다시 시도 하 여 포기 합니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [JavaScript API 참조](/javascript/api/?view=signalr-js-latest)
 * [JavaScript 자습서](xref:tutorials/signalr)

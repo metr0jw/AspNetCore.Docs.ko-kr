@@ -6,6 +6,8 @@ ms.author: riande
 ms.date: 01/25/2020
 ms.custom: mvc, seodec18
 no-loc:
+- cookie
+- Cookie
 - Blazor
 - Blazor Server
 - Blazor WebAssembly
@@ -14,14 +16,14 @@ no-loc:
 - Razor
 - SignalR
 uid: razor-pages/ui-class
-ms.openlocfilehash: 1d37ebaa913a2815b79b16875049bbf91f9fb941
-ms.sourcegitcommit: d65a027e78bf0b83727f975235a18863e685d902
+ms.openlocfilehash: 042ef8dcc7135e0c60baec972d405380d85a6a10
+ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85404394"
+ms.lasthandoff: 08/08/2020
+ms.locfileid: "88019224"
 ---
-# <a name="create-reusable-ui-using-the-razor-class-library-project-in-aspnet-core"></a>ASP.NET Core에서 Razor 클래스 라이브러리 프로젝트를 사용하여 재사용 가능한 UI 만들기
+# <a name="create-reusable-ui-using-the-no-locrazor-class-library-project-in-aspnet-core"></a>ASP.NET Core에서 Razor 클래스 라이브러리 프로젝트를 사용하여 재사용 가능한 UI 만들기
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -31,13 +33,13 @@ RCL(Razor 클래스 라이브러리)에 Razor 뷰, 페이지, 컨트롤러, 페�
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
-## <a name="create-a-class-library-containing-razor-ui"></a>Razor UI를 포함하는 클래스 라이브러리 만들기
+## <a name="create-a-class-library-containing-no-locrazor-ui"></a>Razor UI를 포함하는 클래스 라이브러리 만들기
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Visual Studio에서 **새 프로젝트 만들기**를 선택합니다.
 * **Razor 클래스 라이브러리** > **다음**을 선택합니다.
-* 라이브러리 이름을 지정하고(예: "RazorClassLib") > **만들기**를 선택합니다. 생성된 보기 라이브러리와 파일 이름 충돌을 방지하려면 라이브러리 이름이 `.Views`로 끝나지 않도록 합니다.
+* 라이브러리 이름을 지정하고(예: “RazorClassLib”), **만들기**를 선택합니다. 생성된 보기 라이브러리와 파일 이름 충돌을 방지하려면 라이브러리 이름이 `.Views`로 끝나지 않도록 합니다.
 * 뷰를 지원해야 하는 경우 **페이지 및 뷰 지원**을 선택합니다. 기본적으로 Razor Pages만 지원됩니다. **만들기**를 선택합니다.
 
 RCL(Razor 클래스 라이브러리) 템플릿은 기본적으로 Razor 구성 요소 개발로 설정됩니다. **페이지 및 뷰 지원** 옵션은 페이지와 뷰를 지원합니다.
@@ -73,7 +75,7 @@ RCL은 다음에서 참조할 수 있습니다.
 
 샘플 다운로드에서 *WebApp1/Areas/MyFeature2*를 *WebApp1/Areas/MyFeature*로 이름을 바꾸어 우선적으로 테스트합니다.
 
-*RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* 부분 보기를 *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*에 복사합니다. 새 위치를 나타내기 위해 태그를 업데이트합니다. 해당 부분의 앱 버전이 사용되고 있는지 확인하려면 앱을 빌드하고 실행합니다.
+*RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* 부분 뷰를 *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*에 복사합니다. 새 위치를 나타내기 위해 태그를 업데이트합니다. 해당 부분의 앱 버전이 사용되고 있는지 확인하려면 앱을 빌드하고 실행합니다.
 
 ### <a name="rcl-pages-layout"></a>RCL 페이지 레이아웃
 
@@ -198,13 +200,13 @@ RCL(Razor 클래스 라이브러리)에 Razor 뷰, 페이지, 컨트롤러, 페�
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
-## <a name="create-a-class-library-containing-razor-ui"></a>Razor UI를 포함하는 클래스 라이브러리 만들기
+## <a name="create-a-class-library-containing-no-locrazor-ui"></a>Razor UI를 포함하는 클래스 라이브러리 만들기
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
 * Visual Studio **파일** 메뉴에서 **새로 만들기** >**프로젝트**를 선택합니다.
 * **새 ASP.NET Core 웹 애플리케이션**을 선택합니다.
-* 라이브러리 이름 지정(예: "RazorClassLib") > **확인**입니다. 생성된 보기 라이브러리와 파일 이름 충돌을 방지하려면 라이브러리 이름이 `.Views`로 끝나지 않도록 합니다.
+* 라이브러리 이름 지정을 지정하고(예: “RazorClassLib”), **확인**을 선택합니다. 생성된 보기 라이브러리와 파일 이름 충돌을 방지하려면 라이브러리 이름이 `.Views`로 끝나지 않도록 합니다.
 * **ASP.NET Core 2.1** 이상이 선택됐는지 확인합니다.
 * **Razor 클래스 라이브러리** > **확인**을 선택합니다.
 
@@ -235,7 +237,7 @@ RCL은 다음에서 참조할 수 있습니다.
 * NuGet 패키지. [NuGet 패키지 만들기](/nuget/create-packages/creating-a-package), [dotnet 추가 패키지](/dotnet/core/tools/dotnet-add-package) 및 [NuGet 패키지 만들기 및 게시](/nuget/quickstart/create-and-publish-a-package-using-visual-studio)를 참조합니다.
 * *{ProjectName}.csproj*. [dotnet-add reference](/dotnet/core/tools/dotnet-add-reference)를 참조합니다.
 
-## <a name="walkthrough-create-an-rcl-project-and-use-from-a-razor-pages-project"></a>연습: RCL 프로젝트를 만들고 Razor Pages 프로젝트에서 사용
+## <a name="walkthrough-create-an-rcl-project-and-use-from-a-no-locrazor-pages-project"></a>연습: RCL 프로젝트를 만들고 Razor Pages 프로젝트에서 사용
 
 [전체 프로젝트](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/razor-pages/ui-class/samples)를 다운로드하여 만들지 않고 테스트할 수 있습니다. 샘플 다운로드에는 프로젝트를 쉽게 테스트하게 하는 링크와 추가 코드가 포함됩니다. 샘플 다운로드 대 단계별 지침에 대한 주석을 사용하여 [이 GitHub 문제](https://github.com/dotnet/AspNetCore.Docs/issues/6098)에서 사용자 의견을 그대로 둘 수 있습니다.
 
@@ -275,7 +277,7 @@ RCL 프로젝트를 만듭니다.
 
 * Visual Studio **파일** 메뉴에서 **새로 만들기** >**프로젝트**를 선택합니다.
 * **새 ASP.NET Core 웹 애플리케이션**을 선택합니다.
-* 앱 이름을 **RazorUIClassLib**로 지정하고 > **확인**을 선택합니다.
+* 앱 이름을 **RazorUIClassLib**로 지정하고, **확인**을 선택합니다.
 * **ASP.NET Core 2.1** 이상이 선택됐는지 확인합니다.
 * **Razor 클래스 라이브러리** > **확인**을 선택합니다.
 * *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*이라는 Razor 부분 뷰 파일을 추가합니다.
@@ -300,7 +302,7 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 
 ---
 
-### <a name="add-razor-files-and-folders-to-the-project"></a>프로젝트에 Razor 파일 및 폴더 추가
+### <a name="add-no-locrazor-files-and-folders-to-the-project"></a>프로젝트에 Razor 파일 및 폴더 추가
 
 * *RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml*에서 태그를 다음 코드로 바꿉니다.
 
@@ -326,7 +328,7 @@ dotnet new viewstart -o RazorUIClassLib/Areas/MyFeature/Pages
 
 빌드 출력은 *RazorUIClassLib.dll* 및 *RazorUIClassLib.Views.dll*을 포함합니다. *RazorUIClassLib.Views.dll*은 컴파일된 Razor 콘텐츠를 포함합니다.
 
-### <a name="use-the-razor-ui-library-from-a-razor-pages-project"></a>Razor Pages 프로젝트에서 Razor UI 라이브러리 사용
+### <a name="use-the-no-locrazor-ui-library-from-a-no-locrazor-pages-project"></a>Razor Pages 프로젝트에서 Razor UI 라이브러리 사용
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -377,7 +379,7 @@ dotnet run
 
 샘플 다운로드에서 *WebApp1/Areas/MyFeature2*를 *WebApp1/Areas/MyFeature*로 이름을 바꾸어 우선적으로 테스트합니다.
 
-*RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* 부분 보기를 *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*에 복사합니다. 새 위치를 나타내기 위해 태그를 업데이트합니다. 해당 부분의 앱 버전이 사용되고 있는지 확인하려면 앱을 빌드하고 실행합니다.
+*RazorUIClassLib/Areas/MyFeature/Pages/Shared/_Message.cshtml* 부분 뷰를 *WebApp1/Areas/MyFeature/Pages/Shared/_Message.cshtml*에 복사합니다. 새 위치를 나타내기 위해 태그를 업데이트합니다. 해당 부분의 앱 버전이 사용되고 있는지 확인하려면 앱을 빌드하고 실행합니다.
 
 ### <a name="rcl-pages-layout"></a>RCL 페이지 레이아웃
 

@@ -1,5 +1,5 @@
 ---
-title: IdentityASP.NET Core에서 모델 사용자 지정
+title: Identity ASP.NET Core에서 모델 사용자 지정
 author: ajcvickers
 description: 이 문서에서는 ASP.NET Core에 대 한 기본 Entity Framework Core 데이터 모델을 사용자 지정 하는 방법을 설명 합니다 Identity .
 ms.author: avickers
@@ -15,20 +15,20 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/customize_identity_model
-ms.openlocfilehash: 4e6d91de013755f1ae998e36481f4c3b659270ae
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7c325bbc96ad4a8c5e4686073266d730eb924c10
+ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022006"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88504673"
 ---
-# <a name="no-locidentity-model-customization-in-aspnet-core"></a>IdentityASP.NET Core에서 모델 사용자 지정
+# <a name="no-locidentity-model-customization-in-aspnet-core"></a>Identity ASP.NET Core에서 모델 사용자 지정
 
 [Arthur Vickers](https://github.com/ajcvickers)
 
-ASP.NET Core은 Identity ASP.NET Core 앱에서 사용자 계정을 관리 하 고 저장 하기 위한 프레임 워크를 제공 합니다. Identity는 **개별 사용자 계정이** 인증 메커니즘으로 선택 된 경우 프로젝트에 추가 됩니다. 기본적으로에서는 Identity EF (Entity Framework) 핵심 데이터 모델을 사용 합니다. 이 문서에서는 모델을 사용자 지정 하는 방법을 설명 합니다 Identity .
+ASP.NET Core은 Identity ASP.NET Core 앱에서 사용자 계정을 관리 하 고 저장 하기 위한 프레임 워크를 제공 합니다. Identity 는 **개별 사용자 계정이** 인증 메커니즘으로 선택 된 경우 프로젝트에 추가 됩니다. 기본적으로에서는 Identity EF (Entity Framework) 핵심 데이터 모델을 사용 합니다. 이 문서에서는 모델을 사용자 지정 하는 방법을 설명 합니다 Identity .
 
-## <a name="no-locidentity-and-ef-core-migrations"></a>Identity마이그레이션 EF Core
+## <a name="no-locidentity-and-ef-core-migrations"></a>Identity 마이그레이션 EF Core
 
 모델을 검사 하기 전에에서 Identity [EF Core 마이그레이션을](/ef/core/managing-schemas/migrations/) 사용 하 여 데이터베이스를 만들고 업데이트 하는 방법을 이해 하는 것이 유용 합니다. 최상위 수준에서 프로세스는 다음과 같습니다.
 
@@ -207,7 +207,7 @@ builder.Entity<TUserRole>(b =>
 
 ### <a name="model-generic-types"></a>모델 제네릭 형식
 
-Identity위에 나열 된 각 엔터티 형식에 대 한 기본 CLR ( [공용 언어 런타임](/dotnet/standard/glossary#clr) ) 형식을 정의 합니다. 이러한 형식에는 모두 접두사가 붙습니다 *Identity* .
+Identity 위에 나열 된 각 엔터티 형식에 대 한 기본 CLR ( [공용 언어 런타임](/dotnet/standard/glossary#clr) ) 형식을 정의 합니다. 이러한 형식에는 모두 접두사가 붙습니다 *Identity* .
 
 * `IdentityUser`
 * `IdentityRole`
@@ -219,7 +219,7 @@ Identity위에 나열 된 각 엔터티 형식에 대 한 기본 CLR ( [공용 �
 
 이러한 형식을 직접 사용 하는 대신 형식을 앱 자체 형식에 대 한 기본 클래스로 사용할 수 있습니다. 에 `DbContext` 의해 정의 된 클래스는 Identity 제네릭 이며이는 모델에 있는 하나 이상의 엔터티 형식에 대해 서로 다른 CLR 형식을 사용할 수 있도록 합니다. 이러한 제네릭 형식을 사용 하 여 `User` PK (기본 키) 데이터 형식을 변경할 수도 있습니다.
 
-역할 지원과 함께를 사용 하는 경우 Identity <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext> 클래스를 사용 해야 합니다. 예:
+역할 지원과 함께를 사용 하는 경우 Identity <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext> 클래스를 사용 해야 합니다. 예를 들어:
 
 ```csharp
 // Uses all the built-in Identity types
@@ -367,8 +367,8 @@ services.AddIdentity<ApplicationUser>()
 
 ASP.NET Core 2.1 이상에서는 Identity 가 Razor 클래스 라이브러리로 제공 됩니다. 자세한 내용은 <xref:security/authentication/scaffold-identity>를 참조하세요. 따라서 앞의 코드에서를 호출 해야 <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*> 합니다. 스 캐 폴더를 Identity 사용 하 여 프로젝트에 파일을 추가 하는 경우 Identity 에 대 한 호출을 제거 `AddDefaultUI` 합니다. 자세한 내용은 다음을 참조하세요.
 
-* [스 캐 폴드Identity](xref:security/authentication/scaffold-identity)
-* [사용자 지정 사용자 데이터 추가, 다운로드 및 삭제Identity](xref:security/authentication/add-user-data)
+* [스 캐 폴드 Identity](xref:security/authentication/scaffold-identity)
+* [사용자 지정 사용자 데이터 추가, 다운로드 및 삭제 Identity](xref:security/authentication/add-user-data)
 
 ### <a name="change-the-primary-key-type"></a>기본 키 유형 변경
 
@@ -403,7 +403,7 @@ PK 종류를 변경 하려면 다음 단계를 수행 합니다.
 
     ::: moniker-end
 
-    `Startup.ConfigureServices`일반 사용자를 사용 하도록 업데이트 해야 합니다.
+    `Startup.ConfigureServices` 일반 사용자를 사용 하도록 업데이트 해야 합니다.
 
     ::: moniker range=">= aspnetcore-2.1"
 
@@ -434,7 +434,7 @@ PK 종류를 변경 하려면 다음 단계를 수행 합니다.
 
     ::: moniker-end
 
-4. 사용자 지정 클래스를 사용 하는 경우 `ApplicationUser` 에서 상속 하도록 클래스를 업데이트 `IdentityUser` 합니다. 예:
+4. 사용자 지정 클래스를 사용 하는 경우 `ApplicationUser` 에서 상속 하도록 클래스를 업데이트 `IdentityUser` 합니다. 예를 들어:
 
     ::: moniker range="<= aspnetcore-1.1"
 
@@ -502,7 +502,7 @@ PK 종류를 변경 하려면 다음 단계를 수행 합니다.
 
     ::: moniker-end
 
-5. 사용자 지정 클래스를 사용 하는 경우 `ApplicationRole` 에서 상속 하도록 클래스를 업데이트 `IdentityRole<TKey>` 합니다. 예:
+5. 사용자 지정 클래스를 사용 하는 경우 `ApplicationRole` 에서 상속 하도록 클래스를 업데이트 `IdentityRole<TKey>` 합니다. 예를 들어:
 
     [!code-csharp[](customize-identity-model/samples/2.1/RazorPagesSampleApp/Data/ApplicationRole.cs?name=snippet_ApplicationRole&highlight=4)]
 
@@ -561,7 +561,7 @@ builder.Entity<TUser>(b =>
 });
 ```
 
-이 관계의 FK는 속성으로 지정 됩니다 `UserClaim.UserId` . `HasMany`및 `WithOne` 는 탐색 속성 없이 관계를 만들기 위해 인수 없이 호출 됩니다.
+이 관계의 FK는 속성으로 지정 됩니다 `UserClaim.UserId` . `HasMany` 및 `WithOne` 는 탐색 속성 없이 관계를 만들기 위해 인수 없이 호출 됩니다.
 
 `ApplicationUser`사용자가 연결 된를 참조할 수 있도록 탐색 속성을에 추가 합니다 `UserClaims` .
 
@@ -744,8 +744,8 @@ public class ApplicationDbContext
 참고:
 
 * 또한이 예제에는 `UserRole` 사용자에서 역할로 다 대 다 관계를 탐색 하는 데 필요한 조인 엔터티만 포함 되어 있습니다.
-* `ApplicationXxx`현재 형식이 형식 대신 사용 되는 것을 반영 하도록 탐색 속성의 형식을 변경 해야 합니다 `IdentityXxx` .
-* `ApplicationXxx`제네릭 정의에서를 사용 해야 합니다 `ApplicationContext` .
+* `Application{...}`현재 형식이 형식 대신 사용 되는 것을 반영 하도록 탐색 속성의 형식을 변경 해야 합니다 `Identity{...}` .
+* `Application{...}`제네릭 정의에서를 사용 해야 합니다 `ApplicationContext` .
 
 ### <a name="add-all-navigation-properties"></a>모든 탐색 속성 추가
 
@@ -951,7 +951,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ### <a name="map-to-a-different-schema"></a>다른 스키마에 매핑
 
-스키마는 데이터베이스 공급자에서 다르게 동작할 수 있습니다. SQL Server의 경우 기본값은 *dbo* 스키마에 모든 테이블을 만드는 것입니다. 다른 스키마에서 테이블을 만들 수 있습니다. 예:
+스키마는 데이터베이스 공급자에서 다르게 동작할 수 있습니다. SQL Server의 경우 기본값은 *dbo* 스키마에 모든 테이블을 만드는 것입니다. 다른 스키마에서 테이블을 만들 수 있습니다. 예를 들어:
 
 ```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -987,7 +987,7 @@ services
 
 엔터티 형식에 탐색 속성을 추가 하는 방법에 대 한 지침은 앞의 예제를 참조 하세요.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:security/authentication/scaffold-identity>
 
