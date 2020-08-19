@@ -1,11 +1,12 @@
 ---
-title: cookieASP.NET Core 없이 인증 사용Identity
+title: 인증을 사용 cookie 하지 않고 사용 ASP.NET Core Identity
 author: rick-anderson
-description: ASP.NET Core 없이 인증을 사용 하는 방법을 알아봅니다 cookie Identity .
+description: 를 사용 하지 않고 인증을 사용 하는 방법을 알아봅니다 cookie ASP.NET Core Identity .
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 02/11/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,20 +17,20 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 325bc3dcd48517d93d5f6f2d56e92651c780d759
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2e9eb58837d74343d8de6903372146570b43f330
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021889"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627145"
 ---
-# <a name="use-no-loccookie-authentication-without-aspnet-core-no-locidentity"></a>cookieASP.NET Core 없이 인증 사용Identity
+# <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>인증을 사용 cookie 하지 않고 사용 ASP.NET Core Identity
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core Identity 은 로그인을 만들고 유지 관리 하기 위한 완전 한 기능을 갖춘 완전 한 인증 공급자입니다. 그러나 cookie ASP.NET Core 없는 기반 인증 공급자를 Identity 사용할 수 있습니다. 자세한 내용은 <xref:security/authentication/identity>를 참조하세요.
+ASP.NET Core Identity 는 로그인을 만들고 유지 관리 하기 위한 완전 한 기능을 갖춘 완전 한 인증 공급자입니다. 그러나를 cookie 사용 하지 않는 기반 인증 공급자를 ASP.NET Core Identity 사용할 수 있습니다. 자세한 내용은 <xref:security/authentication/identity>를 참조하세요.
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
@@ -43,11 +44,11 @@ ASP.NET Core Identity 은 로그인을 만들고 유지 관리 하기 위한 완
 
 [!code-csharp[](cookie/samples/3.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>에 전달 된는 `AddAuthentication` 앱에 대 한 기본 인증 체계를 설정 합니다. `AuthenticationScheme`는 인증 인스턴스가 여러 개 있고 cookie [특정 스키마를 사용 하 여 권한을 부여](xref:security/authorization/limitingidentitybyscheme)하려는 경우에 유용 합니다. `AuthenticationScheme`를 [ Cookie authenticationdefaults로 설정 합니다. authenticationdefaults](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) 은 Cookie 스키마에 대해 "s" 값을 제공 합니다. 체계를 구별 하는 모든 문자열 값을 제공할 수 있습니다.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> 에 전달 된는 `AddAuthentication` 앱에 대 한 기본 인증 체계를 설정 합니다. `AuthenticationScheme` 는 인증 인스턴스가 여러 개 있고 cookie [특정 스키마를 사용 하 여 권한을 부여](xref:security/authorization/limitingidentitybyscheme)하려는 경우에 유용 합니다. `AuthenticationScheme`를 [ Cookie authenticationdefaults로 설정 합니다. authenticationdefaults](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) 은 Cookie 스키마에 대해 "s" 값을 제공 합니다. 체계를 구별 하는 모든 문자열 값을 제공할 수 있습니다.
 
 앱의 인증 체계가 앱의 인증 체계와 다릅니다 cookie . cookie인증 체계가에 제공 되지 않는 경우 <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s")를 사용 합니다.
 
-인증 cookie 의 <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> 속성은 기본적으로로 설정 됩니다 `true` . cookie사이트 방문자가 데이터 수집에 동의한 하지 않은 경우에는 인증을 사용할 수 있습니다. 자세한 내용은 <xref:security/gdpr#essential-cookies>를 참조하세요.
+인증 cookie 의 <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> 속성은 기본적으로로 설정 됩니다 `true` . cookie사이트 방문자가 데이터 수집에 동의한 하지 않은 경우에는 인증을 사용할 수 있습니다. 자세한 내용은 <xref:security/gdpr#essential-cookies>을 참조하세요.
 
 에서 `Startup.Configure` 및를 `UseAuthentication` 호출 `UseAuthorization` 하 여 속성을 설정 하 `HttpContext.User` 고 요청에 대 한 권한 부여 미들웨어를 실행 합니다. `UseAuthentication`를 `UseAuthorization` 호출 하기 전에 및 메서드를 호출 합니다 `UseEndpoints` .
 
@@ -65,7 +66,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## <a name="no-loccookie-policy-middleware"></a>Cookie정책 미들웨어
+## <a name="no-loccookie-policy-middleware"></a>Cookie 정책 미들웨어
 
 [ Cookie 정책 미들웨어](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) cookie 를 통해 정책 기능을 사용할 수 있습니다. 응용 프로그램 처리 파이프라인에 미들웨어를 추가 하는 것은 순서를 구분 하기 때문에 &mdash; 파이프라인에 등록 된 다운스트림 구성 요소에만 영향을 줍니다.
 
@@ -92,7 +93,7 @@ Cookie의 정책 미들웨어 설정은 `MinimumSameSitePolicy` `Cookie.SameSite
 | SameSiteMode.Lax      | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Lax<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
 | SameSiteMode.Strict   | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Strict<br>SameSiteMode.Strict<br>SameSiteMode.Strict |
 
-## <a name="create-an-authentication-no-loccookie"></a>인증 만들기cookie
+## <a name="create-an-authentication-no-loccookie"></a>인증 만들기 cookie
 
 cookie보유 사용자 정보를 만들려면를 구성 <xref:System.Security.Claims.ClaimsPrincipal> 합니다. 사용자 정보는 serialize 되 고에 저장 됩니다 cookie . 
 
@@ -102,9 +103,9 @@ cookie보유 사용자 정보를 만들려면를 구성 <xref:System.Security.Cl
 
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
-`SignInAsync`암호화 된를 만들어 cookie 현재 응답에 추가 합니다. `AuthenticationScheme`을 지정 하지 않으면 기본 체계가 사용 됩니다.
+`SignInAsync` 암호화 된를 만들어 cookie 현재 응답에 추가 합니다. `AuthenticationScheme`을 지정 하지 않으면 기본 체계가 사용 됩니다.
 
-<xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri>는 기본적으로 몇 가지 특정 경로 (예: 로그인 경로 및 로그 아웃 경로) 에서만 사용 됩니다. 자세한 내용은 [ Cookie authenticationhandler 원본](https://github.com/dotnet/aspnetcore/blob/f2e6e6ff334176540ef0b3291122e359c2106d1a/src/Security/Authentication/Cookies/src/CookieAuthenticationHandler.cs#L334)을 참조 하세요.
+<xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri> 는 기본적으로 몇 가지 특정 경로 (예: 로그인 경로 및 로그 아웃 경로) 에서만 사용 됩니다. 자세한 내용은 [ Cookie authenticationhandler 원본](https://github.com/dotnet/aspnetcore/blob/f2e6e6ff334176540ef0b3291122e359c2106d1a/src/Security/Authentication/Cookies/src/CookieAuthenticationHandler.cs#L334)을 참조 하세요.
 
 ASP.NET Core의 [데이터 보호](xref:security/data-protection/using-data-protection) 시스템이 암호화에 사용 됩니다. 여러 컴퓨터에서 호스트 되는 앱의 경우, 앱 간에 부하를 분산 하거나 웹 팜을 사용 하 여 [데이터 보호를 구성](xref:security/data-protection/configuration/overview) 하 여 동일한 키 링 및 앱 식별자를 사용 하도록 구성 합니다.
 
@@ -250,7 +251,7 @@ await HttpContext.SignInAsync(
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core Identity 은 로그인을 만들고 유지 관리 하기 위한 완전 한 기능을 갖춘 완전 한 인증 공급자입니다. 그러나 cookie ASP.NET Core 없는 기반 인증 인증 공급자를 Identity 사용할 수 있습니다. 자세한 내용은 <xref:security/authentication/identity>를 참조하세요.
+ASP.NET Core Identity 는 로그인을 만들고 유지 관리 하기 위한 완전 한 기능을 갖춘 완전 한 인증 공급자입니다. 그러나를 cookie 사용 하지 않는 기반 인증 인증 공급자를 ASP.NET Core Identity 사용할 수 있습니다. 자세한 내용은 <xref:security/authentication/identity>를 참조하세요.
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
@@ -264,11 +265,11 @@ ASP.NET Core Identity 은 로그인을 만들고 유지 관리 하기 위한 완
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Startup.cs?name=snippet1)]
 
-<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme>에 전달 된는 `AddAuthentication` 앱에 대 한 기본 인증 체계를 설정 합니다. `AuthenticationScheme`는 인증 인스턴스가 여러 개 있고 cookie [특정 스키마를 사용 하 여 권한을 부여](xref:security/authorization/limitingidentitybyscheme)하려는 경우에 유용 합니다. `AuthenticationScheme`를 [ Cookie authenticationdefaults로 설정 합니다. authenticationdefaults](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) 은 Cookie 스키마에 대해 "s" 값을 제공 합니다. 체계를 구별 하는 모든 문자열 값을 제공할 수 있습니다.
+<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme> 에 전달 된는 `AddAuthentication` 앱에 대 한 기본 인증 체계를 설정 합니다. `AuthenticationScheme` 는 인증 인스턴스가 여러 개 있고 cookie [특정 스키마를 사용 하 여 권한을 부여](xref:security/authorization/limitingidentitybyscheme)하려는 경우에 유용 합니다. `AuthenticationScheme`를 [ Cookie authenticationdefaults로 설정 합니다. authenticationdefaults](xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme) 은 Cookie 스키마에 대해 "s" 값을 제공 합니다. 체계를 구별 하는 모든 문자열 값을 제공할 수 있습니다.
 
 앱의 인증 체계가 앱의 인증 체계와 다릅니다 cookie . cookie인증 체계가에 제공 되지 않는 경우 <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s")를 사용 합니다.
 
-인증 cookie 의 <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> 속성은 기본적으로로 설정 됩니다 `true` . cookie사이트 방문자가 데이터 수집에 동의한 하지 않은 경우에는 인증을 사용할 수 있습니다. 자세한 내용은 <xref:security/gdpr#essential-cookies>를 참조하세요.
+인증 cookie 의 <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> 속성은 기본적으로로 설정 됩니다 `true` . cookie사이트 방문자가 데이터 수집에 동의한 하지 않은 경우에는 인증을 사용할 수 있습니다. 자세한 내용은 <xref:security/gdpr#essential-cookies>을 참조하세요.
 
 `Startup.Configure`메서드에서 메서드를 호출 하 여 `UseAuthentication` 속성을 설정 하는 인증 미들웨어를 호출 합니다 `HttpContext.User` . 또는를 `UseAuthentication` 호출 하기 전에 메서드를 호출 합니다 `UseMvcWithDefaultRoute` `UseMvc` .
 
@@ -286,7 +287,7 @@ services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     });
 ```
 
-## <a name="no-loccookie-policy-middleware"></a>Cookie정책 미들웨어
+## <a name="no-loccookie-policy-middleware"></a>Cookie 정책 미들웨어
 
 [ Cookie 정책 미들웨어](xref:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware) cookie 를 통해 정책 기능을 사용할 수 있습니다. 응용 프로그램 처리 파이프라인에 미들웨어를 추가 하는 것은 순서를 구분 하기 때문에 &mdash; 파이프라인에 등록 된 다운스트림 구성 요소에만 영향을 줍니다.
 
@@ -313,7 +314,7 @@ Cookie의 정책 미들웨어 설정은 `MinimumSameSitePolicy` `Cookie.SameSite
 | SameSiteMode.Lax      | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Lax<br>SameSiteMode.Lax<br>SameSiteMode.Strict |
 | SameSiteMode.Strict   | SameSiteMode.None<br>SameSiteMode.Lax<br>SameSiteMode.Strict | SameSiteMode.Strict<br>SameSiteMode.Strict<br>SameSiteMode.Strict |
 
-## <a name="create-an-authentication-no-loccookie"></a>인증 만들기cookie
+## <a name="create-an-authentication-no-loccookie"></a>인증 만들기 cookie
 
 cookie보유 사용자 정보를 만들려면를 구성 <xref:System.Security.Claims.ClaimsPrincipal> 합니다. 사용자 정보는 serialize 되 고에 저장 됩니다 cookie . 
 
@@ -321,7 +322,7 @@ cookie보유 사용자 정보를 만들려면를 구성 <xref:System.Security.Cl
 
 [!code-csharp[](cookie/samples/2.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet1)]
 
-`SignInAsync`암호화 된를 만들어 cookie 현재 응답에 추가 합니다. `AuthenticationScheme`을 지정 하지 않으면 기본 체계가 사용 됩니다.
+`SignInAsync` 암호화 된를 만들어 cookie 현재 응답에 추가 합니다. `AuthenticationScheme`을 지정 하지 않으면 기본 체계가 사용 됩니다.
 
 ASP.NET Core의 [데이터 보호](xref:security/data-protection/using-data-protection) 시스템이 암호화에 사용 됩니다. 여러 컴퓨터에서 호스트 되는 앱의 경우, 앱 간에 부하를 분산 하거나 웹 팜을 사용 하 여 [데이터 보호를 구성](xref:security/data-protection/configuration/overview) 하 여 동일한 키 링 및 앱 식별자를 사용 하도록 구성 합니다.
 
@@ -465,7 +466,7 @@ await HttpContext.SignInAsync(
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:security/authorization/limitingidentitybyscheme>
 * <xref:security/authorization/claims>

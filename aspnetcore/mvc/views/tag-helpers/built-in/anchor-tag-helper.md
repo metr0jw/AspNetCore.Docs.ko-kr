@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/13/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
-ms.openlocfilehash: 25f1716b5c80492edb72bc9555954c9c93c02a49
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: fcb58e2e0bfc6598edeb8c7f79986c3faf84e316
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018768"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633931"
 ---
 # <a name="anchor-tag-helper-in-aspnet-core"></a>ASP.NET Core의 앵커 태그 도우미
 
@@ -185,7 +186,7 @@ ms.locfileid: "88018768"
 
 #### <a name="usage-in-no-locrazor-pages"></a>페이지에서 사용 Razor
 
-Razor페이지 영역은 ASP.NET Core 2.1 이상에서 지원 됩니다.
+Razor 페이지 영역은 ASP.NET Core 2.1 이상에서 지원 됩니다.
 
 다음 디렉터리 계층 구조를 고려해보세요.
 
@@ -251,7 +252,7 @@ Razor페이지 영역은 ASP.NET Core 2.1 이상에서 지원 됩니다.
 
 ### <a name="asp-protocol"></a>asp-protocol
 
-[asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) 특성은 URL에서 프로토콜(예: `https`)을 지정하는 데 사용됩니다. 예:
+[asp-protocol](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Protocol*) 특성은 URL에서 프로토콜(예: `https`)을 지정하는 데 사용됩니다. 다음은 그 예입니다. 
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspProtocol)]
 
@@ -265,7 +266,7 @@ Razor페이지 영역은 ASP.NET Core 2.1 이상에서 지원 됩니다.
 
 ### <a name="asp-host"></a>asp-host
 
-[asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) 특성은 URL에 호스트 이름을 지정하는 데 사용됩니다. 예:
+[asp-host](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Host*) 특성은 URL에 호스트 이름을 지정하는 데 사용됩니다. 다음은 그 예입니다. 
 
 [!code-cshtml[](samples/TagHelpersBuiltIn/Views/Home/Index.cshtml?name=snippet_AspHost)]
 
@@ -317,7 +318,7 @@ Razor페이지 영역은 ASP.NET Core 2.1 이상에서 지원 됩니다.
 <a href="/Attendee?attendeeid=12&handler=Profile">Attendee Profile</a>
 ```
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:mvc/controllers/areas>
 * <xref:razor-pages/index>

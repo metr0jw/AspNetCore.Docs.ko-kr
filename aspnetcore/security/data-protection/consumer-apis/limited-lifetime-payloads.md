@@ -5,6 +5,7 @@ description: ASP.NET Core 데이터 보호 Api를 사용 하 여 보호 된 페�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/limited-lifetime-payloads
-ms.openlocfilehash: c7bc86cd42a725f21cf66187c033376a8c5a9e65
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f76aca460c293b5f814ba10ee6c8ac68b3d147bb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014830"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634425"
 ---
 # <a name="limit-the-lifetime-of-protected-payloads-in-aspnet-core"></a>ASP.NET Core 보호 된 페이로드의 수명 제한
 
@@ -32,7 +33,7 @@ ms.locfileid: "88014830"
 
 `ITimeLimitedDataProtector`인터페이스는 시간 제한/자체 만료 페이로드를 보호 하 고 보호 해제 하는 핵심 인터페이스입니다. 인스턴스 `ITimeLimitedDataProtector` 를 만들려면 먼저 특정 용도를 사용 하 여 생성 된 일반 [IDataProtector](xref:security/data-protection/consumer-apis/overview) 인스턴스가 필요 합니다. 인스턴스를 `IDataProtector` 사용할 수 있게 되 면 `IDataProtector.ToTimeLimitedDataProtector` 확장 메서드를 호출 하 여 기본 제공 만료 기능이 포함 된 보호기를 다시 가져옵니다.
 
-`ITimeLimitedDataProtector`는 다음과 같은 API 노출 및 확장 메서드를 노출 합니다.
+`ITimeLimitedDataProtector` 는 다음과 같은 API 노출 및 확장 메서드를 노출 합니다.
 
 * CreateProtector (문자열 용도): ITimeLimitedDataProtector-이 API는 `IDataProtectionProvider.CreateProtector` 루트 시간 제한 보호기에서 [용도 체인](xref:security/data-protection/consumer-apis/purpose-strings) 을 만드는 데 사용할 수 있다는 점에서 기존와 비슷합니다.
 

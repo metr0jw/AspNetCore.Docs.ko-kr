@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/redis-backplane
-ms.openlocfilehash: d80bce204b467d436a3580933718147bc3fbe75c
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: bc28eb3096e88455347f68ca381c9a280d5a153e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022487"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633658"
 ---
 # <a name="set-up-a-redis-backplane-for-aspnet-core-no-locsignalr-scale-out"></a>ASP.NET Core 스케일 아웃에 대 한 Redis 후면판 설정 SignalR
 
@@ -73,8 +74,8 @@ ms.locfileid: "88022487"
 
 * 앱에서 SignalR 다음 NuGet 패키지 중 하나를 설치 합니다.
 
-  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis`-Redis 2. X.X.에 종속 됩니다. ASP.NET Core 2.2 이상에 권장 되는 패키지입니다.
-  * `Microsoft.AspNetCore.SignalR.Redis`-Redis 1. X.X.에 종속 됩니다. 이 패키지는 ASP.NET Core 3.0 이상에 포함 되어 있지 않습니다.
+  * `Microsoft.AspNetCore.SignalR.StackExchangeRedis` -Redis 2. X.X.에 종속 됩니다. ASP.NET Core 2.2 이상에 권장 되는 패키지입니다.
+  * `Microsoft.AspNetCore.SignalR.Redis` -Redis 1. X.X.에 종속 됩니다. 이 패키지는 ASP.NET Core 3.0 이상에 포함 되어 있지 않습니다.
 
 * `Startup.ConfigureServices`메서드에서 다음을 호출 합니다 <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisDependencyInjectionExtensions.AddStackExchangeRedis*> .
 
@@ -155,9 +156,9 @@ Redis 서버 작동이 중단 되 면 SignalR 메시지가 전달 되지 않음�
 * *' MethodName ' 허브 메서드를 호출 하지 못했습니다.*
 * *Redis에 연결 하지 못했습니다.*
 
-SignalR서버를 백업할 때 메시지를 보내도록 버퍼링 하지 않습니다. Redis 서버를 종료 하는 동안 전송 된 모든 메시지는 손실 됩니다.
+SignalR 서버를 백업할 때 메시지를 보내도록 버퍼링 하지 않습니다. Redis 서버를 종료 하는 동안 전송 된 모든 메시지는 손실 됩니다.
 
-SignalRRedis 서버를 다시 사용할 수 있게 되 면 자동으로 다시 연결 합니다.
+SignalR Redis 서버를 다시 사용할 수 있게 되 면 자동으로 다시 연결 합니다.
 
 ### <a name="custom-behavior-for-connection-failures"></a>연결 실패에 대 한 사용자 지정 동작
 

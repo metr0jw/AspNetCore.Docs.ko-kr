@@ -5,6 +5,7 @@ description: 이 문서에서는 ASP.NET Core 1.x 인증 및 ASP.NET Core 2.0를
 ms.author: scaddie
 ms.date: 06/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/1x-to-2x/identity-2x
-ms.openlocfilehash: 46f10df25235b532f188eda2a079aef71070cd6d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 63f2fadc328650063078339467e65c6b0e97a08e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015292"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634321"
 ---
 # <a name="migrate-authentication-and-no-locidentity-to-aspnet-core-20"></a>인증과 Identity ASP.NET Core 2.0으로 마이그레이션
 
@@ -110,7 +111,7 @@ public void Configure(IApplicationBuilder app, ILoggerFactory loggerfactory) {
         services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/LogIn");
         ```
 
-2. 을 사용 cookie 하지 않고 s 사용Identity
+2. 을 사용 cookie 하지 않고 s 사용 Identity
     - `UseCookieAuthentication`메서드의 메서드 호출을 `Configure` 다음으로 바꿉니다 `UseAuthentication` .
 
         ```csharp
@@ -340,7 +341,7 @@ Windows 인증에는 두 가지 변형이 있습니다.
 
   > `System.InvalidOperationException`: AuthenticationScheme이 지정 되지 않았으므로 DefaultChallengeScheme을 찾을 수 없습니다.
 
-자세한 내용은 <xref:security/authentication/windowsauth>를 참조하세요.
+자세한 내용은 <xref:security/authentication/windowsauth>을 참조하세요.
 
 <a name="identity-cookie-options"></a>
 
@@ -458,6 +459,6 @@ protected override void OnModelCreating(ModelBuilder builder)
 
 <a name="additional-resources"></a>
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 자세한 내용은 GitHub의 [Auth 2.0 문제에 대 한 설명을](https://github.com/aspnet/Security/issues/1338) 참조 하세요.
