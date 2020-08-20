@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/key-vault-configuration
-ms.openlocfilehash: 20561b2608b343d0c0bcf545cc9c48d1886b7cb9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 32967e039671721852b8e421fe5a08763b23e418
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022019"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629784"
 ---
 # <a name="azure-key-vault-configuration-provider-in-aspnet-core"></a>ASP.NET Core의 Azure Key Vault 구성 공급자
 
@@ -39,7 +40,7 @@ ms.locfileid: "88022019"
 
 ## <a name="packages"></a>패키지
 
-Microsoft.Extensions.Configuration에 패키지 참조를 추가 [합니다. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) 패키지입니다.
+Microsoft.Extensions.Configuration에 패키지 참조를 추가 [ 합니다. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) 패키지입니다.
 
 ## <a name="sample-app"></a>샘플 앱
 
@@ -151,15 +152,15 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-X.509 인증서는 OS를 통해 관리 됩니다. 앱은 <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 파일 *의appsettings.js* 에서 제공 하는 값으로을 호출 합니다.
+X.509 인증서는 OS를 통해 관리 됩니다. 앱은 <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 파일 * 의appsettings.js* 에서 제공 하는 값으로을 호출 합니다.
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
 
 예제 값:
 
-* 키 자격 증명 모음 이름:`contosovault`
-* 응용 프로그램 ID:`627e911e-43cc-61d4-992e-12db9c81b413`
-* 인증서 지문:`fe14593dd66b2406c5269d742d04b6e1ab03adb1`
+* 키 자격 증명 모음 이름: `contosovault`
+* 응용 프로그램 ID: `627e911e-43cc-61d4-992e-12db9c81b413`
+* 인증서 지문: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
 *appsettings.json*:
 
@@ -195,7 +196,7 @@ Azure CLI, PowerShell 또는 Azure Portal를 사용 하 여 **앱을 다시 시�
 
 [!code-csharp[](key-vault-configuration/samples/3.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
 
-Key vault 이름 예 값:`contosovault`
+Key vault 이름 예 값: `contosovault`
     
 *appsettings.json*:
 
@@ -213,7 +214,7 @@ Key vault 이름 예 값:`contosovault`
 
 ## <a name="configuration-options"></a>구성 옵션
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*>수락 가능 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions> :
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 수락 가능 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.AzureKeyVaultConfigurationOptions> :
 
 ```csharp
 config.AddAzureKeyVault(
@@ -223,29 +224,29 @@ config.AddAzureKeyVault(
     });
 ```
 
-| 속성         | 설명 |
+| 속성         | Description |
 | ---------------- | ----------- |
-| `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient>값을 검색 하는 데 사용할입니다. |
-| `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>비밀 로드를 제어 하는 데 사용 되는 인스턴스입니다. |
-| `ReloadInterval` | `Timespan`변경에 대 한 주요 자격 증명 모음 폴링 시도 사이에 대기 합니다. 기본값은 `null` (구성이 다시 로드 되지 않음)입니다. |
+| `Client`         | <xref:Microsoft.Azure.KeyVault.KeyVaultClient> 값을 검색 하는 데 사용할입니다. |
+| `Manager`        | <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> 비밀 로드를 제어 하는 데 사용 되는 인스턴스입니다. |
+| `ReloadInterval` | `Timespan` 변경에 대 한 주요 자격 증명 모음 폴링 시도 사이에 대기 합니다. 기본값은 `null` (구성이 다시 로드 되지 않음)입니다. |
 | `Vault`          | 키 자격 증명 모음 URI입니다. |
 
 ## <a name="use-a-key-name-prefix"></a>키 이름 접두사 사용
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*>는의 구현을 허용 하는 오버 로드를 제공 하 여 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> 키 자격 증명 모음 비밀이 구성 키로 변환 되는 방식을 제어할 수 있습니다. 예를 들어, 인터페이스를 구현 하 여 앱 시작 시 제공 하는 접두사 값에 따라 비밀 값을 로드할 수 있습니다. 예를 들어 앱의 버전에 따라 비밀을 로드할 수 있습니다.
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 는의 구현을 허용 하는 오버 로드를 제공 하 여 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> 키 자격 증명 모음 비밀이 구성 키로 변환 되는 방식을 제어할 수 있습니다. 예를 들어, 인터페이스를 구현 하 여 앱 시작 시 제공 하는 접두사 값에 따라 비밀 값을 로드할 수 있습니다. 예를 들어 앱의 버전에 따라 비밀을 로드할 수 있습니다.
 
 > [!WARNING]
 > 키 자격 증명 모음 비밀에 대 한 접두사를 사용 하 여 여러 앱에 대 한 비밀을 동일한 주요 자격 증명 모음에 저장 하거나 환경 비밀 (예: *개발* 및 *프로덕션* 비밀)을 동일한 자격 증명 모음에 저장 하지 마세요. 앱과 개발/프로덕션 환경 마다 별도의 키 자격 증명 모음을 사용 하 여 가장 높은 수준의 보안을 위해 앱 환경을 격리 하는 것이 좋습니다.
 
 다음 예제에서는 키 자격 증명 모음 (및 개발 환경에 대 한 암호 관리자 도구 사용)에 대 한 비밀이 설정 됩니다 `5000-AppSecret` (마침표는 key vault 암호 이름에 사용할 수 없음). 이 암호는 앱의 버전 5.0.0.0 앱 암호를 나타냅니다. 5.1.0.0 앱의 다른 버전에 대해서는에 대해 비밀 관리자 도구를 사용 하 여 키 자격 증명 모음에 암호를 추가 `5100-AppSecret` 합니다. 각 앱 버전은 해당 버전의 보안 값을 해당 구성으로 구성 하 `AppSecret` 고, 암호를 로드할 때 버전을 제거 합니다.
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*>사용자 지정을 사용 하 여 호출 됩니다 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> .
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 사용자 지정을 사용 하 여 호출 됩니다 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> .
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>구현은 암호의 버전 접두사에 반응 하 여 적절 한 비밀을 구성으로 로드 합니다.
 
-* `Load`이름이 접두사로 시작 하는 경우 비밀을 로드 합니다. 다른 암호는 로드 되지 않습니다.
+* `Load` 이름이 접두사로 시작 하는 경우 비밀을 로드 합니다. 다른 암호는 로드 되지 않습니다.
 * `GetKey`:
   * 비밀 이름에서 접두사를 제거 합니다.
   * 이름에 있는 두 대시 `KeyDelimiter` 를 구성에서 사용 되는 구분 기호인 (일반적으로 콜론)로 바꿉니다. Azure Key Vault 암호 이름에 콜론을 허용 하지 않습니다.
@@ -362,7 +363,7 @@ Configuration.Reload();
 * 로드 하려는 값에 대 한 앱의 구성 키 (이름)가 잘못 되었습니다.
 * 키 자격 증명 모음에 앱에 대 한 액세스 정책을 추가 하는 경우 정책이 만들어졌지만 **액세스 정책** UI에서 **저장** 단추가 선택 되지 않았습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)
@@ -385,7 +386,7 @@ Configuration.Reload();
 
 ## <a name="packages"></a>패키지
 
-Microsoft.Extensions.Configuration에 패키지 참조를 추가 [합니다. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) 패키지입니다.
+Microsoft.Extensions.Configuration에 패키지 참조를 추가 [ 합니다. AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) 패키지입니다.
 
 ## <a name="sample-app"></a>샘플 앱
 
@@ -497,15 +498,15 @@ dotnet user-secrets set "Section:SecretName" "secret_value_2_dev"
   * `config["Section:SecretName"]`
   * `config.GetSection("Section")["SecretName"]`
 
-X.509 인증서는 OS를 통해 관리 됩니다. 앱은 <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 파일 *의appsettings.js* 에서 제공 하는 값으로을 호출 합니다.
+X.509 인증서는 OS를 통해 관리 됩니다. 앱은 <xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 파일 * 의appsettings.js* 에서 제공 하는 값으로을 호출 합니다.
 
 [!code-csharp[](key-vault-configuration/samples/2.x/SampleApp/Program.cs?name=snippet1&highlight=20-23)]
 
 예제 값:
 
-* 키 자격 증명 모음 이름:`contosovault`
-* 응용 프로그램 ID:`627e911e-43cc-61d4-992e-12db9c81b413`
-* 인증서 지문:`fe14593dd66b2406c5269d742d04b6e1ab03adb1`
+* 키 자격 증명 모음 이름: `contosovault`
+* 응용 프로그램 ID: `627e911e-43cc-61d4-992e-12db9c81b413`
+* 인증서 지문: `fe14593dd66b2406c5269d742d04b6e1ab03adb1`
 
 *appsettings.json*:
 
@@ -541,7 +542,7 @@ Azure CLI, PowerShell 또는 Azure Portal를 사용 하 여 **앱을 다시 시�
 
 [!code-csharp[](key-vault-configuration/samples/2.x/SampleApp/Program.cs?name=snippet2&highlight=13-21)]
 
-Key vault 이름 예 값:`contosovault`
+Key vault 이름 예 값: `contosovault`
     
 *appsettings.json*:
 
@@ -559,20 +560,20 @@ Key vault 이름 예 값:`contosovault`
 
 ## <a name="use-a-key-name-prefix"></a>키 이름 접두사 사용
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*>는의 구현을 허용 하는 오버 로드를 제공 하 여 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> 키 자격 증명 모음 비밀이 구성 키로 변환 되는 방식을 제어할 수 있습니다. 예를 들어, 인터페이스를 구현 하 여 앱 시작 시 제공 하는 접두사 값에 따라 비밀 값을 로드할 수 있습니다. 예를 들어 앱의 버전에 따라 비밀을 로드할 수 있습니다.
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 는의 구현을 허용 하는 오버 로드를 제공 하 여 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> 키 자격 증명 모음 비밀이 구성 키로 변환 되는 방식을 제어할 수 있습니다. 예를 들어, 인터페이스를 구현 하 여 앱 시작 시 제공 하는 접두사 값에 따라 비밀 값을 로드할 수 있습니다. 예를 들어 앱의 버전에 따라 비밀을 로드할 수 있습니다.
 
 > [!WARNING]
 > 키 자격 증명 모음 비밀에 대 한 접두사를 사용 하 여 여러 앱에 대 한 비밀을 동일한 주요 자격 증명 모음에 저장 하거나 환경 비밀 (예: *개발* 및 *프로덕션* 비밀)을 동일한 자격 증명 모음에 저장 하지 마세요. 앱과 개발/프로덕션 환경 마다 별도의 키 자격 증명 모음을 사용 하 여 가장 높은 수준의 보안을 위해 앱 환경을 격리 하는 것이 좋습니다.
 
 다음 예제에서는 키 자격 증명 모음 (및 개발 환경에 대 한 암호 관리자 도구 사용)에 대 한 비밀이 설정 됩니다 `5000-AppSecret` (마침표는 key vault 암호 이름에 사용할 수 없음). 이 암호는 앱의 버전 5.0.0.0 앱 암호를 나타냅니다. 5.1.0.0 앱의 다른 버전에 대해서는에 대해 비밀 관리자 도구를 사용 하 여 키 자격 증명 모음에 암호를 추가 `5100-AppSecret` 합니다. 각 앱 버전은 해당 버전의 보안 값을 해당 구성으로 구성 하 `AppSecret` 고, 암호를 로드할 때 버전을 제거 합니다.
 
-<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*>사용자 지정을 사용 하 여 호출 됩니다 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> .
+<xref:Microsoft.Extensions.Configuration.AzureKeyVaultConfigurationExtensions.AddAzureKeyVault*> 사용자 지정을 사용 하 여 호출 됩니다 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager> .
 
 [!code-csharp[](key-vault-configuration/samples_snapshot/Program.cs)]
 
 <xref:Microsoft.Extensions.Configuration.AzureKeyVault.IKeyVaultSecretManager>구현은 암호의 버전 접두사에 반응 하 여 적절 한 비밀을 구성으로 로드 합니다.
 
-* `Load`이름이 접두사로 시작 하는 경우 비밀을 로드 합니다. 다른 암호는 로드 되지 않습니다.
+* `Load` 이름이 접두사로 시작 하는 경우 비밀을 로드 합니다. 다른 암호는 로드 되지 않습니다.
 * `GetKey`:
   * 비밀 이름에서 접두사를 제거 합니다.
   * 이름에 있는 두 대시 `KeyDelimiter` 를 구성에서 사용 되는 구분 기호인 (일반적으로 콜론)로 바꿉니다. Azure Key Vault 암호 이름에 콜론을 허용 하지 않습니다.
@@ -689,7 +690,7 @@ Configuration.Reload();
 * 로드 하려는 값에 대 한 앱의 구성 키 (이름)가 잘못 되었습니다.
 * 키 자격 증명 모음에 앱에 대 한 액세스 정책을 추가 하는 경우 정책이 만들어졌지만 **액세스 정책** UI에서 **저장** 단추가 선택 되지 않았습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:fundamentals/configuration/index>
 * [Microsoft Azure: Key Vault](https://azure.microsoft.com/services/key-vault/)

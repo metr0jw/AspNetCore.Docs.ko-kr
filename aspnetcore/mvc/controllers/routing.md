@@ -5,6 +5,7 @@ description: ASP.NET Core MVC가 라우팅 미들웨어를 사용하여 들어�
 ms.author: riande
 ms.date: 3/25/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 4d367a6b15fdcf9ef6be1bac749368fd48fa259e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 83ddb49f60058ecc744163faa2f5c454abc7b42d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020368"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630315"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>ASP.NET Core의 컨트롤러 작업에 라우팅
 
@@ -50,7 +51,7 @@ ASP.NET Core 컨트롤러는 라우팅 [미들웨어](xref:fundamentals/middlewa
 
 ## <a name="set-up-conventional-route"></a>기본 경로 설정
 
-`Startup.Configure`일반적으로 [기본 라우팅을](#crd)사용할 때 다음과 비슷한 코드가 있습니다.
+`Startup.Configure` 일반적으로 [기본 라우팅을](#crd)사용할 때 다음과 비슷한 코드가 있습니다.
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet)]
 
@@ -58,14 +59,14 @@ ASP.NET Core 컨트롤러는 라우팅 [미들웨어](xref:fundamentals/middlewa
 
 경로 템플릿 `"{controller=Home}/{action=Index}/{id?}"` :
 
-* URL 경로와 일치 합니다.`/Products/Details/5`
+* URL 경로와 일치 합니다. `/Products/Details/5`
 * `{ controller = Products, action = Details, id = 5 }`경로를 토큰화 하 여 경로 값을 추출 합니다. 경로 값을 추출 하면 앱에 라는 컨트롤러와 작업이 포함 된 경우 일치 하는 항목이 생성 됩니다 `ProductsController` `Details` .
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippetA)]
 
   [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
-* `/Products/Details/5`모델은 `id = 5` 매개 변수를로 설정 하기 위해의 값을 바인딩합니다 `id` `5` . 자세한 내용은 [모델 바인딩](xref:mvc/models/model-binding) 을 참조 하세요.
+* `/Products/Details/5` 모델은 `id = 5` 매개 변수를로 설정 하기 위해의 값을 바인딩합니다 `id` `5` . 자세한 내용은 [모델 바인딩](xref:mvc/models/model-binding) 을 참조 하세요.
 * `{controller=Home}``Home`는를 기본값으로 정의 `controller` 합니다.
 * `{action=Index}``Index`는를 기본값으로 정의 `action` 합니다.
 *  `?`의 문자는 `{id?}` 를 `id` 선택적으로 정의 합니다.
@@ -73,7 +74,7 @@ ASP.NET Core 컨트롤러는 라우팅 [미들웨어](xref:fundamentals/middlewa
 * URL 경로와 일치 `/` 합니다.
 * 경로 값을 생성 `{ controller = Home, action = Index }` 합니다.
 
-및에 대 한 값은 `controller` `action` 기본값을 사용 합니다. `id`URL 경로에 해당 세그먼트가 없기 때문에에서 값을 생성 하지 않습니다. `/`및 작업이 있는 경우에만 `HomeController` 일치 `Index` :
+및에 대 한 값은 `controller` `action` 기본값을 사용 합니다. `id` URL 경로에 해당 세그먼트가 없기 때문에에서 값을 생성 하지 않습니다. `/` 및 작업이 있는 경우에만 `HomeController` 일치 `Index` :
 
 ```csharp
 public class HomeController : Controller
@@ -122,12 +123,12 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 
 * 첫 번째 경로 세그먼트는 `{controller=Home}` 컨트롤러 이름에 매핑됩니다.
 * 두 번째 세그먼트 인은 `{action=Index}` [작업](#action) 이름에 매핑됩니다.
-* 세 번째 세그먼트는 `{id?}` 선택 사항에 사용 됩니다 `id` . `?`의를 `{id?}` 사용 하면이 옵션을 선택할 수 있습니다. `id`는 모델 엔터티에 매핑하는 데 사용 됩니다.
+* 세 번째 세그먼트는 `{id?}` 선택 사항에 사용 됩니다 `id` . `?`의를 `{id?}` 사용 하면이 옵션을 선택할 수 있습니다. `id` 는 모델 엔터티에 매핑하는 데 사용 됩니다.
 
 이 경로를 사용 하 여 `default` URL 경로를 사용 합니다.
 
-* `/Products/List`작업에 매핑됩니다 `ProductsController.List` .
-* `/Blog/Article/17`는에 매핑되고 `BlogController.Article` 일반적으로 `id` 매개 변수를 17에 바인딩합니다.
+* `/Products/List` 작업에 매핑됩니다 `ProductsController.List` .
+* `/Blog/Article/17` 는에 매핑되고 `BlogController.Article` 일반적으로 `id` 매개 변수를 17에 바인딩합니다.
 
 이 매핑:
 
@@ -142,7 +143,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 > [!WARNING]
 > `id`위의 코드에서은 경로 템플릿에서 선택적으로 정의 됩니다. URL의 일부로 제공 되는 선택적 ID 없이 작업을 실행할 수 있습니다. 일반적으로 `id` URL에서이 생략 된 경우:
 >
-> * `id`모델 바인딩에서로 설정 됩니다 `0` .
+> * `id` 모델 바인딩에서로 설정 됩니다 `0` .
 > * 데이터베이스 일치에서 엔터티를 찾을 수 없습니다 `id == 0` .
 >
 > [특성 라우팅은](#ar) 사용자가 아닌 일부 작업에 필요한 ID를 설정 하는 세분화 된 제어를 제공 합니다. 규칙에 따라 설명서에는 `id` 올바른 사용에 표시 될 수 있는 것과 같은 선택적 매개 변수가 포함 됩니다.
@@ -153,7 +154,7 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 * UI 기반 앱에 대한 유용한 시작점입니다.
 * 는 많은 웹 UI 앱에 필요한 유일한 경로 템플릿입니다. 더 큰 규모의 웹 UI 응용 프로그램의 경우에는 [영역](#areas) 을 사용 하는 다른 경로를 사용 해야 합니다.
 
-<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>및 <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
+<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> 및 <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
 
 * 호출 된 순서에 따라 해당 끝점에 **순서** 값을 자동으로 할당 합니다.
 
@@ -190,7 +191,7 @@ ASP.NET Core 3.0 이상의 엔드포인트 라우팅은 다음과 같습니다.
 
 위의 예제는 다음과 같습니다.
 
-* `blog`경로는 `default` 먼저 추가 되기 때문에 경로 보다 일치 하는 항목에 대 한 우선 순위가 높습니다.
+* `blog` 경로는 `default` 먼저 추가 되기 때문에 경로 보다 일치 하는 항목에 대 한 우선 순위가 높습니다.
 * 는 문서 이름을 URL [의 일부로](https://developer.mozilla.org/docs/Glossary/Slug) 포함 하는 것이 일반적입니다.
 
 > [!WARNING]
@@ -218,24 +219,24 @@ ASP.NET Core 3.0 이상의 엔드포인트 라우팅은 다음과 같습니다.
 * 가장 적합 한 후보를 선택 합니다.
 * 예외를 throw합니다.
 
-예:
+다음은 그 예입니다. 
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet9)]
 
 위의 컨트롤러는 다음과 일치 하는 두 작업을 정의 합니다.
 
-* URL 경로`/Products33/Edit/17`
+* URL 경로 `/Products33/Edit/17`
 * 데이터 `{ controller = Products33, action = Edit, id = 17 }` 를 라우팅합니다.
 
 MVC 컨트롤러의 일반적인 패턴은 다음과 같습니다.
 
-* `Edit(int)`제품을 편집 하는 폼을 표시 합니다.
-* `Edit(int, Product)`게시 된 폼을 처리 합니다.
+* `Edit(int)` 제품을 편집 하는 폼을 표시 합니다.
+* `Edit(int, Product)` 게시 된 폼을 처리 합니다.
 
 올바른 경로를 확인 하려면:
 
-* `Edit(int, Product)`요청이 HTTP 인 경우이 선택 됩니다 `POST` .
-* `Edit(int)`[HTTP 동사가](#verb) 다른 항목이 면이 선택 됩니다. `Edit(int)`는 일반적으로을 통해 호출 됩니다 `GET` .
+* `Edit(int, Product)` 요청이 HTTP 인 경우이 선택 됩니다 `POST` .
+* `Edit(int)`[HTTP 동사가](#verb) 다른 항목이 면이 선택 됩니다. `Edit(int)` 는 일반적으로을 통해 호출 됩니다 `GET` .
 
 <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute> `[HttpPost]` 요청의 HTTP 메서드를 기반으로 하 여 선택할 수 있도록 라우팅에는가 제공 됩니다. 는 `HttpPostAttribute` `Edit(int, Product)` 보다 더 일치 하는 항목을 만듭니다 `Edit(int)` .
 
@@ -276,10 +277,10 @@ REST Api는 특성 라우팅을 사용 하 여 응용 프로그램의 기능을 
 
 위의 코드에서 <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> 는 `UseEndpoints` 특성 라우트된 컨트롤러를 매핑하기 위해 내부에서 호출 됩니다.
 
-다음 예제에서,
+다음 예제에서는
 
 * 위의 `Configure` 메서드가 사용 됩니다.
-* `HomeController`기본 기본 경로와 유사한 Url 집합과 일치 `{controller=Home}/{action=Index}/{id?}` 합니다.
+* `HomeController` 기본 기본 경로와 유사한 Url 집합과 일치 `{controller=Home}/{action=Index}/{id?}` 합니다.
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/HomeController.cs?name=snippet2)]
 
@@ -383,7 +384,7 @@ REST Api는 특성 라우팅을 사용 하 여 응용 프로그램의 기능을 
 
 `Products2ApiController.GetProduct(int)`작업은 다음과 같습니다.
 
-* 다음과 같이 URL 경로를 사용 하 여 실행 됩니다.`/products2/3`
+* 다음과 같이 URL 경로를 사용 하 여 실행 됩니다. `/products2/3`
 * URL 경로를 사용 하 여 실행 되지 않습니다 `/products2` .
 
 [[사용]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) 특성을 사용하면 작업에서 지원되는 요청 콘텐츠 형식을 제한할 수 있습니다. 자세한 내용은 [소비 특성을 사용 하 여 지원 되는 요청 콘텐츠 형식 정의](xref:web-api/index#consumes)를 참조 하세요.
@@ -417,7 +418,7 @@ REST Api는 특성 라우팅을 사용 하 여 응용 프로그램의 기능을 
 
 앞의 예제에서:
 
-* URL 경로가 `/products` 일치 하는 경우`ProductsApi.ListProducts`
+* URL 경로가 `/products` 일치 하는 경우 `ProductsApi.ListProducts`
 * URL 경로는 `/products/5` 와 일치할 수 있습니다 `ProductsApi.GetProduct(int)` .
 
 이러한 작업은 모두 `GET` 특성으로 표시 되어 있으므로 HTTP만 일치 `[HttpGet]` 합니다.
@@ -428,11 +429,11 @@ REST Api는 특성 라우팅을 사용 하 여 응용 프로그램의 기능을 
 
 다음 표에서는 `[Route]` 위의 코드에 있는 특성에 대해 설명 합니다.
 
-| attribute               | 와 결합`[Route("Home")]` | 경로 템플릿을 정의 합니다. |
+| attribute               | 와 결합 `[Route("Home")]` | 경로 템플릿을 정의 합니다. |
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | 예 | `"Home"` |
 | `[Route("Index")]` | 예 | `"Home/Index"` |
-| `[Route("/")]` | ‘아니요’ | `""` |
+| `[Route("/")]` | **아니요** | `""` |
 | `[Route("About")]` | 예 | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
@@ -485,8 +486,8 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
 편의를 위해 특성 경로는 토큰을 다음 중 하나로 묶어 예약 된 경로 매개 변수에 대 한 토큰 바꾸기를 지원 합니다.
 
-* 대괄호:`[]`
-* 중괄호:`{}`
+* 대괄호: `[]`
+* 중괄호: `{}`
 
 `[action]`, 및 토큰은 `[area]` `[controller]` 경로가 정의 된 작업에서 동작 이름, 영역 이름 및 컨트롤러 이름 값으로 대체 됩니다.
 
@@ -496,11 +497,11 @@ AmbiguousMatchException: The request matched multiple endpoints. Matches:
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet10)]
 
-  * 항목`/Products0/List`
+  * 항목 `/Products0/List`
 
   [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsController.cs?name=snippet11)]
 
-  * 항목`/Products0/Edit/{id}`
+  * 항목 `/Products0/Edit/{id}`
 
 토큰 교체는 특성 경로 빌드 과정의 마지막 단계로 발생합니다. 앞의 예제는 다음 코드와 동일 하 게 동작 합니다.
 
@@ -695,7 +696,7 @@ result: /UrlGeneration/Destination
 
 `Source`위의 코드에서 작업은을 생성 `custom/url/to/destination` 합니다.
 
-<xref:Microsoft.AspNetCore.Routing.LinkGenerator>는의 대 안으로 ASP.NET Core 3.0에 추가 되었습니다 `IUrlHelper` . `LinkGenerator`는 유사 하지만 유연한 기능을 제공 합니다. 의 각 메서드에 `IUrlHelper` 는의 해당 메서드 패밀리가 있습니다 `LinkGenerator` .
+<xref:Microsoft.AspNetCore.Routing.LinkGenerator> 는의 대 안으로 ASP.NET Core 3.0에 추가 되었습니다 `IUrlHelper` . `LinkGenerator` 는 유사 하지만 유연한 기능을 제공 합니다. 의 각 메서드에 `IUrlHelper` 는의 해당 메서드 패밀리가 있습니다 `LinkGenerator` .
 
 ### <a name="generating-urls-by-action-name"></a>작업 이름으로 URL 생성
 
@@ -723,7 +724,7 @@ result: /UrlGeneration/Destination
 
 기본 경로를 사용 하 여이 문제가 발생할 수 있습니다 `{controller}/{action}/{id?}` . `Url.Action`항상 명시적으로 및 값을 지정 하기 때문에이 문제는 드물게 발생 `controller` `action` 합니다.
 
-Url의 여러 오버 로드. Action은 경로 값 개체를 사용 하 여 및 이외의 경로 매개 변수에 대 한 값을 제공 [합니다.](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) `controller` `action` 경로 값 개체는와 함께 자주 사용 됩니다 `id` . 정의합니다(예: `Url.Action("Buy", "Products", new { id = 17 })`). 경로 값 개체:
+Url의 여러 오버 로드. Action은 경로 값 개체를 사용 하 여 및 이외의 경로 매개 변수에 대 한 값을 제공 [합니다.](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) `controller` `action` 경로 값 개체는와 함께 자주 사용 됩니다 `id` . 예들 들어 `Url.Action("Buy", "Products", new { id = 17 })`입니다. 경로 값 개체:
 
 * 규칙에 따라 일반적으로 무명 형식의 개체입니다.
 * `IDictionary<>`또는 [POCO](https://wikipedia.org/wiki/Plain_old_CLR_object)일 수 있습니다.
@@ -747,7 +748,7 @@ Url의 여러 오버 로드. Action은 경로 값 개체를 사용 하 여 및 �
 
 ### <a name="generate-urls-by-route"></a>경로로 Url 생성
 
-위의 코드는 컨트롤러 및 작업 이름을 전달 하 여 URL을 생성 하는 방법을 보여 주었습니다. `IUrlHelper`또한 [RouteUrl](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) 메서드 패밀리를 제공 합니다. 이러한 메서드는 [Url](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*)과 유사 하지만 및의 현재 값을 `action` 경로 값에 복사 하지 않습니다 `controller` . 의 가장 일반적인 사용법은 `Url.RouteUrl` 다음과 같습니다.
+위의 코드는 컨트롤러 및 작업 이름을 전달 하 여 URL을 생성 하는 방법을 보여 주었습니다. `IUrlHelper` 또한 [RouteUrl](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.RouteUrl*) 메서드 패밀리를 제공 합니다. 이러한 메서드는 [Url](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*)과 유사 하지만 및의 현재 값을 `action` 경로 값에 복사 하지 않습니다 `controller` . 의 가장 일반적인 사용법은 `Url.RouteUrl` 다음과 같습니다.
 
 * URL을 생성 하는 경로 이름을 지정 합니다.
 * 일반적으로 컨트롤러 또는 작업 이름을 지정 하지 않습니다.
@@ -760,7 +761,7 @@ Url의 여러 오버 로드. Action은 경로 값 개체를 사용 하 여 및 �
 
 <a name="routing-gen-urls-html-ref-label"></a>
 
-### <a name="generate-urls-in-html-and-no-locrazor"></a>HTML로 Url 생성Razor
+### <a name="generate-urls-in-html-and-no-locrazor"></a>HTML로 Url 생성 Razor
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper><xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper>및 요소를 각각 생성 하는 [Html.ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) [html.beginform](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) 및 html.actionlink 메서드를 제공 합니다 `<form>` `<a>` . 이러한 메서드는 url을 생성 하는 데 [url. Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) 메서드를 사용 하 여 비슷한 인수를 허용 합니다. `HtmlHelper`에 대한 `Url.RouteUrl` 보조 도구는 `Html.BeginRouteForm` 및 `Html.RouteLink`이며 서로 기능이 비슷합니다.
 
@@ -975,7 +976,7 @@ routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
 * 첫 번째 경로 세그먼트는 컨트롤러 이름에 매핑됩니다.
 * 두 번째는 작업 이름에 매핑됩니다.
-* 세 번째 세그먼트는 선택 사항에 사용 됩니다 `id` . `id`모델 엔터티에 매핑됩니다.
+* 세 번째 세그먼트는 선택 사항에 사용 됩니다 `id` . `id` 모델 엔터티에 매핑됩니다.
 
 이 `default` 경로를 사용하면 URL 경로 `/Products/List`는 `ProductsController.List` 작업에 매핑되고 `/Blog/Article/17`은 `BlogController.Article`에 매핑됩니다. 매핑은 **오직** 컨트롤러 및 작업 이름만을 기준으로 하며 네임스페이스, 원본 파일 위치 또는 메서드 매개 변수를 기준으로 하지 않습니다.
 
@@ -1011,7 +1012,7 @@ app.UseMvc(routes =>
 
 ### <a name="disambiguating-actions"></a>명확한 작업 구분
 
-두 작업이 라우팅을 통해 일치하는 경우 MVC는 작업을 명확히 구분하여 '최적의' 후보를 선택해야 하며, 그렇지 못하면 예외가 throw됩니다. 예:
+두 작업이 라우팅을 통해 일치하는 경우 MVC는 작업을 명확히 구분하여 '최적의' 후보를 선택해야 하며, 그렇지 못하면 예외가 throw됩니다. 다음은 그 예입니다. 
 
 ```csharp
 public class ProductsController : Controller

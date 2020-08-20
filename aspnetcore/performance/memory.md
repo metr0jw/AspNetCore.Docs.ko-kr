@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: 09df67657c9b6e4e59d6a1379bf801c289028819
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c409eaaf07109d363581ee7d61dc76521d6818d0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020940"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630668"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>ASP.NET Core의 메모리 관리 및 GC (가비지 수집)
 
@@ -149,7 +150,7 @@ GC 모드는 프로젝트 파일이 나 게시 된 앱의 파일에 있는 *runt
 
 `ServerGarbageCollection`프로젝트 파일에서 변경 하려면 앱을 다시 빌드해야 합니다.
 
-**참고:** 단일 코어가 있는 컴퓨터에서는 서버 가비지 수집을 사용할 수 **없습니다** . 자세한 내용은 <xref:System.Runtime.GCSettings.IsServerGC>를 참조하세요.
+**참고:** 단일 코어가 있는 컴퓨터에서는 서버 가비지 수집을 사용할 수 **없습니다** . 자세한 내용은 <xref:System.Runtime.GCSettings.IsServerGC>을 참조하세요.
 
 다음 이미지는 워크스테이션 GC를 사용 하는 5K RPS 아래의 메모리 프로필을 보여 줍니다.
 
@@ -307,7 +308,7 @@ public int GetLOH1(int size)
 
 `HttpClient``IDisposable`는를 구현 하지만 모든 호출에서 삭제 하면 **안 됩니다** . 대신를 `HttpClient` 다시 사용 해야 합니다.
 
-다음 끝점은 모든 요청에 새 인스턴스를 만들고 삭제 합니다 `HttpClient` .
+다음 끝점은 모든 요청에 새 인스턴스를 만들고 삭제 합니다  `HttpClient` .
 
 ```csharp
 [HttpGet("httpclient1")]
@@ -402,7 +403,7 @@ NuGet 패키지의 경우 이러한 풀을 관리 하는 데 도움이 되는 �
 * 삭제 가능한 개체에 풀링된 배열을 캡슐화 합니다.
 * 풀링된 개체를 [HttpContext](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*)로 등록 합니다.
 
-`RegisterForDispose`는 `Dispose` HTTP 요청이 완료 된 경우에만 해제 되도록 대상 개체에 대 한 호출을 처리 합니다.
+`RegisterForDispose` 는 `Dispose` HTTP 요청이 완료 된 경우에만 해제 되도록 대상 개체에 대 한 호출을 처리 합니다.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();
@@ -442,7 +443,7 @@ public byte[] GetPooledArray(int size)
 
 주요 차이점은 바이트를 할당 하는 것이 고, 결과적으로 0 세대 수집이 훨씬 더 적기 때문입니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [가비지 수집](/dotnet/standard/garbage-collection/)
 * [동시성 시각화 도우미를 사용 하 여 다양 한 GC 모드 이해](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)

@@ -7,6 +7,7 @@ ms.author: prkrishn
 ms.custom: mvc
 ms.date: 07/23/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/handle-errors
-ms.openlocfilehash: a17db9de5f19d11853fb3f9f8c45ade8391ff600
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d9d5703e6c02ed2b95cbe95d3624cd0647ee239f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021499"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631266"
 ---
 # <a name="handle-errors-in-aspnet-core-web-apis"></a>ASP.NET Core 웹 API에서 오류 처리
 
@@ -44,7 +45,7 @@ curl -i https://localhost:5001/weatherforecast/chicago
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core 3.0 이전에서 클라이언트가 HTML 형식의 출력을 요청하지 않는 경우 개발자 예외 페이지에 일반 텍스트 응답이 표시됩니다. 다음 출력이 표시됩니다.
+ASP.NET Core 3.0 이전에서 클라이언트가 HTML 형식의 출력을 요청하지 않는 경우 개발자 예외 페이지에 일반 텍스트 응답이 표시됩니다. 다음과 같은 출력이 표시됩니다.
 
 ```console
 HTTP/1.1 500 Internal Server Error
@@ -78,7 +79,7 @@ Host: localhost:44312
 User-Agent: curl/7.55.1
 ```
 
-HTML 형식의 응답을 대신 표시하려면 `Accept` HTTP 요청 헤더를 `text/html` 미디어 유형으로 설정합니다. 예:
+HTML 형식의 응답을 대신 표시하려면 `Accept` HTTP 요청 헤더를 `text/html` 미디어 유형으로 설정합니다. 다음은 그 예입니다. 
 
 ```bash
 curl -i -H "Accept: text/html" https://localhost:5001/weatherforecast/chicago

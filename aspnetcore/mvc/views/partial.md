@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 06/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 826d7cf96d95ee7eb98b0f05a233401a1e3bff33
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7a370042520adfe5b06784b76acf41a81eb2c72d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020836"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630629"
 ---
 # <a name="partial-views-in-aspnet-core"></a>ASP.NET Core의 부분 보기
 
@@ -147,7 +148,7 @@ ASP.NET Core 2.2 이상에서 처리기 메서드는 <xref:Microsoft.AspNetCore.
 
 다음 예제에서는 앱 루트의 부분 보기를 참조합니다. 물결표-슬래시(`~/`) 또는 슬래시(`/`)로 시작되는 경로는 앱 루트를 참조합니다.
 
-**Razor마주보**
+**Razor 마주보**
 
 ```cshtml
 <partial name="~/Pages/Folder/_PartialName.cshtml" />
@@ -167,7 +168,7 @@ ASP.NET Core 2.2 이상에서 처리기 메서드는 <xref:Microsoft.AspNetCore.
 <partial name="../Account/_PartialName.cshtml" />
 ```
 
-자세한 내용은 <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>를 참조하세요.
+자세한 내용은 <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>을 참조하세요.
 
 ::: moniker-end
 
@@ -189,7 +190,7 @@ HTML 도우미를 사용할 때 가장 좋은 방법은 <xref:Microsoft.AspNetCo
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**Razor마주보**
+**Razor 마주보**
 
 ```cshtml
 @await Html.PartialAsync("~/Pages/Folder/_PartialName.cshtml")
@@ -240,7 +241,7 @@ HTML 도우미를 사용할 때 가장 좋은 방법은 <xref:Microsoft.AspNetCo
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**Razor마주보**
+**Razor 마주보**
 
 1. 현재 페이지의 폴더를 실행 중
 1. 페이지의 폴더 위에 있는 디렉터리 그래프
@@ -296,7 +297,7 @@ HTML 도우미를 사용할 때 가장 좋은 방법은 <xref:Microsoft.AspNetCo
 
 ::: moniker range=">= aspnetcore-2.1"
 
-**Razor마주보**
+**Razor 마주보**
 
 샘플 앱의 다음 태그는 *Pages/ArticlesRP/ReadRP.cshtml* 페이지에서 가져온 것입니다. 페이지에는 두 개의 부분 보기가 있습니다. 두 번째 부분 보기는 모델 및 `ViewData`를 부분 보기에 전달합니다. `ViewDataDictionary` 생성자 오버로드를 사용하여 기존 `ViewData` 사전을 유지하면서 새로운 `ViewData` 사전을 전달합니다.
 
@@ -347,7 +348,7 @@ HTML 도우미를 사용할 때 가장 좋은 방법은 <xref:Microsoft.AspNetCo
 >
 > 그러나 크게 볼 때 우리는 전념할 수 없습 ...
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 ::: moniker range=">= aspnetcore-2.1"
 

@@ -5,6 +5,7 @@ description: 모델 바인딩을 통해 컨트롤러 작업이 ASP.NET Core의 �
 ms.author: riande
 ms.date: 01/06/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 6e52d9c19a3d9c16f980021000db0bdecca5ed58
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4bef68fffbdfaff023f71964a27ead56863e4192
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018912"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630434"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>ASP.NET Core의 사용자 지정 모델 바인딩
 

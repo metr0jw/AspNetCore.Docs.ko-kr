@@ -5,6 +5,7 @@ description: ASP.NET Core 데이터 보호 Api를 사용 하 여 암호를 해�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/password-hashing
-ms.openlocfilehash: 643d468763c6a935fc618a22920cb79119258087
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 19263400397a9dfe2d9e6044109d6d063023f6f4
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018392"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629862"
 ---
 # <a name="hash-passwords-in-aspnet-core"></a>ASP.NET Core의 해시 암호
 
@@ -36,4 +37,4 @@ ms.locfileid: "88018392"
 
 [!code-csharp[](password-hashing/samples/passwordhasher.cs)]
 
-실제 사용 사례는 ASP.NET Core 형식에 대 한 [소스 코드](https://github.com/dotnet/AspNetCore/blob/master/src/Identity/Extensions.Core/src/PasswordHasher.cs) 를 참조 하세요 Identity `PasswordHasher` .
+[source code](https://github.com/dotnet/AspNetCore/blob/master/src/Identity/Extensions.Core/src/PasswordHasher.cs) ASP.NET Core Identity `PasswordHasher` 실제 사용 사례는의 형식에 대 한 소스 코드를 참조 하세요.

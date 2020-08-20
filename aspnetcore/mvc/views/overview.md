@@ -5,6 +5,7 @@ description: ASP.NET Core MVC에서 보기가 앱의 데이터 프레젠테이�
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/overview
-ms.openlocfilehash: 8630df0ad8ea556c6edf0ab251b3c86493f751e2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6afd69414f2dc0158f724c6e6f7b3a3e51c1e92c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020875"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630681"
 ---
 # <a name="views-in-aspnet-core-mvc"></a>ASP.NET Core MVC에서 보기
 
@@ -28,7 +29,7 @@ ms.locfileid: "88020875"
 
 이 항목에서는 ASP.NET Core MVC 애플리케이션에서 사용되는 보기에 대해 설명합니다. 페이지에 대 한 자세한 내용은 Razor [ Razor 페이지 소개](xref:razor-pages/index)를 참조 하세요.
 
-MVC(Model-View-Controller) 패턴에서 *보기*는 앱의 데이터 프레젠테이션과 사용자 상호 작용을 처리합니다. 뷰는 포함 된 [ Razor 태그가](xref:mvc/views/razor)있는 HTML 템플릿입니다. Razor태그는 HTML 태그와 상호 작용 하 여 클라이언트에 전송 되는 웹 페이지를 생성 하는 코드입니다.
+MVC(Model-View-Controller) 패턴에서 *보기*는 앱의 데이터 프레젠테이션과 사용자 상호 작용을 처리합니다. 뷰는 포함 된 [ Razor 태그가](xref:mvc/views/razor)있는 HTML 템플릿입니다. Razor 태그는 HTML 태그와 상호 작용 하 여 클라이언트에 전송 되는 웹 페이지를 생성 하는 코드입니다.
 
 MVC ASP.NET Core 뷰는 태그에서 [c # 프로그래밍 언어](/dotnet/csharp/) 를 사용 하는 *. cshtml* 파일입니다. Razor 일반적으로 보기 파일은 앱의 [컨트롤러](xref:mvc/controllers/actions) 각각에 대해 명명된 폴더로 그룹화됩니다. 이 폴더는 앱 루트의 *Views* 폴더에 저장됩니다.
 
@@ -369,7 +370,7 @@ public IActionResult SomeAction()
 
 **ViewData 및 ViewBag 간의 차이점 요약**
 
- `ViewBag`페이지에서 사용할 수 없습니다 Razor .
+ `ViewBag` 페이지에서 사용할 수 없습니다 Razor .
 
 * `ViewData`
   * 는 [ViewDataDictionary](/dotnet/api/microsoft.aspnetcore.mvc.viewfeatures.viewdatadictionary)에서 파생 되므로,, 및와 같이 유용할 수 있는 사전 속성이 있습니다 `ContainsKey` `Add` `Remove` `Clear` .

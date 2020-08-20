@@ -5,6 +5,7 @@ description: ASP.NET Core Data Protection 하위 키 파생 및 인증 된 암�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/subkeyderivation
-ms.openlocfilehash: ef9c100df69f9f7a1b51819ebb5721cb4f875ffd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d8038142ccb2597eb1c98738307b8b9a842dae5a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019692"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630122"
 ---
 # <a name="subkey-derivation-and-authenticated-encryption-in-aspnet-core"></a>ASP.NET Core에서 하위 키 파생 및 인증 된 암호화
 
@@ -49,7 +50,7 @@ AAD는 세 구성 요소 모두의 튜플에 대해 고유 하기 때문에 모�
 
 여기서는 다음 매개 변수를 사용 하 여 NIST SP800-108 KDF in 카운터 모드 ( [NIST SP800-108](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf), 5.1 참조)를 호출 합니다.
 
-* 키 파생 키 (KDK) =`K_M`
+* 키 파생 키 (KDK) = `K_M`
 
 * PRF = HMACSHA512
 

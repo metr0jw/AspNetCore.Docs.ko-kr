@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 10/24/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/extensibility/key-management
-ms.openlocfilehash: 5f55b56bd35a583e1f078a5a281788b68412e4f7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 797df457a5584233043210e9ba2657b7fd7f3893
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021694"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631006"
 ---
 # <a name="key-management-extensibility-in-aspnet-core"></a>ASP.NET Core의 키 관리 확장성
 
@@ -73,7 +74,7 @@ ms.locfileid: "88021694"
 
 `XmlKeyManager`형식은의 기본 구체적 구현입니다 `IKeyManager` . 휴지 상태의 키 에스크로 및 암호화를 포함 하 여 몇 가지 유용한 기능을 제공 합니다. 이 시스템의 키는 XML 요소로 표시 됩니다 (특히 [XElement](/dotnet/csharp/programming-guide/concepts/linq/xelement-class-overview)).
 
-`XmlKeyManager`는 작업을 수행 하는 과정에서 여러 다른 구성 요소에 종속 됩니다.
+`XmlKeyManager` 는 작업을 수행 하는 과정에서 여러 다른 구성 요소에 종속 됩니다.
 
 ::: moniker range=">= aspnetcore-2.0"
 
@@ -81,9 +82,9 @@ ms.locfileid: "88021694"
 
 * `IXmlRepository`-키가 저장소에 유지 되는 위치를 제어 합니다.
 
-* `IXmlEncryptor`[선택 사항]-미사용 키를 암호화할 수 있습니다.
+* `IXmlEncryptor` [선택 사항]-미사용 키를 암호화할 수 있습니다.
 
-* `IKeyEscrowSink`[선택 사항]-주요 에스크로 서비스를 제공 합니다.
+* `IKeyEscrowSink` [선택 사항]-주요 에스크로 서비스를 제공 합니다.
 
 ::: moniker-end
 
@@ -91,9 +92,9 @@ ms.locfileid: "88021694"
 
 * `IXmlRepository`-키가 저장소에 유지 되는 위치를 제어 합니다.
 
-* `IXmlEncryptor`[선택 사항]-미사용 키를 암호화할 수 있습니다.
+* `IXmlEncryptor` [선택 사항]-미사용 키를 암호화할 수 있습니다.
 
-* `IKeyEscrowSink`[선택 사항]-주요 에스크로 서비스를 제공 합니다.
+* `IKeyEscrowSink` [선택 사항]-주요 에스크로 서비스를 제공 합니다.
 
 ::: moniker-end
 
@@ -240,7 +241,7 @@ services.AddSingleton<IXmlEncryptor>(new MyCustomXmlEncryptor());
 
 * Store (Guid keyId, XElement 요소)
 
-`IKeyEscrowSink`비즈니스 정책과 일관 된 보안 방식으로 제공 된 요소를 처리 하기 위한 구현입니다. 에스크로 싱크에서 인증서의 개인 키가 위탁 된 알려진 회사 x.509 인증서를 사용 하 여 XML 요소를 암호화 하는 것이 가능 합니다. `CertificateXmlEncryptor`형식은이를 지원할 수 있습니다. `IKeyEscrowSink`구현도 제공 된 요소를 적절 하 게 유지 하는 일을 담당 합니다.
+`IKeyEscrowSink`비즈니스 정책과 일관 된 보안 방식으로 제공 된 요소를 처리 하기 위한 구현입니다. 에스크로 싱크에서 인증서의 개인 키가 위탁 된 알려진 회사 x.509 인증서를 사용 하 여 XML 요소를 암호화 하는 것이 가능 합니다. `CertificateXmlEncryptor` 형식은이를 지원할 수 있습니다. `IKeyEscrowSink`구현도 제공 된 요소를 적절 하 게 유지 하는 일을 담당 합니다.
 
 서버 관리자가 [전역적으로 구성할](xref:security/data-protection/configuration/machine-wide-policy)수 있지만 기본적으로는 에스크로 메커니즘이 사용 되지 않습니다. 아래 샘플에 표시 된 것 처럼 메서드를 통해 프로그래밍 방식으로 구성할 수도 있습니다 `IDataProtectionBuilder.AddKeyEscrowSink` . `AddKeyEscrowSink`메서드 오버 로드는 `IServiceCollection.AddSingleton` 인스턴스를 `IServiceCollection.AddInstance` 단일 항목 하기 위해 및 오버 로드를 미러링합니다 `IKeyEscrowSink` . 여러 `IKeyEscrowSink` 인스턴스를 등록 하는 경우 키를 생성 하는 동안 각 인스턴스를 호출 하므로 여러 메커니즘에 동시에 키를 위탁 수 있습니다.
 

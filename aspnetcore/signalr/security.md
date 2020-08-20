@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core의 보안 고려 사항SignalR
+title: ASP.NET Core의 보안 고려 사항 SignalR
 author: bradygaster
 description: ASP.NET Core에서 인증 및 권한 부여를 사용 하는 방법에 대해 알아봅니다 SignalR .
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 01/16/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/security
-ms.openlocfilehash: e004899e334738f723cb98638cb31de8d314a830
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 12293c5cb3dc49d505225f1b44e824e9273cfffc
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022474"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630993"
 ---
-# <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>ASP.NET Core의 보안 고려 사항SignalR
+# <a name="security-considerations-in-aspnet-core-no-locsignalr"></a>ASP.NET Core의 보안 고려 사항 SignalR
 
 [Andrew Stanton-간호사](https://twitter.com/anurse)
 
@@ -32,9 +33,9 @@ ms.locfileid: "88022474"
 
 ## <a name="cross-origin-resource-sharing"></a>크로스-원본 자원 공유
 
-[CORS (크로스-원본 자원 공유)](https://www.w3.org/TR/cors/) 를 사용 하 여 브라우저에서 크로스-원본 연결을 허용할 수 있습니다 SignalR . JavaScript 코드가 앱과 다른 도메인에서 호스트 되는 경우 SignalR javascript가 앱에 연결할 수 있도록 [CORS 미들웨어](xref:security/cors) 를 사용 하도록 설정 해야 합니다 SignalR . 신뢰 하거나 제어 하는 도메인 에서만 원본 간 요청을 허용 합니다. 예:
+[CORS (크로스-원본 자원 공유)](https://www.w3.org/TR/cors/) 를 사용 하 여 브라우저에서 크로스-원본 연결을 허용할 수 있습니다 SignalR . JavaScript 코드가 앱과 다른 도메인에서 호스트 되는 경우 SignalR javascript가 앱에 연결할 수 있도록 [CORS 미들웨어](xref:security/cors) 를 사용 하도록 설정 해야 합니다 SignalR . 신뢰 하거나 제어 하는 도메인 에서만 원본 간 요청을 허용 합니다. 다음은 그 예입니다. 
 
-* 사이트는에서 호스트 됩니다.`http://www.example.com`
+* 사이트는에서 호스트 됩니다. `http://www.example.com`
 * SignalR앱이에서 호스팅됩니다.`http://signalr.example.com`
 
 CORS를 SignalR 앱에서 원본만 허용 하도록 구성 해야 합니다 `www.example.com` .
@@ -122,7 +123,7 @@ ASP.NET Core 2.1 이상에서 헤더 유효성 검사는 이전에 배치 된 �
 
 ## <a name="access-token-logging"></a>액세스 토큰 로깅
 
-Websocket 또는 서버에서 보낸 이벤트를 사용 하는 경우 browser 클라이언트는 쿼리 문자열에 액세스 토큰을 보냅니다. 쿼리 문자열을 통해 액세스 토큰을 받는 것은 일반적으로 표준 헤더를 사용 하는 것 만큼 안전 `Authorization` 합니다. 항상 HTTPS를 사용 하 여 클라이언트와 서버 간의 안전한 종단 간 연결을 보장 합니다. 많은 웹 서버는 쿼리 문자열을 포함 하 여 각 요청에 대 한 URL을 기록 합니다. Url을 기록 하면 액세스 토큰이 기록 될 수 있습니다. ASP.NET Core은 기본적으로 쿼리 문자열을 포함 하는 각 요청에 대 한 URL을 기록 합니다. 예:
+Websocket 또는 서버에서 보낸 이벤트를 사용 하는 경우 browser 클라이언트는 쿼리 문자열에 액세스 토큰을 보냅니다. 쿼리 문자열을 통해 액세스 토큰을 받는 것은 일반적으로 표준 헤더를 사용 하는 것 만큼 안전 `Authorization` 합니다. 항상 HTTPS를 사용 하 여 클라이언트와 서버 간의 안전한 종단 간 연결을 보장 합니다. 많은 웹 서버는 쿼리 문자열을 포함 하 여 각 요청에 대 한 URL을 기록 합니다. Url을 기록 하면 액세스 토큰이 기록 될 수 있습니다. ASP.NET Core은 기본적으로 쿼리 문자열을 포함 하는 각 요청에 대 한 URL을 기록 합니다. 다음은 그 예입니다. 
 
 ```
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
@@ -137,7 +138,7 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
 
 ## <a name="buffer-management"></a>버퍼 관리
 
-SignalR는 연결당 버퍼를 사용 하 여 들어오고 나가는 메시지를 관리 합니다. 기본적으로에서는 SignalR 이러한 버퍼를 32 KB로 제한 합니다. 클라이언트 또는 서버에서 보낼 수 있는 최대 메시지는 32 KB입니다. 메시지에 대 한 연결에서 사용 되는 최대 메모리는 32 KB입니다. 메시지가 항상 32 KB 보다 작은 경우 다음 제한을 줄일 수 있습니다.
+SignalR 는 연결당 버퍼를 사용 하 여 들어오고 나가는 메시지를 관리 합니다. 기본적으로에서는 SignalR 이러한 버퍼를 32 KB로 제한 합니다. 클라이언트 또는 서버에서 보낼 수 있는 최대 메시지는 32 KB입니다. 메시지에 대 한 연결에서 사용 되는 최대 메모리는 32 KB입니다. 메시지가 항상 32 KB 보다 작은 경우 다음 제한을 줄일 수 있습니다.
 
 * 클라이언트에서 더 큰 메시지를 보낼 수 없도록 합니다.
 * 서버는 메시지를 수락 하기 위해 대량 버퍼를 할당할 필요가 없습니다.
@@ -149,7 +150,7 @@ SignalR는 연결당 버퍼를 사용 하 여 들어오고 나가는 메시지�
 
 들어오는 메시지와 보내는 메시지에 대 한 제한이 있습니다. 둘 다에서 구성 된 [Httpconnectiondispatcheroptions](xref:signalr/configuration#configure-server-options) 개체에 대해 구성할 수 있습니다 `MapHub` .
 
-* `ApplicationMaxBufferSize`서버에서 버퍼링 하는 클라이언트의 최대 바이트 수를 나타냅니다. 클라이언트에서이 한도 보다 큰 메시지를 보내려고 시도 하면 연결이 닫힐 수 있습니다.
-* `TransportMaxBufferSize`서버에서 보낼 수 있는 최대 바이트 수를 나타냅니다. 서버에서이 한도 보다 큰 메시지 (허브 메서드에서 반환 값 포함)를 보내려고 시도 하면 예외가 throw 됩니다.
+* `ApplicationMaxBufferSize` 서버에서 버퍼링 하는 클라이언트의 최대 바이트 수를 나타냅니다. 클라이언트에서이 한도 보다 큰 메시지를 보내려고 시도 하면 연결이 닫힐 수 있습니다.
+* `TransportMaxBufferSize` 서버에서 보낼 수 있는 최대 바이트 수를 나타냅니다. 서버에서이 한도 보다 큰 메시지 (허브 메서드에서 반환 값 포함)를 보내려고 시도 하면 예외가 throw 됩니다.
 
 제한을 설정 하면 `0` 제한이 사용 되지 않습니다. 제한을 제거 하면 클라이언트가 모든 크기의 메시지를 보낼 수 있습니다. 큰 메시지를 보내는 악의적인 클라이언트는 과도 한 메모리를 할당할 수 있습니다. 메모리를 과도 하 게 사용 하면 동시 연결 수를 상당히 줄일 수 있습니다.

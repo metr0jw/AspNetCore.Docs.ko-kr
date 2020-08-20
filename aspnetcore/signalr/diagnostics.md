@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core의 로깅 및 진단SignalR
+title: ASP.NET Core의 로깅 및 진단 SignalR
 author: anurse
 description: ASP.NET Core 앱에서 진단을 수집 하는 방법을 알아봅니다 SignalR .
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: devx-track-csharp, signalr
 ms.date: 06/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/diagnostics
-ms.openlocfilehash: 922b2ca0aa7933e1010db7ca319631766ffbf753
-ms.sourcegitcommit: ba4872dd5a93780fe6cfacb2711ec1e69e0df92c
+ms.openlocfilehash: 649398a3868117b2e7f3358aa25544c99cc625b3
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88130537"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631344"
 ---
-# <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>ASP.NET Core의 로깅 및 진단SignalR
+# <a name="logging-and-diagnostics-in-aspnet-core-no-locsignalr"></a>ASP.NET Core의 로깅 및 진단 SignalR
 
 [Andrew Stanton-간호사](https://twitter.com/anurse)
 
@@ -33,11 +34,11 @@ ms.locfileid: "88130537"
 ## <a name="server-side-logging"></a>서버 쪽 로깅
 
 > [!WARNING]
-> 서버 쪽 로그에는 앱의 중요 한 정보가 포함 될 수 있습니다. 프로덕션 앱의 원시 로그를 GitHub와 같은 공용 포럼에 게시 **하지 마세요** .
+> 서버 쪽 로그에는 앱의 중요한 정보가 포함될 수 있습니다. 프로덕션 앱의 원시 로그를 GitHub와 같은 퍼블릭 포럼에 게시하면 **안 됩니다**.
 
-SignalR는 ASP.NET Core의 일부 이므로 ASP.NET Core 로깅 시스템을 사용 합니다. 기본 구성에서는 SignalR 매우 적은 정보를 기록 하지만이를 구성할 수 있습니다. ASP.NET Core 로깅 구성에 대 한 자세한 내용은 [ASP.NET Core 로깅](xref:fundamentals/logging/index#configuration) 에 대 한 설명서를 참조 하세요.
+SignalR는 ASP.NET Core의 일부 이므로 ASP.NET Core 로깅 시스템을 사용 합니다. 기본 구성에서는 SignalR 매우 적은 정보를 기록 하지만이를 구성할 수 있습니다. ASP.NET Core 로깅을 구성하는 방법에 대한 자세한 내용은 [ASP.NET Core 로깅](xref:fundamentals/logging/index#configuration) 문서를 참조하세요.
 
-SignalR에서는 두 개의로 거 범주를 사용 합니다.
+SignalR 에서는 두 개의로 거 범주를 사용 합니다.
 
 * `Microsoft.AspNetCore.SignalR`: 허브 프로토콜과 관련 된 로그, 허브 활성화, 메서드 호출 및 기타 허브 관련 작업
 * `Microsoft.AspNetCore.Http.Connections`: Websocket, 긴 폴링, 서버에서 보낸 이벤트, 하위 수준 인프라 등의 전송과 관련 된 로그 SignalR
@@ -55,17 +56,17 @@ JSON 기반 구성을 사용 하지 않는 경우 구성 시스템에서 다음 
 * `Logging:LogLevel:Microsoft.AspNetCore.SignalR` = `Debug`
 * `Logging:LogLevel:Microsoft.AspNetCore.Http.Connections` = `Debug`
 
-구성 시스템에 대 한 설명서를 확인 하 여 중첩 된 구성 값을 지정 하는 방법을 확인 합니다. 예를 들어 환경 변수를 사용 하는 경우 대신 두 개의 `_` 문자를 사용 `:` 합니다 (예: `Logging__LogLevel__Microsoft.AspNetCore.SignalR` ).
+구성 시스템 설명서에서 중첩된 구성 값을 지정하는 방법을 확인합니다. 예를 들어 환경 변수를 사용하는 경우, `:` 대신 두 개의 `_` 문자가 사용됩니다(예: `Logging__LogLevel__Microsoft.AspNetCore.SignalR`).
 
-`Debug`앱에 대 한 자세한 진단을 수집할 때 수준을 사용 하는 것이 좋습니다. `Trace`이 수준은 매우 낮은 수준의 진단을 생성 하며 앱에서 문제를 진단 하는 데 거의 필요 하지 않습니다.
+앱에 대한 자세한 진단을 수집하는 경우 `Debug` 수준을 사용하는 것이 좋습니다. `Trace` 수준은 매우 낮은 수준의 진단을 생성하며, 앱의 문제를 진단하는 데 거의 필요하지 않습니다.
 
 ## <a name="access-server-side-logs"></a>서버 쪽 로그 액세스
 
-서버 쪽 로그에 액세스 하는 방법은를 실행 하는 환경에 따라 달라 집니다.
+서버 쪽 로그에 액세스하는 방법은 실행 환경에 따라 다릅니다.
 
 ### <a name="as-a-console-app-outside-iis"></a>IIS 외부의 콘솔 앱으로
 
-콘솔 응용 프로그램에서 실행 하는 경우 [콘솔로 거](xref:fundamentals/logging/index#console) 를 기본적으로 사용 하도록 설정 해야 합니다. SignalR로그가 콘솔에 표시 됩니다.
+콘솔 앱에서 실행하는 경우 [콘솔 로거](xref:fundamentals/logging/index#console)가 기본적으로 사용되어야 합니다. SignalR 로그가 콘솔에 표시 됩니다.
 
 ### <a name="within-iis-express-from-visual-studio"></a>Visual Studio의 IIS Express 내에서
 
@@ -77,12 +78,12 @@ Azure App Service 포털의 **진단 로그** 섹션에서 **응용 프로그램
 
 ### <a name="other-environments"></a>기타 환경
 
-앱을 다른 환경 (예: Docker, Kubernetes 또는 Windows 서비스)에 배포 하는 경우 <xref:fundamentals/logging/index> 환경에 적합 한 로깅 공급자를 구성 하는 방법에 대 한 자세한 내용은을 참조 하세요.
+다른 환경(예: Docker, Kubernetes 또는 Windows 서비스)에 앱을 배포하는 경우, 환경에 적합한 로깅 공급자를 구성하는 방법에 대한 자세한 내용은 <xref:fundamentals/logging/index>를 참조하세요.
 
 ## <a name="javascript-client-logging"></a>JavaScript 클라이언트 로깅
 
 > [!WARNING]
-> 클라이언트 쪽 로그에는 앱의 중요 한 정보가 포함 될 수 있습니다. 프로덕션 앱의 원시 로그를 GitHub와 같은 공용 포럼에 게시 **하지 마세요** .
+> 클라이언트 쪽 로그에는 앱의 중요한 정보가 포함될 수 있습니다. 프로덕션 앱의 원시 로그를 GitHub와 같은 퍼블릭 포럼에 게시하면 **안 됩니다**.
 
 JavaScript 클라이언트를 사용 하는 경우의 메서드를 사용 하 여 로깅 옵션을 구성할 수 있습니다 `configureLogging` `HubConnectionBuilder` .
 
@@ -104,14 +105,14 @@ JavaScript 클라이언트를 사용 하는 경우의 메서드를 사용 하 �
 
 자세한 정도를 구성 하면 로그가 브라우저 콘솔에 기록 되거나 NodeJS 앱의 표준 출력에 기록 됩니다.
 
-로그를 사용자 지정 로깅 시스템으로 전송 하려는 경우 인터페이스를 구현 하는 JavaScript 개체를 제공할 수 있습니다 `ILogger` . 구현 해야 하는 유일한 방법은 이벤트 `log` 의 수준 및 이벤트와 연결 된 메시지를 가져오는입니다. 예를 들면 다음과 같습니다.
+로그를 사용자 지정 로깅 시스템으로 전송 하려는 경우 인터페이스를 구현 하는 JavaScript 개체를 제공할 수 있습니다 `ILogger` . 구현 해야 하는 유일한 방법은 이벤트 `log` 의 수준 및 이벤트와 연결 된 메시지를 가져오는입니다. 다음은 그 예입니다. 
 
 [!code-typescript[](diagnostics/custom-logger.ts?highlight=3-7,13)]
 
 ## <a name="net-client-logging"></a> .NET 클라이언트 로깅
 
 > [!WARNING]
-> 클라이언트 쪽 로그에는 앱의 중요 한 정보가 포함 될 수 있습니다. 프로덕션 앱의 원시 로그를 GitHub와 같은 공용 포럼에 게시 **하지 마세요** .
+> 클라이언트 쪽 로그에는 앱의 중요한 정보가 포함될 수 있습니다. 프로덕션 앱의 원시 로그를 GitHub와 같은 퍼블릭 포럼에 게시하면 **안 됩니다**.
 
 에서 메서드를 사용 하 여 .NET 클라이언트에서 로그를 가져올 수 있습니다 `ConfigureLogging` `HubConnectionBuilder` . 이는 및에서 메서드와 동일한 방식으로 작동 합니다 `ConfigureLogging` `WebHostBuilder` `HostBuilder` . ASP.NET Core에서 사용 하는 것과 동일한 로깅 공급자를 구성할 수 있습니다. 그러나 개별 로깅 공급자에 대 한 NuGet 패키지를 수동으로 설치 하 고 사용 하도록 설정 해야 합니다.
 
@@ -131,7 +132,7 @@ Visual Studio의 **출력** 창으로 이동 하도록 로그를 구성할 수�
 
 ### <a name="other-logging-providers"></a>기타 로깅 공급자
 
-SignalR는 Serilog, Seq, NLog 또는와 통합 되는 기타 로깅 시스템과 같은 기타 로깅 공급자를 지원 `Microsoft.Extensions.Logging` 합니다. 로깅 시스템에서를 제공 하는 경우 `ILoggerProvider` 다음을 사용 하 여 등록할 수 있습니다 `AddProvider` .
+SignalR 는 Serilog, Seq, NLog 또는와 통합 되는 기타 로깅 시스템과 같은 기타 로깅 공급자를 지원 `Microsoft.Extensions.Logging` 합니다. 로깅 시스템에서를 제공 하는 경우 `ILoggerProvider` 다음을 사용 하 여 등록할 수 있습니다 `AddProvider` .
 
 [!code-csharp[](diagnostics/net-client-custom-log.cs?highlight=6)]
 
@@ -218,11 +219,11 @@ tcpdump -i [interface] -w trace.pcap
 
 ## <a name="metrics"></a>메트릭
 
-메트릭은 시간 간격에 대 한 데이터 측정값의 표현입니다. 예를 들어 초당 요청 수입니다. 메트릭 데이터를 사용 하면 상위 수준에서 앱의 상태를 확인할 수 있습니다. .NET gRPC 메트릭은를 사용 하 여 내보내집니다 <xref:System.Diagnostics.Tracing.EventCounter> .
+메트릭은 시간 간격에 대 한 데이터 측정값의 표현입니다. 예를 들어 초당 요청 수입니다. 메트릭 데이터를 사용 하면 상위 수준에서 앱의 상태를 확인할 수 있습니다. <xref:System.Diagnostics.Tracing.EventCounter>를 사용하여 .NET gRPC 메트릭을 내보냅니다.
 
-### <a name="no-locsignalr-server-metrics"></a>SignalR서버 메트릭
+### <a name="no-locsignalr-server-metrics"></a>SignalR 서버 메트릭
 
-SignalR서버 메트릭은 이벤트 원본에 보고 됩니다 <xref:Microsoft.AspNetCore.Http.Connections> .
+SignalR 서버 메트릭은 이벤트 원본에 보고 됩니다 <xref:Microsoft.AspNetCore.Http.Connections> .
 
 | 속성                    | Description                 |
 |-------------------------|-----------------------------|
@@ -232,9 +233,9 @@ SignalR서버 메트릭은 이벤트 원본에 보고 됩니다 <xref:Microsoft.
 | `current-connections`   | 현재 연결         |
 | `connections-duration`  | 평균 연결 기간 |
 
-### <a name="observe-metrics"></a>메트릭 관찰
+### <a name="observe-metrics"></a>메트릭 확인
 
-[dotnet-카운터](/dotnet/core/diagnostics/dotnet-counters) 는 임시 상태 모니터링 및 첫 번째 수준의 성능 조사를 위한 성능 모니터링 도구입니다. 을 공급자 이름으로 사용 하 여 .NET 앱을 모니터링 `Microsoft.AspNetCore.Http.Connections` 합니다. 예:
+[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters)는 임시 상태 모니터링 및 1단계 수준 성능 조사를 위한 성능 모니터링 도구입니다. 을 공급자 이름으로 사용 하 여 .NET 앱을 모니터링 `Microsoft.AspNetCore.Http.Connections` 합니다. 예:
 
 ```console
 > dotnet-counters monitor --process-id 37016 Microsoft.AspNetCore.Http.Connections

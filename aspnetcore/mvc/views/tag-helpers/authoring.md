@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/authoring
-ms.openlocfilehash: d40b37a4ca8acf57b662124597a8ebc3b90bffd2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c1891b8093c5a4c1599cd3c4ed4e5e60e2fd13e8
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018170"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629004"
 ---
 # <a name="author-tag-helpers-in-aspnet-core"></a>ASP.NET Core의 작성자 태그 도우미
 
@@ -41,7 +42,7 @@ ms.locfileid: "88018170"
 
 ## <a name="a-minimal-tag-helper"></a>최소한의 태그 도우미
 
-이 섹션에서는 이메일 태그를 업데이트하는 태그 도우미를 작성합니다. 예:
+이 섹션에서는 이메일 태그를 업데이트하는 태그 도우미를 작성합니다. 다음은 그 예입니다. 
 
 ```html
 <email>Support</email>
@@ -234,7 +235,7 @@ FQN을 사용하여 뷰에 태그 도우미를 추가하려면 먼저 FQN(`Autho
    >
    > [!code-html[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?range=18-18)]
    >
-   > Razor특성은 `info` 문자열이 아니라 클래스 이며 c # 코드를 작성 하려고 합니다. 모든 문자열이 아닌 태그 도우미 특성이 `@` 문자 없이 작성됩니다.
+   > Razor 특성은 `info` 문자열이 아니라 클래스 이며 c # 코드를 작성 하려고 합니다. 모든 문자열이 아닌 태그 도우미 특성이 `@` 문자 없이 작성됩니다.
 
 1. 앱을 실행하고 About 뷰로 이동하여 웹 사이트 정보를 확인합니다.
 

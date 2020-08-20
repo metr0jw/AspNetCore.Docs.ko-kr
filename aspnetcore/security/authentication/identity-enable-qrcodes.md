@@ -5,6 +5,7 @@ description: ASP.NET Core 2 단계 인증을 사용 하는 TOTP authenticator �
 ms.author: riande
 ms.date: 08/14/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-enable-qrcodes
-ms.openlocfilehash: 4ccfd83c273f7179ac26b075eb33f138e724b967
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e61aa925262fc9fe25c7bb2d37958cfaa308aeaf
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019562"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630798"
 ---
 # <a name="enable-qr-code-generation-for-totp-authenticator-apps-in-aspnet-core"></a>ASP.NET Core에서 TOTP authenticator 앱에 대 한 QR 코드 생성 사용
 
@@ -128,7 +129,7 @@ QR 코드 라이브러리를 원하는 라이브러리로 바꿀 수 있습니�
 
 QR 코드에 대해 올바른 형식의 URL은에서 사용할 수 있습니다.
 
-* `AuthenticatorUri`모델의 속성입니다.
+* `AuthenticatorUri` 모델의 속성입니다.
 * `data-url``qrCodeData`요소의 속성입니다.
 
 ## <a name="totp-client-and-server-time-skew"></a>TOTP 클라이언트 및 서버 시간 오차

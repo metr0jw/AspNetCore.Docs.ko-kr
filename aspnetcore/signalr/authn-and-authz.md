@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core의 인증 및 권한 부여SignalR
+title: ASP.NET Core의 인증 및 권한 부여 SignalR
 author: bradygaster
 description: ASP.NET Core에서 인증 및 권한 부여를 사용 하는 방법에 대해 알아봅니다 SignalR .
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/authn-and-authz
-ms.openlocfilehash: 1e022c510dda3e39dd02d607f1d9c493aecdeb5a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3a2ae5c7bc4853bad7b94af0d26ad5cd0358688f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021564"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628938"
 ---
-# <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>ASP.NET Core의 인증 및 권한 부여SignalR
+# <a name="authentication-and-authorization-in-aspnet-core-no-locsignalr"></a>ASP.NET Core의 인증 및 권한 부여 SignalR
 
 [Andrew Stanton-간호사](https://twitter.com/anurse)
 
@@ -125,7 +126,7 @@ var connection = new HubConnectionBuilder()
 [!INCLUDE[request localized comments](~/includes/code-comments-loc.md)]
 
 > [!NOTE]
-> 쿼리 문자열은 브라우저 API 제한으로 인해 Websocket 및 서버에서 전송한 이벤트에 연결할 때 브라우저에서 사용 됩니다. HTTPS를 사용 하는 경우 쿼리 문자열 값은 TLS 연결을 통해 보안이 유지 됩니다. 그러나 많은 서버에서 쿼리 문자열 값을 기록 합니다. 자세한 내용은 [ASP.NET Core SignalR 의 보안 고려 사항 ](xref:signalr/security)을 참조 하세요. SignalR는 헤더를 사용 하 여 토큰 (예: .NET 및 Java 클라이언트)을 지 원하는 환경에서 토큰을 전송 합니다.
+> 쿼리 문자열은 브라우저 API 제한으로 인해 Websocket 및 서버에서 전송한 이벤트에 연결할 때 브라우저에서 사용 됩니다. HTTPS를 사용 하는 경우 쿼리 문자열 값은 TLS 연결을 통해 보안이 유지 됩니다. 그러나 많은 서버에서 쿼리 문자열 값을 기록 합니다. 자세한 내용은 [ASP.NET Core SignalR 의 보안 고려 사항 ](xref:signalr/security)을 참조 하세요. SignalR 는 헤더를 사용 하 여 토큰 (예: .NET 및 Java 클라이언트)을 지 원하는 환경에서 토큰을 전송 합니다.
 
 ### <a name="no-loccookies-vs-bearer-tokens"></a>Cookies와 전달자 토큰 비교 
 
@@ -133,7 +134,7 @@ Cookie는 브라우저에만 적용 됩니다. 다른 종류의 클라이언트�
 
 ### <a name="windows-authentication"></a>Windows 인증
 
-앱에서 [Windows 인증](xref:security/authentication/windowsauth) 을 구성 하는 경우에서 SignalR 해당 id를 사용 하 여 허브를 보호할 수 있습니다. 그러나 메시지를 개별 사용자에 게 보내려면 사용자 지정 사용자 ID 공급자를 추가 해야 합니다. Windows 인증 시스템이 "이름 식별자" 클레임을 제공 하지 않습니다. SignalR클레임을 사용 하 여 사용자 이름을 결정 합니다.
+앱에서 [Windows 인증](xref:security/authentication/windowsauth) 을 구성 하는 경우에서 SignalR 해당 id를 사용 하 여 허브를 보호할 수 있습니다. 그러나 메시지를 개별 사용자에 게 보내려면 사용자 지정 사용자 ID 공급자를 추가 해야 합니다. Windows 인증 시스템이 "이름 식별자" 클레임을 제공 하지 않습니다. SignalR 클레임을 사용 하 여 사용자 이름을 결정 합니다.
 
 을 구현 하 `IUserIdProvider` 고 사용자가 식별자로 사용할 클레임 중 하나를 검색 하는 새 클래스를 추가 합니다. 예를 들어 "이름" 클레임 (형식의 Windows 사용자 이름)을 사용 하려면 `[Domain]\[Username]` 다음 클래스를 만듭니다.
 
@@ -228,7 +229,7 @@ public class ChatHub : Hub
 
 ### <a name="use-authorization-handlers-to-customize-hub-method-authorization"></a>권한 부여 처리기를 사용 하 여 허브 메서드 권한 부여 사용자 지정
 
-SignalR허브 메서드에 권한 부여가 필요할 때 권한 부여 처리기에 사용자 지정 리소스를 제공 합니다. 리소스가 `HubInvocationContext`의 인스턴스인 경우 에는 `HubInvocationContext` `HubCallerContext` , 호출 되는 허브 메서드의 이름 및 허브 메서드에 대 한 인수가 포함 되어 있습니다.
+SignalR 허브 메서드에 권한 부여가 필요할 때 권한 부여 처리기에 사용자 지정 리소스를 제공 합니다. 리소스가 `HubInvocationContext`의 인스턴스인 경우 에는 `HubInvocationContext` `HubCallerContext` , 호출 되는 허브 메서드의 이름 및 허브 메서드에 대 한 인수가 포함 되어 있습니다.
 
 Azure Active Directory를 통해 여러 조직 로그인을 허용 하는 대화방의 예를 생각해 보세요. Microsoft 계정 있는 사용자는 채팅에 로그인 할 수 있지만 소유 조직의 구성원만 사용자를 금지 하거나 사용자의 채팅 기록을 볼 수 있습니다. 또한 특정 사용자의 특정 기능을 제한 해야 할 수도 있습니다. ASP.NET Core 3.0의 업데이트 된 기능을 사용 하는 것이 가능 합니다. 을 `DomainRestrictedRequirement` 사용자 지정으로 사용 하는 방법을 확인 `IAuthorizationRequirement` 합니다. 이제 `HubInvocationContext` 리소스 매개 변수가 전달 되 고 있으므로 내부 논리는 허브가 호출 되는 컨텍스트를 검사 하 고 사용자가 개별 허브 메서드를 실행할 수 있도록 하는 결정을 내릴 수 있습니다.
 
@@ -298,7 +299,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [ASP.NET Core에서 전달자 토큰 인증](https://blogs.msdn.microsoft.com/webdev/2016/10/27/bearer-token-authentication-in-asp-net-core/)
 * [리소스 기반 권한 부여](xref:security/authorization/resourcebased)

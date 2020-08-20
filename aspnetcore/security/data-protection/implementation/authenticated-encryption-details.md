@@ -5,6 +5,7 @@ description: ASP.NET Core 데이터 보호 인증 된 암호화에 대 한 구�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/authenticated-encryption-details
-ms.openlocfilehash: ebd784b493b7f283df2cc84a39113e3d714472a0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ed75ab235a95a88bbe60615526137b4c2bb719ef
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022071"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630850"
 ---
 # <a name="authenticated-encryption-details-in-aspnet-core"></a>ASP.NET Core의 인증 된 암호화 세부 정보
 

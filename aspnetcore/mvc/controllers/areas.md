@@ -5,6 +5,7 @@ description: 관련 기능을 별도의 네임스페이스(라우팅용) 및 폴
 ms.author: riande
 ms.date: 03/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/areas
-ms.openlocfilehash: af765eebfa8bfd147bd3b721508b5794d15d64a7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 033b57f5406d0344347b2f787fa2b2fbb2da8604
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018444"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630252"
 ---
 # <a name="areas-in-aspnet-core"></a>ASP.NET Core의 영역
 
@@ -210,7 +211,7 @@ ms.locfileid: "88018444"
 이전 태그에서:
 
 * 모델(`@model RPareas.Areas.Services.Pages.Manage.AboutModel`)을 지정하려면 정규화된 도메인 이름을 사용해야 합니다.
-* [태그 도우미](xref:mvc/views/tag-helpers/intro) 를 사용할 수 있습니다.`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+* [태그 도우미](xref:mvc/views/tag-helpers/intro) 를 사용할 수 있습니다. `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 예제 다운로드에서 Products 영역에는 다음과 같은 *_ViewImports.cshtml* 파일이 존재합니다.
 
@@ -399,7 +400,7 @@ ASP.NET Core 2.2에서 `MapAreaRoute`를 사용하는 경우에는 [이 GitHub �
 이전 태그에서:
 
 * 모델(`@model RPareas.Areas.Services.Pages.Manage.AboutModel`)을 지정하려면 정규화된 도메인 이름을 사용해야 합니다.
-* [태그 도우미](xref:mvc/views/tag-helpers/intro) 를 사용할 수 있습니다.`@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+* [태그 도우미](xref:mvc/views/tag-helpers/intro) 를 사용할 수 있습니다. `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 예제 다운로드에서 Products 영역에는 다음과 같은 *_ViewImports.cshtml* 파일이 존재합니다.
 

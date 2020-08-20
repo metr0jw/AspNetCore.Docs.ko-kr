@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 01/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: 2d128d54dc9b1189124563e45d72d74b19704ab1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: fc257015a9ee972da90b0f206a60b07bd6cc1f97
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022526"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631110"
 ---
 # <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.NET Core SignalR 호스팅 및 크기 조정
 
@@ -32,7 +33,7 @@ ms.locfileid: "88022526"
 
 ## <a name="sticky-sessions"></a>고정 세션
 
-SignalR특정 연결에 대 한 모든 HTTP 요청을 동일한 서버 프로세스에서 처리 해야 합니다. SignalR가 서버 팜 (여러 서버)에서 실행 되는 경우 "고정 세션"을 사용 해야 합니다. "고정 세션"은 일부 부하 분산 장치에서 세션 선호도 라고도 합니다. Azure App Service는 ARR ( [응용 프로그램 요청 라우팅](https://docs.microsoft.com/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) )을 사용 하 여 요청을 라우팅합니다. Azure App Service에서 "ARR 선호도" 설정을 사용 하도록 설정 하면 "고정 세션"을 사용할 수 있습니다. 고정 세션이 필요 하지 않은 유일한 경우는 다음과 같습니다.
+SignalR 특정 연결에 대 한 모든 HTTP 요청을 동일한 서버 프로세스에서 처리 해야 합니다. SignalR가 서버 팜 (여러 서버)에서 실행 되는 경우 "고정 세션"을 사용 해야 합니다. "고정 세션"은 일부 부하 분산 장치에서 세션 선호도 라고도 합니다. Azure App Service는 ARR ( [응용 프로그램 요청 라우팅](https://docs.microsoft.com/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) )을 사용 하 여 요청을 라우팅합니다. Azure App Service에서 "ARR 선호도" 설정을 사용 하도록 설정 하면 "고정 세션"을 사용할 수 있습니다. 고정 세션이 필요 하지 않은 유일한 경우는 다음과 같습니다.
 
 1. 단일 서버에서 호스팅할 때 단일 프로세스에서.
 1. Azure 서비스를 사용 하는 경우 SignalR .
@@ -44,13 +45,13 @@ SignalR특정 연결에 대 한 모든 HTTP 요청을 동일한 서버 프로세
 
 ## <a name="tcp-connection-resources"></a>TCP 연결 리소스
 
-웹 서버에서 지원할 수 있는 동시 TCP 연결 수가 제한 됩니다. 표준 HTTP 클라이언트는 *임시* 연결을 사용 합니다. 클라이언트를 유휴 상태로 전환 하 고 나중에 다시 열 때 이러한 연결을 닫을 수 있습니다. 반면에 SignalR 연결은 *영구적*입니다. SignalR클라이언트가 유휴 상태가 되는 경우에도 연결이 열린 상태로 유지 됩니다. 많은 클라이언트에 서비스를 제공 하는 트래픽이 많은 앱에서 이러한 영구 연결을 사용 하면 서버가 최대 연결 수에 도달할 수 있습니다.
+웹 서버에서 지원할 수 있는 동시 TCP 연결 수가 제한 됩니다. 표준 HTTP 클라이언트는 *임시* 연결을 사용 합니다. 클라이언트를 유휴 상태로 전환 하 고 나중에 다시 열 때 이러한 연결을 닫을 수 있습니다. 반면에 SignalR 연결은 *영구적*입니다. SignalR 클라이언트가 유휴 상태가 되는 경우에도 연결이 열린 상태로 유지 됩니다. 많은 클라이언트에 서비스를 제공 하는 트래픽이 많은 앱에서 이러한 영구 연결을 사용 하면 서버가 최대 연결 수에 도달할 수 있습니다.
 
 또한 영구 연결에서는 추가 메모리를 사용 하 여 각 연결을 추적 합니다.
 
 에서 연결 관련 리소스를 많이 사용 하는 SignalR 것은 동일한 서버에서 호스트 되는 다른 웹 앱에 영향을 줄 수 있습니다. SignalR가 열리고 사용 가능한 마지막 TCP 연결을 보유 하는 경우 동일한 서버의 다른 웹 앱에도 더 이상 사용할 수 있는 연결이 없습니다.
 
-서버에 연결 되지 않은 경우 임의의 소켓 오류 및 연결 다시 설정 오류가 표시 됩니다. 예:
+서버에 연결 되지 않은 경우 임의의 소켓 오류 및 연결 다시 설정 오류가 표시 됩니다. 다음은 그 예입니다. 
 
 ```
 An attempt was made to access a socket in a way forbidden by its access permissions...

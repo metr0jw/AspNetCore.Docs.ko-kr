@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 4404a5513d9dc989e50c904f3e7863de59991939
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 09535f41d15b90fa5e50eb1f22f6aecef0530f0c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022331"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629563"
 ---
 # <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a>IdentityASP.NET Core 프로젝트의 스 캐 폴드
 
@@ -30,7 +31,7 @@ ms.locfileid: "88022331"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-ASP.NET Core은 [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class) [ASP.NET Core Identity ](xref:security/authentication/identity) 를 제공 합니다. 를 포함 하는 응용 프로그램 Identity 은 스 캐 폴더를 적용 하 여 Identity Razor 클래스 라이브러리 (rcl)에 포함 된 소스 코드를 선택적으로 추가할 수 있습니다. 코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다. 예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다. 생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다. 기본 RCL을 사용 하지 않고 UI에 대 한 모든 권한을 얻으려면 [전체 Identity Ui 원본 만들기](#full)섹션을 참조 하세요.
+ASP.NET Core은 [ASP.NET Core Identity](xref:security/authentication/identity) [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)제공 됩니다. 를 포함 하는 응용 프로그램 Identity 은 스 캐 폴더를 적용 하 여 Identity Razor 클래스 라이브러리 (rcl)에 포함 된 소스 코드를 선택적으로 추가할 수 있습니다. 코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다. 예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다. 생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다. 기본 RCL을 사용 하지 않고 UI에 대 한 모든 권한을 얻으려면 [전체 Identity Ui 원본 만들기](#full)섹션을 참조 하세요.
 
 인증을 포함 **하지** 않는 응용 프로그램은 스 캐 폴더를 적용 하 여 rcl 패키지를 추가할 수 있습니다 Identity . 선택한 Identity 코드의 옵션이 생성되어야 합니다.
 
@@ -197,9 +198,9 @@ Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니�
 토큰은 구성 요소에 전달할 수 있습니다.
 
 * 인증 토큰이 프로 비전 되 고 인증에 저장 될 때 cookie 구성 요소에 전달 될 수 있습니다.
-* Razor구성 요소 `HttpContext` 는 직접 사용할 수 없으므로의 로그 아웃 끝점에 게시 하기 위해 [XSRF (요청 방지 위조) 토큰](xref:security/anti-request-forgery) 을 얻을 수 있는 방법이 없습니다 Identity `/Identity/Account/Logout` . XSRF 토큰을 구성 요소에 전달할 수 있습니다.
+* Razor 구성 요소 `HttpContext` 는 직접 사용할 수 없으므로의 로그 아웃 끝점에 게시 하기 위해 [XSRF (요청 방지 위조) 토큰](xref:security/anti-request-forgery) 을 얻을 수 있는 방법이 없습니다 Identity `/Identity/Account/Logout` . XSRF 토큰을 구성 요소에 전달할 수 있습니다.
 
-자세한 내용은 <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>를 참조하세요.
+자세한 내용은 <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>을 참조하세요.
 
 *Pages/_Host* 파일에서 및 클래스에 토큰을 추가한 후에 토큰을 설정 합니다 `InitialApplicationState` `TokenProvider` .
 
@@ -416,7 +417,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 사용자 등록을 사용 하지 않도록 설정 하려면:
 
-* 스 캐 폴드 Identity . Account. Register, Account. Login 및 Account. RegisterConfirmation 같이 포함 됩니다. 예:
+* 스 캐 폴드 Identity . Account. Register, Account. Login 및 Account. RegisterConfirmation 같이 포함 됩니다. 다음은 그 예입니다. 
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
@@ -482,7 +483,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 정적 Identity 자산을 웹 루트에 게시 하지 않으려면를 참조 하십시오 <xref:security/authentication/identity#prevent-publish-of-static-identity-assets> .
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [ASP.NET Core 2.1 이상으로 인증 코드 변경](xref:migration/20_21#changes-to-authentication-code)
 
@@ -490,7 +491,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core 2.1 이상에서는 [ASP.NET Core Identity ](xref:security/authentication/identity) 를 [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)제공 합니다. 를 포함 하는 응용 프로그램 Identity 은 스 캐 폴더를 적용 하 여 Identity Razor 클래스 라이브러리 (rcl)에 포함 된 소스 코드를 선택적으로 추가할 수 있습니다. 코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다. 예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다. 생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다. 기본 RCL을 사용 하지 않고 UI에 대 한 모든 권한을 얻으려면 [전체 ID UI 원본 만들기](#full)섹션을 참조 하세요.
+ASP.NET Core 2.1 이상에서는 [ASP.NET Core Identity](xref:security/authentication/identity) [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)를 제공 합니다. 를 포함 하는 응용 프로그램 Identity 은 스 캐 폴더를 적용 하 여 Identity Razor 클래스 라이브러리 (rcl)에 포함 된 소스 코드를 선택적으로 추가할 수 있습니다. 코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다. 예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다. 생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다. 기본 RCL을 사용 하지 않고 UI에 대 한 모든 권한을 얻으려면 [전체 ID UI 원본 만들기](#full)섹션을 참조 하세요.
 
 인증을 포함 **하지** 않는 응용 프로그램은 스 캐 폴더를 적용 하 여 rcl 패키지를 추가할 수 있습니다 Identity . 선택한 Identity 코드의 옵션이 생성되어야 합니다.
 
@@ -669,7 +670,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 사용자 등록을 사용 하지 않도록 설정 하려면:
 
-* 스 캐 폴드 Identity . Account. Register, Account. Login 및 Account. RegisterConfirmation 같이 포함 됩니다. 예:
+* 스 캐 폴드 Identity . Account. Register, Account. Login 및 Account. RegisterConfirmation 같이 포함 됩니다. 다음은 그 예입니다. 
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
@@ -731,7 +732,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 프로덕션 시나리오의 경우 유사한 접근 방식을 사용할 수 있습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [ASP.NET Core 2.1 이상으로 인증 코드 변경](xref:migration/20_21#changes-to-authentication-code)
 

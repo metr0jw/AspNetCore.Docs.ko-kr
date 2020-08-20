@@ -5,6 +5,7 @@ description: ASP.NET MVC 프로젝트에서 ASP.NET Core MVC 프로젝트로 구
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/configuration
-ms.openlocfilehash: 7c1f2feb40e115d71fb087201acdf52197a52c88
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8cbb174539234039a05306ec5ab89026bc90da23
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015103"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631097"
 ---
 # <a name="migrate-configuration-to-aspnet-core"></a>구성을 ASP.NET Core로 마이그레이션
 
@@ -46,7 +47,7 @@ ASP.NET Core는 이전 버전의 ASP.NET에서 사용 하는 *global.asax* 및 *
 using Microsoft.Extensions.Configuration;
 ```
 
-적절 한 항목 템플릿을 사용 하 여 프로젝트의 루트에 파일 *의appsettings.js* 를 추가 합니다.
+적절 한 항목 템플릿을 사용 하 여 프로젝트의 루트에 파일 * 의appsettings.js* 를 추가 합니다.
 
 ![AppSettings JSON 추가](configuration/_static/add-appsettings-json.png)
 

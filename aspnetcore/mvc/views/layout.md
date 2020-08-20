@@ -5,6 +5,7 @@ description: ASP.NET Core 앱에서 뷰를 렌더링하기 전에 일반적인 �
 ms.author: riande
 ms.date: 07/30/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/layout
-ms.openlocfilehash: 4d5032f02db28341d7781dd57d58d776636fd16d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 308e567e0480f83972ab7a55c7b957af83a164fd
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020446"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630694"
 ---
 # <a name="layout-in-aspnet-core"></a>ASP.NET Core의 레이아웃
 
@@ -34,7 +35,7 @@ ms.locfileid: "88020446"
 
 이 문서에서는 MVC: 페이지와 뷰를 사용 하 ASP.NET Core 하는 두 가지 방법에 대 한 레이아웃을 설명 Razor 합니다. 이 항목에서는 차이점이 최소화되어 있습니다.
 
-* Razor페이지는 *pages* 폴더에 있습니다.
+* Razor 페이지는 *pages* 폴더에 있습니다.
 * 보기를 사용하는 컨트롤러는 *Views* 폴더의 보기를 사용합니다.
 
 ## <a name="what-is-a-layout"></a>레이아웃이란
@@ -47,7 +48,7 @@ ms.locfileid: "88020446"
 
 규칙에 따라, ASP.NET Core 앱의 기본 레이아웃 이름을 *_Layout.cshtml*로 지정합니다. 템플릿을 사용하여 생성된 새로운 ASP.NET Core 프로젝트의 레이아웃 파일:
 
-* RazorPages: *pages/Shared/_Layout cshtml*
+* Razor Pages: *pages/Shared/_Layout cshtml*
 
   ![솔루션 탐색기의 Pages 폴더](layout/_static/rp-web-project-views.png)
 
@@ -63,7 +64,7 @@ ms.locfileid: "88020446"
 
 ## <a name="specifying-a-layout"></a>레이아웃 지정
 
-Razor뷰에는 `Layout` 속성이 있습니다. 이 속성을 설정하여 레이아웃을 지정하는 개별 뷰:
+Razor 뷰에는 `Layout` 속성이 있습니다. 이 속성을 설정하여 레이아웃을 지정하는 개별 뷰:
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/_ViewStart.cshtml?highlight=2)]
 
