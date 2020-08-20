@@ -5,6 +5,7 @@ description: 6부. ASP.NET Core MVC 앱에 모델 추가
 ms.author: riande
 ms.date: 12/13/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/controller-methods-views
-ms.openlocfilehash: b5b54adb1d86e4ab982647dc8207839cc9afdac9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 07b67cd7c267c39b99277114b73642b5caa3e312
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021070"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632839"
 ---
 # <a name="part-6-controller-methods-and-views-in-aspnet-core"></a>6부. ASP.NET Core의 컨트롤러 메서드 및 보기
 
@@ -110,7 +111,7 @@ ASP.NET Core는 `https://localhost:5001/Movies/Edit/4`를 매개 변수 `Id`가 
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/Edit.cshtml?range=9)]
 
-[Form 태그 도우미](xref:mvc/views/working-with-forms)는 Movies 컨트롤러의 `Edit` 메서드에서 `[ValidateAntiForgeryToken]`가 생성한 위조 방지 토큰과 일치하는 숨겨진 위조 방지 토큰을 생성합니다. 자세한 내용은 [위조 방지 요청](xref:security/anti-request-forgery)을 참조하세요.
+[Form 태그 도우미](xref:mvc/views/working-with-forms)는 Movies 컨트롤러의 `Edit` 메서드에서 `[ValidateAntiForgeryToken]`가 생성한 위조 방지 토큰과 일치하는 숨겨진 위조 방지 토큰을 생성합니다. 자세한 내용은 <xref:security/anti-request-forgery>를 참조하세요.
 
 `HttpGet Edit` 메서드는 영화 `ID` 매개 변수를 받아서, Entity Framework `FindAsync` 메서드를 사용하여 영화를 검색하고, 선택된 영화를 Edit 보기에 반환합니다. 영화를 찾을 수 없을 경우 `NotFound`(HTTP 404)를 반환합니다.
 
@@ -161,7 +162,7 @@ ASP.NET Core는 `https://localhost:5001/Movies/Edit/4`를 매개 변수 `Id`가 
 * [세계화 및 지역화](xref:fundamentals/localization)
 * [태그 도우미 소개](xref:mvc/views/tag-helpers/intro)
 * [태그 도우미 작성](xref:mvc/views/tag-helpers/authoring)
-* [요청 위조 방지](xref:security/anti-request-forgery)
+* <xref:security/anti-request-forgery>
 * [과도한 게시로부터 컨트롤러 보호](/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application)
 * [ViewModels](https://rachelappel.com/use-viewmodels-to-manage-data-amp-organize-code-in-asp-net-mvc-applications/)
 * [Form 태그 도우미](xref:mvc/views/working-with-forms)

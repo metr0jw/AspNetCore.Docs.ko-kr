@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/06/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/app-state
-ms.openlocfilehash: c05129c0f239fb28c83ab1c561dd910305eeb54b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 95035ec372ab6adb5bafb40f2b939c549ac6f839
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017638"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633814"
 ---
 # <a name="session-and-state-management-in-aspnet-core"></a>ASP.NET Core의 세션 및 상태 관리
 
@@ -239,7 +240,7 @@ cookie 기반 TempData 공급자는 기본적으로 활성화됩니다.
 
 제한된 양의 데이터는 새 요청의 쿼리 문자열에 추가하여 한 요청에서 다른 요청으로 전달할 수 있습니다. 이는 이메일 또는 소셜 네트워크를 통해 공유되도록 포함된 상태가 있는 링크를 허용하는 영구적인 방식으로 상태를 캡처하는 데 유용합니다. URL 쿼리 문자열은 공용이므로 중요한 데이터에 쿼리 문자열을 사용하지 마세요.
 
-의도하지 않은 공유 외에도, 쿼리 문자열에 데이터를 포함하면 앱이 [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))(교차 사이트 요청 위조) 공격에 노출될 수 있습니다. 유지된 모든 세션 상태를 CSRF 공격으로부터 보호해야 합니다. 자세한 내용은 [교차 사이트 요청 위조(XSRF/CSRF) 공격 방지](xref:security/anti-request-forgery)를 참조하세요.
+의도하지 않은 공유 외에도, 쿼리 문자열에 데이터를 포함하면 앱이 [CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))(교차 사이트 요청 위조) 공격에 노출될 수 있습니다. 유지된 모든 세션 상태를 CSRF 공격으로부터 보호해야 합니다. 자세한 내용은 <xref:security/anti-request-forgery>를 참조하세요.
 
 ## <a name="hidden-fields"></a>숨겨진 필드
 
@@ -502,7 +503,7 @@ cookie 기반 TempData 공급자는 기본적으로 활성화됩니다.
 
 제한된 양의 데이터는 새 요청의 쿼리 문자열에 추가하여 한 요청에서 다른 요청으로 전달할 수 있습니다. 이는 이메일 또는 소셜 네트워크를 통해 공유되도록 포함된 상태가 있는 링크를 허용하는 영구적인 방식으로 상태를 캡처하는 데 유용합니다. URL 쿼리 문자열은 공용이므로 중요한 데이터에 쿼리 문자열을 사용하지 마세요.
 
-의도하지 않은 공유 외에도 쿼리 문자열에 데이터를 포함하면 사용자가 인증되는 동안 악성 사이트를 방문하도록 유도할 수 있는 [CSRF(교차 사이트 요청 위조)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) 공격에 대한 기회를 만들 수 있습니다. 공격자는 앱에서 사용자 데이터를 도용하거나 사용자를 대신하여 악의적인 작업을 수행할 수 있습니다. 유지된 모든 앱 또는 세션 상태를 CSRF 공격으로부터 보호해야 합니다. 자세한 내용은 [교차 사이트 요청 위조(XSRF/CSRF) 공격 방지](xref:security/anti-request-forgery)를 참조하세요.
+의도하지 않은 공유 외에도 쿼리 문자열에 데이터를 포함하면 사용자가 인증되는 동안 악성 사이트를 방문하도록 유도할 수 있는 [CSRF(교차 사이트 요청 위조)](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) 공격에 대한 기회를 만들 수 있습니다. 공격자는 앱에서 사용자 데이터를 도용하거나 사용자를 대신하여 악의적인 작업을 수행할 수 있습니다. 유지된 모든 앱 또는 세션 상태를 CSRF 공격으로부터 보호해야 합니다. 자세한 내용은 <xref:security/anti-request-forgery>를 참조하세요.
 
 ## <a name="hidden-fields"></a>숨겨진 필드
 
