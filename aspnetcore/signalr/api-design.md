@@ -1,5 +1,5 @@
 ---
-title: SignalRAPI 디자인 고려 사항
+title: SignalR API 디자인 고려 사항
 author: anurse
 description: SignalR앱 버전 간 호환성을 위해 api를 설계 하는 방법에 대해 알아봅니다.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: anurse
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/api-design
-ms.openlocfilehash: ef0285c611bd41d7fe686a4b370b6daae9be9174
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4a838c3a051476bd3d281e133d08b643656ae3b7
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018990"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632904"
 ---
-# <a name="no-locsignalr-api-design-considerations"></a>SignalRAPI 디자인 고려 사항
+# <a name="no-locsignalr-api-design-considerations"></a>SignalR API 디자인 고려 사항
 
 [Andrew Stanton-간호사](https://twitter.com/anurse)
 
@@ -42,7 +43,7 @@ JavaScript 클라이언트는 다음과 같이를 사용 하 여이 메서드를
 
 [!code-typescript[CallWithOneParameter](api-design/sample/Samples.ts?name=CallWithOneParameter)]
 
-나중에 서버 메서드에 두 번째 매개 변수를 추가 하는 경우 이전 클라이언트는이 매개 변수 값을 제공 하지 않습니다. 예:
+나중에 서버 메서드에 두 번째 매개 변수를 추가 하는 경우 이전 클라이언트는이 매개 변수 값을 제공 하지 않습니다. 다음은 그 예입니다. 
 
 [!code-csharp[ParameterBasedNewVersion](api-design/sample/Samples.cs?name=ParameterBasedNewVersion)]
 

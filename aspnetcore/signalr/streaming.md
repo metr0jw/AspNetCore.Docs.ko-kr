@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core에서 스트리밍 사용SignalR
+title: ASP.NET Core에서 스트리밍 사용 SignalR
 author: bradygaster
 description: 클라이언트와 서버 간에 데이터를 스트리밍하는 방법에 대해 알아봅니다.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: e0eabe711fd69e42bd9bfa5e03a92e1df780e4db
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 29748ebe24fea03415b5a01b21300433e3fbc0f0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022513"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634217"
 ---
-# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>ASP.NET Core에서 스트리밍 사용SignalR
+# <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>ASP.NET Core에서 스트리밍 사용 SignalR
 
 만든 사람 [Brennan Conroy](https://github.com/BrennanConroy)
 
@@ -303,7 +304,7 @@ JavaScript 클라이언트는 `Subject` `send` `invoke` `stream` 호출 된 허�
 
 ### <a name="server-to-client-streaming"></a>서버-클라이언트 스트리밍
 
-SignalRJava 클라이언트는 메서드를 사용 하 여 `stream` 스트리밍 메서드를 호출 합니다. `stream`세 개 이상의 인수를 허용 합니다.
+SignalRJava 클라이언트는 메서드를 사용 하 여 `stream` 스트리밍 메서드를 호출 합니다. `stream` 세 개 이상의 인수를 허용 합니다.
 
 * 예상 되는 스트림 항목 유형입니다.
 * 허브 메서드의 이름입니다.
@@ -321,7 +322,7 @@ hubConnection.stream(String.class, "ExampleStreamingHubMethod", "Arg1")
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [허브](xref:signalr/hubs)
 * [.NET 클라이언트](xref:signalr/dotnet-client)

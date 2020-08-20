@@ -5,6 +5,7 @@ description: IdentityASP.NET Core 앱과 함께 사용 합니다. 암호 요구 
 ms.author: riande
 ms.date: 7/15/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity
-ms.openlocfilehash: 67bf24d8f871c4e80ed91f5f437895fe29e09087
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 1d14a3668192a165ea5025ae0575a8e3d6dfd8e4
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021239"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633255"
 ---
 # <a name="introduction-to-no-locidentity-on-aspnet-core"></a>ASP.NET Core 소개 Identity
 
@@ -39,14 +40,14 @@ ASP.NET Core Identity:
 
 [ Identity 소스 코드](https://github.com/dotnet/AspNetCore/tree/master/src/Identity) 는 GitHub에서 사용할 수 있습니다. [스 캐 폴드 Identity ](xref:security/authentication/scaffold-identity) 및는 생성 된 파일을 확인 하 여와의 템플릿 상호 작용을 검토 Identity 합니다.
 
-Identity는 일반적으로 사용자 이름, 암호 및 프로필 데이터를 저장 하기 위해 SQL Server 데이터베이스를 사용 하 여 구성 됩니다. 또는 Azure Table Storage와 같은 또 다른 영구 저장소를 사용할 수 있습니다.
+Identity 는 일반적으로 사용자 이름, 암호 및 프로필 데이터를 저장 하기 위해 SQL Server 데이터베이스를 사용 하 여 구성 됩니다. 또는 Azure Table Storage와 같은 또 다른 영구 저장소를 사용할 수 있습니다.
 
 이 항목에서는를 사용 하 여 사용자를 Identity 등록 하 고 로그인 하 고 로그 아웃 하는 방법을 알아봅니다. 참고: 템플릿은 사용자에 대해 사용자 이름 및 전자 메일을 동일 하 게 처리 합니다. 를 사용 하는 앱을 만드는 방법에 대 한 자세한 지침은 Identity [다음 단계](#next)를 참조 하세요.
 
 [Microsoft id 플랫폼](/azure/active-directory/develop/) 은 다음과 같습니다.
 
 * Azure Active Directory (Azure AD) 개발자 플랫폼의 진화
-* ASP.NET Core와 관련이 Identity 없습니다.
+* 와 관련이 ASP.NET Core Identity 없습니다.
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
@@ -79,7 +80,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-생성 된 프로젝트는 [ASP.NET Core Identity ](xref:security/authentication/identity) [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)제공 합니다. Identity Razor 클래스 라이브러리는 영역을 사용 하 여 끝점을 노출 `Identity` 합니다. 예:
+생성 된 프로젝트는을 [ASP.NET Core Identity](xref:security/authentication/identity) [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)제공 합니다. Identity Razor 클래스 라이브러리는 영역을 사용 하 여 끝점을 노출 `Identity` 합니다. 다음은 그 예입니다. 
 
 * /Identity/Account/Login
 * /Identity/계정/로그 아웃
@@ -125,11 +126,11 @@ dotnet ef database update
 
 위의 강조 표시 된 코드는 Identity 기본 옵션 값을 사용 하 여를 구성 합니다. 서비스는 [종속성 주입](xref:fundamentals/dependency-injection)을 통해 앱에서 사용할 수 있게 됩니다.
 
-Identity는를 호출 하 여 사용할 수 <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> 있습니다. `UseAuthentication`인증 [미들웨어](xref:fundamentals/middleware/index) 를 요청 파이프라인에 추가 합니다.
+Identity 는를 호출 하 여 사용할 수 <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> 있습니다. `UseAuthentication` 인증 [미들웨어](xref:fundamentals/middleware/index) 를 요청 파이프라인에 추가 합니다.
 
 [!code-csharp[](identity/sample/WebApp3/Startup.cs?name=snippet_configure&highlight=19)]
 
-템플릿에서 생성 된 앱은 [권한 부여](xref:security/authorization/secure-data)를 사용 하지 않습니다. `app.UseAuthorization`는 앱이 권한 부여를 추가 하는 올바른 순서로 추가 되었는지 확인 하기 위해 포함 됩니다. `UseRouting`, `UseAuthentication` , `UseAuthorization` 및 `UseEndpoints` 는 앞의 코드에 표시 된 순서 대로 호출 해야 합니다.
+템플릿에서 생성 된 앱은 [권한 부여](xref:security/authorization/secure-data)를 사용 하지 않습니다. `app.UseAuthorization` 는 앱이 권한 부여를 추가 하는 올바른 순서로 추가 되었는지 확인 하기 위해 포함 됩니다. `UseRouting`, `UseAuthentication` , `UseAuthorization` 및 `UseEndpoints` 는 앞의 코드에 표시 된 순서 대로 호출 해야 합니다.
 
 및에 대 한 자세한 내용은 `IdentityOptions` `Startup` <xref:Microsoft.AspNetCore.Identity.IdentityOptions> 및 [응용 프로그램 시작](xref:fundamentals/startup)을 참조 하세요.
 
@@ -172,7 +173,7 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 * **로그인** 링크가 선택 됩니다.
 * 사용자가 액세스 권한이 없는 제한 된 페이지에 액세스 **하거나** 시스템이 인증 되지 않은 경우에 액세스 하려고 합니다.
 
-로그인 페이지의 폼이 제출 되 면 `OnPostAsync` 동작이 호출 됩니다. `PasswordSignInAsync`는 개체에서 호출 됩니다 `_signInManager` .
+로그인 페이지의 폼이 제출 되 면 `OnPostAsync` 동작이 호출 됩니다. `PasswordSignInAsync` 는 개체에서 호출 됩니다 `_signInManager` .
 
 [!code-csharp[](identity/sample/WebApp3/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
@@ -192,7 +193,7 @@ Post는 *Pages/Shared/_LoginPartial*에서 지정 됩니다. cshtml:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
-## <a name="test-no-locidentity"></a>테스트할Identity
+## <a name="test-no-locidentity"></a>테스트할 Identity
 
 기본 웹 프로젝트 템플릿을 사용 하면 홈 페이지에 익명으로 액세스할 수 있습니다. 테스트 하려면 Identity 다음을 추가 합니다 [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) .
 
@@ -200,20 +201,20 @@ Post는 *Pages/Shared/_LoginPartial*에서 지정 됩니다. cshtml:
 
 로그인 한 경우 로그 아웃 합니다. 앱을 실행 하 고 **개인 정보** 링크를 선택 합니다. 로그인 페이지로 리디렉션됩니다.
 
-### <a name="explore-no-locidentity"></a>탐험Identity
+### <a name="explore-no-locidentity"></a>탐험 Identity
 
 자세히 살펴보기 Identity :
 
 * [전체 id UI 원본 만들기](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * 각 페이지의 소스를 검사 하 고 디버거를 단계별로 실행 합니다.
 
-## <a name="no-locidentity-components"></a>Identity요소도
+## <a name="no-locidentity-components"></a>Identity 요소도
 
 모든 Identity 종속 NuGet 패키지는 [ASP.NET Core 공유 프레임 워크](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework)에 포함 되어 있습니다.
 
-의 기본 패키지는 Identity [AspNetCore입니다. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) 이 패키지에는 ASP.NET Core에 대 한 핵심 인터페이스 집합이 포함 되어 Identity 있으며에 포함 되어 `Microsoft.AspNetCore.Identity.EntityFrameworkCore` 있습니다.
+의 기본 패키지는 Identity [AspNetCore입니다. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) 이 패키지에는에 대 한 핵심 인터페이스 집합이 포함 되어 ASP.NET Core Identity 있으며,에 포함 되어 `Microsoft.AspNetCore.Identity.EntityFrameworkCore` 있습니다.
 
-## <a name="migrating-to-aspnet-core-no-locidentity"></a>ASP.NET Core로 마이그레이션Identity
+## <a name="migrating-to-no-locaspnet-core-identity"></a>로 마이그레이션 ASP.NET Core Identity
 
 기존 저장소 마이그레이션에 대 한 자세한 내용 및 지침은 Identity [인증 및 Identity 마이그레이션 ](xref:migration/identity)을 참조 하세요.
 
@@ -223,7 +224,7 @@ Post는 *Pages/Shared/_LoginPartial*에서 지정 됩니다. cshtml:
 
 ## <a name="adddefaultno-locidentity-and-addno-locidentity"></a>AddDefault Identity 및 AddIdentity
 
-<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>는 ASP.NET Core 2.1에서 도입 되었습니다. 호출은 `AddDefaultIdentity` 다음을 호출 하는 것과 비슷합니다.
+<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*> 는 ASP.NET Core 2.1에서 도입 되었습니다. 호출은 `AddDefaultIdentity` 다음을 호출 하는 것과 비슷합니다.
 
 * <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*>
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
@@ -251,7 +252,7 @@ IdentityUI에 대 한 정적 자산 (스타일 시트 및 JavaScript 파일 Iden
 
 ## <a name="next-steps"></a>다음 단계
 
-* [Identity소스 코드 ASP.NET Core](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
+* [ASP.NET Core Identity 소스 코드](https://github.com/dotnet/aspnetcore/tree/master/src/Identity)
 * SQLite를 사용 하 여 구성 하는 방법에 대 한 자세한 내용은 [GitHub 문제](https://github.com/dotnet/AspNetCore.Docs/issues/5131) 를 참조 하세요 Identity .
 * [Identity 구성](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>
@@ -268,9 +269,9 @@ IdentityUI에 대 한 정적 자산 (스타일 시트 및 JavaScript 파일 Iden
 
 작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core Identity 은 ASP.NET Core 앱에 로그인 기능을 추가 하는 멤버 자격 시스템입니다. 사용자는에 저장 된 로그인 정보를 사용 하 여 계정을 만들거나 Identity 외부 로그인 공급자를 사용할 수 있습니다. 지원 되는 외부 로그인 공급자에는 [Facebook, Google, Microsoft 계정 및 Twitter](xref:security/authentication/social/index)가 포함 됩니다.
+ASP.NET Core Identity 는 ASP.NET Core 앱에 로그인 기능을 추가 하는 멤버 자격 시스템입니다. 사용자는에 저장 된 로그인 정보를 사용 하 여 계정을 만들거나 Identity 외부 로그인 공급자를 사용할 수 있습니다. 지원 되는 외부 로그인 공급자에는 [Facebook, Google, Microsoft 계정 및 Twitter](xref:security/authentication/social/index)가 포함 됩니다.
 
-IdentitySQL Server 데이터베이스를 사용 하 여 사용자 이름, 암호 및 프로필 데이터를 저장 하도록 구성할 수 있습니다. 또는 Azure Table Storage와 같은 또 다른 영구 저장소를 사용할 수 있습니다.
+Identity SQL Server 데이터베이스를 사용 하 여 사용자 이름, 암호 및 프로필 데이터를 저장 하도록 구성할 수 있습니다. 또는 Azure Table Storage와 같은 또 다른 영구 저장소를 사용할 수 있습니다.
 
 [샘플 코드 보기 또는 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/identity/sample/src/ASPNETCore-IdentityDemoComplete/) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
@@ -280,7 +281,7 @@ IdentitySQL Server 데이터베이스를 사용 하 여 사용자 이름, 암호
 
 ## <a name="adddefaultno-locidentity-and-addno-locidentity"></a>AddDefault Identity 및 AddIdentity
 
-<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*>는 ASP.NET Core 2.1에서 도입 되었습니다. 호출은 `AddDefaultIdentity` 다음을 호출 하는 것과 비슷합니다.
+<xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*> 는 ASP.NET Core 2.1에서 도입 되었습니다. 호출은 `AddDefaultIdentity` 다음을 호출 하는 것과 비슷합니다.
 
 * <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*>
 * <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>
@@ -307,7 +308,7 @@ dotnet new webapp --auth Individual -o WebApp1
 
 ---
 
-생성 된 프로젝트는 [ASP.NET Core Identity ](xref:security/authentication/identity) [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)제공 합니다. Identity Razor 클래스 라이브러리는 영역을 사용 하 여 끝점을 노출 `Identity` 합니다. 예:
+생성 된 프로젝트는을 [ASP.NET Core Identity](xref:security/authentication/identity) [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)제공 합니다. Identity Razor 클래스 라이브러리는 영역을 사용 하 여 끝점을 노출 `Identity` 합니다. 다음은 그 예입니다. 
 
 * /Identity/Account/Login
 * /Identity/계정/로그 아웃
@@ -349,7 +350,7 @@ dotnet ef database update
 
 위의 코드는 Identity 기본 옵션 값을 사용 하 여를 구성 합니다. 서비스는 [종속성 주입](xref:fundamentals/dependency-injection)을 통해 앱에서 사용할 수 있게 됩니다.
 
-Identity는 [Useauthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_)을 호출 하 여 사용 하도록 설정 됩니다. `UseAuthentication`인증 [미들웨어](xref:fundamentals/middleware/index) 를 요청 파이프라인에 추가 합니다.
+Identity 는 [Useauthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_)을 호출 하 여 사용 하도록 설정 됩니다. `UseAuthentication` 인증 [미들웨어](xref:fundamentals/middleware/index) 를 요청 파이프라인에 추가 합니다.
 
 [!code-csharp[](identity/sample/WebApp1/Startup.cs?name=snippet_configure&highlight=18)]
 
@@ -393,7 +394,7 @@ PowerShell은 세미콜론을 명령 구분 기호로 사용 합니다. PowerShe
 * **로그인** 링크가 선택 됩니다.
 * 사용자가 액세스 권한이 없는 제한 된 페이지에 액세스 **하거나** 시스템이 인증 되지 않은 경우에 액세스 하려고 합니다.
 
-로그인 페이지의 폼이 제출 되 면 `OnPostAsync` 동작이 호출 됩니다. `PasswordSignInAsync`는 개체에서 호출 됩니다 `_signInManager` .
+로그인 페이지의 폼이 제출 되 면 `OnPostAsync` 동작이 호출 됩니다. `PasswordSignInAsync` 는 개체에서 호출 됩니다 `_signInManager` .
 
 [!code-csharp[](identity/sample/WebApp1/Areas/Identity/Pages/Account/Login.cshtml.cs?name=snippet&highlight=10-11)]
 
@@ -411,7 +412,7 @@ Post는 *Pages/Shared/_LoginPartial*에서 지정 됩니다. cshtml:
 
 [!code-cshtml[](identity/sample/WebApp1/Pages/Shared/_LoginPartial.cshtml?highlight=16)]
 
-## <a name="test-no-locidentity"></a>테스트할Identity
+## <a name="test-no-locidentity"></a>테스트할 Identity
 
 기본 웹 프로젝트 템플릿을 사용 하면 홈 페이지에 익명으로 액세스할 수 있습니다. 테스트 하려면 Identity [`[Authorize]`](/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute) 개인 정보 페이지에를 추가 합니다.
 
@@ -419,20 +420,20 @@ Post는 *Pages/Shared/_LoginPartial*에서 지정 됩니다. cshtml:
 
 로그인 한 경우 로그 아웃 합니다. 앱을 실행 하 고 **개인 정보** 링크를 선택 합니다. 로그인 페이지로 리디렉션됩니다.
 
-### <a name="explore-no-locidentity"></a>탐험Identity
+### <a name="explore-no-locidentity"></a>탐험 Identity
 
 자세히 살펴보기 Identity :
 
 * [전체 id UI 원본 만들기](xref:security/authentication/scaffold-identity#create-full-identity-ui-source)
 * 각 페이지의 소스를 검사 하 고 디버거를 단계별로 실행 합니다.
 
-## <a name="no-locidentity-components"></a>Identity요소도
+## <a name="no-locidentity-components"></a>Identity 요소도
 
 모든 Identity 종속 NuGet 패키지는 [AspNetCore 메타 패키지](xref:fundamentals/metapackage-app)에 포함 되어 있습니다.
 
-의 기본 패키지는 Identity [AspNetCore입니다. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) 이 패키지에는 ASP.NET Core에 대 한 핵심 인터페이스 집합이 포함 되어 Identity 있으며에 포함 되어 `Microsoft.AspNetCore.Identity.EntityFrameworkCore` 있습니다.
+의 기본 패키지는 Identity [AspNetCore입니다. Identity ](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/) 이 패키지에는에 대 한 핵심 인터페이스 집합이 포함 되어 ASP.NET Core Identity 있으며,에 포함 되어 `Microsoft.AspNetCore.Identity.EntityFrameworkCore` 있습니다.
 
-## <a name="migrating-to-aspnet-core-no-locidentity"></a>ASP.NET Core로 마이그레이션Identity
+## <a name="migrating-to-no-locaspnet-core-identity"></a>로 마이그레이션 ASP.NET Core Identity
 
 기존 저장소 마이그레이션에 대 한 자세한 내용 및 지침은 Identity [인증 및 Identity 마이그레이션 ](xref:migration/identity)을 참조 하세요.
 

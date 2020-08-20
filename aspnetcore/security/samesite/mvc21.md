@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/samesite/mvc21
-ms.openlocfilehash: 4285432d48ba11b5069d109c5667192a99fe115e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 0a719ae48199f7854ded534446045eb304d4d9f0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021785"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632358"
 ---
 # <a name="aspnet-core-21-mvc-samesite-no-loccookie-sample"></a>ASP.NET Core 2.1 MVC SameSite cookie 샘플
 
@@ -56,7 +57,7 @@ Response.Cookies.Append(CookieName, "cookieValue", cookieOptions);
 
 ## <a name="setting-no-loccookie-authentication-and-session-state-no-loccookies"></a>Cookie인증 및 세션 상태 설정 cookie
 
-Cookie인증, 세션 상태 및 [다양 한 기타 구성 요소가](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) 옵션을 통해 sameSite 옵션 Cookie 을 설정 합니다. 예를 들면
+Cookie 인증, 세션 상태 및 [다양 한 기타 구성 요소가](https://docs.microsoft.com/aspnet/core/security/samesite?view=aspnetcore-2.1) 옵션을 통해 sameSite 옵션 Cookie 을 설정 합니다. 예를 들면
 
 ```c#
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -89,7 +90,7 @@ services.AddSession(options =>
 
 를 가로채 고 cookie 사용자의 브라우저 에이전트에서 지원에 따라 없음 값을 조정 하려면 미들웨어를 사용 해야 합니다 `CookiePolicy` . 을 작성 하 고 내에서 구성 된 구성 요소 **보다 먼저** http 요청 파이프라인에 배치 해야 합니다 cookie `ConfigureServices()` .
 
-`app.UseCookiePolicy()` `Configure(IApplicationBuilder, IHostingEnvironment)` [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs)의 메서드에서 파이프라인 사용에 삽입 합니다. 예:
+`app.UseCookiePolicy()` `Configure(IApplicationBuilder, IHostingEnvironment)` [Startup.cs](https://github.com/blowdart/AspNetSameSiteSamples/blob/master/AspNetCore21MVC/Startup.cs)의 메서드에서 파이프라인 사용에 삽입 합니다. 다음은 그 예입니다. 
 
 ```c#
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -119,7 +120,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-그런 다음를 `ConfigureServices(IServiceCollection services)` cookie 추가 하거나 삭제 하면에서 도우미 클래스를 호출 하도록 정책을 구성 합니다 cookie . 예:
+그런 다음를 `ConfigureServices(IServiceCollection services)` cookie 추가 하거나 삭제 하면에서 도우미 클래스를 호출 하도록 정책을 구성 합니다 cookie . 다음은 그 예입니다. 
 
 ```c#
 public void ConfigureServices(IServiceCollection services)

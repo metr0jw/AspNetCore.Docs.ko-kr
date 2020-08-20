@@ -6,6 +6,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/client-features
-ms.openlocfilehash: 4f5fa2f4ff1ac3d00b04845aedc26fb0118b9991
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: df0084411134167df31506a01362a0520821e577
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021473"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631760"
 ---
 # <a name="aspnet-core-no-locsignalr-clients"></a>ASP.NET Core SignalR 클라이언트
 
 ## <a name="versioning-support-and-compatibility"></a>버전 관리, 지원 및 호환성
 
-SignalR클라이언트는 서버 구성 요소와 함께 제공 되며 일치 하도록 버전이 지정 됩니다. 지원 되는 모든 클라이언트는 지원 되는 모든 서버에 안전 하 게 연결할 수 있으며, 모든 호환성 문제는 버그를 수정 하는 것으로 간주 됩니다. SignalR클라이언트는 .NET Core의 나머지 부분과 동일한 지원 수명 주기에서 지원 됩니다. 자세한 내용은 [.Net Core 지원 정책을](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) 참조 하세요.
+SignalR클라이언트는 서버 구성 요소와 함께 제공 되며 일치 하도록 버전이 지정 됩니다. 지원 되는 모든 클라이언트는 지원 되는 모든 서버에 안전 하 게 연결할 수 있으며, 모든 호환성 문제는 버그를 수정 하는 것으로 간주 됩니다. SignalR 클라이언트는 .NET Core의 나머지 부분과 동일한 지원 수명 주기에서 지원 됩니다. 자세한 내용은 [.Net Core 지원 정책을](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) 참조 하세요.
 
 많은 기능에는 호환 되는 클라이언트 **와** 서버가 필요 합니다. 다양 한 기능에 대 한 최소 버전을 보여 주는 표는 아래를 참조 하세요.
 
@@ -59,7 +60,7 @@ SignalR클라이언트는 서버 구성 요소와 함께 제공 되며 일치 �
 
 추가 클라이언트 기능 사용에 대 한 지원은 [문제 추적기](https://github.com/dotnet/AspNetCore/issues)에서 추적 됩니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [SignalRASP.NET Core에 대 한 시작](xref:tutorials/signalr)
 * [지원되는 플랫폼](xref:signalr/supported-platforms)

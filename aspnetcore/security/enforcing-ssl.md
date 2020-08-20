@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/06/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 5dcdf50ff9f750e4966ed3bdf24a71b9f433240a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 1cb2c2d18b717dc99c6ef4dac9954fef149c6deb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019003"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631565"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>ASP.NET Core에서 HTTPS 적용
 
@@ -39,7 +40,7 @@ API가 없으면 클라이언트가 첫 번째 요청에서 중요 한 데이터
 > [!WARNING]
 > ## <a name="api-projects"></a>API 프로젝트
 >
-> 중요 한 정보를 수신 하는 웹 Api에 [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) 를 사용 **하지** 마세요. `RequireHttpsAttribute`http 상태 코드를 사용 하 여 브라우저를 HTTP에서 HTTPS로 리디렉션합니다. API 클라이언트는 HTTP에서 HTTPS로의 리디렉션을 인식 하거나 준수 하지 않을 수 있습니다. 이러한 클라이언트는 HTTP를 통해 정보를 보낼 수 있습니다. 웹 Api는 다음 중 하나를 수행 해야 합니다.
+> 중요 한 정보를 수신 하는 웹 Api에 [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) 를 사용 **하지** 마세요. `RequireHttpsAttribute` http 상태 코드를 사용 하 여 브라우저를 HTTP에서 HTTPS로 리디렉션합니다. API 클라이언트는 HTTP에서 HTTPS로의 리디렉션을 인식 하거나 준수 하지 않을 수 있습니다. 이러한 클라이언트는 HTTP를 통해 정보를 보낼 수 있습니다. 웹 Api는 다음 중 하나를 수행 해야 합니다.
 >
 > * HTTP에서 수신 하지 않습니다.
 > * 상태 코드 400 (잘못 된 요청)이 포함 된 연결을 닫고 요청을 제공 하지 않습니다.
@@ -55,7 +56,7 @@ API가 없으면 클라이언트가 첫 번째 요청에서 중요 한 데이터
 > [!WARNING]
 > ## <a name="api-projects"></a>API 프로젝트
 >
-> 중요 한 정보를 수신 하는 웹 Api에 [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) 를 사용 **하지** 마세요. `RequireHttpsAttribute`http 상태 코드를 사용 하 여 브라우저를 HTTP에서 HTTPS로 리디렉션합니다. API 클라이언트는 HTTP에서 HTTPS로의 리디렉션을 인식 하거나 준수 하지 않을 수 있습니다. 이러한 클라이언트는 HTTP를 통해 정보를 보낼 수 있습니다. 웹 Api는 다음 중 하나를 수행 해야 합니다.
+> 중요 한 정보를 수신 하는 웹 Api에 [RequireHttpsAttribute](/dotnet/api/microsoft.aspnetcore.mvc.requirehttpsattribute) 를 사용 **하지** 마세요. `RequireHttpsAttribute` http 상태 코드를 사용 하 여 브라우저를 HTTP에서 HTTPS로 리디렉션합니다. API 클라이언트는 HTTP에서 HTTPS로의 리디렉션을 인식 하거나 준수 하지 않을 수 있습니다. 이러한 클라이언트는 HTTP를 통해 정보를 보낼 수 있습니다. 웹 Api는 다음 중 하나를 수행 해야 합니다.
 >
 > * HTTP에서 수신 하지 않습니다.
 > * 상태 코드 400 (잘못 된 요청)이 포함 된 연결을 닫고 요청을 제공 하지 않습니다.
@@ -112,7 +113,7 @@ API가 없으면 클라이언트가 첫 번째 요청에서 중요 한 데이터
 
   * 호스트 구성에서.
   * `ASPNETCORE_HTTPS_PORT`환경 변수를 설정 합니다.
-  * appsettings.js에서 최상위 항목을 추가 하 여 다음 *을*수행 합니다.
+  * appsettings.js에서 최상위 항목을 추가 하 여 다음 * 을*수행 합니다.
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
@@ -126,7 +127,7 @@ API가 없으면 클라이언트가 첫 번째 요청에서 중요 한 데이터
 
   * 호스트 구성에서.
   * `ASPNETCORE_HTTPS_PORT`환경 변수를 설정 합니다.
-  * appsettings.js에서 최상위 항목을 추가 하 여 다음 *을*수행 합니다.
+  * appsettings.js에서 최상위 항목을 추가 하 여 다음 * 을*수행 합니다.
 
     [!code-json[](enforcing-ssl/sample-snapshot/2.x/appsettings.json?highlight=2)]
 
@@ -234,7 +235,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="https-redirection-middleware-alternative-approach"></a>HTTPS 리디렉션 미들웨어 대체 방법
 
-HTTPS 리디렉션 미들웨어 ()를 사용 하 `UseHttpsRedirection` 는 대신 URL 재작성 미들웨어 ()를 사용할 수 `AddRedirectToHttps` 있습니다. `AddRedirectToHttps`리디렉션이 실행 될 때 상태 코드 및 포트를 설정할 수도 있습니다. 자세한 내용은 [URL 재작성 미들웨어](xref:fundamentals/url-rewriting)를 참조 하세요.
+HTTPS 리디렉션 미들웨어 ()를 사용 하 `UseHttpsRedirection` 는 대신 URL 재작성 미들웨어 ()를 사용할 수 `AddRedirectToHttps` 있습니다. `AddRedirectToHttps` 리디렉션이 실행 될 때 상태 코드 및 포트를 설정할 수도 있습니다. 자세한 내용은 [URL 재작성 미들웨어](xref:fundamentals/url-rewriting)를 참조 하세요.
 
 추가 리디렉션 규칙을 요구 하지 않고 HTTPS로 리디렉션하는 경우 `UseHttpsRedirection` 이 항목에서 설명 하는 Https 리디렉션 미들웨어 ()를 사용 하는 것이 좋습니다.
 
@@ -267,7 +268,7 @@ ASP.NET Core 2.1 이상에서는 확장 메서드를 사용 하 여 HSTS를 구�
 
 ::: moniker-end
 
-`UseHsts`HSTS 설정은 브라우저에서 매우 캐시할 수 있으므로 개발에는 권장 되지 않습니다. 기본적으로는 `UseHsts` 로컬 루프백 주소를 제외 합니다.
+`UseHsts` HSTS 설정은 브라우저에서 매우 캐시할 수 있으므로 개발에는 권장 되지 않습니다. 기본적으로는 `UseHsts` 로컬 루프백 주소를 제외 합니다.
 
 처음으로 HTTPS를 구현 하는 프로덕션 환경의 경우 메서드 중 하나를 사용 하 여 초기 [HstsOptions](xref:Microsoft.AspNetCore.HttpsPolicy.HstsOptions.MaxAge*) 를 작은 값으로 설정 합니다. <xref:System.TimeSpan> HTTPS 인프라를 HTTP로 되돌려야 하는 경우에는 값을 하루에 한 번 이상으로 설정 해야 합니다. HTTPS 구성의 유지 가능성을 확신 하는 경우 HSTS 값을 늘립니다 `max-age` . 일반적으로 사용 되는 값은 1 년입니다.
 
@@ -292,11 +293,11 @@ ASP.NET Core 2.1 이상에서는 확장 메서드를 사용 하 여 HSTS를 구�
 * `max-age`헤더의 매개 변수를 60 일로 명시적으로 설정 `Strict-Transport-Security` 합니다. 설정 되지 않은 경우 기본값은 30 일입니다. 자세한 내용은 [최대 기간 지시문](https://tools.ietf.org/html/rfc6797#section-6.1.1)을 참조 하세요.
 * `example.com`제외할 호스트 목록에를 추가 합니다.
 
-`UseHsts`다음 루프백 호스트를 제외 합니다.
+`UseHsts` 다음 루프백 호스트를 제외 합니다.
 
-* `localhost`: IPv4 루프백 주소입니다.
-* `127.0.0.1`: IPv4 루프백 주소입니다.
-* `[::1]`: IPv6 루프백 주소입니다.
+* `localhost` : IPv4 루프백 주소입니다.
+* `127.0.0.1` : IPv4 루프백 주소입니다.
+* `[::1]` : IPv6 루프백 주소입니다.
 
 ## <a name="opt-out-of-httpshsts-on-project-creation"></a>프로젝트를 만들 때 HTTPS/HSTS 옵트아웃 (Opt out)
 
@@ -323,7 +324,7 @@ HTTPS/HSTS를 옵트아웃 (opt out) 하려면:
 
 # <a name="net-core-cli"></a>[.NET Core CLI](#tab/netcore-cli) 
 
-`--no-https` 옵션을 사용합니다. 예
+`--no-https` 옵션을 사용합니다. 예를 들면 다음과 같습니다.
 
 ```dotnetcli
 dotnet new webapp --no-https
@@ -361,6 +362,14 @@ dotnet dev-certs https --help
 ## <a name="how-to-set-up-a-developer-certificate-for-docker"></a>Docker 용 개발자 인증서를 설정 하는 방법
 
 이 [GitHub 문제](https://github.com/dotnet/AspNetCore.Docs/issues/6199)를 참조하세요.
+
+<a name="ssl-linux"></a>
+
+## <a name="trust-https-certificate-on-linux"></a>Linux에서 HTTPS 인증서 신뢰
+
+<!-- Instructions to be updated by engineering team after 5.0 RTM. -->
+
+Linux에 대 한 지침은 배포 설명서를 참조 하세요.
 
 <a name="wsl"></a>
 

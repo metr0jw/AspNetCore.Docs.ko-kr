@@ -6,6 +6,7 @@ ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 12/18/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: 6ec531a04a220f75f5793cb2c7b5232908dbd883
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ec36ff6d646e0554550a4372389aed89aa267b1f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019159"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633983"
 ---
 # <a name="model-binding-in-aspnet-core"></a>ASP.NET Core의 모델 바인딩
 
@@ -108,11 +109,11 @@ ASP.NET Core 2.1 이상에서 사용할 수 있습니다.  모델 바인딩이 �
 
 기본 소스가 올바르지 않으면 다음 특성 중 하나를 사용하여 소스를 지정합니다.
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)-쿼리 문자열에서 값을 가져옵니다. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)-경로 데이터에서 값을 가져옵니다.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)-게시 된 양식 필드에서 값을 가져옵니다.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)-요청 본문에서 값을 가져옵니다.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)-HTTP 헤더에서 값을 가져옵니다.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) -쿼리 문자열에서 값을 가져옵니다. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) -경로 데이터에서 값을 가져옵니다.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) -게시 된 양식 필드에서 값을 가져옵니다.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) -요청 본문에서 값을 가져옵니다.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) -HTTP 헤더에서 값을 가져옵니다.
 
 이러한 특성:
 
@@ -273,30 +274,16 @@ public IActionResult OnPost(
 
 여러 기본 제공 특성은 복합 형식의 모델 바인딩을 제어할 수 있습니다.
 
+* `[Bind]`
 * `[BindRequired]`
 * `[BindNever]`
-* `[Bind]`
 
-> [!NOTE]
-> 이러한 특성은 게시된 양식 데이터가 값의 원본일 때 모델 바인딩에 영향을 줍니다. 게시된 JSON 및 XML 요청 본문을 처리하는 입력 포맷터에는 영향을 주지 않습니다. 입력 포맷터는 [이 문서의 뒷부분](#input-formatters)에 설명되어 있습니다.
->
-> [모델 유효성 검사](xref:mvc/models/validation#required-attribute)에서 `[Required]` 특성의 설명을 참조하세요.
-
-### <a name="bindrequired-attribute"></a>[BindRequired] 특성
-
-메서드 매개 변수가 아닌 모델 속성에만 적용될 수 있습니다. 모델의 속성에 대한 바인딩이 발생할 수 없는 경우 모델 바인딩이 모델 상태 오류를 추가하도록 합니다. 예를 들면 다음과 같습니다.
-
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
-
-### <a name="bindnever-attribute"></a>[BindNever] 특성
-
-메서드 매개 변수가 아닌 모델 속성에만 적용될 수 있습니다. 모델 바인딩이 모델의 속성을 설정하는 것을 방지합니다. 예를 들면 다음과 같습니다.
-
-[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+> [!WARNING]
+> 이러한 특성은 게시된 양식 데이터가 값의 원본일 때 모델 바인딩에 영향을 줍니다. 게시 된 JSON 및 XML 요청 본문을 처리 하는 입력 포맷터에 ***는 영향을 주지 않습니다.*** 입력 포맷터는 [이 문서의 뒷부분](#input-formatters)에 설명되어 있습니다.
 
 ### <a name="bind-attribute"></a>[Bind] 특성
 
-클래스 또는 메서드 매개 변수에 적용될 수 있습니다. 모델 바인딩에 포함되어야 하는 모델의 속성을 지정합니다.
+클래스 또는 메서드 매개 변수에 적용될 수 있습니다. 모델 바인딩에 포함되어야 하는 모델의 속성을 지정합니다. `[Bind]`입력 포맷터 ***에는 영향을 주지 않습니다.***
 
 다음 예제에서 모든 처리기 또는 작업 메서드가 호출될 때 지정된 속성의 `Instructor` 모델만 바인딩됩니다.
 
@@ -314,9 +301,23 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 `[Bind]` 특성은 *만들기* 시나리오에서 초과 게시를 방지하는 데 사용될 수 있습니다. 제외된 속성은 변경되지 않은 채로 남겨지는 대신 Null 또는 기본값으로 설정되기 때문에 편집 시나리오에서 잘 작동하지 않습니다. 초과 게시에 대한 방어의 경우 뷰 모델이 `[Bind]` 특성보다 권장됩니다. 자세한 내용은 [초과 게시에 대한 보안 정보](xref:data/ef-mvc/crud#security-note-about-overposting)를 참조하세요.
 
+### <a name="bindrequired-attribute"></a>[BindRequired] 특성
+
+메서드 매개 변수가 아닌 모델 속성에만 적용될 수 있습니다. 모델의 속성에 대한 바인딩이 발생할 수 없는 경우 모델 바인딩이 모델 상태 오류를 추가하도록 합니다. 예를 들면 다음과 같습니다.
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs?name=snippet_BindRequired&highlight=8-9)]
+
+[모델 유효성 검사](xref:mvc/models/validation#required-attribute)에서 `[Required]` 특성의 설명을 참조하세요.
+
+### <a name="bindnever-attribute"></a>[BindNever] 특성
+
+메서드 매개 변수가 아닌 모델 속성에만 적용될 수 있습니다. 모델 바인딩이 모델의 속성을 설정하는 것을 방지합니다. 예를 들면 다음과 같습니다.
+
+[!code-csharp[](model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithDictionary.cs?name=snippet_BindNever&highlight=3-4)]
+
 ## <a name="collections"></a>컬렉션
 
-단순 형식의 컬렉션인 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 예:
+단순 형식의 컬렉션인 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 다음은 그 예입니다. 
 
 * 바인딩되는 매개 변수가 `selectedCourses`라는 배열이라고 가정합니다.
 
@@ -361,7 +362,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>사전
 
-`Dictionary` 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 예:
+`Dictionary` 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 다음은 그 예입니다. 
 
 * 대상 매개 변수가 `selectedCourses`라는 `Dictionary<int, string>`라고 가정합니다.
 
@@ -505,7 +506,7 @@ ASP.NET Core는 [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) 특�
 
 이 특성의 이름은 데이터 원본을 지정하는 모델 바인딩 특성의 패턴을 따릅니다. 그러나 값 공급 기업의 바인딩 데이터에 대한 것은 아닙니다. [종속성 주입](xref:fundamentals/dependency-injection) 컨테이너에서 형식의 인스턴스를 가져옵니다. 특정 메서드가 호출되는 경우에만 서비스가 필요할 때 생성자 주입에 대안을 제공하는 것이 목적입니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
@@ -594,11 +595,11 @@ ASP.NET Core 2.1 이상에서 사용할 수 있습니다.  모델 바인딩이 �
 
 기본 소스가 올바르지 않으면 다음 특성 중 하나를 사용하여 소스를 지정합니다.
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)-쿼리 문자열에서 값을 가져옵니다. 
-* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)-경로 데이터에서 값을 가져옵니다.
-* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)-게시 된 양식 필드에서 값을 가져옵니다.
-* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)-요청 본문에서 값을 가져옵니다.
-* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)-HTTP 헤더에서 값을 가져옵니다.
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) -쿼리 문자열에서 값을 가져옵니다. 
+* [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) -경로 데이터에서 값을 가져옵니다.
+* [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) -게시 된 양식 필드에서 값을 가져옵니다.
+* [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) -요청 본문에서 값을 가져옵니다.
+* [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) -HTTP 헤더에서 값을 가져옵니다.
 
 이러한 특성:
 
@@ -802,7 +803,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>컬렉션
 
-단순 형식의 컬렉션인 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 예:
+단순 형식의 컬렉션인 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 다음은 그 예입니다. 
 
 * 바인딩되는 매개 변수가 `selectedCourses`라는 배열이라고 가정합니다.
 
@@ -847,7 +848,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>사전
 
-`Dictionary` 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 예:
+`Dictionary` 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 다음은 그 예입니다. 
 
 * 대상 매개 변수가 `selectedCourses`라는 `Dictionary<int, string>`라고 가정합니다.
 
@@ -966,7 +967,7 @@ ASP.NET Core는 [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) 특�
 
 이 특성의 이름은 데이터 원본을 지정하는 모델 바인딩 특성의 패턴을 따릅니다. 그러나 값 공급 기업의 바인딩 데이터에 대한 것은 아닙니다. [종속성 주입](xref:fundamentals/dependency-injection) 컨테이너에서 형식의 인스턴스를 가져옵니다. 특정 메서드가 호출되는 경우에만 서비스가 필요할 때 생성자 주입에 대안을 제공하는 것이 목적입니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>

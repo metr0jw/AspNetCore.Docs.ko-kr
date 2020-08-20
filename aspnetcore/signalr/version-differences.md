@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.date: 11/21/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,14 +17,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: f52bf6c82cd5125e0905d9bcbda5dd5499d6455e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a8336a6c13c502f5a0fad150785cd9d484064618
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020043"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633008"
 ---
-# <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>ASP.NET SignalR 와 ASP.NET Core 간의 차이점SignalR
+# <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>ASP.NET SignalR 와 ASP.NET Core 간의 차이점 SignalR
 
 ASP.NET Core SignalR ASP.NET의 클라이언트 또는 서버와 호환 되지 않습니다 SignalR . 이 문서에서는 ASP.NET Core에서 제거 되거나 변경 된 기능에 대해 자세히 설명 SignalR 합니다.
 
@@ -31,7 +32,7 @@ ASP.NET Core SignalR ASP.NET의 클라이언트 또는 서버와 호환 되지 �
 
 ::: moniker range=">= aspnetcore-3.0"
 
-|                      | ASP.NETSignalR | ASP.NET CoreSignalR |
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
 | **서버 NuGet 패키지** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | 없음 [AspNetCore](xref:fundamentals/metapackage-app) 공유 프레임 워크에 포함 되어 있습니다. |
 | **클라이언트 NuGet 패키지** | [Microsoft SignalR . AspNet. 클라이언트로](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft SignalR . AspNet. .JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [AspNetCore SignalR . 클라이언트로](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
@@ -44,7 +45,7 @@ ASP.NET Core SignalR ASP.NET의 클라이언트 또는 서버와 호환 되지 �
 
 ::: moniker range="<= aspnetcore-2.2"
 
-|                      | ASP.NETSignalR | ASP.NET CoreSignalR |
+|                      | ASP.NET SignalR | ASP.NET Core SignalR |
 | -------------------- | --------------- | -------------------- |
 | **서버 NuGet 패키지** | [Microsoft. AspNet.SignalR](https://www.nuget.org/packages/Microsoft.AspNet.SignalR/) | [AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.App/) (.net Core)<br>[AspNetCore.SignalR](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR/) (.NET Framework) |
 | **클라이언트 NuGet 패키지** | [Microsoft SignalR . AspNet. 클라이언트로](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.Client/)<br>[Microsoft SignalR . AspNet. .JS](https://www.nuget.org/packages/Microsoft.AspNet.SignalR.JS/) | [AspNetCore SignalR . 클라이언트로](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) |
@@ -149,7 +150,7 @@ ASP.NET Core에서는 SignalR 연결 모델이 간소화 되었습니다. 여러
 
 ASP.NET Core는 SignalR 이제 허브에서 클라이언트로의 [스트리밍 데이터](xref:signalr/streaming) 를 지원 합니다.
 
-### <a name="state"></a>주
+### <a name="state"></a>시스템 상태
 
 클라이언트와 허브 (라고도 함) 간에 임의의 상태를 전달 하는 기능이 `HubState` 제거 되었으며 진행 메시지를 지원 합니다. 현재 허브 프록시의 대응 항목이 없습니다.
 
@@ -279,16 +280,16 @@ ASP.NET는 SignalR SQL Server 및 Redis를 지원 합니다. ASP.NET Core는 Sig
 
 ### <a name="aspnet"></a>ASP.NET
 
-* [SignalRAzure Service Bus 확장](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
-* [SignalRRedis를 사용 하는 확장](/aspnet/signalr/overview/performance/scaleout-with-redis)
-* [SignalRSQL Server 확장](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
+* [SignalR Azure Service Bus 확장](/aspnet/signalr/overview/performance/scaleout-with-windows-azure-service-bus)
+* [SignalR Redis를 사용 하는 확장](/aspnet/signalr/overview/performance/scaleout-with-redis)
+* [SignalR SQL Server 확장](/aspnet/signalr/overview/performance/scaleout-with-sql-server)
 
 ### <a name="aspnet-core"></a>ASP.NET Core
 
 * [Azure SignalR 서비스](/azure/azure-signalr/)
 * [Redis 백플레인](xref:signalr/redis-backplane)
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [허브](xref:signalr/hubs)
 * [JavaScript 클라이언트](xref:signalr/javascript-client)

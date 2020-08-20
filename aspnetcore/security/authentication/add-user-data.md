@@ -6,6 +6,7 @@ ms.author: riande
 ms.date: 03/26/2020
 ms.custom: mvc, seodec18
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/add-user-data
-ms.openlocfilehash: d65974e9ff8e2f5be52ab79b063ed9d2dca557ea
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a71395e82ed15dae753888a438471495208a14da
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020862"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631851"
 ---
 # <a name="add-download-and-delete-custom-user-data-to-no-locidentity-in-an-aspnet-core-project"></a>ASP.NET Core 프로젝트에서 사용자 지정 사용자 데이터 추가, 다운로드 및 삭제 Identity
 
@@ -90,7 +91,7 @@ dotnet new webapp -o WebApp1
 * **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭 하 > **Add**  >  **새 스 캐 폴드 항목**추가를 클릭 합니다.
 * **스 캐 폴드 추가** 대화 상자의 왼쪽 창에서 추가를 선택 **Identity**  >  **Add**합니다.
 * **추가 Identity ** 대화 상자에서 다음 옵션을 선택 합니다.
-  * 기존 레이아웃 파일 *~/Pages/Shared/_Layout를 선택 합니다.*
+  * 기존 레이아웃 파일  *~/Pages/Shared/_Layout를 선택 합니다.*
   * 재정의할 다음 파일 선택:
     * **계정/등록**
     * **계정/관리/인덱스**
@@ -244,7 +245,7 @@ dotnet ef database update
 > [!NOTE]
 > 이 섹션은 이전 자습서의 확장이 아닙니다. 자습서를 사용 하 여 빌드한 앱에 다음 단계를 적용 하려면 [이 GitHub 문제](https://github.com/dotnet/AspNetCore.Docs/issues/18797)를 참조 하세요.
 
-인터페이스를 사용 하 여 ASP.NET Core에 추가 클레임을 추가할 수 있습니다 Identity `IUserClaimsPrincipalFactory<T>` . 이 클래스는 메서드의 응용 프로그램에 추가할 수 있습니다 `Startup.ConfigureServices` . 다음과 같이 클래스의 사용자 지정 구현을 추가 합니다.
+인터페이스를 사용 하 여 추가 클레임을에 추가할 수 있습니다 ASP.NET Core Identity `IUserClaimsPrincipalFactory<T>` . 이 클래스는 메서드의 응용 프로그램에 추가할 수 있습니다 `Startup.ConfigureServices` . 다음과 같이 클래스의 사용자 지정 구현을 추가 합니다.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

@@ -5,6 +5,7 @@ description: ASP.NET Core 데이터 보호 Api와 관련 된 용도 문자열 �
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
-ms.openlocfilehash: 4d442d3020c0d67b40ebd101442e5c84dcd4dbc6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 65799c10b8e810853023c094b95ccafa0d71eb8b
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022227"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632085"
 ---
 # <a name="purpose-hierarchy-and-multi-tenancy-in-aspnet-core"></a>ASP.NET Core의 용도 계층 구조 및 다중 테 넌 트
 

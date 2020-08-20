@@ -5,6 +5,7 @@ description: ''
 ms.author: riande
 ms.date: 12/07/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 92672b2d05ee6bbdfcf0255ae14529a5c28c41b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8be09171991964540cd41a1324fb87503591151f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014986"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632176"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>HTTP 처리기 및 모듈을 ASP.NET Core 미들웨어로 마이그레이션
 
@@ -169,7 +170,7 @@ HTTP 처리기 구성은 *Web.config* 에서 수행 되며 다음과 같습니�
 
 [!code-csharp[](../migration/http-modules/sample/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=27-34)]
 
-`MapWhen`는 다음 매개 변수를 사용 합니다.
+`MapWhen` 는 다음 매개 변수를 사용 합니다.
 
 1. 을 사용 하 `HttpContext` 고 `true` 요청을 분기 아래로 이동 해야 하는 경우를 반환 하는 람다입니다. 즉, 확장 뿐만 아니라 요청 헤더, 쿼리 문자열 매개 변수 등에서 요청을 분기할 수 있습니다.
 
@@ -235,7 +236,7 @@ HTTP 처리기 구성은 *Web.config* 에서 수행 되며 다음과 같습니�
 
 1. *appsettings.js* 에 두 번째 키를 추가 합니다.
 
-   파일 *의appsettings.js* 에 두 번째 옵션 집합을 추가 하려면 새 키를 사용 하 여 해당 옵션을 고유 하 게 식별 합니다.
+   파일 * 의appsettings.js* 에 두 번째 옵션 집합을 추가 하려면 새 키를 사용 하 여 해당 옵션을 고유 하 게 식별 합니다.
 
    [!code-json[](http-modules/sample/Asp.Net.Core/appsettings.json?range=1,10-18&highlight=2-5)]
 
@@ -257,7 +258,7 @@ HTTP 처리기 구성은 *Web.config* 에서 수행 되며 다음과 같습니�
 public async Task Invoke(HttpContext context)
 ```
 
-`HttpContext`ASP.NET Core에서 대폭 변경 되었습니다. 이 섹션에서는 [system.web](/dotnet/api/system.web.httpcontext) 의 가장 일반적으로 사용 되는 속성을 새로 변환 하는 방법을 보여 `Microsoft.AspNetCore.Http.HttpContext` 줍니다.
+`HttpContext` ASP.NET Core에서 대폭 변경 되었습니다. 이 섹션에서는 [system.web](/dotnet/api/system.web.httpcontext) 의 가장 일반적으로 사용 되는 속성을 새로 변환 하는 방법을 보여 `Microsoft.AspNetCore.Http.HttpContext` 줍니다.
 
 ### <a name="httpcontext"></a>HttpContext
 
@@ -293,7 +294,7 @@ public async Task Invoke(HttpContext context)
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Host)]
 
-**HttpContext 요청. Cookie **는 다음과 같이 변환 됩니다.
+**HttpContext 요청. Cookie ** 는 다음과 같이 변환 됩니다.
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_Cookies)]
 
@@ -392,7 +393,7 @@ public async Task Invoke(HttpContext httpContext)
 
 [!code-csharp[](http-modules/sample/Asp.Net.Core/Middleware/HttpContextDemoMiddleware.cs?name=snippet_SetCookies)]
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [HTTP 처리기 및 HTTP 모듈 개요](/iis/configuration/system.webserver/)
 * [Configuration](xref:fundamentals/configuration/index)

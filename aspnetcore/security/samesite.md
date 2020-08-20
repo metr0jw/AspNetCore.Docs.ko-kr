@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/03/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: 7688367093dec09c172a2e24337566bc5e5185f6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c95952face8763dc9f2dd12312cab1a1bc07528a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021746"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632345"
 ---
 # <a name="work-with-samesite-no-loccookies-in-aspnet-core"></a>cookieASP.NET Core에서 SameSite s 작업
 
@@ -31,7 +32,7 @@ ms.locfileid: "88021746"
 SameSite은 CSRF (교차 사이트 요청 위조) 공격에 대 한 보호를 제공 하도록 설계 된 [IETF](https://ietf.org/about/) 초안 표준입니다. 원래 [2016](https://tools.ietf.org/html/draft-west-first-party-cookies-07)에서는 초안 표준이 [2019](https://tools.ietf.org/html/draft-west-cookie-incrementalism-00)에서 업데이트 되었습니다. 업데이트 된 표준은 이전 표준과 호환 되지 않으며 다음과 같은 가장 눈에 띄는 차이점이 있습니다.
 
 * CookieSameSite 헤더가 없는 s는 기본적으로로 처리 됩니다 `SameSite=Lax` .
-* `SameSite=None`는 사이트 간 사용을 허용 하는 데 사용 해야 합니다 cookie .
+* `SameSite=None` 는 사이트 간 사용을 허용 하는 데 사용 해야 합니다 cookie .
 * Cookieassert `SameSite=None` 도로 표시 해야 합니다 `Secure` .
 * 를 사용 하는 응용 프로그램 [`<iframe>`](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) `sameSite=Lax` `sameSite=Strict` cookie `<iframe>` 은 사이트 간 시나리오로 처리 되기 때문에 또는와 관련 된 문제가 발생할 수 있습니다.
 * 값은 `SameSite=None` [2016 표준](https://tools.ietf.org/html/draft-west-first-party-cookies-07) 에서 허용 되지 않으며 일부 구현에서 이러한를 cookie 로 처리 `SameSite=Strict` 합니다. 이 문서의 [이전 브라우저 지원](#sob) 을 참조 하세요.
@@ -40,7 +41,7 @@ SameSite은 CSRF (교차 사이트 요청 위조) 공격에 대 한 보호를 �
 
 를 내보내는 각 ASP.NET Core 구성 요소는 cookie SameSite가 적절 한지 결정 해야 합니다.
 
-## <a name="samesite-and-no-locidentity"></a>SameSite 및Identity
+## <a name="samesite-and-no-locidentity"></a>SameSite 및 Identity
 
 [!INCLUDE[](~/includes/SameSiteIdentity.md)]
 
@@ -72,7 +73,7 @@ SameSite은 CSRF (교차 사이트 요청 위조) 공격에 대 한 보호를 �
 
 ## <a name="net-core-support-for-the-samesite-attribute"></a>SameSite 특성에 대 한 .NET Core 지원
 
-.NET Core 2.2는 12 월 2019의 업데이트 출시 이후 SameSite의 2019 초안 표준을 지원 합니다. 개발자는 속성을 사용 하 여 sameSite 특성의 값을 프로그래밍 방식으로 제어할 수 있습니다 `HttpCookie.SameSite` . 속성을 `SameSite` Strict, Strict 또는 None으로 설정 하면 해당 값이로 네트워크에 기록 됩니다 cookie . 이 값을 (SameSiteMode) (-1)로 설정 하면 네트워크에 sameSite 특성이 포함 되지 않음을 나타냅니다.cookie
+.NET Core 2.2는 12 월 2019의 업데이트 출시 이후 SameSite의 2019 초안 표준을 지원 합니다. 개발자는 속성을 사용 하 여 sameSite 특성의 값을 프로그래밍 방식으로 제어할 수 있습니다 `HttpCookie.SameSite` . 속성을 `SameSite` Strict, Strict 또는 None으로 설정 하면 해당 값이로 네트워크에 기록 됩니다 cookie . 이 값을 (SameSiteMode) (-1)로 설정 하면 네트워크에 sameSite 특성이 포함 되지 않음을 나타냅니다. cookie
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
@@ -99,13 +100,13 @@ SameSite은 CSRF (교차 사이트 요청 위조) 공격에 대 한 보호를 �
 
 S를 내보내는 모든 ASP.NET Core 구성 요소는 cookie 해당 시나리오에 적합 한 설정을 사용 하 여 이전 기본값을 재정의 합니다. 재정의 된 이전 기본값은 변경 되지 않았습니다.
 
-| 구성 요소 | cookie | Default |
+| 구성 요소 | cookie | 기본값 |
 | ------------- | ------------- |
 | <xref:Microsoft.AspNetCore.Http.CookieBuilder> | <xref:Microsoft.AspNetCore.Http.CookieBuilder.SameSite> | `Unspecified` |
 | <xref:Microsoft.AspNetCore.Http.HttpContext.Session>  | [SessionOptions.Cookie](xref:Microsoft.AspNetCore.Builder.SessionOptions.Cookie) |`Lax` |
 | <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>  | [CookieTempDataProviderOptions.Cookie](xref:Microsoft.AspNetCore.Mvc.CookieTempDataProviderOptions.Cookie) | `Lax` |
 | <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> | [AntiforgeryOptions.Cookie](xref:Microsoft.AspNetCore.Antiforgery.AntiforgeryOptions.Cookie)| `Strict` |
-| [Cookie인증은](xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*) | [CookieAuthenticationOptions.Cookie](xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieName) | `Lax` |
+| [Cookie 인증은](xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*) | [CookieAuthenticationOptions.Cookie](xref:Microsoft.AspNetCore.Builder.CookieAuthenticationOptions.CookieName) | `Lax` |
 | <xref:Microsoft.Extensions.DependencyInjection.TwitterExtensions.AddTwitter*> | [TwitterOptions. 상태 Cookie](xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterOptions.StateCookie) | `Lax`  |
 | <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> | [RemoteAuthenticationOptions. 상관 관계Cookie](xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CorrelationCookie)  | `None` |
 | <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*> | [OpenIdConnectOptions. NonceCookie](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.NonceCookie)| `None` |
@@ -126,7 +127,7 @@ ASP.NET Core 3.1 이상에서는 다음 SameSite 지원 합니다.
 ASP.NET Core 3.0 이상에서 SameSite 기본값은 일관 되지 않은 클라이언트 기본값과 충돌 하지 않도록 변경 되었습니다. 다음 Api는의 기본값을로 변경 `SameSiteMode.Lax ` `-1` 하 여 이러한에 대 한 SameSite 특성을 내보내지 않도록 합니다 cookie .
 
 * <xref:Microsoft.AspNetCore.Http.CookieOptions>[HttpContext 응답과 함께 사용 됩니다. Cookie s. Append](xref:Microsoft.AspNetCore.Http.IResponseCookies.Append*)
-* <xref:Microsoft.AspNetCore.Http.CookieBuilder>의 팩터리로 사용 됩니다.`CookieOptions`
+* <xref:Microsoft.AspNetCore.Http.CookieBuilder>  의 팩터리로 사용 됩니다. `CookieOptions`
 * [CookiePolicyOptions. MinimumSameSitePolicy](xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.MinimumSameSitePolicy)
 
 ::: moniker-end
@@ -139,7 +140,7 @@ SameSite 지원은 [2016 초안 표준을](https://tools.ietf.org/html/draft-wes
 
 * 는 이전 버전과 호환 **되지 않습니다** . 2016 초안. 자세한 내용은이 문서의 [이전 브라우저 지원](#sob) 을 참조 하세요.
 * cookie는 기본적으로로 처리 되는를 지정 합니다 `SameSite=Lax` .
-* cookie `SameSite=None` 사이트 간 배달을 가능 하 게 하기 위해 명시적으로 어설션하는를로 표시 합니다 `Secure` . `None`옵트아웃 (opt out) 할 새 항목입니다.
+* cookie `SameSite=None` 사이트 간 배달을 가능 하 게 하기 위해 명시적으로 어설션하는를로 표시 합니다 `Secure` . `None` 옵트아웃 (opt out) 할 새 항목입니다.
 * 는 ASP.NET Core 2.1, 2.2 및 3.0에 대해 발급 된 패치에 의해 지원 됩니다. ASP.NET Core 3.1에는 추가 SameSite 지원 됩니다.
 * 는 기본적으로 [2 월 2020](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html)에 [Chrome](https://chromestatus.com/feature/5088147346030592) 에서 사용 하도록 예약 됩니다. 브라우저에서 2019의이 표준으로 이동 하기 시작 했습니다.
 
@@ -211,7 +212,7 @@ Google은 이전 chrome 버전을 사용할 수 없도록 설정 하지 않습�
 
 ### <a name="test-with-safari"></a>Safari를 사용 하 여 테스트
 
-Safari 12는 이전 초안을 엄격 하 게 구현 했으며 새 `None` 값이에 있는 경우 실패 합니다 cookie . `None`이 문서에서 [이전 브라우저를 지 원하는](#sob) 브라우저 검색 코드를 통해가 방지 됩니다. MSAL, ADAL 또는 사용 중인 라이브러리를 사용 하 여 Safari 12, Safari 13 및 WebKit 기반 OS 스타일 로그인을 테스트 합니다. 문제는 기본 OS 버전에 따라 달라집니다. OSX Mojave (10.14) 및 iOS 12는 새로운 SameSite 동작의 호환성 문제를 해결 하는 것으로 알려져 있습니다. OS를 OSX Catalina.properties (10.15) 또는 iOS 13로 업그레이드 하면 문제가 해결 됩니다. Safari에는 현재 새 사양 동작 테스트를 위한 옵트인 플래그가 없습니다.
+Safari 12는 이전 초안을 엄격 하 게 구현 했으며 새 `None` 값이에 있는 경우 실패 합니다 cookie . `None` 이 문서에서 [이전 브라우저를 지 원하는](#sob) 브라우저 검색 코드를 통해가 방지 됩니다. MSAL, ADAL 또는 사용 중인 라이브러리를 사용 하 여 Safari 12, Safari 13 및 WebKit 기반 OS 스타일 로그인을 테스트 합니다. 문제는 기본 OS 버전에 따라 달라집니다. OSX Mojave (10.14) 및 iOS 12는 새로운 SameSite 동작의 호환성 문제를 해결 하는 것으로 알려져 있습니다. OS를 OSX Catalina.properties (10.15) 또는 iOS 13로 업그레이드 하면 문제가 해결 됩니다. Safari에는 현재 새 사양 동작 테스트를 위한 옵트인 플래그가 없습니다.
 
 ### <a name="test-with-firefox"></a>Firefox로 테스트
 
@@ -225,11 +226,11 @@ Edge는 이전 SameSite 표준을 지원 합니다. Edge 버전 44에는 새로�
 
 SameSite 플래그는 페이지에 설정 되어 `edge://flags/#same-site-by-default-cookies` 있습니다. Edge Chromium에서 호환성 문제가 검색 되지 않았습니다.
 
-### <a name="test-with-no-locelectron"></a>테스트Electron
+### <a name="test-with-no-locelectron"></a>테스트 Electron
 
 버전에는 Electron 이전 버전의 Chromium가 포함 되어 있습니다. 예를 들어 팀에서 사용 하는의 버전은 Electron Chromium 66 이며,이는 이전 동작을 보여 주는 것입니다. 제품 버전을 사용 하 여 사용자 고유의 호환성 테스트를 수행 해야 합니다 Electron . 다음 섹션에서 [이전 브라우저 지원](#sob) 을 참조 하세요.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [Chromium 블로그: 개발자: 새 SameSite를 사용할 준비가 되었습니다. 보안 Cookie 설정](https://blog.chromium.org/2019/10/developers-get-ready-for-new.html)
 * [SameSite cookie s 설명](https://web.dev/samesite-cookies-explained/)

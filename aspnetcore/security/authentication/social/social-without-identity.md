@@ -1,10 +1,11 @@
 ---
-title: ASP.NET Core 없는 Facebook, Google 및 외부 공급자 인증Identity
+title: Facebook, Google 및 외부 공급자 인증 없이 ASP.NET Core Identity
 author: rick-anderson
-description: ASP.NET Core 하지 않고 Facebook, Google, Twitter 등의 계정 사용자 인증을 사용 하는 방법에 대 한 Identity 설명입니다.
+description: 를 사용 하지 않고 Facebook, Google, Twitter 등의 계정 사용자 인증을 사용 하는 방법에 대 한 ASP.NET Core Identity 설명입니다.
 ms.author: riande
 ms.date: 12/10/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,22 +16,22 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/social/social-without-identity
-ms.openlocfilehash: 73055a262ac69c0fd6a7f59e77d23121e71ea3dd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a91a2f2fb7873e5a672c624e9cf863ae720c8005
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021668"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634230"
 ---
-# <a name="use-social-sign-in-provider-authentication-without-aspnet-core-no-locidentity"></a>ASP.NET Core 하지 않고 소셜 로그인 공급자 인증 사용Identity
+# <a name="use-social-sign-in-provider-authentication-without-no-locaspnet-core-identity"></a>다음을 사용 하지 않고 소셜 로그인 공급자 인증 사용 ASP.NET Core Identity
 
 [Kirk Larkin](https://twitter.com/serpent5) 및 [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<xref:security/authentication/social/index>사용자가 외부 인증 공급자의 자격 증명으로 OAuth 2.0를 사용 하 여 로그인 할 수 있게 하는 방법을 설명 합니다. 이 항목에서 설명 하는 접근 방식에는 인증 공급자로 ASP.NET Core 포함 되어 있습니다 Identity .
+<xref:security/authentication/social/index> 사용자가 외부 인증 공급자의 자격 증명으로 OAuth 2.0를 사용 하 여 로그인 할 수 있게 하는 방법을 설명 합니다. 이 항목에서 설명 하는 접근 방식에는 인증 공급자로가 포함 되어 있습니다 ASP.NET Core Identity .
 
-이 샘플에서는 ASP.NET Core **하지 않고** 외부 인증 공급자를 사용 하는 방법을 보여 줍니다 Identity . 이는 ASP.NET Core의 모든 기능이 필요 하지는 Identity 않지만 여전히 신뢰할 수 있는 외부 인증 공급자와의 통합이 필요한 앱에 유용 합니다.
+이 샘플에서는 **없이** 외부 인증 공급자를 사용 하는 방법을 보여 줍니다 ASP.NET Core Identity . 이 기능은의 모든 기능이 필요 하지는 ASP.NET Core Identity 않지만 여전히 신뢰할 수 있는 외부 인증 공급자와의 통합이 필요한 앱에 유용 합니다.
 
 이 샘플에서는 사용자를 인증 하는 데 [Google 인증](xref:security/authentication/google-logins) 을 사용 합니다. Google 인증을 사용 하면 로그인 프로세스를 관리 하는 복잡 한 여러 가지 복잡성이 Google으로 이동 됩니다. 다른 외부 인증 공급자와 통합 하려면 다음 항목을 참조 하십시오.
 
@@ -75,7 +76,7 @@ ms.locfileid: "88021668"
 
 에 대 한 호출은 `SignOutAsync` 인증 체계를 지정 하지 않습니다. 의 응용 프로그램 `DefaultScheme` 은 `CookieAuthenticationDefaults.AuthenticationScheme` 대체로 사용 됩니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:security/authorization/simple>
 * <xref:security/authentication/social/additional-claims>
@@ -83,9 +84,9 @@ ms.locfileid: "88021668"
 ::: moniker-end
 ::: moniker range="< aspnetcore-3.0"
 
-<xref:security/authentication/social/index>사용자가 외부 인증 공급자의 자격 증명으로 OAuth 2.0를 사용 하 여 로그인 할 수 있게 하는 방법을 설명 합니다. 이 항목에서 설명 하는 접근 방식에는 인증 공급자로 ASP.NET Core 포함 되어 있습니다 Identity .
+<xref:security/authentication/social/index> 사용자가 외부 인증 공급자의 자격 증명으로 OAuth 2.0를 사용 하 여 로그인 할 수 있게 하는 방법을 설명 합니다. 이 항목에서 설명 하는 접근 방식에는 인증 공급자로가 포함 되어 있습니다 ASP.NET Core Identity .
 
-이 샘플에서는 ASP.NET Core **하지 않고** 외부 인증 공급자를 사용 하는 방법을 보여 줍니다 Identity . 이는 ASP.NET Core의 모든 기능이 필요 하지는 Identity 않지만 여전히 신뢰할 수 있는 외부 인증 공급자와의 통합이 필요한 앱에 유용 합니다.
+이 샘플에서는 **없이** 외부 인증 공급자를 사용 하는 방법을 보여 줍니다 ASP.NET Core Identity . 이 기능은의 모든 기능이 필요 하지는 ASP.NET Core Identity 않지만 여전히 신뢰할 수 있는 외부 인증 공급자와의 통합이 필요한 앱에 유용 합니다.
 
 이 샘플에서는 사용자를 인증 하는 데 [Google 인증](xref:security/authentication/google-logins) 을 사용 합니다. Google 인증을 사용 하면 로그인 프로세스를 관리 하는 복잡 한 여러 가지 복잡성이 Google으로 이동 됩니다. 다른 외부 인증 공급자와 통합 하려면 다음 항목을 참조 하십시오.
 
@@ -130,7 +131,7 @@ ms.locfileid: "88021668"
 
 에 대 한 호출은 `SignOutAsync` 인증 체계를 지정 하지 않습니다. 의 응용 프로그램 `DefaultScheme` 은 `CookieAuthenticationDefaults.AuthenticationScheme` 대체로 사용 됩니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:security/authorization/simple>
 * <xref:security/authentication/social/additional-claims>

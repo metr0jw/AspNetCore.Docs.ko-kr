@@ -6,6 +6,7 @@ ms.author: pakrym
 ms.custom: mvc
 ms.date: 01/04/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/logging-nonaspnetcore
-ms.openlocfilehash: edb1c6456d0cbbac57d739f61b4c159f146e4f7e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8ef07118e3a885e41221402bdfc2d7e942c6dd73
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015116"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634100"
 ---
 # <a name="migrate-from-microsoftextensionslogging-21-to-22-or-30"></a>Microsoft Extensions. 로깅 2.1에서 2.2 또는 3.0로 마이그레이션
 
@@ -79,7 +80,7 @@ using (var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole())
 }
 ```
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [Microsoft. extension. Console NuGet 패키지](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console/).
 * <xref:fundamentals/logging/index>

@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 01/16/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/ws-federation
-ms.openlocfilehash: e303679190a7d7f42d8525541cec031ba090fd7a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8a593efd799e900483d0337a06e02c3558b63bfb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022305"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634087"
 ---
 # <a name="authenticate-users-with-ws-federation-in-aspnet-core"></a>ASP.NET Core에서 WS-FEDERATION을 사용 하 여 사용자 인증
 
@@ -61,7 +62,7 @@ ASP.NET Core 앱의 경우 [WsFederation](https://www.nuget.org/packages/Microso
 
 * 마법사의 나머지 부분에서 **다음** 을 클릭 하 고 끝에를 **닫습니다** .
 
-* ASP.NET Core Identity 에는 **이름 ID** 클레임이 필요 합니다. **클레임 규칙 편집** 대화 상자에서 하나를 추가 합니다.
+* ASP.NET Core Identity**이름 ID** 클레임이 필요 합니다. **클레임 규칙 편집** 대화 상자에서 하나를 추가 합니다.
 
 ![클레임 규칙 편집](ws-federation/_static/EditClaimRules.png)
 
@@ -90,9 +91,9 @@ ASP.NET Core 앱의 경우 [WsFederation](https://www.nuget.org/packages/Microso
 
 ![Azure Active Directory: 앱 등록 속성](ws-federation/_static/AadAppIdUri.png)
 
-## <a name="use-ws-federation-without-aspnet-core-no-locidentity"></a>ASP.NET Core 없이 WS-FEDERATION 사용Identity
+## <a name="use-ws-federation-without-no-locaspnet-core-identity"></a>없이 WS-FEDERATION 사용 ASP.NET Core Identity
 
-WS-FEDERATION 미들웨어는 없이 사용할 수 있습니다 Identity . 예:
+WS-FEDERATION 미들웨어는 없이 사용할 수 있습니다 Identity . 다음은 그 예입니다. 
 ::: moniker range=">= aspnetcore-3.0"
 [!code-csharp[](ws-federation/samples/StartupNon31.cs?name=snippet)]
 ::: moniker-end
@@ -101,7 +102,7 @@ WS-FEDERATION 미들웨어는 없이 사용할 수 있습니다 Identity . 예:
 [!code-csharp[](ws-federation/samples/StartupNon21.cs?name=snippet)]
 ::: moniker-end
 
-## <a name="add-ws-federation-as-an-external-login-provider-for-aspnet-core-no-locidentity"></a>WS-FEDERATION을 ASP.NET Core의 외부 로그인 공급자로 추가 합니다.Identity
+## <a name="add-ws-federation-as-an-external-login-provider-for-no-locaspnet-core-identity"></a>WS-FEDERATION을 외부 로그인 공급자로 추가 합니다. ASP.NET Core Identity
 
 * [AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation) 에 대 한 종속성을 프로젝트에 추가 합니다.
 * WS-FEDERATION을에 추가 합니다 `Startup.ConfigureServices` .

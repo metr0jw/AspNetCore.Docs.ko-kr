@@ -1,11 +1,12 @@
 ---
-title: ASP.NET Core 구성Identity
+title: ASP.NET Core Identity 구성
 author: AdrienTorris
-description: 기본값 ASP.NET Core 이해 하 Identity 고 Identity 사용자 지정 값을 사용 하도록 속성을 구성 하는 방법을 알아봅니다.
+description: 기본값을 이해 하 ASP.NET Core Identity 고 Identity 사용자 지정 값을 사용 하도록 속성을 구성 하는 방법을 알아봅니다.
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,26 +17,26 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity-configuration
-ms.openlocfilehash: b7f6eaba1a0e819a077e3d63b4f997e75b8cd317
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ae4a2eb9d95339651c3810a9f8489d703d73a3fe
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020602"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632683"
 ---
-# <a name="configure-aspnet-core-no-locidentity"></a>ASP.NET Core 구성Identity
+# <a name="configure-no-locaspnet-core-identity"></a>ASP.NET Core Identity 구성
 
-ASP.NET Core Identity 는 암호 정책, 잠금, 구성 등의 설정에 기본값을 사용 cookie 합니다. 이러한 설정은 클래스에서 재정의할 수 있습니다 `Startup` .
+ASP.NET Core Identity 암호 정책, 잠금, 구성 등의 설정에 대 한 기본값을 사용 cookie 합니다. 이러한 설정은 클래스에서 재정의할 수 있습니다 `Startup` .
 
-## <a name="no-locidentity-options"></a>Identity옵션
+## <a name="no-locidentity-options"></a>Identity 옵션
 
-[ Identity Options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) 클래스는 시스템을 구성 하는 데 사용할 수 있는 옵션을 나타냅니다 Identity . `IdentityOptions`또는를 호출한 **후** 를 설정 해야 합니다 `AddIdentity` `AddDefaultIdentity` .
+[ Identity Options](/dotnet/api/microsoft.aspnetcore.identity.identityoptions) 클래스는 시스템을 구성 하는 데 사용할 수 있는 옵션을 나타냅니다 Identity . `IdentityOptions` 또는를 호출한 **후** 를 설정 해야 합니다 `AddIdentity` `AddDefaultIdentity` .
 
-### <a name="claims-no-locidentity"></a>요청이Identity
+### <a name="claims-no-locidentity"></a>요청이 Identity
 
 [ Identity Options. 클레임 Identity ](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.claimsidentity) 은 다음 표에 표시 된 속성을 사용 하 여 [클레임 Identity 옵션](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions) 을 지정 합니다.
 
-| 속성 | 설명 | 기본값 |
+| 속성 | Description | 기본값 |
 | -------- | ----------- | :-----: |
 | [RoleClaimType](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.roleclaimtype) | 역할 클레임에 사용 되는 클레임 형식을 가져오거나 설정 합니다. | [ClaimTypes. 역할](/dotnet/api/system.security.claims.claimtypes.role) |
 | [SecurityStampClaimType](/dotnet/api/microsoft.aspnetcore.identity.claimsidentityoptions.securitystampclaimtype) | 보안 스탬프 클레임에 사용 되는 클레임 형식을 가져오거나 설정 합니다. | `AspNet.Identity.SecurityStamp` |
@@ -60,7 +61,7 @@ ASP.NET Core Identity 는 암호 정책, 잠금, 구성 등의 설정에 기본�
 
 [ Identity 옵션. 잠금](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.lockout) 표에 표시 된 속성을 사용 하 여 [LockoutOptions](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions) 를 지정 합니다.
 
-| 속성 | 설명 | 기본값 |
+| 속성 | Description | 기본값 |
 | -------- | ----------- | :-----: |
 | [AllowedForNewUsers](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.allowedfornewusers) | 새 사용자를 잠글 수 있는지 여부를 결정 합니다. | `true` |
 | [DefaultLockoutTimeSpan](/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions.defaultlockouttimespan) | 잠금이 발생 했을 때 사용자가 잠기는 시간입니다. | 5분 |
@@ -81,7 +82,7 @@ ASP.NET Core Identity 는 암호 정책, 잠금, 구성 등의 설정에 기본�
 
 [ Identity Options. Password](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.password) 는 표에 표시 된 속성을 사용 하 여 [PasswordOptions](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions) 를 지정 합니다.
 
-| 속성 | 설명 | 기본값 |
+| 속성 | Description | 기본값 |
 | -------- | ----------- | :-----: |
 | [RequireDigit](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredigit) | 암호에 0-9 사이의 숫자가 필요 합니다. | `true` |
 | [RequiredLength](/dotnet/api/microsoft.aspnetcore.identity.passwordoptions.requiredlength) | 암호의 최소 길이입니다. | 6 |
@@ -98,7 +99,7 @@ ASP.NET Core Identity 는 암호 정책, 잠금, 구성 등의 설정에 기본�
 
 [ Identity 옵션. SignIn](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.signin) 은 테이블에 표시 된 속성을 사용 하 여 [SignInOptions](/dotnet/api/microsoft.aspnetcore.identity.signinoptions) 를 지정 합니다.
 
-| 속성 | 설명 | 기본값 |
+| 속성 | Description | 기본값 |
 | -------- | ----------- | :-----: |
 | [RequireConfirmedEmail](/dotnet/api/microsoft.aspnetcore.identity.signinoptions.requireconfirmedemail) | 로그인 하려면 확인 된 전자 메일이 필요 합니다. | `false` |
 | [RequireConfirmedPhoneNumber](/dotnet/api/microsoft.aspnetcore.identity.signinoptions.requireconfirmedphonenumber) | 로그인 하려면 확인 된 전화 번호가 필요 합니다. | `false` |
@@ -107,7 +108,7 @@ ASP.NET Core Identity 는 암호 정책, 잠금, 구성 등의 설정에 기본�
 
 [ Identity Options. Tokens](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.tokens) 는 테이블에 표시 된 속성을 사용 하 여 [tokenoptions](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions) 를 지정 합니다.
 
-| 속성 | 설명 |
+| 속성 | Description |
 | -------- | ----------- |
 | [AuthenticatorTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.authenticatortokenprovider) | `AuthenticatorTokenProvider`인증자를 사용 하 여 2 단계 로그인의 유효성을 검사 하는 데 사용 되는를 가져오거나 설정 합니다. |
 | [ChangeEmailTokenProvider](/dotnet/api/microsoft.aspnetcore.identity.tokenoptions.changeemailtokenprovider) | `ChangeEmailTokenProvider`전자 메일 변경 확인 전자 메일에 사용 되는 토큰을 생성 하는 데 사용 되는를 가져오거나 설정 합니다. |
@@ -122,7 +123,7 @@ ASP.NET Core Identity 는 암호 정책, 잠금, 구성 등의 설정에 기본�
 
 [ Identity 옵션. 사용자](/dotnet/api/microsoft.aspnetcore.identity.identityoptions.user) 는 테이블에 표시 된 속성을 사용 하 여 [useroptions](/dotnet/api/microsoft.aspnetcore.identity.useroptions) 를 지정 합니다.
 
-| 속성 | 설명 | 기본값 |
+| 속성 | Description | 기본값 |
 | -------- | ----------- | :-----: |
 | [AllowedUserNameCharacters](/dotnet/api/microsoft.aspnetcore.identity.useroptions.allowedusernamecharacters) | 사용자 이름에 허용 되는 문자입니다. | abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | [RequireUniqueEmail](/dotnet/api/microsoft.aspnetcore.identity.useroptions.requireuniqueemail) | 각 사용자는 고유한 전자 메일을 사용 해야 합니다. | `false` |
@@ -137,9 +138,9 @@ ASP.NET Core Identity 는 암호 정책, 잠금, 구성 등의 설정에 기본�
 
 ## <a name="password-hasher-options"></a>암호 Hasher 옵션
 
-<xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions>암호 해시에 대 한 옵션을 가져오고 설정 합니다.
+<xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions> 암호 해시에 대 한 옵션을 가져오고 설정 합니다.
 
-| 옵션 | 설명 |
+| 옵션 | Description |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> | 새 암호를 해시할 때 사용 되는 호환성 모드입니다. 기본값은 <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3>입니다. 해시 된 암호의 첫 번째 바이트 ( *형식 마커*)는 암호를 해시 하는 데 사용 되는 해시 알고리즘의 버전을 지정 합니다. 해시에 대해 암호를 확인 하는 경우 <xref:Microsoft.AspNetCore.Identity.PasswordHasher`1.VerifyHashedPassword*> 메서드는 첫 번째 바이트를 기준으로 올바른 알고리즘을 선택 합니다. 클라이언트는 암호를 해시 하는 데 사용 된 알고리즘의 버전에 관계 없이 인증할 수 있습니다. 호환성 모드를 설정 하면 *새 암호*의 해시에 영향을 줍니다. |
 | <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.IterationCount> | PBKDF2를 사용 하 여 암호를 해시할 때 사용 되는 반복 횟수입니다. 이 값은가로 설정 된 경우에만 사용 됩니다 <xref:Microsoft.AspNetCore.Identity.PasswordHasherOptions.CompatibilityMode> <xref:Microsoft.AspNetCore.Identity.PasswordHasherCompatibilityMode.IdentityV3> . 값은 양의 정수 여야 하며 기본값은 `10000` 입니다. |

@@ -5,6 +5,7 @@ description: ASP.NET Core 데이터 보호 컨텍스트 헤더에 대 한 구현
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/implementation/context-headers
-ms.openlocfilehash: 572f930dbf78aaef1ed47d1a154b5ba56633b4f1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2f07db4b7d8bca9f64aee5d60e88fc92dc8965eb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018821"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633710"
 ---
 # <a name="context-headers-in-aspnet-core"></a>ASP.NET Core의 컨텍스트 헤더
 
@@ -95,15 +96,15 @@ DB 6F D4 79 11 84 B9 96 09 2E E1 20 2F 36 E8 60
 
 이 컨텍스트 헤더는 인증 된 암호화 알고리즘 쌍 (AES-192-CBC encryption + HMACSHA256 validation)의 지문입니다. [위에서](xref:security/data-protection/implementation/context-headers#data-protection-implementation-context-headers-cbc-components) 설명한 구성 요소는 다음과 같습니다.
 
-* 표식`(00 00)`
+* 표식 `(00 00)`
 
-* 블록 암호화 키 길이입니다.`(00 00 00 18)`
+* 블록 암호화 키 길이입니다. `(00 00 00 18)`
 
-* 블록 암호화 블록 크기입니다.`(00 00 00 10)`
+* 블록 암호화 블록 크기입니다. `(00 00 00 10)`
 
-* HMAC 키 길이입니다.`(00 00 00 20)`
+* HMAC 키 길이입니다. `(00 00 00 20)`
 
-* HMAC 다이제스트 크기`(00 00 00 20)`
+* HMAC 다이제스트 크기 `(00 00 00 20)`
 
 * 블록 암호화 PRP 출력 `(F4 74 - DB 6F)` 및
 
@@ -140,15 +141,15 @@ D1 F7 5A 34 EB 28 3E D7 D4 67 B4 64
 
 구성 요소는 다음과 같이 구분 됩니다.
 
-* 표식`(00 00)`
+* 표식 `(00 00)`
 
-* 블록 암호화 키 길이입니다.`(00 00 00 18)`
+* 블록 암호화 키 길이입니다. `(00 00 00 18)`
 
-* 블록 암호화 블록 크기입니다.`(00 00 00 08)`
+* 블록 암호화 블록 크기입니다. `(00 00 00 08)`
 
-* HMAC 키 길이입니다.`(00 00 00 14)`
+* HMAC 키 길이입니다. `(00 00 00 14)`
 
-* HMAC 다이제스트 크기`(00 00 00 14)`
+* HMAC 다이제스트 크기 `(00 00 00 14)`
 
 * 블록 암호화 PRP 출력 `(AB B1 - E1 0E)` 및
 
@@ -170,7 +171,7 @@ D1 F7 5A 34 EB 28 3E D7 D4 67 B4 64
 
 * [128 비트] `Enc_GCM (K_E, nonce, "")`빈 문자열 입력이 지정 되 고 nonce가 96 비트의 0 비트 벡터로 인의 태그입니다.
 
-`K_E`는 CBC 암호화 + HMAC 인증 시나리오와 동일한 메커니즘을 사용 하 여 파생 됩니다. 그러나 `K_H` 여기에는 재생이 없으므로 기본적으로가 있고 `| K_H | = 0` 알고리즘은 아래 형태로 축소 됩니다.
+`K_E` 는 CBC 암호화 + HMAC 인증 시나리오와 동일한 메커니즘을 사용 하 여 파생 됩니다. 그러나 `K_H` 여기에는 재생이 없으므로 기본적으로가 있고 `| K_H | = 0` 알고리즘은 아래 형태로 축소 됩니다.
 
 `K_E = SP800_108_CTR(prf = HMACSHA512, key = "", label = "", context = "")`
 
@@ -194,13 +195,13 @@ BE 45
 
 구성 요소는 다음과 같이 구분 됩니다.
 
-* 표식`(00 01)`
+* 표식 `(00 01)`
 
-* 블록 암호화 키 길이입니다.`(00 00 00 20)`
+* 블록 암호화 키 길이입니다. `(00 00 00 20)`
 
-* nonce 크기`(00 00 00 0C)`
+* nonce 크기 `(00 00 00 0C)`
 
-* 블록 암호화 블록 크기입니다.`(00 00 00 10)`
+* 블록 암호화 블록 크기입니다. `(00 00 00 10)`
 
 * 인증 태그 크기 `(00 00 00 10)` 및
 

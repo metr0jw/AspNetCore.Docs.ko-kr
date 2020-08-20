@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/background-services
-ms.openlocfilehash: 409ace5e3eaa4ab1de0b9d5f0cbd0e10d9243ea9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d2ac5ebf6c469c9ec842e7f3ea4f37069b4efdcb
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022383"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631599"
 ---
 # <a name="host-aspnet-core-no-locsignalr-in-background-services"></a>SignalR백그라운드 서비스의 호스트 ASP.NET Core
 
@@ -35,12 +36,12 @@ ms.locfileid: "88022383"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-[샘플 코드 보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x)([다운로드 방법](xref:index#how-to-download-a-sample))
+[샘플 코드 보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/3.x)[(다운로드 방법)](xref:index#how-to-download-a-sample)
 
 ::: moniker-end
 ::: moniker range="<= aspnetcore-2.2"
 
-[샘플 코드 보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2)([다운로드 방법](xref:index#how-to-download-a-sample))
+[샘플 코드 보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/signalr/background-service/samples/2.2)[(다운로드 방법)](xref:index#how-to-download-a-sample)
 
 ::: moniker-end
 
@@ -156,7 +157,7 @@ public partial class ClockHubClient : IClock, IHostedService
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [시작](xref:tutorials/signalr)
 * [허브](xref:signalr/hubs)

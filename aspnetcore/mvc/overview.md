@@ -5,6 +5,7 @@ description: 모델-보기-컨트롤러 디자인 패턴을 사용하여 웹앱 
 ms.author: riande
 ms.date: 02/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/overview
-ms.openlocfilehash: 64bee1966eff40e9057166adfafbf78d0cc5b6aa
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 29701506d9f6c1ff90081a548d524bc0deb65cda
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021447"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633619"
 ---
 # <a name="overview-of-aspnet-core-mvc"></a>ASP.NET Core MVC 개요
 
@@ -77,7 +78,7 @@ ASP.NET Core MVC는 다음과 같은 기능을 포함하고 있습니다.
 * [Areas](#areas)
 * [Web API](#web-apis)
 * [테스트 가능성](#testability)
-* [Razor뷰 엔진](#razor-view-engine)
+* [Razor 뷰 엔진](#razor-view-engine)
 * [강력한 형식의 뷰](#strongly-typed-views)
 * [태그 도우미](#tag-helpers)
 * [구성 요소 보기](#view-components)
@@ -196,9 +197,9 @@ ASP.NET Core MVC는 웹 사이트를 구축할 수 있는 훌륭한 플랫폼일
 
 이 프레임워크의 인터페이스 및 종속성 주입 사용은 단위 테스트에 적합하며, [통합 테스트](xref:test/integration-tests)를 쉽고 빠르게 수행할 수 있는 기능(예: Entity Framework용 TestHost 및 InMemory 공급자)을 포함하고 있습니다. [컨트롤러 논리를 테스트하는 방법](controllers/testing.md)에 대해 자세히 알아보세요.
 
-### <a name="no-locrazor-view-engine"></a>Razor뷰 엔진
+### <a name="no-locrazor-view-engine"></a>Razor 뷰 엔진
 
-[MVC 뷰 ASP.NET Core](views/overview.md) 뷰 [ Razor 엔진](views/razor.md) 을 사용 하 여 뷰를 렌더링 합니다. Razor는 포함 된 c # 코드를 사용 하 여 뷰를 정의 하기 위한 간결 하 고, 표현 하기 위한 유체 템플릿 태그 언어입니다. Razor는 서버에서 웹 콘텐츠를 동적으로 생성 하는 데 사용 됩니다. 서버 코드를 클라이언트 쪽 콘텐츠 및 코드와 깔끔하게 혼합할 수 있습니다.
+[MVC 뷰 ASP.NET Core](views/overview.md) 뷰 [ Razor 엔진](views/razor.md) 을 사용 하 여 뷰를 렌더링 합니다. Razor 는 포함 된 c # 코드를 사용 하 여 뷰를 정의 하기 위한 간결 하 고, 표현 하기 위한 유체 템플릿 태그 언어입니다. Razor 는 서버에서 웹 콘텐츠를 동적으로 생성 하는 데 사용 됩니다. 서버 코드를 클라이언트 쪽 콘텐츠 및 코드와 깔끔하게 혼합할 수 있습니다.
 
 ```cshtml
 <ul>
@@ -212,7 +213,7 @@ Razor뷰 엔진을 사용 하 여 [레이아웃](views/layout.md), [부분 뷰](
 
 ### <a name="strongly-typed-views"></a>강력한 형식의 보기
 
-RazorMVC의 뷰는 모델을 기반으로 강력 하 게 형식화 될 수 있습니다. 컨트롤러는 강력한 형식의 모델을 보기에 전달하여 보기에서 형식을 검사하고 IntelliSense를 지원할 수 있습니다.
+Razor MVC의 뷰는 모델을 기반으로 강력 하 게 형식화 될 수 있습니다. 컨트롤러는 강력한 형식의 모델을 보기에 전달하여 보기에서 형식을 검사하고 IntelliSense를 지원할 수 있습니다.
 
 예를 들어 다음 보기는 `IEnumerable<Product>` 형식의 모델을 렌더링합니다.
 

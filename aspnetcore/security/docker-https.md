@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-https
-ms.openlocfilehash: bba72a8c795312b3f7fe3fbf16514ba9f2448fbf
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5e29882414d49c0971bc11c688067878714d3b2d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020342"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634191"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-over-https"></a>HTTPS를 통해 Docker를 사용 하 여 ASP.NET Core 이미지 호스팅
 
@@ -36,13 +37,13 @@ ASP.NET Core는 [기본적으로 HTTPS를](/aspnet/core/security/enforcing-ssl)�
 
 이 샘플에는 docker [클라이언트](https://www.docker.com/products/docker)의 [docker 17.06](https://docs.docker.com/release-notes/docker-ce) 이상이 필요 합니다.
 
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>사전 요구 사항
 
 이 문서의 지침 중 일부에는 [.Net Core 2.2 SDK](https://dotnet.microsoft.com/download) 이상이 필요 합니다.
 
 ## <a name="certificates"></a>인증서
 
-도메인에 대 한 [프로덕션 호스팅을](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) 위해서는 [인증 기관의](https://wikipedia.org/wiki/Certificate_authority) 인증서가 필요 합니다. [Let's Encrypt](https://letsencrypt.org/)는 무료 인증서를 제공 하는 인증 기관입니다.
+도메인에 대 한 [프로덕션 호스팅을](https://blogs.msdn.microsoft.com/webdev/2017/11/29/configuring-https-in-asp-net-core-across-different-platforms/) 위해서는 [인증 기관의](https://wikipedia.org/wiki/Certificate_authority) 인증서가 필요 합니다. [Let's Encrypt](https://letsencrypt.org/) 는 무료 인증서를 제공 하는 인증 기관입니다.
 
 이 문서에서는 미리 빌드된 이미지를 호스트 하기 위해 [자체 서명 된 개발 인증서](https://en.wikipedia.org/wiki/Self-signed_certificate) 를 사용 `localhost` 합니다. 지침은 프로덕션 인증서를 사용 하는 것과 유사 합니다.
 
@@ -92,7 +93,7 @@ dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password her
 dotnet dev-certs https --trust
 ```
 
-`dotnet dev-certs https --trust`는 macOS 및 Windows 에서만 지원 됩니다. 배포에서 지원 되는 방식으로 Linux에서 인증서를 신뢰 해야 합니다. 브라우저에서 인증서를 신뢰 해야 할 수도 있습니다.
+`dotnet dev-certs https --trust` 는 macOS 및 Windows 에서만 지원 됩니다. 배포에서 지원 되는 방식으로 Linux에서 인증서를 신뢰 해야 합니다. 브라우저에서 인증서를 신뢰 해야 할 수도 있습니다.
 
 위의 명령에서을 암호로 바꿉니다 `{ password here }` .
 

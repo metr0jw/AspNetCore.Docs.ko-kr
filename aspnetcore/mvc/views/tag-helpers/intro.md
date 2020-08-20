@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: H1Hack27Feb2017
 ms.date: 03/18/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 067698687268ac072d8944fd5d9ae47c49fd4a24
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 42a7231b529dd9f8ecbce4f8116111e1c96c830d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015013"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633099"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>ASP.NET Core의 태그 도우미
 
@@ -135,7 +136,7 @@ FQN을 사용하여 보기에 태그 도우미를 추가하려면 먼저 FQN(`Au
 
 아래의 코드 이미지에서 태그 도우미 접두사가 `th:`로 지정되고, 따라서 `th:` 접두사를 사용하는 요소만 태그 도우미를 지원합니다(태그 도우미 지원 요소에는 고유한 글꼴이 있음). `<label>` 및 `<input>` 요소는 태그 도우미 접두사가 있고 태그 도우미를 사용할 수 있지만 `<span>` 요소는 그렇지 않습니다.
 
-![image](intro/_static/thp.png)
+![이미지](intro/_static/thp.png)
 
 `@addTagHelper`에 적용되는 동일한 계층 규칙이 `@tagHelperPrefix`에도 적용됩니다.
 
@@ -165,33 +166,33 @@ Visual Studio에서 새 ASP.NET Core 웹 앱을 만들면 NuGet 패키지 "AspNe
 
 HTML `<label>` 요소를 작성하는 방안을 고려해 보세요. Visual Studio 편집기에서 `<l`를 입력하는 즉시 IntelliSense는 일치하는 요소를 표시합니다.
 
-![image](intro/_static/label.png)
+![이미지](intro/_static/label.png)
 
 HTML 도움말뿐 아니라 아이콘(그 아래에 있는 "@" symbol with "<>")도 표시됩니다.
 
-![image](intro/_static/tagSym.png)
+![이미지](intro/_static/tagSym.png)
 
 태그 도우미의 대상으로 요소를 식별합니다. 순수 HTML 요소(예: `fieldset`)는 "<>" 아이콘을 표시합니다.
 
 순수 HTML `<label>` 태그는 HTML 태그를(기본 Visual Studio 색 테마가 있는)를 갈색 글꼴로, 특성을 빨간색으로, 특성 값을 파란색으로 표시합니다.
 
-![image](intro/_static/LableHtmlTag.png)
+![이미지](intro/_static/LableHtmlTag.png)
 
 `<label`을 입력하면 IntelliSense가 사용 가능한 HTML/CSS 특성 및 태그 도우미 대상 특성을 나열합니다.
 
-![image](intro/_static/labelattr.png)
+![이미지](intro/_static/labelattr.png)
 
 IntelliSense 문을 완성하면 탭 키를 입력하여 선택한 값으로 문을 완성할 수 있습니다.
 
-![image](intro/_static/stmtcomplete.png)
+![이미지](intro/_static/stmtcomplete.png)
 
 태그 도우미 특성을 입력하는 즉시 태그 및 특성 글꼴이 변합니다. 기본 Visual Studio "파란색" 또는 "밝은" 색 테마를 사용하면 글꼴은 자주색 볼드입니다. "어두운" 테마를 사용하면 글꼴은 청록색 볼드입니다. 이 문서의 이미지는 기본 테마를 사용하여 만들었습니다.
 
-![image](intro/_static/labelaspfor2.png)
+![이미지](intro/_static/labelaspfor2.png)
 
 Visual Studio *CompleteWord* 바로 가기를 입력할 수 있으며(큰따옴표 안에서는 Ctrl + 스페이스가 [기본](/visualstudio/ide/default-keyboard-shortcuts-in-visual-studio)), 이제 C# 클래스와 마찬가지로 C#에 있습니다. IntelliSense는 페이지 모델에 모든 메서드 및 속성을 표시합니다. 속성 형식이 `ModelExpression`이므로 메서드 및 속성을 사용할 수 있습니다. 아래 이미지에서는 `RegisterViewModel`을 사용할 수 있도록 `Register` 보기를 편집하겠습니다.
 
-![image](intro/_static/intellemail.png)
+![이미지](intro/_static/intellemail.png)
 
 IntelliSense는 페이지에서 모델에 사용할 수 있는 속성과 메서드를 나열합니다. 다양한 IntelliSense 환경에서 CSS 클래스를 선택할 수 있습니다.
 
@@ -223,13 +224,13 @@ new {@class="caption"}
 
 태그 도우미 버전을 사용하면 Visual Studio 편집기에서 `<l`를 입력하는 즉시 IntelliSense는 일치하는 요소를 표시합니다.
 
-![image](intro/_static/label.png)
+![이미지](intro/_static/label.png)
 
 IntelliSense의 도움을 받아 전체 줄을 작성할 수 있습니다.
 
 다음 코드 이미지는 Visual Studio에 포함 된 ASP.NET 4.5. x MVC 템플릿에서 생성 된 *Views/Account/Register* 의 Form 부분을 보여 줍니다. Razor
 
-![image](intro/_static/regCS.png)
+![이미지](intro/_static/regCS.png)
 
 Visual Studio 편집기는 회색 배경에 C# 코드를 표시합니다. 예를 들어 `AntiForgeryToken` HTML 도우미의 경우:
 
@@ -239,7 +240,7 @@ Visual Studio 편집기는 회색 배경에 C# 코드를 표시합니다. 예를
 
 회색 배경과 함께 표시 됩니다. 레지스터 보기의 태그는 대부분 C#입니다. 태그 도우미를 사용하는 동급의 방법과 비교해 보세요.
 
-![image](intro/_static/regTH.png)
+![이미지](intro/_static/regTH.png)
 
 태그는 HTML 도우미 방식보다 훨씬 깔끔하며 읽기, 편집 및 유지 관리가 훨씬 용이합니다. C# 코드는 서버에서 알아야 하는 최소 수준으로 축소됩니다. Visual Studio 편집기는 태그 도우미의 대상 태그를 고유의 글꼴로 표시합니다.
 
@@ -273,11 +274,11 @@ Visual Studio 편집기를 사용하면 레지스터 양식의 태그 도우미 
 
 **도구**  >  **옵션**  >  **환경**  >  **글꼴 및 색**에서 글꼴 및 색 지정을 사용자 지정할 수 있습니다.
 
-![image](intro/_static/fontoptions2.png)
+![이미지](intro/_static/fontoptions2.png)
 
 [!INCLUDE[](~/includes/built-in-TH.md)]
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [태그 도우미 작성](xref:mvc/views/tag-helpers/authoring)
 * [양식 사용](xref:mvc/views/working-with-forms)

@@ -5,6 +5,7 @@ description: ASP.NET MVC 프로젝트를 ASP.NET Core MVC로 마이그레이션�
 ms.author: wpickett
 ms.date: 06/18/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: 17f2a2532c58c3796835328260231d63f8fb2e40
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: cd1a7ff57d911f96f0adfe4b548fa80ec844886d
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015051"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632241"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>ASP.NET MVC에서 ASP.NET Core MVC로 마이그레이션
 
@@ -37,7 +38,7 @@ ASP.NET MVC에서 마이그레이션하는 과정은 여러 단계로 진행 됩
 
 구성 및 코드 마이그레이션에 대 한 자세한 Identity 내용은 [ASP.NET Core 구성 마이그레이션](xref:migration/configuration) 및 [인증 및 Identity ASP.NET Core 마이그레이션](xref:migration/identity)을 참조 하세요.
 
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>사전 요구 사항
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
 
@@ -76,7 +77,7 @@ ASP.NET Core에서 클래스는 `Startup` 다음과 같습니다.
 * *Global.asax*를 바꿉니다.
 * 모든 앱 시작 작업을 처리 합니다.
 
-자세한 내용은 <xref:fundamentals/startup>를 참조하세요.
+자세한 내용은 <xref:fundamentals/startup>을 참조하세요.
 
 ASP.NET Core 프로젝트에서 *Startup.cs* 파일을 엽니다.
 
@@ -85,8 +86,8 @@ ASP.NET Core 프로젝트에서 *Startup.cs* 파일을 엽니다.
 ASP.NET Core 앱은 미들웨어를 사용 하 여 프레임 워크 기능을 옵트인 (opt in) 해야 합니다. 이전 템플릿에서 생성 된 코드는 다음 서비스 및 미들웨어를 추가 합니다.
 
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A>확장 메서드는 컨트롤러, API 관련 기능 및 뷰에 대 한 MVC 서비스 지원을 등록 합니다. MVC 서비스 등록 옵션에 대 한 자세한 내용은 [mvc 서비스 등록](xref:migration/22-to-30#mvc-service-registration) 을 참조 하세요.
-* <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>확장 메서드는 정적 파일 처리기를 추가 합니다 `Microsoft.AspNetCore.StaticFiles` . `UseStaticFiles`확장 메서드는 이전에 호출 해야 합니다 `UseRouting` . 자세한 내용은 <xref:fundamentals/static-files>를 참조하세요.
-* <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>확장 메서드는 라우팅을 추가 합니다. 자세한 내용은 <xref:fundamentals/routing>를 참조하세요.
+* <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>확장 메서드는 정적 파일 처리기를 추가 합니다 `Microsoft.AspNetCore.StaticFiles` . `UseStaticFiles`확장 메서드는 이전에 호출 해야 합니다 `UseRouting` . 자세한 내용은 <xref:fundamentals/static-files>을 참조하세요.
+* <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>확장 메서드는 라우팅을 추가 합니다. 자세한 내용은 <xref:fundamentals/routing>을 참조하세요.
 
 이 기존 구성에는 예제 ASP.NET MVC 프로젝트를 마이그레이션하는 데 필요한 항목이 포함 되어 있습니다. 미들웨어 옵션 ASP.NET Core에 대 한 자세한 내용은을 참조 하십시오 <xref:fundamentals/startup> .
 
@@ -108,7 +109,7 @@ ASP.NET Core *WebApp1* 프로젝트에는 ASP.NET MVC 프로젝트와 동일한 
 그러나 각 컨트롤러 끝점을 테스트할 수 있지만 레이아웃 및 스타일은 문서의 뒷부분에서 다룹니다.
 
 1. ASP.NET Core 앱을 실행 합니다.
-1. 현재 포트 번호를 ASP.NET Core 프로젝트에 사용 되는 포트 번호로 바꿔서 실행 중인 ASP.NET Core 앱의 브라우저에서 렌더링 된 뷰를 호출 합니다. 정의합니다(예: `https://localhost:44375/home/about`).
+1. 현재 포트 번호를 ASP.NET Core 프로젝트에 사용 되는 포트 번호로 바꿔서 실행 중인 ASP.NET Core 앱의 브라우저에서 렌더링 된 뷰를 호출 합니다. 예들 들어 `https://localhost:44375/home/about`입니다.
 
 ## <a name="migrate-static-content"></a>정적 콘텐츠 마이그레이션
 
@@ -230,7 +231,7 @@ ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 
 
 * .NET Core를 대상으로 지정 하는 경우 [AspNetCore 메타 패키지](xref:fundamentals/metapackage-app) 가 기본적으로 참조 됩니다. 이 패키지는 MVC 앱에서 일반적으로 사용 하는 패키지를 포함 합니다. .NET Framework 대상으로 지정 하는 경우 패키지 참조는 프로젝트 파일에 개별적으로 나열 되어야 합니다.
 
-`Microsoft.AspNetCore.Mvc`는 ASP.NET Core MVC 프레임 워크입니다. `Microsoft.AspNetCore.StaticFiles`는 정적 파일 처리기입니다. ASP.NET Core apps는 정적 파일을 제공 하는 등 미들웨어에 대해 명시적으로 옵트인 합니다. 자세한 내용은 [정적 파일](xref:fundamentals/static-files)을 참조하세요.
+`Microsoft.AspNetCore.Mvc` 는 ASP.NET Core MVC 프레임 워크입니다. `Microsoft.AspNetCore.StaticFiles` 는 정적 파일 처리기입니다. ASP.NET Core apps는 정적 파일을 제공 하는 등 미들웨어에 대해 명시적으로 옵트인 합니다. 자세한 내용은 [정적 파일](xref:fundamentals/static-files)을 참조하세요.
 
 * *Startup.cs* 파일을 열고 다음 코드와 일치 하도록 코드를 변경 합니다.
 
@@ -290,7 +291,7 @@ ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 
 
 ## <a name="controllers-and-views"></a>컨트롤러 및 뷰
 
-* ASP.NET MVC의 각 메서드 `HomeController` 를 새로 복사 `HomeController` 합니다. ASP.NET MVC에서 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은 [Actionresult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx)입니다. ASP.NET Core MVC에서 작업 메서드는 대신을 반환 합니다 `IActionResult` . `ActionResult`는 `IActionResult` 를 구현 하므로 작업 메서드의 반환 형식을 변경할 필요가 없습니다.
+* ASP.NET MVC의 각 메서드 `HomeController` 를 새로 복사 `HomeController` 합니다. ASP.NET MVC에서 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은 [Actionresult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx)입니다. ASP.NET Core MVC에서 작업 메서드는 대신을 반환 합니다 `IActionResult` . `ActionResult` 는 `IActionResult` 를 구현 하므로 작업 메서드의 반환 형식을 변경할 필요가 없습니다.
 
 * *Contact.cshtml*ASP.NET MVC 프로젝트에서 MVC ASP.NET Core 프로젝트에 *대 한*파일을 *복사 합니다.* Razor
 
@@ -298,7 +299,7 @@ ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 
 
 레이아웃 파일 및 스타일은 아직 마이그레이션되지 않았으므로 렌더링 된 뷰에는 뷰 파일의 내용만 포함 됩니다. 및 뷰에 대해 생성 된 레이아웃 파일 링크를 `About` `Contact` 아직 사용할 수 없습니다.
 
-현재 포트 번호를 ASP.NET core 프로젝트에서 사용 되는 포트 번호로 바꿔 실행 중인 ASP.NET core 앱의 브라우저에서 렌더링 된 뷰를 호출 합니다. 예: `https://localhost:44375/home/about`.
+현재 포트 번호를 ASP.NET core 프로젝트에서 사용 되는 포트 번호로 바꿔 실행 중인 ASP.NET core 앱의 브라우저에서 렌더링 된 뷰를 호출 합니다. 예: `https://localhost:44375/home/about`
 
 ![연락처 페이지](mvc/_static/contact-page.png)
 
@@ -371,7 +372,7 @@ JQuery 및 부트스트랩 JavaScript 포함에 대 한 대체 태그는 다음�
 
 ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 합니다. 일반적으로 서버에 대 한 잠재적으로 중요 한 정보를 노출 하지 않도록 하기 위해 오류 정보는 이러한 응답에 포함 되지 않습니다. 자세한 내용은 [개발자 예외 페이지](xref:fundamentals/error-handling#developer-exception-page)를 참조 하세요.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:blazor/index>
 * <xref:mvc/views/tag-helpers/intro>
@@ -416,7 +417,7 @@ ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 
 
 * .NET Core를 대상으로 지정 하는 경우 [AspNetCore 메타 패키지](xref:fundamentals/metapackage-app) 가 기본적으로 참조 됩니다. 이 패키지는 MVC 앱에서 일반적으로 사용 하는 패키지를 포함 합니다. .NET Framework 대상으로 지정 하는 경우 패키지 참조는 프로젝트 파일에 개별적으로 나열 되어야 합니다.
 
-`Microsoft.AspNetCore.Mvc`는 ASP.NET Core MVC 프레임 워크입니다. `Microsoft.AspNetCore.StaticFiles`는 정적 파일 처리기입니다. ASP.NET Core apps는 정적 파일을 제공 하는 등 미들웨어에 대해 명시적으로 옵트인 합니다. 자세한 내용은 [정적 파일](xref:fundamentals/static-files)을 참조하세요.
+`Microsoft.AspNetCore.Mvc` 는 ASP.NET Core MVC 프레임 워크입니다. `Microsoft.AspNetCore.StaticFiles` 는 정적 파일 처리기입니다. ASP.NET Core apps는 정적 파일을 제공 하는 등 미들웨어에 대해 명시적으로 옵트인 합니다. 자세한 내용은 [정적 파일](xref:fundamentals/static-files)을 참조하세요.
 
 * *Startup.cs* 파일을 열고 다음 코드와 일치 하도록 코드를 변경 합니다.
 
@@ -476,7 +477,7 @@ ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 
 
 ## <a name="controllers-and-views"></a>컨트롤러 및 뷰
 
-* ASP.NET MVC의 각 메서드 `HomeController` 를 새로 복사 `HomeController` 합니다. ASP.NET MVC에서 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은 [Actionresult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx)입니다. ASP.NET Core MVC에서 작업 메서드는 대신을 반환 합니다 `IActionResult` . `ActionResult`는 `IActionResult` 를 구현 하므로 작업 메서드의 반환 형식을 변경할 필요가 없습니다.
+* ASP.NET MVC의 각 메서드 `HomeController` 를 새로 복사 `HomeController` 합니다. ASP.NET MVC에서 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은 [Actionresult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx)입니다. ASP.NET Core MVC에서 작업 메서드는 대신을 반환 합니다 `IActionResult` . `ActionResult` 는 `IActionResult` 를 구현 하므로 작업 메서드의 반환 형식을 변경할 필요가 없습니다.
 
 * *Contact.cshtml*ASP.NET MVC 프로젝트에서 MVC ASP.NET Core 프로젝트에 *대 한*파일을 *복사 합니다.* Razor
 
@@ -484,7 +485,7 @@ ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 
 
 레이아웃 파일 및 스타일은 아직 마이그레이션되지 않았으므로 렌더링 된 뷰에는 뷰 파일의 내용만 포함 됩니다. 및 뷰에 대해 생성 된 레이아웃 파일 링크를 `About` `Contact` 아직 사용할 수 없습니다.
 
-* 현재 포트 번호를 ASP.NET core 프로젝트에서 사용 되는 포트 번호로 바꿔 실행 중인 ASP.NET core 앱의 브라우저에서 렌더링 된 뷰를 호출 합니다. 예: `https://localhost:44375/home/about`.
+* 현재 포트 번호를 ASP.NET core 프로젝트에서 사용 되는 포트 번호로 바꿔 실행 중인 ASP.NET core 앱의 브라우저에서 렌더링 된 뷰를 호출 합니다. 예: `https://localhost:44375/home/about`
 
 ![연락처 페이지](mvc/_static/contact-page.png)
 
@@ -557,7 +558,7 @@ JQuery 및 부트스트랩 JavaScript 포함에 대 한 대체 태그는 다음�
 
 ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 합니다. 일반적으로 서버에 대 한 잠재적으로 중요 한 정보를 노출 하지 않도록 하기 위해 오류 정보는 이러한 응답에 포함 되지 않습니다. 자세한 내용은 [개발자 예외 페이지](xref:fundamentals/error-handling#developer-exception-page)를 참조 하세요.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:blazor/index>
 * <xref:mvc/views/tag-helpers/intro>

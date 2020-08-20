@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 09/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cookie-sharing
-ms.openlocfilehash: f4762871cbae77f690d8478e1342e0d53918eb51
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6ac808d11790ae27e82606b442ff215d95b93e41
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022201"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631370"
 ---
 # <a name="share-authentication-no-loccookies-among-aspnet-apps"></a>cookieASP.NET apps 간에 인증 공유
 
@@ -35,20 +36,20 @@ Websites는 일반적으로 함께 작동 하는 개별 웹 앱으로 구성 됩
 * 인증 cookie 이름이의 일반 값으로 설정 됩니다 `.AspNet.SharedCookie` .
 * 는 `AuthenticationType` 명시적으로 또는 기본적으로로 설정 됩니다 `Identity.Application` .
 * 공통 앱 이름은 데이터 보호 시스템에서 데이터 보호 키 ()를 공유 하도록 설정 하는 데 사용 됩니다 `SharedCookieApp` .
-* `Identity.Application`는 인증 체계로 사용 됩니다. 사용 되는 스키마는 모두 공유 된 앱 *내에서* 일관 되 게 사용 되어야 하며, cookie 기본 체계로 사용 하거나 명시적으로 설정 하 여 사용 해야 합니다. 체계는를 암호화 하 고 암호를 해독 하는 데 사용 cookie 되므로 앱 간에 일관 된 스키마를 사용 해야 합니다.
+* `Identity.Application` 는 인증 체계로 사용 됩니다. 사용 되는 스키마는 모두 공유 된 앱 *내에서* 일관 되 게 사용 되어야 하며, cookie 기본 체계로 사용 하거나 명시적으로 설정 하 여 사용 해야 합니다. 체계는를 암호화 하 고 암호를 해독 하는 데 사용 cookie 되므로 앱 간에 일관 된 스키마를 사용 해야 합니다.
 * 일반적인 [데이터 보호 키](xref:security/data-protection/implementation/key-management) 저장소 위치가 사용 됩니다.
   * ASP.NET Core 앱에서 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> 는 키 저장소 위치를 설정 하는 데 사용 됩니다.
-  * .NET Framework 앱에서 Cookie 인증 미들웨어는의 구현을 사용 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> 합니다. `DataProtectionProvider`는 인증 페이로드 데이터의 암호화 및 암호 해독을 위한 데이터 보호 서비스를 제공 합니다 cookie . `DataProtectionProvider`인스턴스는 응용 프로그램의 다른 부분에서 사용 되는 데이터 보호 시스템에서 격리 됩니다. [DataProtectionProvider (system.io.directoryinfo, Action \<IDataProtectionBuilder> )](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) 은를 허용 <xref:System.IO.DirectoryInfo> 하 여 데이터 보호 키 저장소의 위치를 지정 합니다.
+  * .NET Framework 앱에서 Cookie 인증 미들웨어는의 구현을 사용 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider> 합니다. `DataProtectionProvider` 는 인증 페이로드 데이터의 암호화 및 암호 해독을 위한 데이터 보호 서비스를 제공 합니다 cookie . `DataProtectionProvider`인스턴스는 응용 프로그램의 다른 부분에서 사용 되는 데이터 보호 시스템에서 격리 됩니다. [DataProtectionProvider (system.io.directoryinfo, Action \<IDataProtectionBuilder> )](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) 은를 허용 <xref:System.IO.DirectoryInfo> 하 여 데이터 보호 키 저장소의 위치를 지정 합니다.
 * `DataProtectionProvider`[AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet 패키지가 필요 합니다.
   * ASP.NET Core 2.x 앱에서 [AspNetCore 메타 패키지](xref:fundamentals/metapackage-app)를 참조 합니다.
   * .NET Framework apps에서 [AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/)에 대 한 패키지 참조를 추가 합니다.
-* <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*>공통 앱 이름을 설정 합니다.
+* <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> 공통 앱 이름을 설정 합니다.
 
-## <a name="share-authentication-no-loccookies-with-aspnet-core-no-locidentity"></a>cookieASP.NET Core를 사용 하 여 인증 공유Identity
+## <a name="share-authentication-no-loccookies-with-no-locaspnet-core-identity"></a>cookie인증 공유ASP.NET Core Identity
 
-ASP.NET Core 사용 하는 경우 Identity :
+ASP.NET Core Identity를 사용하는 경우:
 
-* 데이터 보호 키와 앱 이름은 앱 간에 공유 되어야 합니다. 다음 예에서는 일반 키 저장소 위치가 메서드에 제공 됩니다 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> . <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*>다음 예에서는를 사용 하 여 공통 공유 앱 이름을 구성 `SharedCookieApp` 합니다. 자세한 내용은 <xref:security/data-protection/configuration/overview>를 참조하세요.
+* 데이터 보호 키와 앱 이름은 앱 간에 공유 되어야 합니다. 다음 예에서는 일반 키 저장소 위치가 메서드에 제공 됩니다 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> . <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*>다음 예에서는를 사용 하 여 공통 공유 앱 이름을 구성 `SharedCookieApp` 합니다. 자세한 내용은 <xref:security/data-protection/configuration/overview>을 참조하세요.
 * <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*>확장 메서드를 사용 하 여에 대 한 데이터 보호 서비스를 설정 cookie 합니다.
 * 기본 인증 형식은 `Identity.Application` 입니다.
 
@@ -64,9 +65,9 @@ services.ConfigureApplicationCookie(options => {
 });
 ```
 
-## <a name="share-authentication-no-loccookies-without-aspnet-core-no-locidentity"></a>cookieASP.NET Core 없이 인증 공유Identity
+## <a name="share-authentication-no-loccookies-without-no-locaspnet-core-identity"></a>다음을 사용 cookie 하지 않고 인증 공유 ASP.NET Core Identity
 
-을 (를 cookie ) ASP.NET Core 없이 직접 사용 하 Identity 는 경우에서 데이터 보호 및 인증을 구성 `Startup.ConfigureServices` 합니다. 다음 예제에서는 인증 형식이로 설정 됩니다 `Identity.Application` .
+을 (를 cookie ) 사용 하지 않고을 직접 사용 하 ASP.NET Core Identity 는 경우에서 데이터 보호 및 인증을 구성 `Startup.ConfigureServices` 합니다. 다음 예제에서는 인증 형식이로 설정 됩니다 `Identity.Application` .
 
 ```csharp
 services.AddDataProtection()
@@ -105,7 +106,7 @@ options.Cookie.Domain = ".contoso.com";
 
 ## <a name="encrypt-data-protection-keys-at-rest"></a>휴지 상태의 데이터 보호 키 암호화
 
-프로덕션 배포의 경우 `DataProtectionProvider` DPAPI 또는 X509Certificate를 사용 하 여 미사용 키를 암호화 하도록를 구성 합니다. 자세한 내용은 <xref:security/data-protection/implementation/key-encryption-at-rest>를 참조하세요. 다음 예제에서는에 대 한 인증서 지문을 제공 합니다 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> .
+프로덕션 배포의 경우 `DataProtectionProvider` DPAPI 또는 X509Certificate를 사용 하 여 미사용 키를 암호화 하도록를 구성 합니다. 자세한 내용은 <xref:security/data-protection/implementation/key-encryption-at-rest>을 참조하세요. 다음 예제에서는에 대 한 인증서 지문을 제공 합니다 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> .
 
 ```csharp
 services.AddDataProtection()
@@ -194,6 +195,6 @@ public class ApplicationUser : IdentityUser
 
 앱에서 Identity 스키마가 서로 다를 때, 일반적으로 앱이 서로 다른 버전을 사용 하기 때문에 Identity 최신 버전을 기반으로 하는 공통 데이터베이스를 공유 하는 것은 Identity 다른 앱의 스키마에서 열을 다시 매핑 및 추가 하지 않고도 가능 Identity 합니다 Identity앱에서 공통 데이터베이스를 공유할 수 있도록 최신 버전을 사용 하도록 다른 앱을 업그레이드 하는 것이 더 효율적입니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:host-and-deploy/web-farm>

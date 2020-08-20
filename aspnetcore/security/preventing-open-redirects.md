@@ -5,6 +5,7 @@ description: ASP.NET Core 앱에 대해 열린 리디렉션 공격을 방지 하
 ms.author: riande
 ms.date: 07/07/2017
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/preventing-open-redirects
-ms.openlocfilehash: 3a58c25bbd54803ce0b8c42a2667222d6e14c050
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5226e301960a56145b94b6128d0034c40b86bffd
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021018"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633463"
 ---
 # <a name="prevent-open-redirect-attacks-in-aspnet-core"></a>ASP.NET Core에서 열기 리디렉션 공격 방지
 
@@ -64,7 +65,7 @@ public IActionResult SomeAction(string redirectUrl)
 }
 ```
 
-`LocalRedirect`로컬이 아닌 URL을 지정 하면에서 예외를 throw 합니다. 그렇지 않으면 메서드와 마찬가지로 동작 `Redirect` 합니다.
+`LocalRedirect` 로컬이 아닌 URL을 지정 하면에서 예외를 throw 합니다. 그렇지 않으면 메서드와 마찬가지로 동작 `Redirect` 합니다.
 
 ### <a name="islocalurl"></a>IsLocalUrl
 

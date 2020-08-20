@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 04/08/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/javascript-client
-ms.openlocfilehash: e6feeb0009034d9ea92f09c44ed0ca882d80fe1b
-ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
+ms.openlocfilehash: 7b11172df902f0d6a26f357755f33c78e7f8d1ff
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88504764"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631422"
 ---
 # <a name="aspnet-core-no-locsignalr-javascript-client"></a>SignalRJavaScript 클라이언트 ASP.NET Core
 
@@ -62,7 +63,7 @@ npm 패키지 콘텐츠를 *node_modules \\ @aspnet\signalr\dist\browser * 폴�
 
 ::: moniker-end
 
-SignalR요소에서 JavaScript 클라이언트를 참조 `<script>` 합니다. 예를 들어:
+SignalR요소에서 JavaScript 클라이언트를 참조 `<script>` 합니다. 다음은 그 예입니다. 
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -70,7 +71,7 @@ SignalR요소에서 JavaScript 클라이언트를 참조 `<script>` 합니다. �
 
 ### <a name="use-a-content-delivery-network-cdn"></a>CDN (Content Delivery Network) 사용
 
-Npm 필수 구성 요소 없이 클라이언트 라이브러리를 사용 하려면 클라이언트 라이브러리의 CDN 호스트 복사본을 참조 합니다. 예를 들어:
+Npm 필수 구성 요소 없이 클라이언트 라이브러리를 사용 하려면 클라이언트 라이브러리의 CDN 호스트 복사본을 참조 합니다. 다음은 그 예입니다. 
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js"></script>

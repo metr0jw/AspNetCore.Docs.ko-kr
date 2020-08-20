@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/04/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/response
-ms.openlocfilehash: 7d2d563eef60cb8eead95c6792bcac2cda16a859
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9516410399ce69f1d69b09781b2530d052a11e7a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021343"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631877"
 ---
 # <a name="response-caching-in-aspnet-core"></a>ASP.NET Core의 응답 캐싱
 
@@ -53,7 +54,7 @@ HTTP 1.1 캐싱 사양을 따르는 서버 쪽 캐싱의 경우 [응답 캐싱 �
 
 | header                                                     | 기능 |
 | ---------------------------------------------------------- | -------- |
-| [연령](https://tools.ietf.org/html/rfc7234#section-5.1)     | 응답을 생성 하거나 원본 서버에서 유효성을 검사 한 이후의 시간 (초)입니다. |
+| [발전할](https://tools.ietf.org/html/rfc7234#section-5.1)     | 응답을 생성 하거나 원본 서버에서 유효성을 검사 한 이후의 시간 (초)입니다. |
 | [기간이](https://tools.ietf.org/html/rfc7234#section-5.3) | 응답이 오래 된 것으로 간주 되는 시간입니다. |
 | [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | 동작 설정에 대 한 HTTP/1.0 캐시와의 이전 버전과의 호환성을 위해 존재 `no-cache` 합니다. 헤더가 있으면 `Cache-Control` `Pragma` 헤더가 무시 됩니다. |
 | [날](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | 캐시 된 응답의 `Vary` 원래 요청과 새 요청 모두에서 헤더 필드가 모두 일치 하지 않는 경우 캐시 된 응답을 보내지 않도록 지정 합니다. |
@@ -72,25 +73,25 @@ HTTP 1.1 캐싱 사양을 따르는 서버 쪽 캐싱의 경우 [응답 캐싱 �
 
 메모리 내 캐싱은 서버 메모리를 사용 하 여 캐시 된 데이터를 저장 합니다. 이 유형의 캐싱은 단일 서버 또는 *고정 세션*을 사용 하는 여러 서버에 적합 합니다. 고정 세션은 클라이언트의 요청이 처리를 위해 항상 동일한 서버로 라우팅되는 것을 의미 합니다.
 
-자세한 내용은 <xref:performance/caching/memory>를 참조하세요.
+자세한 내용은 <xref:performance/caching/memory>을 참조하세요.
 
 ### <a name="distributed-cache"></a>분산 캐시
 
 앱이 클라우드 또는 서버 팜에서 호스팅될 때 분산 캐시를 사용 하 여 메모리에 데이터를 저장 합니다. 캐시는 요청을 처리 하는 서버에서 공유 됩니다. 클라이언트에 대해 캐시 된 데이터를 사용할 수 있는 경우 클라이언트는 그룹의 모든 서버에서 처리 한 요청을 제출할 수 있습니다. ASP.NET Core는 SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)및 [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) 분산 캐시와 함께 작동 합니다.
 
-자세한 내용은 <xref:performance/caching/distributed>를 참조하세요.
+자세한 내용은 <xref:performance/caching/distributed>을 참조하세요.
 
 ### <a name="cache-tag-helper"></a>캐시 태그 도우미
 
 캐시 태그 도우미를 사용 하 여 MVC 뷰 또는 페이지에서 콘텐츠를 캐시 합니다 Razor . 캐시 태그 도우미는 메모리 내 캐싱을 사용 하 여 데이터를 저장 합니다.
 
-자세한 내용은 <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>를 참조하세요.
+자세한 내용은 <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>을 참조하세요.
 
 ### <a name="distributed-cache-tag-helper"></a>분산 캐시 태그 도우미
 
 분산 된 Razor 캐시 태그 도우미를 사용 하 여 분산 클라우드 또는 웹 팜 시나리오의 MVC 뷰나 페이지에서 콘텐츠를 캐시 합니다. 분산 캐시 태그 도우미는 SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis)또는 [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) 를 사용 하 여 데이터를 저장 합니다.
 
-자세한 내용은 <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>를 참조하세요.
+자세한 내용은 <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>을 참조하세요.
 
 ## <a name="responsecache-attribute"></a>ResponseCache 특성
 
@@ -99,7 +100,7 @@ HTTP 1.1 캐싱 사양을 따르는 서버 쪽 캐싱의 경우 [응답 캐싱 �
 > [!WARNING]
 > 인증 된 클라이언트에 대 한 정보가 포함 된 콘텐츠에 대해 캐싱을 사용 하지 않도록 설정 합니다. 사용자의 id에 따라 변경 되지 않는 콘텐츠나 사용자의 로그인 여부에 따라 캐싱을 사용 하도록 설정 해야 합니다.
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys>지정 된 쿼리 키 목록 값에 따라 저장 된 응답을 변경 합니다. 의 단일 값 `*` 이 제공 되 면 미들웨어는 모든 요청 쿼리 문자열 매개 변수의 응답을 변경 합니다.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> 지정 된 쿼리 키 목록 값에 따라 저장 된 응답을 변경 합니다. 의 단일 값 `*` 이 제공 되 면 미들웨어는 모든 요청 쿼리 문자열 매개 변수의 응답을 변경 합니다.
 
 속성을 설정 하려면 [응답 캐싱 미들웨어](xref:performance/caching/middleware) 를 사용 하도록 설정 해야 합니다 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> . 그렇지 않으면 런타임 예외가 throw 됩니다. 속성에 해당 하는 HTTP 헤더가 없습니다 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> . 속성은 응답 캐싱 미들웨어에 의해 처리 되는 HTTP 기능입니다. 미들웨어가 캐시 된 응답을 제공 하려면 쿼리 문자열 및 쿼리 문자열 값이 이전 요청과 일치 해야 합니다. 예를 들어 다음 표에 표시 된 요청 및 결과의 순서를 고려 합니다.
 
@@ -132,14 +133,14 @@ Vary: User-Agent
 
 ### <a name="nostore-and-locationnone"></a>NoStore 및 위치입니다. 없음
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>는 대부분의 다른 속성을 재정의 합니다. 이 속성이로 설정 되 면 `true` `Cache-Control` 헤더가로 설정 됩니다 `no-store` . <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>가로 설정 된 `None` 경우
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> 는 대부분의 다른 속성을 재정의 합니다. 이 속성이로 설정 되 면 `true` `Cache-Control` 헤더가로 설정 됩니다 `no-store` . <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>가로 설정 된 `None` 경우
 
 * `Cache-Control`이 `no-store,no-cache`로 설정됩니다.
 * `Pragma`이 `no-cache`로 설정됩니다.
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>가이 `false` 고 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> 가 `None` , `Cache-Control` 및 이면가 `Pragma` 로 설정 됩니다 `no-cache` .
 
-<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore>는 일반적으로 `true` 오류 페이지에 대해로 설정 됩니다. 샘플 앱의 Cache2 페이지는 클라이언트에 응답을 저장 하지 않도록 지시 하는 응답 헤더를 생성 합니다.
+<xref:Microsoft.AspNetCore.Mvc.CacheProfile.NoStore> 는 일반적으로 `true` 오류 페이지에 대해로 설정 됩니다. 샘플 앱의 Cache2 페이지는 클라이언트에 응답을 저장 하지 않도록 지시 하는 응답 헤더를 생성 합니다.
 
 [!code-csharp[](response/samples/2.x/ResponseCacheSample/Pages/Cache2.cshtml.cs?name=snippet)]
 
@@ -156,9 +157,9 @@ Pragma: no-cache
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>및의 옵션 `Any` 은 `Client` `Cache-Control` 각각 및의 헤더 값으로 변환 `public` `private` 됩니다. [Nostore 및 Location. None](#nostore-and-locationnone) 섹션에서 설명한 대로 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> 을로 설정 하면 `None` `Cache-Control` 및 헤더가 모두 `Pragma` 로 설정 `no-cache` 됩니다.
 
-`Location.Any`( `Cache-Control` 로 설정 `public` )은 *클라이언트 또는 중간 프록시가* [응답 캐싱 미들웨어](xref:performance/caching/middleware)를 포함 하 여 값을 캐시할 수 있음을 나타냅니다.
+`Location.Any` ( `Cache-Control` 로 설정 `public` )은 *클라이언트 또는 중간 프록시가* [응답 캐싱 미들웨어](xref:performance/caching/middleware)를 포함 하 여 값을 캐시할 수 있음을 나타냅니다.
 
-`Location.Client`( `Cache-Control` 로 설정 `private` )는 *클라이언트만* 값을 캐시할 수 있음을 나타냅니다. [응답 캐싱 미들웨어](xref:performance/caching/middleware)를 포함 하 여 값을 캐시 해야 하는 중간 캐시는 없습니다.
+`Location.Client` ( `Cache-Control` 로 설정 `private` )는 *클라이언트만* 값을 캐시할 수 있음을 나타냅니다. [응답 캐싱 미들웨어](xref:performance/caching/middleware)를 포함 하 여 값을 캐시 해야 하는 중간 캐시는 없습니다.
 
 캐시 컨트롤 헤더는 응답을 캐시 하는 방법 및 방법에 대 한 지침을 클라이언트 및 중간 프록시에 제공 합니다. 클라이언트 및 프록시가 [HTTP 1.1 캐싱 사양을](https://tools.ietf.org/html/rfc7234)인식 한다는 보장이 없습니다. [응답 캐싱 미들웨어](xref:performance/caching/middleware) 는 항상 사양에 의해 배치 된 캐싱 규칙을 따릅니다.
 
@@ -196,7 +197,7 @@ Cache-Control: public,max-age=10
 
 는 <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> 다음에 적용할 수 있습니다.
 
-* RazorPages: 특성은 처리기 메서드에 적용할 수 없습니다.
+* Razor Pages: 특성은 처리기 메서드에 적용할 수 없습니다.
 * MVC 컨트롤러.
 * MVC 작업 메서드: 메서드 수준 특성은 클래스 수준 특성에 지정 된 설정을 재정의 합니다.
 
@@ -206,7 +207,7 @@ Cache-Control: public,max-age=10
 Cache-Control: public,max-age=30
 ```
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [캐시에 응답 저장](https://tools.ietf.org/html/rfc7234#section-3)
 * [Cache-control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)

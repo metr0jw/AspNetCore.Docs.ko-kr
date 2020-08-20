@@ -5,6 +5,7 @@ description: ASP.NET Core가 MVC 보기에 종속성 주입을 지원하는 방�
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/dependency-injection
-ms.openlocfilehash: 4ed3e1334994c815996bd3db073fab5e544e2ca8
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5ab79740d2068a50e4138e5b86f1622af8ef5ec7
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018223"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88633606"
 ---
 # <a name="dependency-injection-into-views-in-aspnet-core"></a>ASP.NET Core의 보기에 종속성 주입
 
@@ -114,6 +115,6 @@ ASP.NET Core는 보기에 대한 [종속성 주입](xref:fundamentals/dependency
 
 기존 서비스를 확장하려는 경우 간단하게 이 기술을 사용하여 기존 구현에서 상속하거나 기존 구현을 개발자 고유의 구현으로 래핑하면 됩니다.
 
-## <a name="see-also"></a>참고 항목
+## <a name="see-also"></a>관련 항목
 
 * Simon Timms 블로그: [보기로 조회 데이터 가져오기](https://blog.simontimms.com/2015/06/09/getting-lookup-data-into-you-view/)

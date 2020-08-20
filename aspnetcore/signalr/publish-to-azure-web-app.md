@@ -7,6 +7,7 @@ ms.author: bradyg
 ms.custom: mvc
 ms.date: 11/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/publish-to-azure-web-app
-ms.openlocfilehash: 3163a2743c544d0a07d92eb7547e77c3b200ac83
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b9d32e2f3c37f652be15c5857d14ac48f66695ad
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022539"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88631929"
 ---
 # <a name="publish-an-aspnet-core-no-locsignalr-app-to-azure-app-service"></a>SignalRAzure App Service에 ASP.NET Core 앱 게시
 
@@ -45,7 +46,7 @@ ms.locfileid: "88022539"
 
    **App Service 만들기** 대화 상자에서 다음 표에 설명 된 정보를 입력 하 고 **만들기**를 선택 합니다.
 
-   | 항목               | 설명 |
+   | 항목               | Description |
    | ------------------ | ----------- |
    | **이름**           | 앱의 고유한 이름입니다. |
    | **구독**   | 앱에서 사용 하는 Azure 구독입니다. |
@@ -92,7 +93,7 @@ Azure 서비스 없이 호스트 되는 앱의 SignalR 경우 다음을 사용 �
 
 웹 소켓 및 기타 전송은 선택한 App Service 계획을 기준으로 제한 됩니다. 자세한 내용은 azure [구독 및 서비스 제한, 할당량 및 제약 조건](/azure/azure-subscription-service-limits#app-service-limits) 문서의 *azure Cloud Services 제한* 및 *App Service 제한* 섹션을 참조 하세요.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [Azure 서비스인 이란 SignalR ?](/azure/azure-signalr/signalr-overview)
 * <xref:signalr/introduction>

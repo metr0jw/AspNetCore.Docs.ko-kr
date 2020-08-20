@@ -7,6 +7,7 @@ ms.author: riande
 ms.date: 09/22/2018
 ms.custom: mvc, seodec18
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/2fa
-ms.openlocfilehash: 28aef65234eaf162ba6e18a2594feb575c93b02f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e5e606afaf0219f3a0eb7301203b7142a00322be
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019492"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634113"
 ---
 # <a name="two-factor-authentication-with-sms-in-aspnet-core"></a>ASP.NET Core SMS를 사용 하는 2 단계 인증
 
@@ -71,7 +72,7 @@ Twilio 계정의 대시보드 탭에서 **계정 SID** 및 **인증 토큰**을 
 
 [!code-csharp[](2fa/sample/Web2FA/Services/SMSoptions.cs)]
 
-을 ( `SMSAccountIdentification` 를 `SMSAccountPassword` `SMSAccountFrom` [) 암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 설정 합니다. 예:
+을 ( `SMSAccountIdentification` 를 `SMSAccountPassword` `SMSAccountFrom` [) 암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 설정 합니다. 다음은 그 예입니다. 
 
 ```none
 C:/Web2FA/src/WebApp1>dotnet user-secrets set SMSAccountIdentification 12345
@@ -96,7 +97,7 @@ info: Successfully saved SMSAccountIdentification = 12345 to the secret store.
 **다음 SMS:**  
 [!code-csharp[](2fa/sample/Web2FA/Services/MessageServices_ASPSMS.cs)]
 
-### <a name="configure-startup-to-use-smsoptions"></a>사용할 시작 구성`SMSoptions`
+### <a name="configure-startup-to-use-smsoptions"></a>사용할 시작 구성 `SMSoptions`
 
 `SMSoptions` `ConfigureServices` *Startup.cs*의 메서드에서 서비스 컨테이너에를 추가 합니다.
 
