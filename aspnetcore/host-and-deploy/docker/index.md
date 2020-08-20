@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 01/08/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/index
-ms.openlocfilehash: 35837eb2bd1ed2321663e1ae334eb20b18e5587a
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: bcb09300ccfd0fa1595bff325da1049d4d185b64
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88015779"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627353"
 ---
 # <a name="host-aspnet-core-in-docker-containers"></a>Docker 컨테이너에서 ASP.NET Core 호스트
 

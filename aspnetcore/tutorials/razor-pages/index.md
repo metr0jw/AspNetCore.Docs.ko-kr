@@ -5,6 +5,7 @@ description: Windows에서 Visual Studio, ASP.NET Core 및 EF Core를 사용하�
 ms.author: riande
 ms.date: 08/09/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/razor-pages/index
-ms.openlocfilehash: ae6bffccd04617f2c2fdfbb8a4e1315c210a66de
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: aa9747e5f74f0f2d4764f9ebbb5c6d19191451ff
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021512"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634724"
 ---
 # <a name="tutorial-create-a-no-locrazor-pages-web-app-with-aspnet-core"></a>자습서: ASP.NET Core를 사용하여 Razor Pages 웹앱 만들기
 
