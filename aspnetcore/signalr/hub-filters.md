@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core에서 허브 필터 사용SignalR
+title: ASP.NET Core에서 허브 필터 사용 SignalR
 author: brecon
 description: ASP.NET Core에서 허브 필터를 사용 하는 방법에 대해 알아봅니다 SignalR .
 monikerRange: '>= aspnetcore-5.0'
@@ -7,6 +7,7 @@ ms.author: brecon
 ms.custom: mvc
 ms.date: 05/22/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/hub-filters
-ms.openlocfilehash: db6439ab4e61d0412148c5ea72b52d429367491b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c3c44efcb3702f3edb51c821d042c2e7eb1748cd
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022149"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626668"
 ---
-# <a name="use-hub-filters-in-aspnet-core-no-locsignalr"></a>ASP.NET Core에서 허브 필터 사용SignalR
+# <a name="use-hub-filters-in-aspnet-core-no-locsignalr"></a>ASP.NET Core에서 허브 필터 사용 SignalR
 
 허브 필터:
 
@@ -195,7 +196,7 @@ public class CustomFilter : IHubFilter
 
 에는 `HubInvocationContext` 현재 허브 메서드 호출에 대 한 정보가 포함 되어 있습니다.
 
-| 속성 | 설명 | Type |
+| 속성 | Description | Type |
 | ------ | ------ | ----------- |
 | `Context ` | 에는 `HubCallerContext` 연결에 대 한 정보가 포함 되어 있습니다. | `HubCallerContext` |
 | `Hub` | 이 허브 메서드 호출에 사용 되는 허브의 인스턴스입니다. | `Hub` |
@@ -208,7 +209,7 @@ public class CustomFilter : IHubFilter
 
 에는 `HubLifetimeContext` `OnConnectedAsync` 및 허브 메서드에 대 한 정보가 포함 되어 있습니다 `OnDisconnectedAsync` .
 
-| 속성 | 설명 | Type |
+| 속성 | Description | Type |
 | ------ | ------ | ----------- |
 | `Context ` | 에는 `HubCallerContext` 연결에 대 한 정보가 포함 되어 있습니다. | `HubCallerContext` |
 | `Hub` | 이 허브 메서드 호출에 사용 되는 허브의 인스턴스입니다. | `Hub` |

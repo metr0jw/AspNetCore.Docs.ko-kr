@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: bdorrans
 ms.date: 07/16/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,16 +17,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 7a23f2b17cc8fb3a4989b9fddd5c128add13db5b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 54780e2d67c70d945fd875c41c8d6483aa358bbf
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021954"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627197"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>ASP.NET Core에서 인증서 인증 구성
 
-`Microsoft.AspNetCore.Authentication.Certificate`ASP.NET Core에 대 한 [인증서 인증과](https://tools.ietf.org/html/rfc5246#section-7.4.4) 유사한 구현을 포함 합니다. 인증서 인증은 ASP.NET Core에 도달하기 훨씬 전에 TLS 수준에서 수행됩니다. 보다 정확 하 게,이는 인증서의 유효성을 검사 한 다음 해당 인증서를에 대해 확인할 수 있는 이벤트를 제공 하는 인증 처리기입니다 `ClaimsPrincipal` . 
+`Microsoft.AspNetCore.Authentication.Certificate` ASP.NET Core에 대 한 [인증서 인증과](https://tools.ietf.org/html/rfc5246#section-7.4.4) 유사한 구현을 포함 합니다. 인증서 인증은 ASP.NET Core에 도달하기 훨씬 전에 TLS 수준에서 수행됩니다. 보다 정확 하 게,이는 인증서의 유효성을 검사 한 다음 해당 인증서를에 대해 확인할 수 있는 이벤트를 제공 하는 인증 처리기입니다 `ClaimsPrincipal` . 
 
 인증서 인증을 위해 [서버를 구성](#configure-your-server-to-require-certificates) 하 고, IIS, Kestrel, Azure Web Apps 또는 사용 중인 다른 모든 항목을 구성 합니다.
 
@@ -46,7 +47,7 @@ HTTPS 인증서를 획득 하 고 적용 한 다음 인증서를 요구 하도�
 
 인증이 실패 하는 경우이 처리기는 `403 (Forbidden)` 정상적으로 응답을 반환 `401 (Unauthorized)` 합니다. 초기 TLS 연결 중에 인증이 수행 되어야 한다는 것을 의미 합니다. 처리기에 도달할 때까지 너무 늦습니다. 익명 연결에서 인증서를 사용 하는 연결로의 연결을 업그레이드할 수 있는 방법은 없습니다.
 
-또한 `app.UseAuthentication();` 메서드에를 추가 `Startup.Configure` 합니다. 그렇지 않으면 `HttpContext.User` 인증서에서 생성 된로 설정 되지 않습니다 `ClaimsPrincipal` . 예:
+또한 `app.UseAuthentication();` 메서드에를 추가 `Startup.Configure` 합니다. 그렇지 않으면 `HttpContext.User` 인증서에서 생성 된로 설정 되지 않습니다 `ClaimsPrincipal` . 다음은 그 예입니다. 
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -325,7 +326,7 @@ private static byte[] StringToByteArray(string hex)
 }
 ```
 
-`Startup.Configure`그런 다음 메서드는 미들웨어를 추가 합니다. `UseCertificateForwarding`는 및를 호출 하기 전에 호출 됩니다 `UseAuthentication` `UseAuthorization` .
+`Startup.Configure`그런 다음 메서드는 미들웨어를 추가 합니다. `UseCertificateForwarding` 는 및를 호출 하기 전에 호출 됩니다 `UseAuthentication` `UseAuthorization` .
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -616,7 +617,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-기본 캐싱 구현에서는 결과를 메모리에 저장 합니다. `ICertificateValidationCache`종속성 주입을 사용 하 여 구현 하 고 등록 하 여 자체 캐시를 제공할 수 있습니다. 정의합니다(예: `services.AddSingleton<ICertificateValidationCache, YourCache>()`).
+기본 캐싱 구현에서는 결과를 메모리에 저장 합니다. `ICertificateValidationCache`종속성 주입을 사용 하 여 구현 하 고 등록 하 여 자체 캐시를 제공할 수 있습니다. 예들 들어 `services.AddSingleton<ICertificateValidationCache, YourCache>()`입니다.
 
 ::: moniker-end
 
@@ -650,8 +651,8 @@ ASP.NET Core 5 preview 7 이상에서는 선택적 클라이언트 인증서에 
 * 클라이언트 인증서가 필요 하 고 없는 웹 앱에 대 한 요청의 경우:
   * 클라이언트 인증서 보호 된 하위 도메인을 사용 하 여 동일한 페이지로 리디렉션합니다.
   * 예를 들어를로 리디렉션합니다 `myClient.contoso.com/requestedPage` . 에 대 한 요청은와 `myClient.contoso.com/requestedPage` 다른 호스트 이름이 기 때문에 `contoso.com/requestedPage` 클라이언트에서 다른 연결을 설정 하 고 클라이언트 인증서가 제공 됩니다.
-  * 자세한 내용은 <xref:security/authorization/introduction>를 참조하세요.
+  * 자세한 내용은 <xref:security/authorization/introduction>을 참조하세요.
 
 [이 GitHub 토론](https://github.com/dotnet/AspNetCore.Docs/issues/18720) 문제에서 선택적 클라이언트 인증서에 대 한 질문, 설명 및 기타 피드백을 남겨 두세요.
 
-&dagger;SNI (서버 이름 표시)는 SSL 협상의 일부로 가상 도메인을 포함 하는 TLS 확장입니다. 이는 실제로 가상 도메인 이름 또는 호스트 이름을 사용 하 여 네트워크 끝점을 식별할 수 있다는 의미입니다.
+&dagger; SNI (서버 이름 표시)는 SSL 협상의 일부로 가상 도메인을 포함 하는 TLS 확장입니다. 이는 실제로 가상 도메인 이름 또는 호스트 이름을 사용 하 여 네트워크 끝점을 식별할 수 있다는 의미입니다.

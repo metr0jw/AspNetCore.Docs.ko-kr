@@ -5,6 +5,7 @@ description: ASP.NET Core에 대 한 오픈 소스 인증 옵션을 검색 합�
 ms.author: riande
 ms.date: 10/28/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/community
-ms.openlocfilehash: a4e32f8525447e0adb543730cd26296775d40e11
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ae95221850711b4133a0966c0bd787b892135698
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020992"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627171"
 ---
 # <a name="community-oss-authentication-options-for-aspnet-core"></a>ASP.NET Core에 대 한 커뮤니티 OSS 인증 옵션
 
@@ -30,7 +31,7 @@ ms.locfileid: "88020992"
 
 아래 목록은 사전순으로 정렬 되어 있습니다.
 
-| Name | 설명 |
+| 속성 | Description |
 | ---- | ----------- |
 | [AspNet. OpenIdConnect. 서버 (ASOS)](https://github.com/aspnet-contrib/AspNet.Security.OpenIdConnect.Server) | ASOS는 ASP.NET Core 및 OWIN/Katana에 대 한 낮은 수준의 프로토콜 우선 Openid connect Connect 서버 프레임 워크입니다. |
 | [Gluu 서버](https://gluu.org/) | Id, 액세스 관리 (IAM) 및 Single Sign-On (SSO)에 대 한 엔터프라이즈 준비, 오픈 소스 소프트웨어입니다. 자세한 내용은 [Gluu 제품 설명서](https://gluu.org/docs/)를 참조 하세요. |

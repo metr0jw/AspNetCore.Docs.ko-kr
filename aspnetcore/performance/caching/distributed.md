@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: 64a4b6f606a4f5f8e73ef08f53cbb6e4003245aa
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a25cbaf9a4e7dc5f1bd3706d01f409208a39aaa3
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020680"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626729"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>ASP.NET Core 분산 캐싱
 
@@ -174,7 +175,7 @@ NCache를 구성 하려면:
 
 * 기존 인프라
 * 성능 요구 사항
-* 비용
+* Cost
 * 팀 환경
 
 캐싱 솔루션은 일반적으로 메모리 내 저장소를 사용 하 여 캐시 된 데이터를 신속 하 게 검색 하지만 메모리는 제한 된 리소스 이며 확장 하는 데 비용이 많이 듭니다. 일반적으로 사용 되는 데이터를 캐시에만 저장 합니다.
@@ -183,7 +184,7 @@ NCache를 구성 하려면:
 
 SQL Server를 분산 캐시 백업 저장소로 사용 하는 경우 캐시에 대해 동일한 데이터베이스를 사용 하 고 앱의 일반 데이터 저장 및 검색을 사용 하면 두 성능에 부정적인 영향을 줄 수 있습니다. 분산 캐시 백업 저장소에 전용 SQL Server 인스턴스를 사용 하는 것이 좋습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [Azure의 Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure의 SQL Database](/azure/sql-database/)
@@ -344,7 +345,7 @@ NCache를 구성 하려면:
 
 * 기존 인프라
 * 성능 요구 사항
-* 비용
+* Cost
 * 팀 환경
 
 캐싱 솔루션은 일반적으로 메모리 내 저장소를 사용 하 여 캐시 된 데이터를 신속 하 게 검색 하지만 메모리는 제한 된 리소스 이며 확장 하는 데 비용이 많이 듭니다. 일반적으로 사용 되는 데이터를 캐시에만 저장 합니다.
@@ -353,7 +354,7 @@ NCache를 구성 하려면:
 
 SQL Server를 분산 캐시 백업 저장소로 사용 하는 경우 캐시에 대해 동일한 데이터베이스를 사용 하 고 앱의 일반 데이터 저장 및 검색을 사용 하면 두 성능에 부정적인 영향을 줄 수 있습니다. 분산 캐시 백업 저장소에 전용 SQL Server 인스턴스를 사용 하는 것이 좋습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [Azure의 Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure의 SQL Database](/azure/sql-database/)
@@ -520,7 +521,7 @@ NCache를 구성 하려면:
 
 * 기존 인프라
 * 성능 요구 사항
-* 비용
+* Cost
 * 팀 환경
 
 캐싱 솔루션은 일반적으로 메모리 내 저장소를 사용 하 여 캐시 된 데이터를 신속 하 게 검색 하지만 메모리는 제한 된 리소스 이며 확장 하는 데 비용이 많이 듭니다. 일반적으로 사용 되는 데이터를 캐시에만 저장 합니다.
@@ -529,7 +530,7 @@ NCache를 구성 하려면:
 
 SQL Server를 분산 캐시 백업 저장소로 사용 하는 경우 캐시에 대해 동일한 데이터베이스를 사용 하 고 앱의 일반 데이터 저장 및 검색을 사용 하면 두 성능에 부정적인 영향을 줄 수 있습니다. 분산 캐시 백업 저장소에 전용 SQL Server 인스턴스를 사용 하는 것이 좋습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [Azure의 Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure의 SQL Database](/azure/sql-database/)

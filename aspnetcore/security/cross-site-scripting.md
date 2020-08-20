@@ -5,6 +5,7 @@ description: ASP.NET Core 앱에서이 취약점을 해결 하는 데 필요한 
 ms.author: riande
 ms.date: 10/02/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: 24fab313c3af30cfd4143ba29a33ba25bfcdf9a9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ec8b321be08447ca634a1e28799f790f723f17d1
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021811"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88625624"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>ASP.NET Core에서 XSS (교차 사이트 스크립팅) 방지
 
@@ -42,7 +43,7 @@ XSS (교차 사이트 스크립팅)는 공격자가 클라이언트 쪽 스크�
 
 5. 신뢰할 수 없는 데이터를 URL 쿼리 문자열에 배치 하기 전에 URL이 인코딩 되는지 확인 합니다.
 
-## <a name="html-encoding-using-no-locrazor"></a>HTML 인코딩 사용Razor
+## <a name="html-encoding-using-no-locrazor"></a>HTML 인코딩 사용 Razor
 
 RazorMVC에서 사용 하는 엔진은이를 방지 하기 위해 정말로 작업 하지 않는 한 변수에서 모든 출력을 자동으로 인코딩합니다. 지시문을 사용할 때마다 HTML 특성 인코딩 규칙을 사용 *@* 합니다. Html 특성 인코딩은 HTML 인코딩의 상위 집합 이기 때문에 HTML 인코딩 또는 HTML 특성 인코딩을 사용 해야 하는지 여부를 걱정 하지 않아도 됩니다. 신뢰할 수 없는 입력을 JavaScript에 직접 삽입 하려고 할 때가 아니라 HTML 컨텍스트에서만 @를 사용 하도록 해야 합니다. 태그 도우미는 태그 매개 변수에서 사용 하는 입력도 인코딩합니다.
 
@@ -65,9 +66,9 @@ RazorMVC에서 사용 하는 엔진은이를 방지 하기 위해 정말로 작�
 >[!WARNING]
 > ASP.NET Core MVC는 `HtmlString` 출력 시 자동으로 인코딩되지 않는 클래스를 제공 합니다. 이는 XSS 취약성을 노출 하므로 신뢰할 수 없는 입력과 함께 사용 하면 안 됩니다.
 
-## <a name="javascript-encoding-using-no-locrazor"></a>JavaScript Encoding 사용Razor
+## <a name="javascript-encoding-using-no-locrazor"></a>JavaScript Encoding 사용 Razor
 
-JavaScript에 값을 삽입 하 여 보기에서 처리할 수 있는 경우가 있을 수 있습니다. 두 가지 방법으로 이 작업을 수행할 수 있습니다. 값을 삽입 하는 가장 안전한 방법은 태그의 데이터 특성에 값을 추가 하 고 JavaScript에서 검색 하는 것입니다. 예:
+JavaScript에 값을 삽입 하 여 보기에서 처리할 수 있는 경우가 있을 수 있습니다. 두 가지 방법으로 이 작업을 수행할 수 있습니다. 값을 삽입 하는 가장 안전한 방법은 태그의 데이터 특성에 값을 추가 하 고 JavaScript에서 검색 하는 것입니다. 다음은 그 예입니다. 
 
 ```cshtml
 @{

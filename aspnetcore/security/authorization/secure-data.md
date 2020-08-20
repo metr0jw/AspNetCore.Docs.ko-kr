@@ -1,11 +1,12 @@
 ---
 title: 권한 부여로 보호 되는 사용자 데이터를 사용 하 여 ASP.NET Core 앱 만들기
 author: rick-anderson
-description: 권한 부여로 보호 되는 사용자 데이터를 사용 하 여 ASP.NET Core 웹 앱을 만드는 방법을 알아봅니다. HTTPS, 인증, 보안 ASP.NET Core를 포함 Identity 합니다.
+description: 권한 부여로 보호 되는 사용자 데이터를 사용 하 여 ASP.NET Core 웹 앱을 만드는 방법을 알아봅니다. 에는 HTTPS, 인증, 보안이 포함 됩니다 ASP.NET Core Identity .
 ms.author: riande
 ms.date: 7/18/2020
 ms.custom: mvc, seodec18
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/secure-data
-ms.openlocfilehash: 44777369693f9eb29d78c3ba638db2e692f430ae
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5f86e514ee6339888171d83ab3117e9b3fcf107e
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021188"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627821"
 ---
 # <a name="create-an-aspnet-core-web-app-with-user-data-protected-by-authorization"></a>권한 부여로 보호 되는 사용자 데이터를 사용 하 여 ASP.NET Core 웹 앱 만들기
 
@@ -73,7 +74,7 @@ ms.locfileid: "88021188"
 * `ContactManagerAuthorizationHandler`: 관리자가 연락처를 승인 하거나 거부할 수 있습니다.
 * `ContactAdministratorsAuthorizationHandler`: 관리자가 연락처를 승인 또는 거부 하 고 연락처를 편집/삭제할 수 있습니다.
 
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>사전 요구 사항
 
 이 자습서는 고급입니다. 다음에 대해 잘 알고 있어야 합니다.
 
@@ -112,7 +113,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-no-locidentity"></a>역할 서비스 추가Identity
+### <a name="add-role-services-to-no-locidentity"></a>역할 서비스 추가 Identity
 
 역할 서비스를 추가 하려면 [Addroles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) 를 추가 합니다.
 
@@ -134,7 +135,7 @@ dotnet ef database update
 
 사용자를 인증 하도록 요구 하는 대체 인증 정책을 설정 하면 새로 추가 된 Razor 페이지와 컨트롤러를 보호 합니다. 기본적으로 인증을 요구 하는 것은 특성을 포함 하는 새 컨트롤러 및 페이지에 의존 하는 것 보다 안전 Razor 합니다 `[Authorize]` .
 
-클래스에는 <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> 도 포함 <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> 됩니다. 는 `DefaultPolicy` `[Authorize]` 정책을 지정 하지 않은 경우 특성에 사용 되는 정책입니다. `[Authorize]`는와 달리 명명 된 정책을 포함 하지 않습니다 `[Authorize(PolicyName="MyPolicy")]` .
+클래스에는 <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions> 도 포함 <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType> 됩니다. 는 `DefaultPolicy` `[Authorize]` 정책을 지정 하지 않은 경우 특성에 사용 되는 정책입니다. `[Authorize]` 는와 달리 명명 된 정책을 포함 하지 않습니다 `[Authorize(PolicyName="MyPolicy")]` .
 
 정책에 대 한 자세한 내용은을 참조 하십시오 <xref:security/authorization/policies> .
 
@@ -181,11 +182,11 @@ dotnet user-secrets set SeedUserPW <PW>
 `ContactIsOwnerAuthorizationHandler`호출 [컨텍스트입니다. ](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_)현재 인증 된 사용자가 연락처 소유자 인 경우 성공 합니다. 권한 부여 처리기 일반적:
 
 * `context.Succeed`요구 사항이 충족 되 면를 반환 합니다.
-* `Task.CompletedTask`요구 사항이 충족 되지 않으면를 반환 합니다. `Task.CompletedTask`은 (는) 성공 또는 실패 하지 않으므로 &mdash; 다른 권한 부여 처리기를 실행할 수 있습니다.
+* `Task.CompletedTask`요구 사항이 충족 되지 않으면를 반환 합니다. `Task.CompletedTask` 은 (는) 성공 또는 실패 하지 않으므로 &mdash; 다른 권한 부여 처리기를 실행할 수 있습니다.
 
 명시적으로 실패 해야 하는 경우 컨텍스트를 반환 [합니다. 실패](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
-앱에서 연락처 소유자는 자신의 데이터를 편집/삭제/만들 수 있습니다. `ContactIsOwnerAuthorizationHandler`는 요구 사항 매개 변수에 전달 된 작업을 확인할 필요가 없습니다.
+앱에서 연락처 소유자는 자신의 데이터를 편집/삭제/만들 수 있습니다. `ContactIsOwnerAuthorizationHandler` 는 요구 사항 매개 변수에 전달 된 작업을 확인할 필요가 없습니다.
 
 ### <a name="create-a-manager-authorization-handler"></a>관리자 권한 부여 처리기 만들기
 
@@ -205,7 +206,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet_defaultPolicy&highlight=23-99)]
 
-`ContactAdministratorsAuthorizationHandler`및 `ContactManagerAuthorizationHandler` 는 단일 항목로 추가 됩니다. 이는 EF를 사용 하지 않고 필요한 모든 정보가 메서드의 매개 변수에 단일 항목 때문에 발생 `Context` `HandleRequirementAsync` 합니다.
+`ContactAdministratorsAuthorizationHandler` 및 `ContactManagerAuthorizationHandler` 는 단일 항목로 추가 됩니다. 이는 EF를 사용 하지 않고 필요한 모든 정보가 메서드의 매개 변수에 단일 항목 때문에 발생 `Context` `HandleRequirementAsync` 합니다.
 
 ## <a name="support-authorization"></a>인증 지원
 
@@ -332,7 +333,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 | 사용자                | 앱에서 시드 | 옵션                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | 아니요                | 자신의 데이터를 편집/삭제 합니다.                |
+| test@example.com    | 예                | 자신의 데이터를 편집/삭제 합니다.                |
 | manager@contoso.com | 예               | 자신의 데이터를 승인/거부 하 고 편집/삭제 합니다. |
 | admin@contoso.com   | 예               | 모든 데이터를 승인/거부 하 고 편집/삭제 합니다. |
 
@@ -343,7 +344,7 @@ dotnet user-secrets set SeedUserPW <PW>
 * Razor"연락처 관리자" 라는 페이지 앱 만들기
   * **개별 사용자 계정을**사용 하 여 앱을 만듭니다.
   * 네임 스페이스는 샘플에서 사용 되는 네임 스페이스와 일치 하도록 "연락처 관리자"로 이름을 사용 합니다.
-  * `-uld`SQLite 대신 LocalDB를 지정 합니다.
+  * `-uld` SQLite 대신 LocalDB를 지정 합니다.
 
   ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
@@ -427,7 +428,7 @@ dotnet ef database update
 * `ContactManagerAuthorizationHandler`: 관리자가 연락처를 승인 하거나 거부할 수 있습니다.
 * `ContactAdministratorsAuthorizationHandler`: 관리자가 연락처를 승인 또는 거부 하 고 연락처를 편집/삭제할 수 있습니다.
 
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>사전 요구 사항
 
 이 자습서는 고급입니다. 다음에 대해 잘 알고 있어야 합니다.
 
@@ -466,7 +467,7 @@ dotnet ef migrations add userID_Status
 dotnet ef database update
 ```
 
-### <a name="add-role-services-to-no-locidentity"></a>역할 서비스 추가Identity
+### <a name="add-role-services-to-no-locidentity"></a>역할 서비스 추가 Identity
 
 역할 서비스를 추가 하려면 [Addroles](/dotnet/api/microsoft.aspnetcore.identity.identitybuilder.addroles#Microsoft_AspNetCore_Identity_IdentityBuilder_AddRoles__1) 를 추가 합니다.
 
@@ -517,11 +518,11 @@ dotnet user-secrets set SeedUserPW <PW>
 `ContactIsOwnerAuthorizationHandler`호출 [컨텍스트입니다. ](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.succeed#Microsoft_AspNetCore_Authorization_AuthorizationHandlerContext_Succeed_Microsoft_AspNetCore_Authorization_IAuthorizationRequirement_)현재 인증 된 사용자가 연락처 소유자 인 경우 성공 합니다. 권한 부여 처리기 일반적:
 
 * `context.Succeed`요구 사항이 충족 되 면를 반환 합니다.
-* `Task.CompletedTask`요구 사항이 충족 되지 않으면를 반환 합니다. `Task.CompletedTask`은 (는) 성공 또는 실패 하지 않으므로 &mdash; 다른 권한 부여 처리기를 실행할 수 있습니다.
+* `Task.CompletedTask`요구 사항이 충족 되지 않으면를 반환 합니다. `Task.CompletedTask` 은 (는) 성공 또는 실패 하지 않으므로 &mdash; 다른 권한 부여 처리기를 실행할 수 있습니다.
 
 명시적으로 실패 해야 하는 경우 컨텍스트를 반환 [합니다. 실패](/dotnet/api/microsoft.aspnetcore.authorization.authorizationhandlercontext.fail).
 
-앱에서 연락처 소유자는 자신의 데이터를 편집/삭제/만들 수 있습니다. `ContactIsOwnerAuthorizationHandler`는 요구 사항 매개 변수에 전달 된 작업을 확인할 필요가 없습니다.
+앱에서 연락처 소유자는 자신의 데이터를 편집/삭제/만들 수 있습니다. `ContactIsOwnerAuthorizationHandler` 는 요구 사항 매개 변수에 전달 된 작업을 확인할 필요가 없습니다.
 
 ### <a name="create-a-manager-authorization-handler"></a>관리자 권한 부여 처리기 만들기
 
@@ -541,7 +542,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 [!code-csharp[](secure-data/samples/final2.1/Startup.cs?name=snippet_defaultPolicy&highlight=27-99)]
 
-`ContactAdministratorsAuthorizationHandler`및 `ContactManagerAuthorizationHandler` 는 단일 항목로 추가 됩니다. 이는 EF를 사용 하지 않고 필요한 모든 정보가 메서드의 매개 변수에 단일 항목 때문에 발생 `Context` `HandleRequirementAsync` 합니다.
+`ContactAdministratorsAuthorizationHandler` 및 `ContactManagerAuthorizationHandler` 는 단일 항목로 추가 됩니다. 이는 EF를 사용 하지 않고 필요한 모든 정보가 메서드의 매개 변수에 단일 항목 때문에 발생 `Context` `HandleRequirementAsync` 합니다.
 
 ## <a name="support-authorization"></a>인증 지원
 
@@ -659,7 +660,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 | 사용자                | 앱에서 시드 | 옵션                                  |
 | ------------------- | :---------------: | ---------------------------------------- |
-| test@example.com    | 아니요                | 자신의 데이터를 편집/삭제 합니다.                |
+| test@example.com    | 예                | 자신의 데이터를 편집/삭제 합니다.                |
 | manager@contoso.com | 예               | 자신의 데이터를 승인/거부 하 고 편집/삭제 합니다. |
 | admin@contoso.com   | 예               | 모든 데이터를 승인/거부 하 고 편집/삭제 합니다. |
 
@@ -670,7 +671,7 @@ dotnet user-secrets set SeedUserPW <PW>
 * Razor"연락처 관리자" 라는 페이지 앱 만들기
   * **개별 사용자 계정을**사용 하 여 앱을 만듭니다.
   * 네임 스페이스는 샘플에서 사용 되는 네임 스페이스와 일치 하도록 "연락처 관리자"로 이름을 사용 합니다.
-  * `-uld`SQLite 대신 LocalDB를 지정 합니다.
+  * `-uld` SQLite 대신 LocalDB를 지정 합니다.
 
   ```dotnetcli
   dotnet new webapp -o ContactManager -au Individual -uld
@@ -712,7 +713,7 @@ dotnet user-secrets set SeedUserPW <PW>
 
 <a name="secure-data-add-resources-label"></a>
 
-### <a name="additional-resources"></a>추가 리소스
+### <a name="additional-resources"></a>추가 자료
 
 * [Azure App Service에서 .NET Core 및 SQL 데이터베이스 웹앱 빌드](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)
 * [권한 부여 랩을 ASP.NET Core](https://github.com/blowdart/AspNetAuthorizationWorkshop)합니다. 이 랩에서는이 자습서에서 소개 하는 보안 기능에 대해 자세히 설명 합니다.

@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/memory
-ms.openlocfilehash: 131fd5f2d09b20814cbd557d6b6d873ce15501db
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: c4d21992695828e81e03eca92f167c0a3d69c724
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021226"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627288"
 ---
 # <a name="cache-in-memory-in-aspnet-core"></a>ASP.NET Core 메모리 내 캐시
 
@@ -35,7 +36,7 @@ ms.locfileid: "88021226"
 
 캐싱은 콘텐츠를 생성 하는 데 필요한 작업을 줄여 응용 프로그램의 성능과 확장성을 크게 향상 시킬 수 있습니다. 캐싱은 자주 변경 되지 **않으며** 생성 하는 데 비용이 많이 드는 데이터에서 가장 잘 작동 합니다. 캐싱은 원본에서 보다 훨씬 빠르게 반환 될 수 있는 데이터 복사본을 만듭니다. 캐시 된 데이터에 종속 **되지 않도록** 앱을 작성 하 고 테스트 해야 합니다.
 
-ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache)을 기반으로 합니다. `IMemoryCache`웹 서버의 메모리에 저장 된 캐시를 나타냅니다. 서버 팜 (여러 서버)에서 실행 되는 앱은 메모리 내 캐시를 사용할 때 세션이 고정 되어 있는지 확인 해야 합니다. 고정 세션은 클라이언트의 후속 요청이 모두 동일한 서버로 이동 하는지 확인 합니다. 예를 들어 Azure Web apps는 ARR ( [응용 프로그램 요청 라우팅](https://www.iis.net/learn/extensions/planning-for-arr) )을 사용 하 여 모든 후속 요청을 동일한 서버에 라우팅합니다.
+ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 [IMemoryCache](/dotnet/api/microsoft.extensions.caching.memory.imemorycache)을 기반으로 합니다. `IMemoryCache` 웹 서버의 메모리에 저장 된 캐시를 나타냅니다. 서버 팜 (여러 서버)에서 실행 되는 앱은 메모리 내 캐시를 사용할 때 세션이 고정 되어 있는지 확인 해야 합니다. 고정 세션은 클라이언트의 후속 요청이 모두 동일한 서버로 이동 하는지 확인 합니다. 예를 들어 Azure Web apps는 ARR ( [응용 프로그램 요청 라우팅](https://www.iis.net/learn/extensions/planning-for-arr) )을 사용 하 여 모든 후속 요청을 동일한 서버에 라우팅합니다.
 
 웹 팜의 고정 되지 않은 세션은 캐시 일관성 문제를 방지 하기 위해 [분산 캐시가](distributed.md) 필요 합니다. 일부 앱의 경우 분산 캐시는 메모리 내 캐시 보다 더 높은 확장을 지원할 수 있습니다. 분산 캐시를 사용 하면 캐시 메모리가 외부 프로세스로 오프 로드 됩니다.
 
@@ -43,7 +44,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 [I
 
 ## <a name="systemruntimecachingmemorycache"></a>시스템 런타임 캐싱/MemoryCache
 
-<xref:System.Runtime.Caching>/<xref:System.Runtime.Caching.MemoryCache>([NuGet 패키지](https://www.nuget.org/packages/System.Runtime.Caching/))는와 함께 사용할 수 있습니다.
+<xref:System.Runtime.Caching>/<xref:System.Runtime.Caching.MemoryCache> ([NuGet 패키지](https://www.nuget.org/packages/System.Runtime.Caching/))는와 함께 사용할 수 있습니다.
 
 * 2.0 이상 .NET Standard 합니다.
 * .NET Standard 2.0 이상을 대상으로 하는 [.net 구현](/dotnet/standard/net-standard#net-implementation-support) 예를 들어 ASP.NET Core 2.0 이상입니다.
@@ -120,7 +121,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 [I
 
 `MemoryCache`인스턴스는 필요에 따라 크기 제한을 지정 하 고 적용할 수 있습니다. 캐시 크기 제한에는 항목의 크기를 측정 하는 메커니즘이 없기 때문에 정의 된 측정 단위가 없습니다. 캐시 크기 제한이 설정 된 경우 모든 항목의 크기를 지정 해야 합니다. ASP.NET Core 런타임은 메모리 압력에 따라 캐시 크기를 제한 하지 않습니다. 캐시 크기를 제한 하는 것은 개발자에 게 있습니다. 지정 된 크기는 개발자가 선택 하는 단위입니다.
 
-예:
+다음은 그 예입니다. 
 
 * 웹 앱이 주로 문자열을 캐싱하는 경우 각 캐시 엔트리 크기는 문자열 길이가 될 수 있습니다.
 * 앱은 모든 항목의 크기를 1로 지정 하 고, 크기 제한은 항목 수를 지정 합니다.
@@ -134,13 +135,13 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 [I
 
 [!code-csharp[](memory/sample/RPcache/Services/MyMemoryCache.cs?name=snippet)]
 
-`SizeLimit`에 단위가 없습니다. 캐시 된 항목은 캐시 크기 한도가 설정 된 경우 가장 적합 한 모든 단위에서 크기를 지정 해야 합니다. 캐시 인스턴스의 모든 사용자는 동일한 단위 시스템을 사용 해야 합니다. 캐시 된 항목 크기의 합계가에 지정 된 값을 초과 하는 경우 항목이 캐시 되지 않습니다 `SizeLimit` . 캐시 크기 제한을 설정 하지 않으면 항목에 설정 된 캐시 크기가 무시 됩니다.
+`SizeLimit` 에 단위가 없습니다. 캐시 된 항목은 캐시 크기 한도가 설정 된 경우 가장 적합 한 모든 단위에서 크기를 지정 해야 합니다. 캐시 인스턴스의 모든 사용자는 동일한 단위 시스템을 사용 해야 합니다. 캐시 된 항목 크기의 합계가에 지정 된 값을 초과 하는 경우 항목이 캐시 되지 않습니다 `SizeLimit` . 캐시 크기 제한을 설정 하지 않으면 항목에 설정 된 캐시 크기가 무시 됩니다.
 
 다음 코드는 `MyMemoryCache` [종속성 주입](xref:fundamentals/dependency-injection) 컨테이너에 등록 됩니다.
 
 [!code-csharp[](memory/3.0sample/RPcache/Startup.cs?name=snippet)]
 
-`MyMemoryCache`는이 크기 제한 된 캐시를 인식 하는 구성 요소에 대 한 독립 메모리 캐시로 만들어지며 캐시 엔트리 크기를 적절 하 게 설정 하는 방법을 알고 있습니다.
+`MyMemoryCache` 는이 크기 제한 된 캐시를 인식 하는 구성 요소에 대 한 독립 메모리 캐시로 만들어지며 캐시 엔트리 크기를 적절 하 게 설정 하는 방법을 알고 있습니다.
 
 다음 코드에서는를 사용 합니다 `MyMemoryCache` .
 
@@ -152,7 +153,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 [I
 
 ### <a name="memorycachecompact"></a>MemoryCache. Compact
 
-`MemoryCache.Compact`다음 순서에 따라 캐시의 지정 된 비율을 제거 하려고 시도 합니다.
+`MemoryCache.Compact` 다음 순서에 따라 캐시의 지정 된 비율을 제거 하려고 시도 합니다.
 
 * 만료 된 모든 항목입니다.
 * 우선 순위별로 항목 우선 순위가 가장 낮은 항목이 먼저 제거 됩니다.
@@ -194,7 +195,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 [I
 
 과 같은 [백그라운드 서비스](xref:fundamentals/host/hosted-services) 를 사용 <xref:Microsoft.Extensions.Hosting.IHostedService> 하 여 캐시를 업데이트 합니다. 백그라운드 서비스는 항목을 다시 계산 하 고 준비 된 경우에만 캐시에 할당할 수 있습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
@@ -224,7 +225,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 �
 
 ## <a name="systemruntimecachingmemorycache"></a>시스템 런타임 캐싱/MemoryCache
 
-<xref:System.Runtime.Caching>/<xref:System.Runtime.Caching.MemoryCache>([NuGet 패키지](https://www.nuget.org/packages/System.Runtime.Caching/))는와 함께 사용할 수 있습니다.
+<xref:System.Runtime.Caching>/<xref:System.Runtime.Caching.MemoryCache> ([NuGet 패키지](https://www.nuget.org/packages/System.Runtime.Caching/))는와 함께 사용할 수 있습니다.
 
 * 2.0 이상 .NET Standard 합니다.
 * .NET Standard 2.0 이상을 대상으로 하는 [.net 구현](/dotnet/standard/net-standard#net-implementation-support) 예를 들어 ASP.NET Core 2.0 이상입니다.
@@ -280,7 +281,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 �
 
 [!code-csharp[](memory/sample/WebCache/Controllers/HomeController.cs?name=snippet_gct)]
 
-<xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*>, <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*> 및 [Get](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.get#Microsoft_Extensions_Caching_Memory_CacheExtensions_Get__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_) 은의 기능을 확장 하는 [cacheextensions](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) 클래스의 일부인 확장 메서드입니다 <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> . 다른 캐시 메서드에 대 한 설명은 [IMemoryCache 메서드](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) 및 [cacheextensions 메서드](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) 를 참조 하세요.
+<xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*> , <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*> 및 [Get](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions.get#Microsoft_Extensions_Caching_Memory_CacheExtensions_Get__1_Microsoft_Extensions_Caching_Memory_IMemoryCache_System_Object_) 은의 기능을 확장 하는 [cacheextensions](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) 클래스의 일부인 확장 메서드입니다 <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> . 다른 캐시 메서드에 대 한 설명은 [IMemoryCache 메서드](/dotnet/api/microsoft.extensions.caching.memory.imemorycache) 및 [cacheextensions 메서드](/dotnet/api/microsoft.extensions.caching.memory.cacheextensions) 를 참조 하세요.
 
 ## <a name="memorycacheentryoptions"></a>MemoryCacheEntryOptions
 
@@ -296,7 +297,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 �
 
 `MemoryCache`인스턴스는 필요에 따라 크기 제한을 지정 하 고 적용할 수 있습니다. 캐시 크기 제한에는 항목의 크기를 측정 하는 메커니즘이 없기 때문에 정의 된 측정 단위가 없습니다. 캐시 크기 제한이 설정 된 경우 모든 항목의 크기를 지정 해야 합니다. ASP.NET Core 런타임은 메모리 압력에 따라 캐시 크기를 제한 하지 않습니다. 캐시 크기를 제한 하는 것은 개발자에 게 있습니다. 지정 된 크기는 개발자가 선택 하는 단위입니다.
 
-예:
+다음은 그 예입니다. 
 
 * 웹 앱이 주로 문자열을 캐싱하는 경우 각 캐시 엔트리 크기는 문자열 길이가 될 수 있습니다.
 * 앱은 모든 항목의 크기를 1로 지정 하 고, 크기 제한은 항목 수를 지정 합니다.
@@ -310,13 +311,13 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 �
 
 [!code-csharp[](memory/sample/RPcache/Services/MyMemoryCache.cs?name=snippet)]
 
-`SizeLimit`에 단위가 없습니다. 캐시 된 항목은 캐시 크기 한도가 설정 된 경우 가장 적합 한 모든 단위에서 크기를 지정 해야 합니다. 캐시 인스턴스의 모든 사용자는 동일한 단위 시스템을 사용 해야 합니다. 캐시 된 항목 크기의 합계가에 지정 된 값을 초과 하는 경우 항목이 캐시 되지 않습니다 `SizeLimit` . 캐시 크기 제한을 설정 하지 않으면 항목에 설정 된 캐시 크기가 무시 됩니다.
+`SizeLimit` 에 단위가 없습니다. 캐시 된 항목은 캐시 크기 한도가 설정 된 경우 가장 적합 한 모든 단위에서 크기를 지정 해야 합니다. 캐시 인스턴스의 모든 사용자는 동일한 단위 시스템을 사용 해야 합니다. 캐시 된 항목 크기의 합계가에 지정 된 값을 초과 하는 경우 항목이 캐시 되지 않습니다 `SizeLimit` . 캐시 크기 제한을 설정 하지 않으면 항목에 설정 된 캐시 크기가 무시 됩니다.
 
 다음 코드는 `MyMemoryCache` [종속성 주입](xref:fundamentals/dependency-injection) 컨테이너에 등록 됩니다.
 
 [!code-csharp[](memory/sample/RPcache/Startup.cs?name=snippet&highlight=5)]
 
-`MyMemoryCache`는이 크기 제한 된 캐시를 인식 하는 구성 요소에 대 한 독립 메모리 캐시로 만들어지며 캐시 엔트리 크기를 적절 하 게 설정 하는 방법을 알고 있습니다.
+`MyMemoryCache` 는이 크기 제한 된 캐시를 인식 하는 구성 요소에 대 한 독립 메모리 캐시로 만들어지며 캐시 엔트리 크기를 적절 하 게 설정 하는 방법을 알고 있습니다.
 
 다음 코드에서는를 사용 합니다 `MyMemoryCache` .
 
@@ -328,7 +329,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 �
 
 ### <a name="memorycachecompact"></a>MemoryCache. Compact
 
-`MemoryCache.Compact`다음 순서에 따라 캐시의 지정 된 비율을 제거 하려고 시도 합니다.
+`MemoryCache.Compact` 다음 순서에 따라 캐시의 지정 된 비율을 제거 하려고 시도 합니다.
 
 * 만료 된 모든 항목입니다.
 * 우선 순위별로 항목 우선 순위가 가장 낮은 항목이 먼저 제거 됩니다.
@@ -365,7 +366,7 @@ ASP.NET Core는 여러 캐시를 지원 합니다. 가장 간단한 캐시는 �
 
 과 같은 [백그라운드 서비스](xref:fundamentals/host/hosted-services) 를 사용 <xref:Microsoft.Extensions.Hosting.IHostedService> 하 여 캐시를 업데이트 합니다. 백그라운드 서비스는 항목을 다시 계산 하 고 준비 된 경우에만 캐시에 할당할 수 있습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>

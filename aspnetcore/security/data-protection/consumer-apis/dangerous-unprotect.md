@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/24/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/consumer-apis/dangerous-unprotect
-ms.openlocfilehash: 29bd9010bc9f2d9799d079e44e7b3faa359699b2
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a6ced7341967362ace9537ad0124ccca6fbe79b0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019718"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626703"
 ---
 # <a name="unprotect-payloads-whose-keys-have-been-revoked-in-aspnet-core"></a>ASP.NET Core에서 해지 된 키를 포함 하는 페이로드 보호 해제
 
@@ -38,7 +39,7 @@ ASP.NET Core 데이터 보호 Api는 주로 기밀 페이로드의 무한 지 �
 > [!NOTE]
 > 모든 `IDataProtector` 인스턴스를로 캐스팅할 수 있는 것은 아닙니다 `IPersistedDataProtector` . 개발자는 c # As 연산자를 사용 하 여 잘못 된 캐스트로 인해 발생 하는 런타임 예외를 방지 해야 하며, 실패 사례를 적절 하 게 처리할 수 있도록 준비 해야 합니다.
 
-`IPersistedDataProtector`는 다음 API 표면을 노출 합니다.
+`IPersistedDataProtector` 는 다음 API 표면을 노출 합니다.
 
 ```csharp
 DangerousUnprotect(byte[] protectedData, bool ignoreRevocationErrors,
