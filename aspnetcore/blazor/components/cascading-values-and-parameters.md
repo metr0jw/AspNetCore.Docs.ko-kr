@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/06/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,26 +18,26 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/cascading-values-and-parameters
-ms.openlocfilehash: 1ee30a84e0869f6b9ee937648eb87bd41e8702e3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 8cb2bd5f19a4cc21671a0b077d4ef0fda2e30455
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014713"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628588"
 ---
-# <a name="aspnet-core-no-locblazor-cascading-values-and-parameters"></a><span data-ttu-id="fb3b1-103">ASP.NET Core Blazor 연계 값 및 매개 변수</span><span class="sxs-lookup"><span data-stu-id="fb3b1-103">ASP.NET Core Blazor cascading values and parameters</span></span>
+# <a name="aspnet-core-no-locblazor-cascading-values-and-parameters"></a><span data-ttu-id="6f5b7-103">ASP.NET Core Blazor 연계 값 및 매개 변수</span><span class="sxs-lookup"><span data-stu-id="6f5b7-103">ASP.NET Core Blazor cascading values and parameters</span></span>
 
-<span data-ttu-id="fb3b1-104">작성자: [Luke Latham](https://github.com/guardrex) 및 [Daniel Roth](https://github.com/danroth27)</span><span class="sxs-lookup"><span data-stu-id="fb3b1-104">By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)</span></span>
+<span data-ttu-id="6f5b7-104">작성자: [Luke Latham](https://github.com/guardrex) 및 [Daniel Roth](https://github.com/danroth27)</span><span class="sxs-lookup"><span data-stu-id="6f5b7-104">By [Luke Latham](https://github.com/guardrex) and [Daniel Roth](https://github.com/danroth27)</span></span>
 
-<span data-ttu-id="fb3b1-105">[예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([다운로드 방법](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="fb3b1-105">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))</span></span>
+<span data-ttu-id="6f5b7-105">[예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([다운로드 방법](xref:index#how-to-download-a-sample))</span><span class="sxs-lookup"><span data-stu-id="6f5b7-105">[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([how to download](xref:index#how-to-download-a-sample))</span></span>
 
-<span data-ttu-id="fb3b1-106">일부 시나리오에서, 특히 여러 구성 요소 계층이 있는 경우 [구성 요소 매개 변수](xref:blazor/components/index#component-parameters)를 사용하여 상위 구성 요소에서 하위 구성 요소로 데이터를 이동하는 것이 불편할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-106">In some scenarios, it's inconvenient to flow data from an ancestor component to a descendent component using [component parameters](xref:blazor/components/index#component-parameters), especially when there are several component layers.</span></span> <span data-ttu-id="fb3b1-107">연계 값 및 매개 변수는 상위 구성 요소에서 모든 하위 구성 요소에 값을 제공하는 편리한 방법을 제공하여 이 문제를 해결합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-107">Cascading values and parameters solve this problem by providing a convenient way for an ancestor component to provide a value to all of its descendent components.</span></span> <span data-ttu-id="fb3b1-108">연계 값 및 매개 변수를 사용하여 구성 요소를 조정할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-108">Cascading values and parameters also provide an approach for components to coordinate.</span></span>
+<span data-ttu-id="6f5b7-106">일부 시나리오에서, 특히 여러 구성 요소 계층이 있는 경우 [구성 요소 매개 변수](xref:blazor/components/index#component-parameters)를 사용하여 상위 구성 요소에서 하위 구성 요소로 데이터를 이동하는 것이 불편할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-106">In some scenarios, it's inconvenient to flow data from an ancestor component to a descendent component using [component parameters](xref:blazor/components/index#component-parameters), especially when there are several component layers.</span></span> <span data-ttu-id="6f5b7-107">연계 값 및 매개 변수는 상위 구성 요소에서 모든 하위 구성 요소에 값을 제공하는 편리한 방법을 제공하여 이 문제를 해결합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-107">Cascading values and parameters solve this problem by providing a convenient way for an ancestor component to provide a value to all of its descendent components.</span></span> <span data-ttu-id="6f5b7-108">연계 값 및 매개 변수를 사용하여 구성 요소를 조정할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-108">Cascading values and parameters also provide an approach for components to coordinate.</span></span>
 
-### <a name="theme-example"></a><span data-ttu-id="fb3b1-109">테마 예</span><span class="sxs-lookup"><span data-stu-id="fb3b1-109">Theme example</span></span>
+### <a name="theme-example"></a><span data-ttu-id="6f5b7-109">테마 예</span><span class="sxs-lookup"><span data-stu-id="6f5b7-109">Theme example</span></span>
 
-<span data-ttu-id="fb3b1-110">샘플 앱의 다음 예제에서 `ThemeInfo` 클래스는 앱의 지정된 부분 내에 있는 모든 단추가 동일한 스타일을 공유할 수 있도록 구성 요소 계층 구조의 아래로 테마 정보가 흐르도록 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-110">In the following example from the sample app, the `ThemeInfo` class specifies the theme information to flow down the component hierarchy so that all of the buttons within a given part of the app share the same style.</span></span>
+<span data-ttu-id="6f5b7-110">샘플 앱의 다음 예제에서 `ThemeInfo` 클래스는 앱의 지정된 부분 내에 있는 모든 단추가 동일한 스타일을 공유할 수 있도록 구성 요소 계층 구조의 아래로 테마 정보가 흐르도록 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-110">In the following example from the sample app, the `ThemeInfo` class specifies the theme information to flow down the component hierarchy so that all of the buttons within a given part of the app share the same style.</span></span>
 
-<span data-ttu-id="fb3b1-111">`UIThemeClasses/ThemeInfo.cs`:</span><span class="sxs-lookup"><span data-stu-id="fb3b1-111">`UIThemeClasses/ThemeInfo.cs`:</span></span>
+<span data-ttu-id="6f5b7-111">`UIThemeClasses/ThemeInfo.cs`:</span><span class="sxs-lookup"><span data-stu-id="6f5b7-111">`UIThemeClasses/ThemeInfo.cs`:</span></span>
 
 ```csharp
 public class ThemeInfo
@@ -45,11 +46,11 @@ public class ThemeInfo
 }
 ```
 
-<span data-ttu-id="fb3b1-112">상위 구성 요소는 연계 값 구성 요소를 사용하여 연계 값을 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-112">An ancestor component can provide a cascading value using the Cascading Value component.</span></span> <span data-ttu-id="fb3b1-113"><xref:Microsoft.AspNetCore.Components.CascadingValue%601> 구성 요소는 구성 요소 계층의 하위 트리를 래핑하고 해당 하위 트리 내의 모든 구성 요소에 단일 값을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-113">The <xref:Microsoft.AspNetCore.Components.CascadingValue%601> component wraps a subtree of the component hierarchy and supplies a single value to all components within that subtree.</span></span>
+<span data-ttu-id="6f5b7-112">상위 구성 요소는 연계 값 구성 요소를 사용하여 연계 값을 제공할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-112">An ancestor component can provide a cascading value using the Cascading Value component.</span></span> <span data-ttu-id="6f5b7-113"><xref:Microsoft.AspNetCore.Components.CascadingValue%601> 구성 요소는 구성 요소 계층의 하위 트리를 래핑하고 해당 하위 트리 내의 모든 구성 요소에 단일 값을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-113">The <xref:Microsoft.AspNetCore.Components.CascadingValue%601> component wraps a subtree of the component hierarchy and supplies a single value to all components within that subtree.</span></span>
 
-<span data-ttu-id="fb3b1-114">예를 들어, 샘플 앱은 테마 정보(`ThemeInfo`)를 앱 레이아웃 중 하나에 `@Body` 속성의 레이아웃 본문을 구성하는 모든 구성 요소에 대한 연계 매개 변수로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-114">For example, the sample app specifies theme information (`ThemeInfo`) in one of the app's layouts as a cascading parameter for all components that make up the layout body of the `@Body` property.</span></span> <span data-ttu-id="fb3b1-115">레이아웃 구성 요소에서 `ButtonClass`에는 `btn-success` 값이 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-115">`ButtonClass` is assigned a value of `btn-success` in the layout component.</span></span> <span data-ttu-id="fb3b1-116">모든 하위 구성 요소는 `ThemeInfo` 연계 개체를 통해 이 속성을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-116">Any descendent component can consume this property through the `ThemeInfo` cascading object.</span></span>
+<span data-ttu-id="6f5b7-114">예를 들어, 샘플 앱은 테마 정보(`ThemeInfo`)를 앱 레이아웃 중 하나에 `@Body` 속성의 레이아웃 본문을 구성하는 모든 구성 요소에 대한 연계 매개 변수로 지정합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-114">For example, the sample app specifies theme information (`ThemeInfo`) in one of the app's layouts as a cascading parameter for all components that make up the layout body of the `@Body` property.</span></span> <span data-ttu-id="6f5b7-115">레이아웃 구성 요소에서 `ButtonClass`에는 `btn-success` 값이 할당됩니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-115">`ButtonClass` is assigned a value of `btn-success` in the layout component.</span></span> <span data-ttu-id="6f5b7-116">모든 하위 구성 요소는 `ThemeInfo` 연계 개체를 통해 이 속성을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-116">Any descendent component can consume this property through the `ThemeInfo` cascading object.</span></span>
 
-<span data-ttu-id="fb3b1-117">`CascadingValuesParametersLayout` 구성 요소:</span><span class="sxs-lookup"><span data-stu-id="fb3b1-117">`CascadingValuesParametersLayout` component:</span></span>
+<span data-ttu-id="6f5b7-117">`CascadingValuesParametersLayout` 구성 요소:</span><span class="sxs-lookup"><span data-stu-id="6f5b7-117">`CascadingValuesParametersLayout` component:</span></span>
 
 ```razor
 @inherits LayoutComponentBase
@@ -75,11 +76,11 @@ public class ThemeInfo
 }
 ```
 
-<span data-ttu-id="fb3b1-118">연계 값을 사용하기 위해 구성 요소는 [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) 특성을 사용하여 연계 매개 변수를 선언합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-118">To make use of cascading values, components declare cascading parameters using the [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) attribute.</span></span> <span data-ttu-id="fb3b1-119">연계 값은 형식별로 연계 매개 변수에 바인딩됩니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-119">Cascading values are bound to cascading parameters by type.</span></span>
+<span data-ttu-id="6f5b7-118">연계 값을 사용하기 위해 구성 요소는 [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) 특성을 사용하여 연계 매개 변수를 선언합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-118">To make use of cascading values, components declare cascading parameters using the [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) attribute.</span></span> <span data-ttu-id="6f5b7-119">연계 값은 형식별로 연계 매개 변수에 바인딩됩니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-119">Cascading values are bound to cascading parameters by type.</span></span>
 
-<span data-ttu-id="fb3b1-120">샘플 앱에서 `CascadingValuesParametersTheme` 구성 요소는 `ThemeInfo` 연계 값을 연계 매개 변수에 바인딩합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-120">In the sample app, the `CascadingValuesParametersTheme` component binds the `ThemeInfo` cascading value to a cascading parameter.</span></span> <span data-ttu-id="fb3b1-121">이 매개 변수는 구성 요소에 의해 표시되는 단추 중 하나에 대해 CSS 클래스를 설정하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-121">The parameter is used to set the CSS class for one of the buttons displayed by the component.</span></span>
+<span data-ttu-id="6f5b7-120">샘플 앱에서 `CascadingValuesParametersTheme` 구성 요소는 `ThemeInfo` 연계 값을 연계 매개 변수에 바인딩합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-120">In the sample app, the `CascadingValuesParametersTheme` component binds the `ThemeInfo` cascading value to a cascading parameter.</span></span> <span data-ttu-id="6f5b7-121">이 매개 변수는 구성 요소에 의해 표시되는 단추 중 하나에 대해 CSS 클래스를 설정하는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-121">The parameter is used to set the CSS class for one of the buttons displayed by the component.</span></span>
 
-<span data-ttu-id="fb3b1-122">`CascadingValuesParametersTheme` 구성 요소:</span><span class="sxs-lookup"><span data-stu-id="fb3b1-122">`CascadingValuesParametersTheme` component:</span></span>
+<span data-ttu-id="6f5b7-122">`CascadingValuesParametersTheme` 구성 요소:</span><span class="sxs-lookup"><span data-stu-id="6f5b7-122">`CascadingValuesParametersTheme` component:</span></span>
 
 ```razor
 @page "/cascadingvaluesparameterstheme"
@@ -115,7 +116,7 @@ public class ThemeInfo
 }
 ```
 
-<span data-ttu-id="fb3b1-123">동일한 형식의 여러 값을 동일한 하위 트리 내에서 연계하려면 각 <xref:Microsoft.AspNetCore.Components.CascadingValue%601> 구성 요소와 해당 [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) 특성에 고유한 <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A> 문자열을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-123">To cascade multiple values of the same type within the same subtree, provide a unique <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A> string to each <xref:Microsoft.AspNetCore.Components.CascadingValue%601> component and its corresponding [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) attribute.</span></span> <span data-ttu-id="fb3b1-124">다음 예제에서는 두 개의 <xref:Microsoft.AspNetCore.Components.CascadingValue%601> 구성 요소가 이름별로 다른 `MyCascadingType` 인스턴스를 연계합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-124">In the following example, two <xref:Microsoft.AspNetCore.Components.CascadingValue%601> components cascade different instances of `MyCascadingType` by name:</span></span>
+<span data-ttu-id="6f5b7-123">동일한 형식의 여러 값을 동일한 하위 트리 내에서 연계하려면 각 <xref:Microsoft.AspNetCore.Components.CascadingValue%601> 구성 요소와 해당 [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) 특성에 고유한 <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A> 문자열을 제공합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-123">To cascade multiple values of the same type within the same subtree, provide a unique <xref:Microsoft.AspNetCore.Components.CascadingValue%601.Name%2A> string to each <xref:Microsoft.AspNetCore.Components.CascadingValue%601> component and its corresponding [`[CascadingParameter]`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) attribute.</span></span> <span data-ttu-id="6f5b7-124">다음 예제에서는 두 개의 <xref:Microsoft.AspNetCore.Components.CascadingValue%601> 구성 요소가 이름별로 다른 `MyCascadingType` 인스턴스를 연계합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-124">In the following example, two <xref:Microsoft.AspNetCore.Components.CascadingValue%601> components cascade different instances of `MyCascadingType` by name:</span></span>
 
 ```razor
 <CascadingValue Value="@parentCascadeParameter1" Name="CascadeParam1">
@@ -134,7 +135,7 @@ public class ThemeInfo
 }
 ```
 
-<span data-ttu-id="fb3b1-125">하위 구성 요소에서 연계 매개 변수는 상위 구성 요소의 해당 연계 값에서 해당 값을 이름별로 수신합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-125">In a descendant component, the cascaded parameters receive their values from the corresponding cascaded values in the ancestor component by name:</span></span>
+<span data-ttu-id="6f5b7-125">하위 구성 요소에서 연계 매개 변수는 상위 구성 요소의 해당 연계 값에서 해당 값을 이름별로 수신합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-125">In a descendant component, the cascaded parameters receive their values from the corresponding cascaded values in the ancestor component by name:</span></span>
 
 ```razor
 ...
@@ -148,15 +149,15 @@ public class ThemeInfo
 }
 ```
 
-### <a name="tabset-example"></a><span data-ttu-id="fb3b1-126">TabSet 예제</span><span class="sxs-lookup"><span data-stu-id="fb3b1-126">TabSet example</span></span>
+### <a name="tabset-example"></a><span data-ttu-id="6f5b7-126">TabSet 예제</span><span class="sxs-lookup"><span data-stu-id="6f5b7-126">TabSet example</span></span>
 
-<span data-ttu-id="fb3b1-127">연계 매개 변수를 사용하면 여러 구성 요소가 구성 요소 계층 구조 전체에서 공동으로 작용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-127">Cascading parameters also enable components to collaborate across the component hierarchy.</span></span> <span data-ttu-id="fb3b1-128">예를 들어 샘플 앱에서 다음 `TabSet` 예제를 고려합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-128">For example, consider the following `TabSet` example in the sample app.</span></span>
+<span data-ttu-id="6f5b7-127">연계 매개 변수를 사용하면 여러 구성 요소가 구성 요소 계층 구조 전체에서 공동으로 작용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-127">Cascading parameters also enable components to collaborate across the component hierarchy.</span></span> <span data-ttu-id="6f5b7-128">예를 들어 샘플 앱에서 다음 `TabSet` 예제를 고려합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-128">For example, consider the following `TabSet` example in the sample app.</span></span>
 
-<span data-ttu-id="fb3b1-129">샘플 앱에는 탭이 구현하는 `ITab` 인터페이스가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-129">The sample app has an `ITab` interface that tabs implement:</span></span>
+<span data-ttu-id="6f5b7-129">샘플 앱에는 탭이 구현하는 `ITab` 인터페이스가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-129">The sample app has an `ITab` interface that tabs implement:</span></span>
 
 [!code-csharp[](../common/samples/3.x/BlazorWebAssemblySample/UIInterfaces/ITab.cs)]
 
-<span data-ttu-id="fb3b1-130">`CascadingValuesParametersTabSet` 구성 요소는 여러 `Tab` 구성 요소를 포함하는 `TabSet` 구성 요소를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-130">The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:</span></span>
+<span data-ttu-id="6f5b7-130">`CascadingValuesParametersTabSet` 구성 요소는 여러 `Tab` 구성 요소를 포함하는 `TabSet` 구성 요소를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-130">The `CascadingValuesParametersTabSet` component uses the `TabSet` component, which contains several `Tab` components:</span></span>
 
 ```razor
 @page "/CascadingValuesParametersTabSet"
@@ -188,14 +189,14 @@ public class ThemeInfo
 }
 ```
 
-<span data-ttu-id="fb3b1-131">자식 `Tab` 구성 요소는 `TabSet`에 대한 매개 변수로 명시적으로 전달되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-131">The child `Tab` components aren't explicitly passed as parameters to the `TabSet`.</span></span> <span data-ttu-id="fb3b1-132">대신, 자식 `Tab` 구성 요소는 `TabSet`의 자식 콘텐츠에 속합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-132">Instead, the child `Tab` components are part of the child content of the `TabSet`.</span></span> <span data-ttu-id="fb3b1-133">그러나 `TabSet`은 헤더 및 활성 탭을 렌더링할 수 있도록 각 `Tab` 구성 요소에 대한 정보를 계속 알고 있어야 합니다. 추가 코드를 요구하지 않고 이러한 조정을 사용하도록 설정하기 위해 `TabSet` 구성 요소는 연계 값으로 제공된 다음, 하위 `Tab` 구성 요소에서 선택될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-133">However, the `TabSet` still needs to know about each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.</span></span>
+<span data-ttu-id="6f5b7-131">자식 `Tab` 구성 요소는 `TabSet`에 대한 매개 변수로 명시적으로 전달되지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-131">The child `Tab` components aren't explicitly passed as parameters to the `TabSet`.</span></span> <span data-ttu-id="6f5b7-132">대신, 자식 `Tab` 구성 요소는 `TabSet`의 자식 콘텐츠에 속합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-132">Instead, the child `Tab` components are part of the child content of the `TabSet`.</span></span> <span data-ttu-id="6f5b7-133">그러나 `TabSet`은 헤더 및 활성 탭을 렌더링할 수 있도록 각 `Tab` 구성 요소에 대한 정보를 계속 알고 있어야 합니다. 추가 코드를 요구하지 않고 이러한 조정을 사용하도록 설정하기 위해 `TabSet` 구성 요소는 연계 값으로 제공된 다음, 하위 `Tab` 구성 요소에서 선택될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-133">However, the `TabSet` still needs to know about each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.</span></span>
 
-<span data-ttu-id="fb3b1-134">`TabSet` 구성 요소:</span><span class="sxs-lookup"><span data-stu-id="fb3b1-134">`TabSet` component:</span></span>
+<span data-ttu-id="6f5b7-134">`TabSet` 구성 요소:</span><span class="sxs-lookup"><span data-stu-id="6f5b7-134">`TabSet` component:</span></span>
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TabSet.razor)]
 
-<span data-ttu-id="fb3b1-135">하위 `Tab` 구성 요소는 포함하는 `TabSet`을 연계 매개 변수로 캡처하므로 `Tab` 구성 요소는 `TabSet`에 추가되고 활성 상태인 탭을 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="fb3b1-135">The descendent `Tab` components capture the containing `TabSet` as a cascading parameter, so the `Tab` components add themselves to the `TabSet` and coordinate on which tab is active.</span></span>
+<span data-ttu-id="6f5b7-135">하위 `Tab` 구성 요소는 포함하는 `TabSet`을 연계 매개 변수로 캡처하므로 `Tab` 구성 요소는 `TabSet`에 추가되고 활성 상태인 탭을 조정합니다.</span><span class="sxs-lookup"><span data-stu-id="6f5b7-135">The descendent `Tab` components capture the containing `TabSet` as a cascading parameter, so the `Tab` components add themselves to the `TabSet` and coordinate on which tab is active.</span></span>
 
-<span data-ttu-id="fb3b1-136">`Tab` 구성 요소:</span><span class="sxs-lookup"><span data-stu-id="fb3b1-136">`Tab` component:</span></span>
+<span data-ttu-id="6f5b7-136">`Tab` 구성 요소:</span><span class="sxs-lookup"><span data-stu-id="6f5b7-136">`Tab` component:</span></span>
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/Tab.razor)]

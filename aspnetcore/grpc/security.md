@@ -7,6 +7,7 @@ ms.author: jamesnk
 ms.custom: mvc
 ms.date: 07/07/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,39 +18,39 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/security
-ms.openlocfilehash: 4c805ab1e01b4c70644a12c277441d1d242ce720
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ca03a129281377af9271d56e2400d1a238358554
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016000"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632657"
 ---
-# <a name="security-considerations-in-grpc-for-aspnet-core"></a><span data-ttu-id="b73d1-103">ASP.NET Core용 gRPC의 보안 고려 사항</span><span class="sxs-lookup"><span data-stu-id="b73d1-103">Security considerations in gRPC for ASP.NET Core</span></span>
+# <a name="security-considerations-in-grpc-for-aspnet-core"></a><span data-ttu-id="bf596-103">ASP.NET Core용 gRPC의 보안 고려 사항</span><span class="sxs-lookup"><span data-stu-id="bf596-103">Security considerations in gRPC for ASP.NET Core</span></span>
 
-<span data-ttu-id="b73d1-104">작성자: [James Newton-King](https://twitter.com/jamesnk)</span><span class="sxs-lookup"><span data-stu-id="b73d1-104">By [James Newton-King](https://twitter.com/jamesnk)</span></span>
+<span data-ttu-id="bf596-104">작성자: [James Newton-King](https://twitter.com/jamesnk)</span><span class="sxs-lookup"><span data-stu-id="bf596-104">By [James Newton-King](https://twitter.com/jamesnk)</span></span>
 
-<span data-ttu-id="b73d1-105">이 문서에서는 .NET Core를 사용하여 gRPC를 보호하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-105">This article provides information on securing gRPC with .NET Core.</span></span>
+<span data-ttu-id="bf596-105">이 문서에서는 .NET Core를 사용하여 gRPC를 보호하는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-105">This article provides information on securing gRPC with .NET Core.</span></span>
 
-## <a name="transport-security"></a><span data-ttu-id="b73d1-106">전송 보안</span><span class="sxs-lookup"><span data-stu-id="b73d1-106">Transport security</span></span>
+## <a name="transport-security"></a><span data-ttu-id="bf596-106">전송 보안</span><span class="sxs-lookup"><span data-stu-id="bf596-106">Transport security</span></span>
 
-<span data-ttu-id="b73d1-107">HTTP/2를 사용하여 gRPC 메시지를 보내고 받습니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-107">gRPC messages are sent and received using HTTP/2.</span></span> <span data-ttu-id="b73d1-108">다음이 권장됩니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-108">We recommend:</span></span>
+<span data-ttu-id="bf596-107">HTTP/2를 사용하여 gRPC 메시지를 보내고 받습니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-107">gRPC messages are sent and received using HTTP/2.</span></span> <span data-ttu-id="bf596-108">다음이 권장됩니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-108">We recommend:</span></span>
 
-* <span data-ttu-id="b73d1-109">[TLS](https://tools.ietf.org/html/rfc5246)(전송 계층 보안)를 사용하여 프로덕션 gRPC 앱에서 메시지를 보호합니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-109">[Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) be used to secure messages in production gRPC apps.</span></span>
-* <span data-ttu-id="b73d1-110">gRPC 서비스는 보안 포트에서만 수신 대기하고 응답해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-110">gRPC services should only listen and respond over secured ports.</span></span>
+* <span data-ttu-id="bf596-109">[TLS](https://tools.ietf.org/html/rfc5246)(전송 계층 보안)를 사용하여 프로덕션 gRPC 앱에서 메시지를 보호합니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-109">[Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) be used to secure messages in production gRPC apps.</span></span>
+* <span data-ttu-id="bf596-110">gRPC 서비스는 보안 포트에서만 수신 대기하고 응답해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-110">gRPC services should only listen and respond over secured ports.</span></span>
 
-<span data-ttu-id="b73d1-111">Kestrel에서 TLS를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-111">TLS is configured in Kestrel.</span></span> <span data-ttu-id="b73d1-112">Kestrel 엔드포인트를 구성하는 방법에 대한 자세한 내용은 [Kestrel 엔드포인트 구성](xref:fundamentals/servers/kestrel#endpoint-configuration)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b73d1-112">For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).</span></span>
+<span data-ttu-id="bf596-111">Kestrel에서 TLS를 구성합니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-111">TLS is configured in Kestrel.</span></span> <span data-ttu-id="bf596-112">Kestrel 엔드포인트를 구성하는 방법에 대한 자세한 내용은 [Kestrel 엔드포인트 구성](xref:fundamentals/servers/kestrel#endpoint-configuration)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="bf596-112">For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).</span></span>
 
-## <a name="exceptions"></a><span data-ttu-id="b73d1-113">예외</span><span class="sxs-lookup"><span data-stu-id="b73d1-113">Exceptions</span></span>
+## <a name="exceptions"></a><span data-ttu-id="bf596-113">예외</span><span class="sxs-lookup"><span data-stu-id="bf596-113">Exceptions</span></span>
 
-<span data-ttu-id="b73d1-114">일반적으로 예외 메시지는 클라이언트에 공개되지 않아야 하는 중요한 데이터로 간주됩니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-114">Exception messages are generally considered sensitive data that shouldn't be revealed to a client.</span></span> <span data-ttu-id="b73d1-115">기본적으로 gRPC는 gRPC 서비스에서 throw된 예외의 세부 정보를 클라이언트에 보내지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-115">By default, gRPC doesn't send the details of an exception thrown by a gRPC service to the client.</span></span> <span data-ttu-id="b73d1-116">대신, 클라이언트는 오류가 발생했음을 나타내는 일반 메시지를 받게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-116">Instead, the client receives a generic message indicating an error occurred.</span></span> <span data-ttu-id="b73d1-117">[EnableDetailedErrors](xref:grpc/configuration#configure-services-options)를 사용하여 예외 메시지를 클라이언트에 전달하는 옵션을 재정의할 수 있습니다(예: 개발 또는 테스트).</span><span class="sxs-lookup"><span data-stu-id="b73d1-117">Exception message delivery to the client can be overridden (for example, in development or test) with [EnableDetailedErrors](xref:grpc/configuration#configure-services-options).</span></span> <span data-ttu-id="b73d1-118">프로덕션 앱에서는 예외 메시지를 클라이언트에 공개하면 안 됩니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-118">Exception messages shouldn't be exposed to the client in production apps.</span></span>
+<span data-ttu-id="bf596-114">일반적으로 예외 메시지는 클라이언트에 공개되지 않아야 하는 중요한 데이터로 간주됩니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-114">Exception messages are generally considered sensitive data that shouldn't be revealed to a client.</span></span> <span data-ttu-id="bf596-115">기본적으로 gRPC는 gRPC 서비스에서 throw된 예외의 세부 정보를 클라이언트에 보내지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-115">By default, gRPC doesn't send the details of an exception thrown by a gRPC service to the client.</span></span> <span data-ttu-id="bf596-116">대신, 클라이언트는 오류가 발생했음을 나타내는 일반 메시지를 받게 됩니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-116">Instead, the client receives a generic message indicating an error occurred.</span></span> <span data-ttu-id="bf596-117">[EnableDetailedErrors](xref:grpc/configuration#configure-services-options)를 사용하여 예외 메시지를 클라이언트에 전달하는 옵션을 재정의할 수 있습니다(예: 개발 또는 테스트).</span><span class="sxs-lookup"><span data-stu-id="bf596-117">Exception message delivery to the client can be overridden (for example, in development or test) with [EnableDetailedErrors](xref:grpc/configuration#configure-services-options).</span></span> <span data-ttu-id="bf596-118">프로덕션 앱에서는 예외 메시지를 클라이언트에 공개하면 안 됩니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-118">Exception messages shouldn't be exposed to the client in production apps.</span></span>
 
-## <a name="message-size-limits"></a><span data-ttu-id="b73d1-119">메시지 크기 제한</span><span class="sxs-lookup"><span data-stu-id="b73d1-119">Message size limits</span></span>
+## <a name="message-size-limits"></a><span data-ttu-id="bf596-119">메시지 크기 제한</span><span class="sxs-lookup"><span data-stu-id="bf596-119">Message size limits</span></span>
 
-<span data-ttu-id="b73d1-120">gRPC 클라이언트와 서비스로 들어오는 메시지는 메모리에 로드됩니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-120">Incoming messages to gRPC clients and services are loaded into memory.</span></span> <span data-ttu-id="b73d1-121">메시지 크기 제한은 gRPC가 과도한 리소스를 사용하는 것을 방지하는 메커니즘입니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-121">Message size limits are a mechanism to help prevent gRPC from consuming excessive resources.</span></span>
+<span data-ttu-id="bf596-120">gRPC 클라이언트와 서비스로 들어오는 메시지는 메모리에 로드됩니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-120">Incoming messages to gRPC clients and services are loaded into memory.</span></span> <span data-ttu-id="bf596-121">메시지 크기 제한은 gRPC가 과도한 리소스를 사용하는 것을 방지하는 메커니즘입니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-121">Message size limits are a mechanism to help prevent gRPC from consuming excessive resources.</span></span>
 
-<span data-ttu-id="b73d1-122">gRPC는 메시지당 크기 제한을 사용하여 들어오는 메시지와 보내는 메시지를 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-122">gRPC uses per-message size limits to manage incoming and outgoing messages.</span></span> <span data-ttu-id="b73d1-123">기본적으로 gRPC는 들어오는 메시지를 4MB로 제한합니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-123">By default, gRPC limits incoming messages to 4 MB.</span></span> <span data-ttu-id="b73d1-124">보내는 메시지에 대한 제한은 없습니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-124">There is no limit on outgoing messages.</span></span>
+<span data-ttu-id="bf596-122">gRPC는 메시지당 크기 제한을 사용하여 들어오는 메시지와 보내는 메시지를 관리합니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-122">gRPC uses per-message size limits to manage incoming and outgoing messages.</span></span> <span data-ttu-id="bf596-123">기본적으로 gRPC는 들어오는 메시지를 4MB로 제한합니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-123">By default, gRPC limits incoming messages to 4 MB.</span></span> <span data-ttu-id="bf596-124">보내는 메시지에 대한 제한은 없습니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-124">There is no limit on outgoing messages.</span></span>
 
-<span data-ttu-id="b73d1-125">서버에서 `AddGrpc`를 사용하여 앱의 모든 서비스에 대해 gRPC 메시지 제한을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-125">On the server, gRPC message limits can be configured for all services in an app with `AddGrpc`:</span></span>
+<span data-ttu-id="bf596-125">서버에서 `AddGrpc`를 사용하여 앱의 모든 서비스에 대해 gRPC 메시지 제한을 구성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-125">On the server, gRPC message limits can be configured for all services in an app with `AddGrpc`:</span></span>
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -62,14 +63,14 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-<span data-ttu-id="b73d1-126">`AddServiceOptions<TService>`를 사용하여 개별 서비스에 대해 제한을 구성할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-126">Limits can also be configured for an individual service using `AddServiceOptions<TService>`.</span></span> <span data-ttu-id="b73d1-127">메시지 크기 제한을 구성하는 방법에 대한 자세한 내용은 [gRPC 구성](xref:grpc/configuration)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="b73d1-127">For more information on configuring message size limits, see [gRPC configuration](xref:grpc/configuration).</span></span>
+<span data-ttu-id="bf596-126">`AddServiceOptions<TService>`를 사용하여 개별 서비스에 대해 제한을 구성할 수도 있습니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-126">Limits can also be configured for an individual service using `AddServiceOptions<TService>`.</span></span> <span data-ttu-id="bf596-127">메시지 크기 제한을 구성하는 방법에 대한 자세한 내용은 [gRPC 구성](xref:grpc/configuration)을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="bf596-127">For more information on configuring message size limits, see [gRPC configuration](xref:grpc/configuration).</span></span>
 
-## <a name="client-certificate-validation"></a><span data-ttu-id="b73d1-128">클라이언트 인증서 유효성 검사</span><span class="sxs-lookup"><span data-stu-id="b73d1-128">Client certificate validation</span></span>
+## <a name="client-certificate-validation"></a><span data-ttu-id="bf596-128">클라이언트 인증서 유효성 검사</span><span class="sxs-lookup"><span data-stu-id="bf596-128">Client certificate validation</span></span>
 
-<span data-ttu-id="b73d1-129">처음에는 연결 시 [클라이언트 인증서](https://tools.ietf.org/html/rfc5246#section-7.4.4)의 유효성을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-129">[Client certificates](https://tools.ietf.org/html/rfc5246#section-7.4.4) are initially validated when the connection is established.</span></span> <span data-ttu-id="b73d1-130">기본적으로 Kestrel은 연결의 클라이언트 인증서에 대해 추가 유효성 검사를 수행하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-130">By default, Kestrel doesn't perform additional validation of a connection's client certificate.</span></span>
+<span data-ttu-id="bf596-129">처음에는 연결 시 [클라이언트 인증서](https://tools.ietf.org/html/rfc5246#section-7.4.4)의 유효성을 검사합니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-129">[Client certificates](https://tools.ietf.org/html/rfc5246#section-7.4.4) are initially validated when the connection is established.</span></span> <span data-ttu-id="bf596-130">기본적으로 Kestrel은 연결의 클라이언트 인증서에 대해 추가 유효성 검사를 수행하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-130">By default, Kestrel doesn't perform additional validation of a connection's client certificate.</span></span>
 
-<span data-ttu-id="b73d1-131">클라이언트 인증서로 보호되는 gRPC 서비스는 [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) 패키지를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-131">We recommend that gRPC services secured by client certificates use the [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) package.</span></span> <span data-ttu-id="b73d1-132">ASP.NET Core 인증서 인증은 클라이언트 인증서에 대해 다음을 비롯한 추가 유효성 검사를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="b73d1-132">ASP.NET Core certification authentication will perform additional validation on a client certificate, including:</span></span>
+<span data-ttu-id="bf596-131">클라이언트 인증서로 보호되는 gRPC 서비스는 [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) 패키지를 사용하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-131">We recommend that gRPC services secured by client certificates use the [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) package.</span></span> <span data-ttu-id="bf596-132">ASP.NET Core 인증서 인증은 클라이언트 인증서에 대해 다음을 비롯한 추가 유효성 검사를 수행합니다.</span><span class="sxs-lookup"><span data-stu-id="bf596-132">ASP.NET Core certification authentication will perform additional validation on a client certificate, including:</span></span>
 
-* <span data-ttu-id="b73d1-133">인증서에 유효한 EKU(확장된 키 사용)가 있음</span><span class="sxs-lookup"><span data-stu-id="b73d1-133">Certificate has a valid extended key use (EKU)</span></span>
-* <span data-ttu-id="b73d1-134">유효 기간이 만료되지 않음</span><span class="sxs-lookup"><span data-stu-id="b73d1-134">Is within its validity period</span></span>
-* <span data-ttu-id="b73d1-135">인증서 해지 확인</span><span class="sxs-lookup"><span data-stu-id="b73d1-135">Check certificate revocation</span></span>
+* <span data-ttu-id="bf596-133">인증서에 유효한 EKU(확장된 키 사용)가 있음</span><span class="sxs-lookup"><span data-stu-id="bf596-133">Certificate has a valid extended key use (EKU)</span></span>
+* <span data-ttu-id="bf596-134">유효 기간이 만료되지 않음</span><span class="sxs-lookup"><span data-stu-id="bf596-134">Is within its validity period</span></span>
+* <span data-ttu-id="bf596-135">인증서 해지 확인</span><span class="sxs-lookup"><span data-stu-id="bf596-135">Check certificate revocation</span></span>
