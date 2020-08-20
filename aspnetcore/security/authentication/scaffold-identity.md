@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 5/1/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,48 +18,48 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/scaffold-identity
-ms.openlocfilehash: 4404a5513d9dc989e50c904f3e7863de59991939
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 09535f41d15b90fa5e50eb1f22f6aecef0530f0c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022331"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88629563"
 ---
-# <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a><span data-ttu-id="82a02-103">IdentityASP.NET Core 프로젝트의 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-103">Scaffold Identity in ASP.NET Core projects</span></span>
+# <a name="scaffold-no-locidentity-in-aspnet-core-projects"></a><span data-ttu-id="84b9f-103">IdentityASP.NET Core 프로젝트의 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-103">Scaffold Identity in ASP.NET Core projects</span></span>
 
-<span data-ttu-id="82a02-104">작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="82a02-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
+<span data-ttu-id="84b9f-104">작성자: [Rick Anderson](https://twitter.com/RickAndMSFT)</span><span class="sxs-lookup"><span data-stu-id="84b9f-104">By [Rick Anderson](https://twitter.com/RickAndMSFT)</span></span>
 
 ::: moniker range=">= aspnetcore-3.0"
 
-<span data-ttu-id="82a02-105">ASP.NET Core은 [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class) [ASP.NET Core Identity ](xref:security/authentication/identity) 를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-105">ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="82a02-106">를 포함 하는 응용 프로그램 Identity 은 스 캐 폴더를 적용 하 여 Identity Razor 클래스 라이브러리 (rcl)에 포함 된 소스 코드를 선택적으로 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-106">Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="82a02-107">코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-107">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="82a02-108">예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-108">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="82a02-109">생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-109">Generated code takes precedence over the same code in the Identity RCL.</span></span> <span data-ttu-id="82a02-110">기본 RCL을 사용 하지 않고 UI에 대 한 모든 권한을 얻으려면 [전체 Identity Ui 원본 만들기](#full)섹션을 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-110">To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).</span></span>
+<span data-ttu-id="84b9f-105">ASP.NET Core은 [ASP.NET Core Identity](xref:security/authentication/identity) [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)제공 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-105">ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="84b9f-106">를 포함 하는 응용 프로그램 Identity 은 스 캐 폴더를 적용 하 여 Identity Razor 클래스 라이브러리 (rcl)에 포함 된 소스 코드를 선택적으로 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-106">Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="84b9f-107">코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-107">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="84b9f-108">예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-108">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="84b9f-109">생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-109">Generated code takes precedence over the same code in the Identity RCL.</span></span> <span data-ttu-id="84b9f-110">기본 RCL을 사용 하지 않고 UI에 대 한 모든 권한을 얻으려면 [전체 Identity Ui 원본 만들기](#full)섹션을 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-110">To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#full).</span></span>
 
-<span data-ttu-id="82a02-111">인증을 포함 **하지** 않는 응용 프로그램은 스 캐 폴더를 적용 하 여 rcl 패키지를 추가할 수 있습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-111">Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="82a02-112">선택한 Identity 코드의 옵션이 생성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-112">You have the option of selecting Identity code to be generated.</span></span>
+<span data-ttu-id="84b9f-111">인증을 포함 **하지** 않는 응용 프로그램은 스 캐 폴더를 적용 하 여 rcl 패키지를 추가할 수 있습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-111">Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="84b9f-112">선택한 Identity 코드의 옵션이 생성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-112">You have the option of selecting Identity code to be generated.</span></span>
 
-<span data-ttu-id="82a02-113">스 캐 폴더는 대부분의 필요한 코드를 생성 하지만 프로세스를 완료 하려면 프로젝트를 업데이트 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-113">Although the scaffolder generates most of the necessary code, you need to update your project to complete the process.</span></span> <span data-ttu-id="82a02-114">이 문서에서는 Identity 스 캐 폴딩 업데이트를 완료 하는 데 필요한 단계를 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-114">This document explains the steps needed to complete an Identity scaffolding update.</span></span>
+<span data-ttu-id="84b9f-113">스 캐 폴더는 대부분의 필요한 코드를 생성 하지만 프로세스를 완료 하려면 프로젝트를 업데이트 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-113">Although the scaffolder generates most of the necessary code, you need to update your project to complete the process.</span></span> <span data-ttu-id="84b9f-114">이 문서에서는 Identity 스 캐 폴딩 업데이트를 완료 하는 데 필요한 단계를 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-114">This document explains the steps needed to complete an Identity scaffolding update.</span></span>
 
-<span data-ttu-id="82a02-115">파일 차이를 표시 하는 소스 제어 시스템을 사용 하 여 변경 내용을 되돌릴 수 있도록 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-115">We recommend using a source control system that shows file differences and allows you to back out of changes.</span></span> <span data-ttu-id="82a02-116">스 캐 폴더를 실행 한 후에 변경 내용을 검사 합니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-116">Inspect the changes after running the Identity scaffolder.</span></span>
+<span data-ttu-id="84b9f-115">파일 차이를 표시 하는 소스 제어 시스템을 사용 하 여 변경 내용을 되돌릴 수 있도록 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-115">We recommend using a source control system that shows file differences and allows you to back out of changes.</span></span> <span data-ttu-id="84b9f-116">스 캐 폴더를 실행 한 후에 변경 내용을 검사 합니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-116">Inspect the changes after running the Identity scaffolder.</span></span>
 
-<span data-ttu-id="82a02-117">서비스는 [두 가지 요소 인증](xref:security/authentication/identity-enable-qrcodes), [계정 확인 및 암호 복구](xref:security/authentication/accconfirm)및 기타 보안 기능을 사용 하는 경우에 필요 Identity 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-117">Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity.</span></span> <span data-ttu-id="82a02-118">스 캐 폴딩 할 때 서비스 또는 서비스 스텁이 생성 되지 않습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-118">Services or service stubs aren't generated when scaffolding Identity.</span></span> <span data-ttu-id="82a02-119">이러한 기능을 사용 하도록 설정 하는 서비스는 수동으로 추가 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-119">Services to enable these features must be added manually.</span></span> <span data-ttu-id="82a02-120">예를 들어 [전자 메일 확인 필요](xref:security/authentication/accconfirm#require-email-confirmation)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-120">For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).</span></span>
+<span data-ttu-id="84b9f-117">서비스는 [두 가지 요소 인증](xref:security/authentication/identity-enable-qrcodes), [계정 확인 및 암호 복구](xref:security/authentication/accconfirm)및 기타 보안 기능을 사용 하는 경우에 필요 Identity 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-117">Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity.</span></span> <span data-ttu-id="84b9f-118">스 캐 폴딩 할 때 서비스 또는 서비스 스텁이 생성 되지 않습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-118">Services or service stubs aren't generated when scaffolding Identity.</span></span> <span data-ttu-id="84b9f-119">이러한 기능을 사용 하도록 설정 하는 서비스는 수동으로 추가 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-119">Services to enable these features must be added manually.</span></span> <span data-ttu-id="84b9f-120">예를 들어 [전자 메일 확인 필요](xref:security/authentication/accconfirm#require-email-confirmation)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-120">For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).</span></span>
 
-<span data-ttu-id="82a02-121">Identity기존 개별 계정이 있는 프로젝트에 새 데이터 컨텍스트를 사용 하 여 스 캐 폴딩 할 때:</span><span class="sxs-lookup"><span data-stu-id="82a02-121">When scaffolding Identity with a new data context into a project with existing individual accounts:</span></span>
+<span data-ttu-id="84b9f-121">Identity기존 개별 계정이 있는 프로젝트에 새 데이터 컨텍스트를 사용 하 여 스 캐 폴딩 할 때:</span><span class="sxs-lookup"><span data-stu-id="84b9f-121">When scaffolding Identity with a new data context into a project with existing individual accounts:</span></span>
 
-* <span data-ttu-id="82a02-122">에서 `Startup.ConfigureServices` 에 대 한 호출을 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-122">In `Startup.ConfigureServices`, remove the calls to:</span></span>
+* <span data-ttu-id="84b9f-122">에서 `Startup.ConfigureServices` 에 대 한 호출을 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-122">In `Startup.ConfigureServices`, remove the calls to:</span></span>
   * `AddDbContext`
   * `AddDefaultIdentity`
 
-<span data-ttu-id="82a02-123">예를 들어 `AddDbContext` 및 `AddDefaultIdentity` 는 다음 코드에서 주석 처리 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-123">For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:</span></span>
+<span data-ttu-id="84b9f-123">예를 들어 `AddDbContext` 및 `AddDefaultIdentity` 는 다음 코드에서 주석 처리 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-123">For example, `AddDbContext` and `AddDefaultIdentity` are commented out in the following code:</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRemove.cs?name=snippet)]
 
-<span data-ttu-id="82a02-124">앞 코드는 *영역/ Identity / Identity HostingStartup.cs* 에서 중복 된 코드를 주석으로 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-124">The preceeding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*</span></span>
+<span data-ttu-id="84b9f-124">앞 코드는 *영역/ Identity / Identity HostingStartup.cs* 에서 중복 된 코드를 주석으로 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-124">The preceeding code comments out the code that is duplicated in *Areas/Identity/IdentityHostingStartup.cs*</span></span>
 
-<span data-ttu-id="82a02-125">일반적으로 개별 계정을 사용 하 여 만든 앱은 새 데이터 컨텍스트 ***를 만들지 않아야 합니다.***</span><span class="sxs-lookup"><span data-stu-id="82a02-125">Typically, apps that were created with individual accounts should ***not*** create a new data context.</span></span>
+<span data-ttu-id="84b9f-125">일반적으로 개별 계정을 사용 하 여 만든 앱은 새 데이터 컨텍스트 ***를 만들지 않아야 합니다.***</span><span class="sxs-lookup"><span data-stu-id="84b9f-125">Typically, apps that were created with individual accounts should ***not*** create a new data context.</span></span>
 
-## <a name="scaffold-no-locidentity-into-an-empty-project"></a><span data-ttu-id="82a02-126">Identity빈 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-126">Scaffold Identity into an empty project</span></span>
+## <a name="scaffold-no-locidentity-into-an-empty-project"></a><span data-ttu-id="84b9f-126">Identity빈 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-126">Scaffold Identity into an empty project</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="82a02-127">다음과 유사한 코드를 사용 하 여 클래스를 업데이트 합니다 `Startup` .</span><span class="sxs-lookup"><span data-stu-id="82a02-127">Update the `Startup` class with code similar to the following:</span></span>
+<span data-ttu-id="84b9f-127">다음과 유사한 코드를 사용 하 여 클래스를 업데이트 합니다 `Startup` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-127">Update the `Startup` class with code similar to the following:</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
@@ -66,7 +67,7 @@ ms.locfileid: "88022331"
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-without-existing-authorization"></a><span data-ttu-id="82a02-128">Identity Razor 기존 권한 부여 없이 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-128">Scaffold Identity into a Razor project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-without-existing-authorization"></a><span data-ttu-id="84b9f-128">Identity Razor 기존 권한 부여 없이 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-128">Scaffold Identity into a Razor project without existing authorization</span></span>
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -95,31 +96,31 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="82a02-129">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-129">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="82a02-130">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-130">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="84b9f-129">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-129">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="84b9f-130">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-130">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
 <a name="efm"></a>
 
-### <a name="migrations-useauthentication-and-layout"></a><span data-ttu-id="82a02-131">마이그레이션, UseAuthentication 및 레이아웃</span><span class="sxs-lookup"><span data-stu-id="82a02-131">Migrations, UseAuthentication, and layout</span></span>
+### <a name="migrations-useauthentication-and-layout"></a><span data-ttu-id="84b9f-131">마이그레이션, UseAuthentication 및 레이아웃</span><span class="sxs-lookup"><span data-stu-id="84b9f-131">Migrations, UseAuthentication, and layout</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
 <a name="useauthentication"></a>
 
-### <a name="enable-authentication"></a><span data-ttu-id="82a02-132">인증 사용</span><span class="sxs-lookup"><span data-stu-id="82a02-132">Enable authentication</span></span>
+### <a name="enable-authentication"></a><span data-ttu-id="84b9f-132">인증 사용</span><span class="sxs-lookup"><span data-stu-id="84b9f-132">Enable authentication</span></span>
 
-<span data-ttu-id="82a02-133">다음과 유사한 코드를 사용 하 여 클래스를 업데이트 합니다 `Startup` .</span><span class="sxs-lookup"><span data-stu-id="82a02-133">Update the `Startup` class with code similar to the following:</span></span>
+<span data-ttu-id="84b9f-133">다음과 유사한 코드를 사용 하 여 클래스를 업데이트 합니다 `Startup` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-133">Update the `Startup` class with code similar to the following:</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupRP.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-### <a name="layout-changes"></a><span data-ttu-id="82a02-134">레이아웃 변경</span><span class="sxs-lookup"><span data-stu-id="82a02-134">Layout changes</span></span>
+### <a name="layout-changes"></a><span data-ttu-id="84b9f-134">레이아웃 변경</span><span class="sxs-lookup"><span data-stu-id="84b9f-134">Layout changes</span></span>
 
-<span data-ttu-id="82a02-135">선택 사항: 로그인 부분 ( `_LoginPartial` )을 레이아웃 파일에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-135">Optional: Add the login partial (`_LoginPartial`) to the layout file:</span></span>
+<span data-ttu-id="84b9f-135">선택 사항: 로그인 부분 ( `_LoginPartial` )을 레이아웃 파일에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-135">Optional: Add the login partial (`_LoginPartial`) to the layout file:</span></span>
 
 [!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-with-authorization"></a><span data-ttu-id="82a02-136">Identity Razor 권한 부여를 사용 하 여 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-136">Scaffold Identity into a Razor project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-with-authorization"></a><span data-ttu-id="84b9f-136">Identity Razor 권한 부여를 사용 하 여 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-136">Scaffold Identity into a Razor project with authorization</span></span>
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -134,9 +135,9 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-<span data-ttu-id="82a02-137">일부 Identity 옵션은 *영역/ Identity / Identity HostingStartup.cs*구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-137">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="82a02-138">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-138">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="84b9f-137">일부 Identity 옵션은 *영역/ Identity / Identity HostingStartup.cs*구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-137">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="84b9f-138">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-138">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
-## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a><span data-ttu-id="82a02-139">Identity기존 권한 부여 없이 MVC 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-139">Scaffold Identity into an MVC project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a><span data-ttu-id="84b9f-139">Identity기존 권한 부여 없이 MVC 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-139">Scaffold Identity into an MVC project without existing authorization</span></span>
 
 <!--
 set projNam=MvcNoAuth
@@ -154,23 +155,23 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="82a02-140">선택 사항: `_LoginPartial` *Views/Shared/_Layout cshtml* 파일에 로그인 부분 ()을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-140">Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:</span></span>
+<span data-ttu-id="84b9f-140">선택 사항: `_LoginPartial` *Views/Shared/_Layout cshtml* 파일에 로그인 부분 ()을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-140">Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:</span></span>
 
 [!code-cshtml[](scaffold-identity/3.1sample/_Layout.cshtml?highlight=20)]
 
-* <span data-ttu-id="82a02-141">*Pages/shared/_LoginPartial cshtml* 파일을 *Views/shared/_LoginPartial로 이동 합니다.*</span><span class="sxs-lookup"><span data-stu-id="82a02-141">Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*</span></span>
+* <span data-ttu-id="84b9f-141">*Pages/shared/_LoginPartial cshtml* 파일을 *Views/shared/_LoginPartial로 이동 합니다.*</span><span class="sxs-lookup"><span data-stu-id="84b9f-141">Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*</span></span>
 
-<span data-ttu-id="82a02-142">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-142">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="82a02-143">자세한 내용은 IHostingStartup를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-143">For more information, see IHostingStartup.</span></span>
+<span data-ttu-id="84b9f-142">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-142">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="84b9f-143">자세한 내용은 IHostingStartup를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-143">For more information, see IHostingStartup.</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-<span data-ttu-id="82a02-144">다음과 유사한 코드를 사용 하 여 클래스를 업데이트 합니다 `Startup` .</span><span class="sxs-lookup"><span data-stu-id="82a02-144">Update the `Startup` class with code similar to the following:</span></span>
+<span data-ttu-id="84b9f-144">다음과 유사한 코드를 사용 하 여 클래스를 업데이트 합니다 `Startup` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-144">Update the `Startup` class with code similar to the following:</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupMVC.cs?name=snippet)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## <a name="scaffold-no-locidentity-into-an-mvc-project-with-authorization"></a><span data-ttu-id="82a02-145">Identity권한 부여를 사용 하 여 MVC 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-145">Scaffold Identity into an MVC project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-an-mvc-project-with-authorization"></a><span data-ttu-id="84b9f-145">Identity권한 부여를 사용 하 여 MVC 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-145">Scaffold Identity into an MVC project with authorization</span></span>
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth
@@ -182,26 +183,26 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## <a name="scaffold-no-locidentity-into-a-no-locblazor-server-project-without-existing-authorization"></a><span data-ttu-id="82a02-146">Identity Blazor Server 기존 권한 부여 없이 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-146">Scaffold Identity into a Blazor Server project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locblazor-server-project-without-existing-authorization"></a><span data-ttu-id="84b9f-146">Identity Blazor Server 기존 권한 부여 없이 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-146">Scaffold Identity into a Blazor Server project without existing authorization</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="82a02-147">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-147">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="82a02-148">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-148">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="84b9f-147">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-147">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="84b9f-148">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-148">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
-### <a name="migrations"></a><span data-ttu-id="82a02-149">마이그레이션</span><span class="sxs-lookup"><span data-stu-id="82a02-149">Migrations</span></span>
+### <a name="migrations"></a><span data-ttu-id="84b9f-149">마이그레이션</span><span class="sxs-lookup"><span data-stu-id="84b9f-149">Migrations</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-### <a name="pass-an-xsrf-token-to-the-app"></a><span data-ttu-id="82a02-150">앱에 XSRF 토큰 전달</span><span class="sxs-lookup"><span data-stu-id="82a02-150">Pass an XSRF token to the app</span></span>
+### <a name="pass-an-xsrf-token-to-the-app"></a><span data-ttu-id="84b9f-150">앱에 XSRF 토큰 전달</span><span class="sxs-lookup"><span data-stu-id="84b9f-150">Pass an XSRF token to the app</span></span>
 
-<span data-ttu-id="82a02-151">토큰은 구성 요소에 전달할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-151">Tokens can be passed to components:</span></span>
+<span data-ttu-id="84b9f-151">토큰은 구성 요소에 전달할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-151">Tokens can be passed to components:</span></span>
 
-* <span data-ttu-id="82a02-152">인증 토큰이 프로 비전 되 고 인증에 저장 될 때 cookie 구성 요소에 전달 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-152">When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.</span></span>
-* <span data-ttu-id="82a02-153">Razor구성 요소 `HttpContext` 는 직접 사용할 수 없으므로의 로그 아웃 끝점에 게시 하기 위해 [XSRF (요청 방지 위조) 토큰](xref:security/anti-request-forgery) 을 얻을 수 있는 방법이 없습니다 Identity `/Identity/Account/Logout` .</span><span class="sxs-lookup"><span data-stu-id="82a02-153">Razor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`.</span></span> <span data-ttu-id="82a02-154">XSRF 토큰을 구성 요소에 전달할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-154">An XSRF token can be passed to components.</span></span>
+* <span data-ttu-id="84b9f-152">인증 토큰이 프로 비전 되 고 인증에 저장 될 때 cookie 구성 요소에 전달 될 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-152">When authentication tokens are provisioned and saved to the authentication cookie, they can be passed to components.</span></span>
+* <span data-ttu-id="84b9f-153">Razor 구성 요소 `HttpContext` 는 직접 사용할 수 없으므로의 로그 아웃 끝점에 게시 하기 위해 [XSRF (요청 방지 위조) 토큰](xref:security/anti-request-forgery) 을 얻을 수 있는 방법이 없습니다 Identity `/Identity/Account/Logout` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-153">Razor components can't use `HttpContext` directly, so there's no way to obtain an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity's logout endpoint at `/Identity/Account/Logout`.</span></span> <span data-ttu-id="84b9f-154">XSRF 토큰을 구성 요소에 전달할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-154">An XSRF token can be passed to components.</span></span>
 
-<span data-ttu-id="82a02-155">자세한 내용은 <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-155">For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.</span></span>
+<span data-ttu-id="84b9f-155">자세한 내용은 <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>을 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-155">For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.</span></span>
 
-<span data-ttu-id="82a02-156">*Pages/_Host* 파일에서 및 클래스에 토큰을 추가한 후에 토큰을 설정 합니다 `InitialApplicationState` `TokenProvider` .</span><span class="sxs-lookup"><span data-stu-id="82a02-156">In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:</span></span>
+<span data-ttu-id="84b9f-156">*Pages/_Host* 파일에서 및 클래스에 토큰을 추가한 후에 토큰을 설정 합니다 `InitialApplicationState` `TokenProvider` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-156">In the *Pages/_Host.cshtml* file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:</span></span>
 
 ```csharp
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
@@ -216,7 +217,7 @@ var tokens = new InitialApplicationState
 };
 ```
 
-<span data-ttu-id="82a02-157">`App`를 할당 하기 위해 구성 요소 (*응용 프로그램 razor*)를 업데이트 합니다 `InitialState.XsrfToken` .</span><span class="sxs-lookup"><span data-stu-id="82a02-157">Update the `App` component (*App.razor*) to assign the `InitialState.XsrfToken`:</span></span>
+<span data-ttu-id="84b9f-157">`App`를 할당 하기 위해 구성 요소 (*응용 프로그램 razor*)를 업데이트 합니다 `InitialState.XsrfToken` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-157">Update the `App` component (*App.razor*) to assign the `InitialState.XsrfToken`:</span></span>
 
 ```csharp
 @inject TokenProvider TokenProvider
@@ -226,25 +227,25 @@ var tokens = new InitialApplicationState
 TokenProvider.XsrfToken = InitialState.XsrfToken;
 ```
 
-<span data-ttu-id="82a02-158">항목에서 설명 하는 `TokenProvider` 서비스는 `LoginDisplay` 다음 [레이아웃 및 인증 흐름 변경](#layout-and-authentication-flow-changes) 섹션의 구성 요소에서 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-158">The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.</span></span>
+<span data-ttu-id="84b9f-158">항목에서 설명 하는 `TokenProvider` 서비스는 `LoginDisplay` 다음 [레이아웃 및 인증 흐름 변경](#layout-and-authentication-flow-changes) 섹션의 구성 요소에서 사용 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-158">The `TokenProvider` service demonstrated in the topic is used in the `LoginDisplay` component in the following [Layout and authentication flow changes](#layout-and-authentication-flow-changes) section.</span></span>
 
-### <a name="enable-authentication"></a><span data-ttu-id="82a02-159">인증 사용</span><span class="sxs-lookup"><span data-stu-id="82a02-159">Enable authentication</span></span>
+### <a name="enable-authentication"></a><span data-ttu-id="84b9f-159">인증 사용</span><span class="sxs-lookup"><span data-stu-id="84b9f-159">Enable authentication</span></span>
 
-<span data-ttu-id="82a02-160">클래스에서 `Startup` :</span><span class="sxs-lookup"><span data-stu-id="82a02-160">In the `Startup` class:</span></span>
+<span data-ttu-id="84b9f-160">클래스에서 `Startup` :</span><span class="sxs-lookup"><span data-stu-id="84b9f-160">In the `Startup` class:</span></span>
 
-* <span data-ttu-id="82a02-161">Razor에서 Pages services가 추가 되었는지 확인 `Startup.ConfigureServices` 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-161">Confirm that Razor Pages services are added in `Startup.ConfigureServices`.</span></span>
-* <span data-ttu-id="82a02-162">[Tokenprovider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app)를 사용 하는 경우 서비스를 등록 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-162">If using the [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), register the service.</span></span>
-* <span data-ttu-id="82a02-163">`UseDatabaseErrorPage` `Startup.Configure` 개발 환경에 대 한의 응용 프로그램 작성기에서를 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-163">Call `UseDatabaseErrorPage` on the application builder in `Startup.Configure` for the Development environment.</span></span>
-* <span data-ttu-id="82a02-164">`UseAuthentication`및 이후를 호출 `UseAuthorization` `UseRouting` 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-164">Call `UseAuthentication` and `UseAuthorization` after `UseRouting`.</span></span>
-* <span data-ttu-id="82a02-165">페이지에 대 한 끝점을 추가 Razor 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-165">Add an endpoint for Razor Pages.</span></span>
+* <span data-ttu-id="84b9f-161">Razor에서 Pages services가 추가 되었는지 확인 `Startup.ConfigureServices` 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-161">Confirm that Razor Pages services are added in `Startup.ConfigureServices`.</span></span>
+* <span data-ttu-id="84b9f-162">[Tokenprovider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app)를 사용 하는 경우 서비스를 등록 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-162">If using the [TokenProvider](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app), register the service.</span></span>
+* <span data-ttu-id="84b9f-163">`UseDatabaseErrorPage` `Startup.Configure` 개발 환경에 대 한의 응용 프로그램 작성기에서를 호출 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-163">Call `UseDatabaseErrorPage` on the application builder in `Startup.Configure` for the Development environment.</span></span>
+* <span data-ttu-id="84b9f-164">`UseAuthentication`및 이후를 호출 `UseAuthorization` `UseRouting` 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-164">Call `UseAuthentication` and `UseAuthorization` after `UseRouting`.</span></span>
+* <span data-ttu-id="84b9f-165">페이지에 대 한 끝점을 추가 Razor 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-165">Add an endpoint for Razor Pages.</span></span>
 
 [!code-csharp[](scaffold-identity/3.1sample/StartupBlazor.cs?highlight=3,6,14,27-28,32)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-### <a name="layout-and-authentication-flow-changes"></a><span data-ttu-id="82a02-166">레이아웃 및 인증 흐름 변경</span><span class="sxs-lookup"><span data-stu-id="82a02-166">Layout and authentication flow changes</span></span>
+### <a name="layout-and-authentication-flow-changes"></a><span data-ttu-id="84b9f-166">레이아웃 및 인증 흐름 변경</span><span class="sxs-lookup"><span data-stu-id="84b9f-166">Layout and authentication flow changes</span></span>
 
-<span data-ttu-id="82a02-167">`RedirectToLogin`프로젝트 루트의 앱 *공유* 폴더에 구성 요소 (*redirecttologin. razor*)를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-167">Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared* folder in the project root:</span></span>
+<span data-ttu-id="84b9f-167">`RedirectToLogin`프로젝트 루트의 앱 *공유* 폴더에 구성 요소 (*redirecttologin. razor*)를 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-167">Add a `RedirectToLogin` component (*RedirectToLogin.razor*) to the app's *Shared* folder in the project root:</span></span>
 
 ```razor
 @inject NavigationManager Navigation
@@ -257,7 +258,7 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 }
 ```
 
-`LoginDisplay`앱의 *공유* 폴더에 구성 요소 (*LoginDisplay*)를 추가 합니다. <span data-ttu-id="82a02-169">[Tokenprovider 서비스](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) 는 Identity 의 로그 아웃 끝점에 게시 하는 HTML 폼에 XSRF 토큰을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-169">The [TokenProvider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:</span></span>
+`LoginDisplay`앱의 *공유* 폴더에 구성 요소 (*LoginDisplay*)를 추가 합니다. <span data-ttu-id="84b9f-169">[Tokenprovider 서비스](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) 는 Identity 의 로그 아웃 끝점에 게시 하는 HTML 폼에 XSRF 토큰을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-169">The [TokenProvider service](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app) provides the XSRF token for the HTML form that POSTs to Identity's logout endpoint:</span></span>
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
@@ -282,7 +283,7 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 </AuthorizeView>
 ```
 
-<span data-ttu-id="82a02-170">`MainLayout`구성 요소 (*Shared/mainlayout. razor*)에서 `LoginDisplay` 구성 요소를 상위 행 요소 내용에 추가 합니다 `<div>` .</span><span class="sxs-lookup"><span data-stu-id="82a02-170">In the `MainLayout` component (*Shared/MainLayout.razor*), add the `LoginDisplay` component to the top-row `<div>` element's content:</span></span>
+<span data-ttu-id="84b9f-170">`MainLayout`구성 요소 (*Shared/mainlayout. razor*)에서 `LoginDisplay` 구성 요소를 상위 행 요소 내용에 추가 합니다 `<div>` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-170">In the `MainLayout` component (*Shared/MainLayout.razor*), add the `LoginDisplay` component to the top-row `<div>` element's content:</span></span>
 
 ```razor
 <div class="top-row px-4 auth">
@@ -291,42 +292,42 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
 </div>
 ```
 
-### <a name="style-authentication-endpoints"></a><span data-ttu-id="82a02-171">스타일 인증 끝점</span><span class="sxs-lookup"><span data-stu-id="82a02-171">Style authentication endpoints</span></span>
+### <a name="style-authentication-endpoints"></a><span data-ttu-id="84b9f-171">스타일 인증 끝점</span><span class="sxs-lookup"><span data-stu-id="84b9f-171">Style authentication endpoints</span></span>
 
-<span data-ttu-id="82a02-172">Blazor Server에서는 페이지 Razor 페이지를 사용 하므로 Identity 방문자가 Identity 페이지와 구성 요소 간을 탐색할 때 UI의 스타일이 변경 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-172">Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components.</span></span> <span data-ttu-id="82a02-173">Incongruous 스타일을 해결 하는 두 가지 옵션이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-173">You have two options to address the incongruous styles:</span></span>
+<span data-ttu-id="84b9f-172">Blazor Server에서는 페이지 Razor 페이지를 사용 하므로 Identity 방문자가 Identity 페이지와 구성 요소 간을 탐색할 때 UI의 스타일이 변경 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-172">Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components.</span></span> <span data-ttu-id="84b9f-173">Incongruous 스타일을 해결 하는 두 가지 옵션이 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-173">You have two options to address the incongruous styles:</span></span>
 
-#### <a name="build-no-locidentity-components"></a><span data-ttu-id="82a02-174">빌드 Identity 구성 요소</span><span class="sxs-lookup"><span data-stu-id="82a02-174">Build Identity components</span></span>
+#### <a name="build-no-locidentity-components"></a><span data-ttu-id="84b9f-174">빌드 Identity 구성 요소</span><span class="sxs-lookup"><span data-stu-id="84b9f-174">Build Identity components</span></span>
 
-<span data-ttu-id="82a02-175">페이지 대신 구성 요소를 사용 하는 방법은 Identity 구성 요소를 빌드하는 것입니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-175">An approach to using components for Identity instead of pages is to build Identity components.</span></span> <span data-ttu-id="82a02-176">`SignInManager`및 `UserManager` 는 구성 요소에서 지원 되지 않으므로 Razor 앱에서 API 끝점을 사용 Blazor Server 하 여 사용자 계정 작업을 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-176">Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.</span></span>
+<span data-ttu-id="84b9f-175">페이지 대신 구성 요소를 사용 하는 방법은 Identity 구성 요소를 빌드하는 것입니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-175">An approach to using components for Identity instead of pages is to build Identity components.</span></span> <span data-ttu-id="84b9f-176">`SignInManager`및 `UserManager` 는 구성 요소에서 지원 되지 않으므로 Razor 앱에서 API 끝점을 사용 Blazor Server 하 여 사용자 계정 작업을 처리 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-176">Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.</span></span>
 
-#### <a name="use-a-custom-layout-with-no-locblazor-app-styles"></a><span data-ttu-id="82a02-177">앱 스타일을 사용 하 여 사용자 지정 레이아웃 사용 Blazor</span><span class="sxs-lookup"><span data-stu-id="82a02-177">Use a custom layout with Blazor app styles</span></span>
+#### <a name="use-a-custom-layout-with-no-locblazor-app-styles"></a><span data-ttu-id="84b9f-177">앱 스타일을 사용 하 여 사용자 지정 레이아웃 사용 Blazor</span><span class="sxs-lookup"><span data-stu-id="84b9f-177">Use a custom layout with Blazor app styles</span></span>
 
-<span data-ttu-id="82a02-178">Identity페이지 레이아웃 및 스타일을 수정 하 여 기본 테마를 사용 하는 페이지를 만들 수 있습니다 Blazor .</span><span class="sxs-lookup"><span data-stu-id="82a02-178">The Identity pages layout and styles can be modified to produce pages that use the default Blazor theme.</span></span>
+<span data-ttu-id="84b9f-178">Identity페이지 레이아웃 및 스타일을 수정 하 여 기본 테마를 사용 하는 페이지를 만들 수 있습니다 Blazor .</span><span class="sxs-lookup"><span data-stu-id="84b9f-178">The Identity pages layout and styles can be modified to produce pages that use the default Blazor theme.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="82a02-179">이 섹션의 예제는 단순히 사용자 지정을 위한 출발점입니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-179">The example in this section is merely a starting point for customization.</span></span> <span data-ttu-id="82a02-180">최상의 사용자 환경을 위해 추가 작업이 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-180">Additional work is likely required for the best user experience.</span></span>
+> <span data-ttu-id="84b9f-179">이 섹션의 예제는 단순히 사용자 지정을 위한 출발점입니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-179">The example in this section is merely a starting point for customization.</span></span> <span data-ttu-id="84b9f-180">최상의 사용자 환경을 위해 추가 작업이 필요할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-180">Additional work is likely required for the best user experience.</span></span>
 
-<span data-ttu-id="82a02-181">새 `NavMenu_IdentityLayout` 구성 요소 (*공유/NavMenu_ Identity 레이아웃. razor*)를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-181">Create a new `NavMenu_IdentityLayout` component (*Shared/NavMenu_IdentityLayout.razor*).</span></span> <span data-ttu-id="82a02-182">구성 요소의 태그와 코드에 대해 앱 `NavMenu` 구성 요소의 동일한 콘텐츠 (*Shared/NavMenu*)를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-182">For the markup and code of the component, use the same content of the app's `NavMenu` component (*Shared/NavMenu.razor*).</span></span> <span data-ttu-id="82a02-183">`NavLink` `RedirectToLogin` 구성 요소의 자동 리디렉션이 인증 또는 권한 부여가 필요한 구성 요소에 대해 실패 하므로 익명으로 연결할 수 없는 구성 요소에 대 한 모든를 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-183">Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.</span></span>
+<span data-ttu-id="84b9f-181">새 `NavMenu_IdentityLayout` 구성 요소 (*공유/NavMenu_ Identity 레이아웃. razor*)를 만듭니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-181">Create a new `NavMenu_IdentityLayout` component (*Shared/NavMenu_IdentityLayout.razor*).</span></span> <span data-ttu-id="84b9f-182">구성 요소의 태그와 코드에 대해 앱 `NavMenu` 구성 요소의 동일한 콘텐츠 (*Shared/NavMenu*)를 사용 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-182">For the markup and code of the component, use the same content of the app's `NavMenu` component (*Shared/NavMenu.razor*).</span></span> <span data-ttu-id="84b9f-183">`NavLink` `RedirectToLogin` 구성 요소의 자동 리디렉션이 인증 또는 권한 부여가 필요한 구성 요소에 대해 실패 하므로 익명으로 연결할 수 없는 구성 요소에 대 한 모든를 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-183">Strip out any `NavLink`s to components that can't be reached anonymously because automatic redirects in the `RedirectToLogin` component fail for components requiring authentication or authorization.</span></span>
 
-<span data-ttu-id="82a02-184">*Pages/Shared/Layout. cshtml* 파일에서 다음과 같이 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-184">In the *Pages/Shared/Layout.cshtml* file, make the following changes:</span></span>
+<span data-ttu-id="84b9f-184">*Pages/Shared/Layout. cshtml* 파일에서 다음과 같이 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-184">In the *Pages/Shared/Layout.cshtml* file, make the following changes:</span></span>
 
-* <span data-ttu-id="82a02-185">Razor태그 도우미와 앱의 구성 요소를 *공유* 폴더에 사용 하려면 파일의 맨 위에 지시문을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-185">Add Razor directives to the top of the file to use Tag Helpers and the app's components in the *Shared* folder:</span></span>
+* <span data-ttu-id="84b9f-185">Razor태그 도우미와 앱의 구성 요소를 *공유* 폴더에 사용 하려면 파일의 맨 위에 지시문을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-185">Add Razor directives to the top of the file to use Tag Helpers and the app's components in the *Shared* folder:</span></span>
 
   ```cshtml
   @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
   @using {APPLICATION ASSEMBLY}.Shared
   ```
 
-  <span data-ttu-id="82a02-186">를 `{APPLICATION ASSEMBLY}` 앱의 어셈블리 이름으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-186">Replace `{APPLICATION ASSEMBLY}` with the app's assembly name.</span></span>
+  <span data-ttu-id="84b9f-186">를 `{APPLICATION ASSEMBLY}` 앱의 어셈블리 이름으로 바꿉니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-186">Replace `{APPLICATION ASSEMBLY}` with the app's assembly name.</span></span>
 
-* <span data-ttu-id="82a02-187">`<base>`콘텐츠에 태그 및 Blazor 스타일 시트를 추가 `<link>` 합니다 `<head>` .</span><span class="sxs-lookup"><span data-stu-id="82a02-187">Add a `<base>` tag and Blazor stylesheet `<link>` to the `<head>` content:</span></span>
+* <span data-ttu-id="84b9f-187">`<base>`콘텐츠에 태그 및 Blazor 스타일 시트를 추가 `<link>` 합니다 `<head>` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-187">Add a `<base>` tag and Blazor stylesheet `<link>` to the `<head>` content:</span></span>
 
   ```cshtml
   <base href="~/" />
   <link rel="stylesheet" href="~/css/site.css" />
   ```
 
-* <span data-ttu-id="82a02-188">태그의 내용을 `<body>` 다음과 같이 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-188">Change the content of the `<body>` tag to the following:</span></span>
+* <span data-ttu-id="84b9f-188">태그의 내용을 `<body>` 다음과 같이 변경 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-188">Change the content of the `<body>` tag to the following:</span></span>
 
   ```cshtml
   <div class="sidebar" style="float:left">
@@ -364,31 +365,31 @@ TokenProvider.XsrfToken = InitialState.XsrfToken;
   <script src="_framework/blazor.server.js"></script>
   ```
 
-## <a name="scaffold-no-locidentity-into-a-no-locblazor-server-project-with-authorization"></a><span data-ttu-id="82a02-189">Identity Blazor Server 권한 부여를 사용 하 여 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-189">Scaffold Identity into a Blazor Server project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locblazor-server-project-with-authorization"></a><span data-ttu-id="84b9f-189">Identity Blazor Server 권한 부여를 사용 하 여 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-189">Scaffold Identity into a Blazor Server project with authorization</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-<span data-ttu-id="82a02-190">일부 Identity 옵션은 *영역/ Identity / Identity HostingStartup.cs*구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-190">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="82a02-191">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-191">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="84b9f-190">일부 Identity 옵션은 *영역/ Identity / Identity HostingStartup.cs*구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-190">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="84b9f-191">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-191">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
 <a name="full"></a>
 
-## <a name="create-full-no-locidentity-ui-source"></a><span data-ttu-id="82a02-192">전체 Identity UI 원본 만들기</span><span class="sxs-lookup"><span data-stu-id="82a02-192">Create full Identity UI source</span></span>
+## <a name="create-full-no-locidentity-ui-source"></a><span data-ttu-id="84b9f-192">전체 Identity UI 원본 만들기</span><span class="sxs-lookup"><span data-stu-id="84b9f-192">Create full Identity UI source</span></span>
 
-<span data-ttu-id="82a02-193">UI에 대 한 모든 권한을 유지 하려면 Identity 스 캐 폴더을 실행 하 Identity 고 **모든 파일 재정의**를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-193">To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.</span></span>
+<span data-ttu-id="84b9f-193">UI에 대 한 모든 권한을 유지 하려면 Identity 스 캐 폴더을 실행 하 Identity 고 **모든 파일 재정의**를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-193">To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.</span></span>
 
-<span data-ttu-id="82a02-194">다음 강조 표시 된 코드는 Identity Identity ASP.NET Core 2.1 웹 앱에서 기본 UI를 바꿀 변경 내용을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-194">The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app.</span></span> <span data-ttu-id="82a02-195">이 작업을 수행 하 여 UI에 대 한 모든 권한을 부여할 수 있습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-195">You might want to do this to have full control of the Identity UI.</span></span>
+<span data-ttu-id="84b9f-194">다음 강조 표시 된 코드는 Identity Identity ASP.NET Core 2.1 웹 앱에서 기본 UI를 바꿀 변경 내용을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-194">The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app.</span></span> <span data-ttu-id="84b9f-195">이 작업을 수행 하 여 UI에 대 한 모든 권한을 부여할 수 있습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-195">You might want to do this to have full control of the Identity UI.</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
-<span data-ttu-id="82a02-196">기본값은 Identity 다음 코드에서 대체 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-196">The default Identity is replaced in the following code:</span></span>
+<span data-ttu-id="84b9f-196">기본값은 Identity 다음 코드에서 대체 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-196">The default Identity is replaced in the following code:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
-<span data-ttu-id="82a02-197">다음 코드에서는 [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [Logoutpath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath)및 [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath)를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-197">The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span></span>
+<span data-ttu-id="84b9f-197">다음 코드에서는 [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [Logoutpath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath)및 [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath)를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-197">The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-<span data-ttu-id="82a02-198">구현을 등록 `IEmailSender` 합니다. 예를 들면 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-198">Register an `IEmailSender` implementation, for example:</span></span>
+<span data-ttu-id="84b9f-198">구현을 등록 `IEmailSender` 합니다. 예를 들면 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-198">Register an `IEmailSender` implementation, for example:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
@@ -403,34 +404,34 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
 
-## <a name="password-configuration"></a><span data-ttu-id="82a02-199">암호 구성</span><span class="sxs-lookup"><span data-stu-id="82a02-199">Password configuration</span></span>
+## <a name="password-configuration"></a><span data-ttu-id="84b9f-199">암호 구성</span><span class="sxs-lookup"><span data-stu-id="84b9f-199">Password configuration</span></span>
 
-<span data-ttu-id="82a02-200"><xref:Microsoft.AspNetCore.Identity.PasswordOptions>이에서 구성 된 경우 `Startup.ConfigureServices` 스 캐 폴드 pages의 속성에 대 한 [ `[StringLength]` 특성](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) 구성이 필요할 수 있습니다 `Password` Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-200">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="82a02-201">`InputModel``Password`속성은 다음 파일에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-201">`InputModel` `Password` properties are found in the following files:</span></span>
+<span data-ttu-id="84b9f-200"><xref:Microsoft.AspNetCore.Identity.PasswordOptions>이에서 구성 된 경우 `Startup.ConfigureServices` 스 캐 폴드 pages의 속성에 대 한 [ `[StringLength]` 특성](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) 구성이 필요할 수 있습니다 `Password` Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-200">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="84b9f-201">`InputModel``Password`속성은 다음 파일에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-201">`InputModel` `Password` properties are found in the following files:</span></span>
 
 * `Areas/Identity/Pages/Account/Register.cshtml.cs`
 * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-## <a name="disable-a-page"></a><span data-ttu-id="82a02-202">페이지 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="82a02-202">Disable a page</span></span>
+## <a name="disable-a-page"></a><span data-ttu-id="84b9f-202">페이지 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="84b9f-202">Disable a page</span></span>
 
-<span data-ttu-id="82a02-203">이 섹션에서는 등록 페이지를 사용 하지 않도록 설정 하는 방법을 보여 주지만,이 방법을 사용 하 여 페이지를 비활성화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-203">This sections show how to disable the register page but the approach can be used to disable any page.</span></span>
+<span data-ttu-id="84b9f-203">이 섹션에서는 등록 페이지를 사용 하지 않도록 설정 하는 방법을 보여 주지만,이 방법을 사용 하 여 페이지를 비활성화할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-203">This sections show how to disable the register page but the approach can be used to disable any page.</span></span>
 
-<span data-ttu-id="82a02-204">사용자 등록을 사용 하지 않도록 설정 하려면:</span><span class="sxs-lookup"><span data-stu-id="82a02-204">To disable user registration:</span></span>
+<span data-ttu-id="84b9f-204">사용자 등록을 사용 하지 않도록 설정 하려면:</span><span class="sxs-lookup"><span data-stu-id="84b9f-204">To disable user registration:</span></span>
 
-* <span data-ttu-id="82a02-205">스 캐 폴드 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-205">Scaffold Identity.</span></span> <span data-ttu-id="82a02-206">Account. Register, Account. Login 및 Account. RegisterConfirmation 같이 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-206">Include Account.Register, Account.Login, and Account.RegisterConfirmation.</span></span> <span data-ttu-id="82a02-207">예:</span><span class="sxs-lookup"><span data-stu-id="82a02-207">For example:</span></span>
+* <span data-ttu-id="84b9f-205">스 캐 폴드 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-205">Scaffold Identity.</span></span> <span data-ttu-id="84b9f-206">Account. Register, Account. Login 및 Account. RegisterConfirmation 같이 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-206">Include Account.Register, Account.Login, and Account.RegisterConfirmation.</span></span> <span data-ttu-id="84b9f-207">다음은 그 예입니다. </span><span class="sxs-lookup"><span data-stu-id="84b9f-207">For example:</span></span>
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
-* <span data-ttu-id="82a02-208">사용자가이 끝점에서 등록할 수 없도록 *영역/ Identity /Pages/Account/Register.cshtml.cs* 를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-208">Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:</span></span>
+* <span data-ttu-id="84b9f-208">사용자가이 끝점에서 등록할 수 없도록 *영역/ Identity /Pages/Account/Register.cshtml.cs* 를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-208">Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:</span></span>
 
   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
-* <span data-ttu-id="82a02-209">이전 변경 내용과 일치 하도록 *영역/ Identity /Pages/Account/Register.cshtml* 를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-209">Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:</span></span>
+* <span data-ttu-id="84b9f-209">이전 변경 내용과 일치 하도록 *영역/ Identity /Pages/Account/Register.cshtml* 를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-209">Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:</span></span>
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* <span data-ttu-id="82a02-210">*영역/ Identity /Pages/Account/Login.cshtml* 에서 등록 링크를 주석으로 처리 하거나 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-210">Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*</span></span>
+* <span data-ttu-id="84b9f-210">*영역/ Identity /Pages/Account/Login.cshtml* 에서 등록 링크를 주석으로 처리 하거나 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-210">Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*</span></span>
 
   ```cshtml
   @*
@@ -440,10 +441,10 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
   *@
   ```
 
-* <span data-ttu-id="82a02-211">*영역/ Identity /Pages/Account/RegisterConfirmation* 페이지를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-211">Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.</span></span>
+* <span data-ttu-id="84b9f-211">*영역/ Identity /Pages/Account/RegisterConfirmation* 페이지를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-211">Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.</span></span>
 
-  * <span data-ttu-id="82a02-212">Cshtml 파일에서 코드 및 링크를 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-212">Remove the code and links from the cshtml file.</span></span>
-  * <span data-ttu-id="82a02-213">에서 확인 코드를 제거 합니다 `PageModel` .</span><span class="sxs-lookup"><span data-stu-id="82a02-213">Remove the confirmation code from the `PageModel`:</span></span>
+  * <span data-ttu-id="84b9f-212">Cshtml 파일에서 코드 및 링크를 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-212">Remove the code and links from the cshtml file.</span></span>
+  * <span data-ttu-id="84b9f-213">에서 확인 코드를 제거 합니다 `PageModel` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-213">Remove the confirmation code from the `PageModel`:</span></span>
 
   ```csharp
    [AllowAnonymous]
@@ -456,58 +457,58 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
     }
   ```
   
-### <a name="use-another-app-to-add-users"></a><span data-ttu-id="82a02-214">다른 앱을 사용 하 여 사용자 추가</span><span class="sxs-lookup"><span data-stu-id="82a02-214">Use another app to add users</span></span>
+### <a name="use-another-app-to-add-users"></a><span data-ttu-id="84b9f-214">다른 앱을 사용 하 여 사용자 추가</span><span class="sxs-lookup"><span data-stu-id="84b9f-214">Use another app to add users</span></span>
 
-<span data-ttu-id="82a02-215">웹 앱 외부에 사용자를 추가 하는 메커니즘을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-215">Provide a mechanism to add users outside the web app.</span></span> <span data-ttu-id="82a02-216">사용자를 추가 하는 옵션은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-216">Options to add users include:</span></span>
+<span data-ttu-id="84b9f-215">웹 앱 외부에 사용자를 추가 하는 메커니즘을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-215">Provide a mechanism to add users outside the web app.</span></span> <span data-ttu-id="84b9f-216">사용자를 추가 하는 옵션은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-216">Options to add users include:</span></span>
 
-* <span data-ttu-id="82a02-217">전용 관리 웹 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-217">A dedicated admin web app.</span></span>
-* <span data-ttu-id="82a02-218">콘솔 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-218">A console app.</span></span>
+* <span data-ttu-id="84b9f-217">전용 관리 웹 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-217">A dedicated admin web app.</span></span>
+* <span data-ttu-id="84b9f-218">콘솔 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-218">A console app.</span></span>
 
-<span data-ttu-id="82a02-219">다음 코드에서는 사용자를 추가 하는 한 가지 방법을 간략하게 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-219">The following code outlines one approach to adding users:</span></span>
+<span data-ttu-id="84b9f-219">다음 코드에서는 사용자를 추가 하는 한 가지 방법을 간략하게 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-219">The following code outlines one approach to adding users:</span></span>
 
-* <span data-ttu-id="82a02-220">사용자 목록을 메모리로 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-220">A list of users is read into memory.</span></span>
-* <span data-ttu-id="82a02-221">각 사용자에 대해 강력한 고유 암호가 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-221">A strong unique password is generated for each user.</span></span>
-* <span data-ttu-id="82a02-222">사용자가 데이터베이스에 추가 됩니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-222">The user is added to the Identity database.</span></span>
-* <span data-ttu-id="82a02-223">사용자에 게 알림이 표시 되 고 암호를 변경 하 라는 메시지가 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-223">The user is notified and told to change the password.</span></span>
+* <span data-ttu-id="84b9f-220">사용자 목록을 메모리로 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-220">A list of users is read into memory.</span></span>
+* <span data-ttu-id="84b9f-221">각 사용자에 대해 강력한 고유 암호가 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-221">A strong unique password is generated for each user.</span></span>
+* <span data-ttu-id="84b9f-222">사용자가 데이터베이스에 추가 됩니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-222">The user is added to the Identity database.</span></span>
+* <span data-ttu-id="84b9f-223">사용자에 게 알림이 표시 되 고 암호를 변경 하 라는 메시지가 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-223">The user is notified and told to change the password.</span></span>
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
 
-<span data-ttu-id="82a02-224">다음 코드에서는 사용자를 추가 하는 방법을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-224">The following code outlines adding a user:</span></span>
+<span data-ttu-id="84b9f-224">다음 코드에서는 사용자를 추가 하는 방법을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-224">The following code outlines adding a user:</span></span>
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Data/SeedData.cs?name=snippet)]
 
-<span data-ttu-id="82a02-225">프로덕션 시나리오의 경우 유사한 접근 방식을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-225">A similar approach can be followed for production scenarios.</span></span>
+<span data-ttu-id="84b9f-225">프로덕션 시나리오의 경우 유사한 접근 방식을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-225">A similar approach can be followed for production scenarios.</span></span>
 
-## <a name="prevent-publish-of-static-no-locidentity-assets"></a><span data-ttu-id="82a02-226">정적 자산 게시 방지 Identity</span><span class="sxs-lookup"><span data-stu-id="82a02-226">Prevent publish of static Identity assets</span></span>
+## <a name="prevent-publish-of-static-no-locidentity-assets"></a><span data-ttu-id="84b9f-226">정적 자산 게시 방지 Identity</span><span class="sxs-lookup"><span data-stu-id="84b9f-226">Prevent publish of static Identity assets</span></span>
 
-<span data-ttu-id="82a02-227">정적 Identity 자산을 웹 루트에 게시 하지 않으려면를 참조 하십시오 <xref:security/authentication/identity#prevent-publish-of-static-identity-assets> .</span><span class="sxs-lookup"><span data-stu-id="82a02-227">To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.</span></span>
+<span data-ttu-id="84b9f-227">정적 Identity 자산을 웹 루트에 게시 하지 않으려면를 참조 하십시오 <xref:security/authentication/identity#prevent-publish-of-static-identity-assets> .</span><span class="sxs-lookup"><span data-stu-id="84b9f-227">To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="82a02-228">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="82a02-228">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="84b9f-228">추가 자료</span><span class="sxs-lookup"><span data-stu-id="84b9f-228">Additional resources</span></span>
 
-* [<span data-ttu-id="82a02-229">ASP.NET Core 2.1 이상으로 인증 코드 변경</span><span class="sxs-lookup"><span data-stu-id="82a02-229">Changes to authentication code to ASP.NET Core 2.1 and later</span></span>](xref:migration/20_21#changes-to-authentication-code)
+* [<span data-ttu-id="84b9f-229">ASP.NET Core 2.1 이상으로 인증 코드 변경</span><span class="sxs-lookup"><span data-stu-id="84b9f-229">Changes to authentication code to ASP.NET Core 2.1 and later</span></span>](xref:migration/20_21#changes-to-authentication-code)
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-3.0"
 
-<span data-ttu-id="82a02-230">ASP.NET Core 2.1 이상에서는 [ASP.NET Core Identity ](xref:security/authentication/identity) 를 [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-230">ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="82a02-231">를 포함 하는 응용 프로그램 Identity 은 스 캐 폴더를 적용 하 여 Identity Razor 클래스 라이브러리 (rcl)에 포함 된 소스 코드를 선택적으로 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-231">Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="82a02-232">코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-232">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="82a02-233">예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-233">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="82a02-234">생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-234">Generated code takes precedence over the same code in the Identity RCL.</span></span> <span data-ttu-id="82a02-235">기본 RCL을 사용 하지 않고 UI에 대 한 모든 권한을 얻으려면 [전체 ID UI 원본 만들기](#full)섹션을 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-235">To gain full control of the UI and not use the default RCL, see the section [Create full identity UI source](#full).</span></span>
+<span data-ttu-id="84b9f-230">ASP.NET Core 2.1 이상에서는 [ASP.NET Core Identity](xref:security/authentication/identity) [ Razor 클래스 라이브러리로](xref:razor-pages/ui-class)를 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-230">ASP.NET Core 2.1 and later provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor Class Library](xref:razor-pages/ui-class).</span></span> <span data-ttu-id="84b9f-231">를 포함 하는 응용 프로그램 Identity 은 스 캐 폴더를 적용 하 여 Identity Razor 클래스 라이브러리 (rcl)에 포함 된 소스 코드를 선택적으로 추가할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-231">Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity Razor Class Library (RCL).</span></span> <span data-ttu-id="84b9f-232">코드를 수정하고 동작을 변경할 수 있도록 소스 코드를 생성할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-232">You might want to generate source code so you can modify the code and change the behavior.</span></span> <span data-ttu-id="84b9f-233">예를 들어 등록에 사용된 코드를 생성하도록 스캐폴더를 지정할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-233">For example, you could instruct the scaffolder to generate the code used in registration.</span></span> <span data-ttu-id="84b9f-234">생성된 코드는 Identity RCL의 동일한 코드보다 우선합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-234">Generated code takes precedence over the same code in the Identity RCL.</span></span> <span data-ttu-id="84b9f-235">기본 RCL을 사용 하지 않고 UI에 대 한 모든 권한을 얻으려면 [전체 ID UI 원본 만들기](#full)섹션을 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-235">To gain full control of the UI and not use the default RCL, see the section [Create full identity UI source](#full).</span></span>
 
-<span data-ttu-id="82a02-236">인증을 포함 **하지** 않는 응용 프로그램은 스 캐 폴더를 적용 하 여 rcl 패키지를 추가할 수 있습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-236">Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="82a02-237">선택한 Identity 코드의 옵션이 생성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-237">You have the option of selecting Identity code to be generated.</span></span>
+<span data-ttu-id="84b9f-236">인증을 포함 **하지** 않는 응용 프로그램은 스 캐 폴더를 적용 하 여 rcl 패키지를 추가할 수 있습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-236">Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package.</span></span> <span data-ttu-id="84b9f-237">선택한 Identity 코드의 옵션이 생성되어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-237">You have the option of selecting Identity code to be generated.</span></span>
 
-<span data-ttu-id="82a02-238">스 캐 폴더는 대부분의 필요한 코드를 생성 하지만 프로세스를 완료 하려면 프로젝트를 업데이트 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-238">Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process.</span></span> <span data-ttu-id="82a02-239">이 문서에서는 Identity 스 캐 폴딩 업데이트를 완료 하는 데 필요한 단계를 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-239">This document explains the steps needed to complete an Identity scaffolding update.</span></span>
+<span data-ttu-id="84b9f-238">스 캐 폴더는 대부분의 필요한 코드를 생성 하지만 프로세스를 완료 하려면 프로젝트를 업데이트 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-238">Although the scaffolder generates most of the necessary code, you'll have to update your project to complete the process.</span></span> <span data-ttu-id="84b9f-239">이 문서에서는 Identity 스 캐 폴딩 업데이트를 완료 하는 데 필요한 단계를 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-239">This document explains the steps needed to complete an Identity scaffolding update.</span></span>
 
-<span data-ttu-id="82a02-240">스 캐 폴더를 Identity 실행 하면 프로젝트 디렉터리에 *ScaffoldingReadme.txt* 파일이 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-240">When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created in the project directory.</span></span> <span data-ttu-id="82a02-241">*ScaffoldingReadme.txt* 파일은 Identity 스 캐 폴딩 업데이트를 완료 하는 데 필요한 사항에 대 한 일반적인 지침을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-241">The *ScaffoldingReadme.txt* file contains general instructions on what's needed to complete the Identity scaffolding update.</span></span> <span data-ttu-id="82a02-242">이 문서에는 *ScaffoldingReadme.txt* 파일 보다 더 완전 한 지침이 포함 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-242">This document contains more complete instructions than the *ScaffoldingReadme.txt* file.</span></span>
+<span data-ttu-id="84b9f-240">스 캐 폴더를 Identity 실행 하면 프로젝트 디렉터리에 *ScaffoldingReadme.txt* 파일이 만들어집니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-240">When the Identity scaffolder is run, a *ScaffoldingReadme.txt* file is created in the project directory.</span></span> <span data-ttu-id="84b9f-241">*ScaffoldingReadme.txt* 파일은 Identity 스 캐 폴딩 업데이트를 완료 하는 데 필요한 사항에 대 한 일반적인 지침을 포함 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-241">The *ScaffoldingReadme.txt* file contains general instructions on what's needed to complete the Identity scaffolding update.</span></span> <span data-ttu-id="84b9f-242">이 문서에는 *ScaffoldingReadme.txt* 파일 보다 더 완전 한 지침이 포함 되어 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-242">This document contains more complete instructions than the *ScaffoldingReadme.txt* file.</span></span>
 
-<span data-ttu-id="82a02-243">파일 차이를 표시 하는 소스 제어 시스템을 사용 하 여 변경 내용을 되돌릴 수 있도록 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-243">We recommend using a source control system that shows file differences and allows you to back out of changes.</span></span> <span data-ttu-id="82a02-244">스 캐 폴더를 실행 한 후에 변경 내용을 검사 합니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-244">Inspect the changes after running the Identity scaffolder.</span></span>
+<span data-ttu-id="84b9f-243">파일 차이를 표시 하는 소스 제어 시스템을 사용 하 여 변경 내용을 되돌릴 수 있도록 하는 것이 좋습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-243">We recommend using a source control system that shows file differences and allows you to back out of changes.</span></span> <span data-ttu-id="84b9f-244">스 캐 폴더를 실행 한 후에 변경 내용을 검사 합니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-244">Inspect the changes after running the Identity scaffolder.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="82a02-245">서비스는 [두 가지 요소 인증](xref:security/authentication/identity-enable-qrcodes), [계정 확인 및 암호 복구](xref:security/authentication/accconfirm)및 기타 보안 기능을 사용 하는 경우에 필요 Identity 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-245">Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity.</span></span> <span data-ttu-id="82a02-246">스 캐 폴딩 할 때 서비스 또는 서비스 스텁이 생성 되지 않습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-246">Services or service stubs aren't generated when scaffolding Identity.</span></span> <span data-ttu-id="82a02-247">이러한 기능을 사용 하도록 설정 하는 서비스는 수동으로 추가 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-247">Services to enable these features must be added manually.</span></span> <span data-ttu-id="82a02-248">예를 들어 [전자 메일 확인 필요](xref:security/authentication/accconfirm#require-email-confirmation)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-248">For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).</span></span>
+> <span data-ttu-id="84b9f-245">서비스는 [두 가지 요소 인증](xref:security/authentication/identity-enable-qrcodes), [계정 확인 및 암호 복구](xref:security/authentication/accconfirm)및 기타 보안 기능을 사용 하는 경우에 필요 Identity 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-245">Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity.</span></span> <span data-ttu-id="84b9f-246">스 캐 폴딩 할 때 서비스 또는 서비스 스텁이 생성 되지 않습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-246">Services or service stubs aren't generated when scaffolding Identity.</span></span> <span data-ttu-id="84b9f-247">이러한 기능을 사용 하도록 설정 하는 서비스는 수동으로 추가 해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-247">Services to enable these features must be added manually.</span></span> <span data-ttu-id="84b9f-248">예를 들어 [전자 메일 확인 필요](xref:security/authentication/accconfirm#require-email-confirmation)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-248">For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).</span></span>
 
-## <a name="scaffold-no-locidentity-into-an-empty-project"></a><span data-ttu-id="82a02-249">Identity빈 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-249">Scaffold Identity into an empty project</span></span>
+## <a name="scaffold-no-locidentity-into-an-empty-project"></a><span data-ttu-id="84b9f-249">Identity빈 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-249">Scaffold Identity into an empty project</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="82a02-250">클래스에 다음의 강조 표시 된 호출을 추가 합니다 `Startup` .</span><span class="sxs-lookup"><span data-stu-id="82a02-250">Add the following highlighted calls to the `Startup` class:</span></span>
+<span data-ttu-id="84b9f-250">클래스에 다음의 강조 표시 된 호출을 추가 합니다 `Startup` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-250">Add the following highlighted calls to the `Startup` class:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupEmpty.cs?name=snippet1&highlight=5,20-23)]
 
@@ -515,7 +516,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-without-existing-authorization"></a><span data-ttu-id="82a02-251">Identity Razor 기존 권한 부여 없이 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-251">Scaffold Identity into a Razor project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-without-existing-authorization"></a><span data-ttu-id="84b9f-251">Identity Razor 기존 권한 부여 없이 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-251">Scaffold Identity into a Razor project without existing authorization</span></span>
 
 <!--  Updated for 3.0
 set projNam=RPnoAuth
@@ -536,31 +537,31 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="82a02-252">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-252">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="82a02-253">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-253">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="84b9f-252">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-252">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="84b9f-253">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-253">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
 <a name="efm"></a>
 
-### <a name="migrations-useauthentication-and-layout"></a><span data-ttu-id="82a02-254">마이그레이션, UseAuthentication 및 레이아웃</span><span class="sxs-lookup"><span data-stu-id="82a02-254">Migrations, UseAuthentication, and layout</span></span>
+### <a name="migrations-useauthentication-and-layout"></a><span data-ttu-id="84b9f-254">마이그레이션, UseAuthentication 및 레이아웃</span><span class="sxs-lookup"><span data-stu-id="84b9f-254">Migrations, UseAuthentication, and layout</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
 <a name="useauthentication"></a>
 
-### <a name="enable-authentication"></a><span data-ttu-id="82a02-255">인증 사용</span><span class="sxs-lookup"><span data-stu-id="82a02-255">Enable authentication</span></span>
+### <a name="enable-authentication"></a><span data-ttu-id="84b9f-255">인증 사용</span><span class="sxs-lookup"><span data-stu-id="84b9f-255">Enable authentication</span></span>
 
-<span data-ttu-id="82a02-256">`Configure`클래스의 메서드에서 다음 `Startup` 이후에 [useauthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) 을 호출 합니다 `UseStaticFiles` .</span><span class="sxs-lookup"><span data-stu-id="82a02-256">In the `Configure` method of the `Startup` class, call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:</span></span>
+<span data-ttu-id="84b9f-256">`Configure`클래스의 메서드에서 다음 `Startup` 이후에 [useauthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) 을 호출 합니다 `UseStaticFiles` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-256">In the `Configure` method of the `Startup` class, call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupRPnoAuth.cs?name=snippet1&highlight=29)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-### <a name="layout-changes"></a><span data-ttu-id="82a02-257">레이아웃 변경</span><span class="sxs-lookup"><span data-stu-id="82a02-257">Layout changes</span></span>
+### <a name="layout-changes"></a><span data-ttu-id="84b9f-257">레이아웃 변경</span><span class="sxs-lookup"><span data-stu-id="84b9f-257">Layout changes</span></span>
 
-<span data-ttu-id="82a02-258">선택 사항: 로그인 부분 ( `_LoginPartial` )을 레이아웃 파일에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-258">Optional: Add the login partial (`_LoginPartial`) to the layout file:</span></span>
+<span data-ttu-id="84b9f-258">선택 사항: 로그인 부분 ( `_LoginPartial` )을 레이아웃 파일에 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-258">Optional: Add the login partial (`_LoginPartial`) to the layout file:</span></span>
 
 [!code-cshtml[](scaffold-identity/sample/_Layout.cshtml?highlight=37)]
 
-## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-with-authorization"></a><span data-ttu-id="82a02-259">Identity Razor 권한 부여를 사용 하 여 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-259">Scaffold Identity into a Razor project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-a-no-locrazor-project-with-authorization"></a><span data-ttu-id="84b9f-259">Identity Razor 권한 부여를 사용 하 여 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-259">Scaffold Identity into a Razor project with authorization</span></span>
 
 <!--
 Use >=2.1: dotnet new webapp -au Individual -o RPauth
@@ -575,9 +576,9 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-<span data-ttu-id="82a02-260">일부 Identity 옵션은 *영역/ Identity / Identity HostingStartup.cs*구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-260">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="82a02-261">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-261">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
+<span data-ttu-id="84b9f-260">일부 Identity 옵션은 *영역/ Identity / Identity HostingStartup.cs*구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-260">Some Identity options are configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="84b9f-261">자세한 내용은 [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration)를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-261">For more information, see [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration).</span></span>
 
-## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a><span data-ttu-id="82a02-262">Identity기존 권한 부여 없이 MVC 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-262">Scaffold Identity into an MVC project without existing authorization</span></span>
+## <a name="scaffold-no-locidentity-into-an-mvc-project-without-existing-authorization"></a><span data-ttu-id="84b9f-262">Identity기존 권한 부여 없이 MVC 프로젝트에 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-262">Scaffold Identity into an MVC project without existing authorization</span></span>
 
 <!--
 set projNam=MvcNoAuth
@@ -595,23 +596,23 @@ dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-<span data-ttu-id="82a02-263">선택 사항: `_LoginPartial` *Views/Shared/_Layout cshtml* 파일에 로그인 부분 ()을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-263">Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:</span></span>
+<span data-ttu-id="84b9f-263">선택 사항: `_LoginPartial` *Views/Shared/_Layout cshtml* 파일에 로그인 부분 ()을 추가 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-263">Optional: Add the login partial (`_LoginPartial`) to the *Views/Shared/_Layout.cshtml* file:</span></span>
 
 [!code-cshtml[](scaffold-identity/sample/_LayoutMvc.cshtml?highlight=37)]
 
-* <span data-ttu-id="82a02-264">*Pages/shared/_LoginPartial cshtml* 파일을 *Views/shared/_LoginPartial로 이동 합니다.*</span><span class="sxs-lookup"><span data-stu-id="82a02-264">Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*</span></span>
+* <span data-ttu-id="84b9f-264">*Pages/shared/_LoginPartial cshtml* 파일을 *Views/shared/_LoginPartial로 이동 합니다.*</span><span class="sxs-lookup"><span data-stu-id="84b9f-264">Move the *Pages/Shared/_LoginPartial.cshtml* file to *Views/Shared/_LoginPartial.cshtml*</span></span>
 
-<span data-ttu-id="82a02-265">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-265">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="82a02-266">자세한 내용은 IHostingStartup를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="82a02-266">For more information, see IHostingStartup.</span></span>
+<span data-ttu-id="84b9f-265">Identity는 *영역/ Identity / Identity HostingStartup.cs*에서 구성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-265">Identity is configured in *Areas/Identity/IdentityHostingStartup.cs*.</span></span> <span data-ttu-id="84b9f-266">자세한 내용은 IHostingStartup를 참조 하세요.</span><span class="sxs-lookup"><span data-stu-id="84b9f-266">For more information, see IHostingStartup.</span></span>
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
-<span data-ttu-id="82a02-267">다음 이후에 [Useauthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) 호출 `UseStaticFiles` :</span><span class="sxs-lookup"><span data-stu-id="82a02-267">Call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:</span></span>
+<span data-ttu-id="84b9f-267">다음 이후에 [Useauthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) 호출 `UseStaticFiles` :</span><span class="sxs-lookup"><span data-stu-id="84b9f-267">Call [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication?view=aspnetcore-2.0#Microsoft_AspNetCore_Builder_AuthAppBuilderExtensions_UseAuthentication_Microsoft_AspNetCore_Builder_IApplicationBuilder_) after `UseStaticFiles`:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupMvcNoAuth.cs?name=snippet1&highlight=23)]
 
 [!INCLUDE[](~/includes/scaffold-identity/hsts.md)]
 
-## <a name="scaffold-no-locidentity-into-an-mvc-project-with-authorization"></a><span data-ttu-id="82a02-268">Identity권한 부여를 사용 하 여 MVC 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="82a02-268">Scaffold Identity into an MVC project with authorization</span></span>
+## <a name="scaffold-no-locidentity-into-an-mvc-project-with-authorization"></a><span data-ttu-id="84b9f-268">Identity권한 부여를 사용 하 여 MVC 프로젝트로 스 캐 폴드</span><span class="sxs-lookup"><span data-stu-id="84b9f-268">Scaffold Identity into an MVC project with authorization</span></span>
 
 <!--
 dotnet new mvc -au Individual -o MvcAuth
@@ -623,27 +624,27 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-<span data-ttu-id="82a02-269">*Pages/Shared* 폴더와 해당 폴더의 파일을 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-269">Delete the *Pages/Shared* folder and the files in that folder.</span></span>
+<span data-ttu-id="84b9f-269">*Pages/Shared* 폴더와 해당 폴더의 파일을 삭제 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-269">Delete the *Pages/Shared* folder and the files in that folder.</span></span>
 
 <a name="full"></a>
 
-## <a name="create-full-no-locidentity-ui-source"></a><span data-ttu-id="82a02-270">전체 Identity UI 원본 만들기</span><span class="sxs-lookup"><span data-stu-id="82a02-270">Create full Identity UI source</span></span>
+## <a name="create-full-no-locidentity-ui-source"></a><span data-ttu-id="84b9f-270">전체 Identity UI 원본 만들기</span><span class="sxs-lookup"><span data-stu-id="84b9f-270">Create full Identity UI source</span></span>
 
-<span data-ttu-id="82a02-271">UI에 대 한 모든 권한을 유지 하려면 Identity 스 캐 폴더을 실행 하 Identity 고 **모든 파일 재정의**를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-271">To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.</span></span>
+<span data-ttu-id="84b9f-271">UI에 대 한 모든 권한을 유지 하려면 Identity 스 캐 폴더을 실행 하 Identity 고 **모든 파일 재정의**를 선택 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-271">To maintain full control of the Identity UI, run the Identity scaffolder and select **Override all files**.</span></span>
 
-<span data-ttu-id="82a02-272">다음 강조 표시 된 코드는 Identity Identity ASP.NET Core 2.1 웹 앱에서 기본 UI를 바꿀 변경 내용을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-272">The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app.</span></span> <span data-ttu-id="82a02-273">이 작업을 수행 하 여 UI에 대 한 모든 권한을 부여할 수 있습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-273">You might want to do this to have full control of the Identity UI.</span></span>
+<span data-ttu-id="84b9f-272">다음 강조 표시 된 코드는 Identity Identity ASP.NET Core 2.1 웹 앱에서 기본 UI를 바꿀 변경 내용을 보여 줍니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-272">The following highlighted code shows the changes to replace the default Identity UI with Identity in an ASP.NET Core 2.1 web app.</span></span> <span data-ttu-id="84b9f-273">이 작업을 수행 하 여 UI에 대 한 모든 권한을 부여할 수 있습니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-273">You might want to do this to have full control of the Identity UI.</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet1&highlight=13-14,17-999)]
 
-<span data-ttu-id="82a02-274">기본값은 Identity 다음 코드에서 대체 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-274">The default Identity is replaced in the following code:</span></span>
+<span data-ttu-id="84b9f-274">기본값은 Identity 다음 코드에서 대체 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-274">The default Identity is replaced in the following code:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet2)]
 
-<span data-ttu-id="82a02-275">다음 코드에서는 [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [Logoutpath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath)및 [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath)를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-275">The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span></span>
+<span data-ttu-id="84b9f-275">다음 코드에서는 [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [Logoutpath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath)및 [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath)를 설정 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-275">The following code sets the [LoginPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.loginpath), [LogoutPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.logoutpath), and [AccessDeniedPath](/dotnet/api/microsoft.aspnetcore.authentication.cookies.cookieauthenticationoptions.accessdeniedpath):</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet3)]
 
-<span data-ttu-id="82a02-276">구현을 등록 `IEmailSender` 합니다. 예를 들면 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-276">Register an `IEmailSender` implementation, for example:</span></span>
+<span data-ttu-id="84b9f-276">구현을 등록 `IEmailSender` 합니다. 예를 들면 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-276">Register an `IEmailSender` implementation, for example:</span></span>
 
 [!code-csharp[](scaffold-identity/sample/StartupFull.cs?name=snippet4)]
 
@@ -658,32 +659,32 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
 -->
 
-## <a name="password-configuration"></a><span data-ttu-id="82a02-277">암호 구성</span><span class="sxs-lookup"><span data-stu-id="82a02-277">Password configuration</span></span>
+## <a name="password-configuration"></a><span data-ttu-id="84b9f-277">암호 구성</span><span class="sxs-lookup"><span data-stu-id="84b9f-277">Password configuration</span></span>
 
-<span data-ttu-id="82a02-278"><xref:Microsoft.AspNetCore.Identity.PasswordOptions>이에서 구성 된 경우 `Startup.ConfigureServices` 스 캐 폴드 pages의 속성에 대 한 [ `[StringLength]` 특성](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) 구성이 필요할 수 있습니다 `Password` Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-278">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="82a02-279">`InputModel``Password`속성은 다음 파일에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-279">`InputModel` `Password` properties are found in the following files:</span></span>
+<span data-ttu-id="84b9f-278"><xref:Microsoft.AspNetCore.Identity.PasswordOptions>이에서 구성 된 경우 `Startup.ConfigureServices` 스 캐 폴드 pages의 속성에 대 한 [ `[StringLength]` 특성](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) 구성이 필요할 수 있습니다 `Password` Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-278">If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Startup.ConfigureServices`, [`[StringLength]` attribute](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) configuration might be required for the `Password` property in scaffolded Identity pages.</span></span> <span data-ttu-id="84b9f-279">`InputModel``Password`속성은 다음 파일에 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-279">`InputModel` `Password` properties are found in the following files:</span></span>
 
 * `Areas/Identity/Pages/Account/Register.cshtml.cs`
 * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
-## <a name="disable-register-page"></a><span data-ttu-id="82a02-280">등록 페이지 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="82a02-280">Disable register page</span></span>
+## <a name="disable-register-page"></a><span data-ttu-id="84b9f-280">등록 페이지 사용 안 함</span><span class="sxs-lookup"><span data-stu-id="84b9f-280">Disable register page</span></span>
 
-<span data-ttu-id="82a02-281">사용자 등록을 사용 하지 않도록 설정 하려면:</span><span class="sxs-lookup"><span data-stu-id="82a02-281">To disable user registration:</span></span>
+<span data-ttu-id="84b9f-281">사용자 등록을 사용 하지 않도록 설정 하려면:</span><span class="sxs-lookup"><span data-stu-id="84b9f-281">To disable user registration:</span></span>
 
-* <span data-ttu-id="82a02-282">스 캐 폴드 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-282">Scaffold Identity.</span></span> <span data-ttu-id="82a02-283">Account. Register, Account. Login 및 Account. RegisterConfirmation 같이 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-283">Include Account.Register, Account.Login, and Account.RegisterConfirmation.</span></span> <span data-ttu-id="82a02-284">예:</span><span class="sxs-lookup"><span data-stu-id="82a02-284">For example:</span></span>
+* <span data-ttu-id="84b9f-282">스 캐 폴드 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-282">Scaffold Identity.</span></span> <span data-ttu-id="84b9f-283">Account. Register, Account. Login 및 Account. RegisterConfirmation 같이 포함 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-283">Include Account.Register, Account.Login, and Account.RegisterConfirmation.</span></span> <span data-ttu-id="84b9f-284">다음은 그 예입니다. </span><span class="sxs-lookup"><span data-stu-id="84b9f-284">For example:</span></span>
 
   ```dotnetcli
    dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.RegisterConfirmation"
   ```
 
-* <span data-ttu-id="82a02-285">사용자가이 끝점에서 등록할 수 없도록 *영역/ Identity /Pages/Account/Register.cshtml.cs* 를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-285">Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:</span></span>
+* <span data-ttu-id="84b9f-285">사용자가이 끝점에서 등록할 수 없도록 *영역/ Identity /Pages/Account/Register.cshtml.cs* 를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-285">Update *Areas/Identity/Pages/Account/Register.cshtml.cs* so users can't register from this endpoint:</span></span>
 
   [!code-csharp[](scaffold-identity/sample/Register.cshtml.cs?name=snippet)]
 
-* <span data-ttu-id="82a02-286">이전 변경 내용과 일치 하도록 *영역/ Identity /Pages/Account/Register.cshtml* 를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-286">Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:</span></span>
+* <span data-ttu-id="84b9f-286">이전 변경 내용과 일치 하도록 *영역/ Identity /Pages/Account/Register.cshtml* 를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-286">Update *Areas/Identity/Pages/Account/Register.cshtml* to be consistent with the preceding changes:</span></span>
 
   [!code-cshtml[](scaffold-identity/sample/Register.cshtml)]
 
-* <span data-ttu-id="82a02-287">*영역/ Identity /Pages/Account/Login.cshtml* 에서 등록 링크를 주석으로 처리 하거나 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-287">Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*</span></span>
+* <span data-ttu-id="84b9f-287">*영역/ Identity /Pages/Account/Login.cshtml* 에서 등록 링크를 주석으로 처리 하거나 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-287">Comment out or remove the registration link from *Areas/Identity/Pages/Account/Login.cshtml*</span></span>
 
 ```cshtml
 @*
@@ -693,10 +694,10 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 *@
 ```
 
-* <span data-ttu-id="82a02-288">*영역/ Identity /Pages/Account/RegisterConfirmation* 페이지를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-288">Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.</span></span>
+* <span data-ttu-id="84b9f-288">*영역/ Identity /Pages/Account/RegisterConfirmation* 페이지를 업데이트 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-288">Update the *Areas/Identity/Pages/Account/RegisterConfirmation* page.</span></span>
 
-  * <span data-ttu-id="82a02-289">Cshtml 파일에서 코드 및 링크를 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-289">Remove the code and links from the cshtml file.</span></span>
-  * <span data-ttu-id="82a02-290">에서 확인 코드를 제거 합니다 `PageModel` .</span><span class="sxs-lookup"><span data-stu-id="82a02-290">Remove the confirmation code from the `PageModel`:</span></span>
+  * <span data-ttu-id="84b9f-289">Cshtml 파일에서 코드 및 링크를 제거 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-289">Remove the code and links from the cshtml file.</span></span>
+  * <span data-ttu-id="84b9f-290">에서 확인 코드를 제거 합니다 `PageModel` .</span><span class="sxs-lookup"><span data-stu-id="84b9f-290">Remove the confirmation code from the `PageModel`:</span></span>
 
   ```csharp
    [AllowAnonymous]
@@ -709,30 +710,30 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
     }
   ```
   
-### <a name="use-another-app-to-add-users"></a><span data-ttu-id="82a02-291">다른 앱을 사용 하 여 사용자 추가</span><span class="sxs-lookup"><span data-stu-id="82a02-291">Use another app to add users</span></span>
+### <a name="use-another-app-to-add-users"></a><span data-ttu-id="84b9f-291">다른 앱을 사용 하 여 사용자 추가</span><span class="sxs-lookup"><span data-stu-id="84b9f-291">Use another app to add users</span></span>
 
-<span data-ttu-id="82a02-292">웹 앱 외부에 사용자를 추가 하는 메커니즘을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-292">Provide a mechanism to add users outside the web app.</span></span> <span data-ttu-id="82a02-293">사용자를 추가 하는 옵션은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-293">Options to add users include:</span></span>
+<span data-ttu-id="84b9f-292">웹 앱 외부에 사용자를 추가 하는 메커니즘을 제공 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-292">Provide a mechanism to add users outside the web app.</span></span> <span data-ttu-id="84b9f-293">사용자를 추가 하는 옵션은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-293">Options to add users include:</span></span>
 
-* <span data-ttu-id="82a02-294">전용 관리 웹 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-294">A dedicated admin web app.</span></span>
-* <span data-ttu-id="82a02-295">콘솔 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-295">A console app.</span></span>
+* <span data-ttu-id="84b9f-294">전용 관리 웹 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-294">A dedicated admin web app.</span></span>
+* <span data-ttu-id="84b9f-295">콘솔 앱입니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-295">A console app.</span></span>
 
-<span data-ttu-id="82a02-296">다음 코드에서는 사용자를 추가 하는 한 가지 방법을 간략하게 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-296">The following code outlines one approach to adding users:</span></span>
+<span data-ttu-id="84b9f-296">다음 코드에서는 사용자를 추가 하는 한 가지 방법을 간략하게 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-296">The following code outlines one approach to adding users:</span></span>
 
-* <span data-ttu-id="82a02-297">사용자 목록을 메모리로 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-297">A list of users is read into memory.</span></span>
-* <span data-ttu-id="82a02-298">각 사용자에 대해 강력한 고유 암호가 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-298">A strong unique password is generated for each user.</span></span>
-* <span data-ttu-id="82a02-299">사용자가 데이터베이스에 추가 됩니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="82a02-299">The user is added to the Identity database.</span></span>
-* <span data-ttu-id="82a02-300">사용자에 게 알림이 표시 되 고 암호를 변경 하 라는 메시지가 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-300">The user is notified and told to change the password.</span></span>
+* <span data-ttu-id="84b9f-297">사용자 목록을 메모리로 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-297">A list of users is read into memory.</span></span>
+* <span data-ttu-id="84b9f-298">각 사용자에 대해 강력한 고유 암호가 생성 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-298">A strong unique password is generated for each user.</span></span>
+* <span data-ttu-id="84b9f-299">사용자가 데이터베이스에 추가 됩니다 Identity .</span><span class="sxs-lookup"><span data-stu-id="84b9f-299">The user is added to the Identity database.</span></span>
+* <span data-ttu-id="84b9f-300">사용자에 게 알림이 표시 되 고 암호를 변경 하 라는 메시지가 표시 됩니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-300">The user is notified and told to change the password.</span></span>
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Program.cs?name=snippet)]
 
-<span data-ttu-id="82a02-301">다음 코드에서는 사용자를 추가 하는 방법을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-301">The following code outlines adding a user:</span></span>
+<span data-ttu-id="84b9f-301">다음 코드에서는 사용자를 추가 하는 방법을 설명 합니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-301">The following code outlines adding a user:</span></span>
 
 [!code-csharp[](scaffold-identity/consoleAddUser/Data/SeedData.cs?name=snippet)]
 
-<span data-ttu-id="82a02-302">프로덕션 시나리오의 경우 유사한 접근 방식을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="82a02-302">A similar approach can be followed for production scenarios.</span></span>
+<span data-ttu-id="84b9f-302">프로덕션 시나리오의 경우 유사한 접근 방식을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="84b9f-302">A similar approach can be followed for production scenarios.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="82a02-303">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="82a02-303">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="84b9f-303">추가 자료</span><span class="sxs-lookup"><span data-stu-id="84b9f-303">Additional resources</span></span>
 
-* [<span data-ttu-id="82a02-304">ASP.NET Core 2.1 이상으로 인증 코드 변경</span><span class="sxs-lookup"><span data-stu-id="82a02-304">Changes to authentication code to ASP.NET Core 2.1 and later</span></span>](xref:migration/20_21#changes-to-authentication-code)
+* [<span data-ttu-id="84b9f-304">ASP.NET Core 2.1 이상으로 인증 코드 변경</span><span class="sxs-lookup"><span data-stu-id="84b9f-304">Changes to authentication code to ASP.NET Core 2.1 and later</span></span>](xref:migration/20_21#changes-to-authentication-code)
 
 ::: moniker-end

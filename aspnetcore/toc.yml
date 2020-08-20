@@ -1156,7 +1156,7 @@
       uid: security/anti-request-forgery
     - name: 오픈 리디렉션 공격 방지
       uid: security/preventing-open-redirects
-    - name: 사이트 간 스크립팅 방지
+    - name: 사이트 간 스크립팅 방지(XSS)
       uid: security/cross-site-scripting
     - name: 원본 간 요청(CORS) 사용
       uid: security/cors
