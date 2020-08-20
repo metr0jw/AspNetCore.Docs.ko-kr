@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/03/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/file-uploads
-ms.openlocfilehash: a11e6325143b9db57d6fbd1cd67478dc1dd6122d
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 93ffa3a5313e63a1e9b98fb5bf9788944254213f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021252"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635218"
 ---
 # <a name="upload-files-in-aspnet-core"></a>ASP.NET Core에서 파일 업로드
 
@@ -111,7 +112,7 @@ ASP.NET Core는 소용량 파일의 경우에는 버퍼링된 모델 바인딩�
 소용량 파일 버퍼링은 이 항목의 다음 섹션에서 설명합니다.
 
 * [물리적 스토리지](#upload-small-files-with-buffered-model-binding-to-physical-storage)
-* [데이터베이스](#upload-small-files-with-buffered-model-binding-to-a-database)
+* [Database](#upload-small-files-with-buffered-model-binding-to-a-database)
 
 **스트리밍**
 
@@ -193,7 +194,7 @@ ASP.NET Core는 소용량 파일의 경우에는 버퍼링된 모델 바인딩�
 [Fetch API](https://caniuse.com/#feat=fetch)를 지원하지 않는 클라이언트에 대해 JavaScript로 양식 POST를 수행하려면 다음 방법 중 하나를 사용합니다.
 
 * Fetch Polyfill(예: [window.fetch polyfill (github/fetch)](https://github.com/github/fetch))을 사용합니다.
-* `XMLHttpRequest`을 사용합니다. 예:
+* `XMLHttpRequest`을 사용합니다. 다음은 그 예입니다. 
 
   ```javascript
   <script>
@@ -466,7 +467,7 @@ EF Core를 사용하여 데이터베이스에 스트리밍하기 위한 전체 `
 
 ### <a name="file-extension-validation"></a>파일 확장명 유효성 검사
 
-업로드된 파일의 확장명을 허용된 확장명 목록에 따라 확인해야 합니다. 예:
+업로드된 파일의 확장명을 허용된 확장명 목록에 따라 확인해야 합니다. 다음은 그 예입니다. 
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -512,7 +513,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 
 실제 스토리지에 파일을 저장하는 데 클라이언트에서 제공하는 파일 이름을 사용하지 마세요. [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) 또는 [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*)을 사용하여 임시 스토리지에 대한 전체 경로(파일 이름을 포함)를 만들어 파일에 대한 안전한 파일 이름을 만듭니다.
 
-Razor자동으로 표시 하기 위해 속성 값을 인코딩합니다. 다음 코드는 안전하게 사용할 수 있습니다.
+Razor 자동으로 표시 하기 위해 속성 값을 인코딩합니다. 다음 코드는 안전하게 사용할 수 있습니다.
 
 ```cshtml
 @foreach (var file in Model.DatabaseFiles) {
@@ -569,7 +570,7 @@ if (formFile.Length > _fileSizeLimit)
 
 폼 데이터를 Razor 게시 하거나 JavaScript를 직접 사용 하는 형식이 아닌 `FormData` 경우 폼의 요소에 지정 된 이름이 나 `FormData` 컨트롤러 작업의 매개 변수 이름과 일치 해야 합니다.
 
-다음 예제에서,
+다음 예제에서는
 
 * `<input>` 요소를 사용하는 경우 `name` 특성은 값 `battlePlans`로 설정됩니다.
 
@@ -838,7 +839,7 @@ ASP.NET Core는 소용량 파일의 경우에는 버퍼링된 모델 바인딩�
 소용량 파일 버퍼링은 이 항목의 다음 섹션에서 설명합니다.
 
 * [물리적 스토리지](#upload-small-files-with-buffered-model-binding-to-physical-storage)
-* [데이터베이스](#upload-small-files-with-buffered-model-binding-to-a-database)
+* [Database](#upload-small-files-with-buffered-model-binding-to-a-database)
 
 **스트리밍**
 
@@ -920,7 +921,7 @@ ASP.NET Core는 소용량 파일의 경우에는 버퍼링된 모델 바인딩�
 [Fetch API](https://caniuse.com/#feat=fetch)를 지원하지 않는 클라이언트에 대해 JavaScript로 양식 POST를 수행하려면 다음 방법 중 하나를 사용합니다.
 
 * Fetch Polyfill(예: [window.fetch polyfill (github/fetch)](https://github.com/github/fetch))을 사용합니다.
-* `XMLHttpRequest`을 사용합니다. 예:
+* `XMLHttpRequest`을 사용합니다. 다음은 그 예입니다. 
 
   ```javascript
   <script>
@@ -1193,7 +1194,7 @@ EF Core를 사용하여 데이터베이스에 스트리밍하기 위한 전체 `
 
 ### <a name="file-extension-validation"></a>파일 확장명 유효성 검사
 
-업로드된 파일의 확장명을 허용된 확장명 목록에 따라 확인해야 합니다. 예:
+업로드된 파일의 확장명을 허용된 확장명 목록에 따라 확인해야 합니다. 다음은 그 예입니다. 
 
 ```csharp
 private string[] permittedExtensions = { ".txt", ".pdf" };
@@ -1239,7 +1240,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 
 실제 스토리지에 파일을 저장하는 데 클라이언트에서 제공하는 파일 이름을 사용하지 마세요. [Path.GetRandomFileName](xref:System.IO.Path.GetRandomFileName*) 또는 [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*)을 사용하여 임시 스토리지에 대한 전체 경로(파일 이름을 포함)를 만들어 파일에 대한 안전한 파일 이름을 만듭니다.
 
-Razor자동으로 표시 하기 위해 속성 값을 인코딩합니다. 다음 코드는 안전하게 사용할 수 있습니다.
+Razor 자동으로 표시 하기 위해 속성 값을 인코딩합니다. 다음 코드는 안전하게 사용할 수 있습니다.
 
 ```cshtml
 @foreach (var file in Model.DatabaseFiles) {
@@ -1296,7 +1297,7 @@ if (formFile.Length > _fileSizeLimit)
 
 폼 데이터를 Razor 게시 하거나 JavaScript를 직접 사용 하는 형식이 아닌 `FormData` 경우 폼의 요소에 지정 된 이름이 나 `FormData` 컨트롤러 작업의 매개 변수 이름과 일치 해야 합니다.
 
-다음 예제에서,
+다음 예제에서는
 
 * `<input>` 요소를 사용하는 경우 `name` 특성은 값 `battlePlans`로 설정됩니다.
 
@@ -1478,7 +1479,7 @@ The request filtering module is configured to deny a request that exceeds the re
 ::: moniker-end
 
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [HTTP 연결 요청 드레이닝](xref:fundamentals/servers/kestrel#http11-request-draining)
 * [무제한 파일 업로드](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)

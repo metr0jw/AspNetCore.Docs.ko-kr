@@ -1,5 +1,5 @@
 ---
-title: RazorASP.NET Core의 페이지 권한 부여 규칙
+title: Razor ASP.NET Core의 페이지 권한 부여 규칙
 author: rick-anderson
 description: 사용자에 게 권한을 부여 하 고 익명 사용자가 페이지 또는 페이지의 폴더에 액세스 하도록 허용 하는 규칙으로 페이지에 대 한 액세스를 제어 하는 방법을 알아봅니다.
 monikerRange: '>= aspnetcore-2.1'
@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/12/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,14 +18,14 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/razor-pages-authorization
-ms.openlocfilehash: 5e0c76ea6c6b4af8e24693b1bfe8ac28bf2ce3a9
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b17717e7b3cbaa64d4ff00661f15439728f161d3
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022279"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634893"
 ---
-# <a name="no-locrazor-pages-authorization-conventions-in-aspnet-core"></a>RazorASP.NET Core의 페이지 권한 부여 규칙
+# <a name="no-locrazor-pages-authorization-conventions-in-aspnet-core"></a>Razor ASP.NET Core의 페이지 권한 부여 규칙
 
 ::: moniker range=">= aspnetcore-3.0"
 
@@ -32,7 +33,7 @@ ms.locfileid: "88022279"
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
-샘플 앱은 [ cookie ASP.NET Core Identity 없이 인증 ](xref:security/authentication/cookie)을 사용 합니다. 이 항목에 표시 된 개념과 예제는 ASP.NET Core를 사용 하는 앱에 동일 하 게 적용 Identity 됩니다. ASP.NET Core를 사용 하려면 Identity 의 지침을 따르세요 <xref:security/authentication/identity> .
+샘플 앱은 [ cookie 없이 ASP.NET Core Identity 인증 ](xref:security/authentication/cookie)을 사용 합니다. 이 항목에 표시 된 개념과 예제는를 사용 하는 앱에 동일 하 게 적용 ASP.NET Core Identity 됩니다. 를 사용 하려면 ASP.NET Core Identity 의 지침을 따르세요 <xref:security/authentication/identity> .
 
 ## <a name="require-authorization-to-access-a-page"></a>페이지에 액세스 하기 위한 권한 부여 필요
 
@@ -131,7 +132,7 @@ options.Conventions.AuthorizeAreaFolder("Identity", "/Manage", "AtLeast21");
 
 개인 페이지에 대 한 권한 부여가 실패 합니다. <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter>및 <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> 가 모두 페이지에 적용 되 면가 <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> 우선 하 고 액세스를 제어 합니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection>
@@ -144,7 +145,7 @@ options.Conventions.AuthorizeAreaFolder("Identity", "/Manage", "AtLeast21");
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authorization/razor-pages-authorization/samples) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
-샘플 앱은 [ cookie ASP.NET Core Identity 없이 인증 ](xref:security/authentication/cookie)을 사용 합니다. 이 항목에 표시 된 개념과 예제는 ASP.NET Core를 사용 하는 앱에 동일 하 게 적용 Identity 됩니다. ASP.NET Core를 사용 하려면 Identity 의 지침을 따르세요 <xref:security/authentication/identity> .
+샘플 앱은 [ cookie 없이 ASP.NET Core Identity 인증 ](xref:security/authentication/cookie)을 사용 합니다. 이 항목에 표시 된 개념과 예제는를 사용 하는 앱에 동일 하 게 적용 ASP.NET Core Identity 됩니다. 를 사용 하려면 ASP.NET Core Identity 의 지침을 따르세요 <xref:security/authentication/identity> .
 
 ## <a name="require-authorization-to-access-a-page"></a>페이지에 액세스 하기 위한 권한 부여 필요
 
@@ -243,7 +244,7 @@ options.Conventions.AuthorizeAreaFolder("Identity", "/Manage", "AtLeast21");
 
 개인 페이지에 대 한 권한 부여가 실패 합니다. <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter>및 <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> 가 모두 페이지에 적용 되 면가 <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> 우선 하 고 액세스를 제어 합니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:razor-pages/razor-pages-conventions>
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection>

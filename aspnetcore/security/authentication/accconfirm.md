@@ -5,6 +5,7 @@ description: 전자 메일 확인 및 암호 재설정을 사용 하 여 ASP.NET
 ms.author: riande
 ms.date: 03/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 7016c2c1997d961f4b3d3cf513fc1769bd65247b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 57607390e7d5e58df9f27437faecd57504ad64df
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021616"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635374"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>ASP.NET Core의 계정 확인 및 암호 복구
 
@@ -36,7 +37,7 @@ ms.locfileid: "88021616"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>사전 요구 사항
 
 [.NET Core 3.0 SDK 이상](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
@@ -52,7 +53,7 @@ dotnet run
 
 앱을 실행 하 고, **등록** 링크를 선택 하 고, 사용자를 등록 합니다. 등록 되 면 `/Identity/Account/RegisterConfirmation` 전자 메일 확인을 시뮬레이트하는 링크를 포함 하는 to 페이지로 리디렉션됩니다.
 
-* 링크를 선택 `Click here to confirm your account` 합니다.
+* `Click here to confirm your account` 링크를 선택합니다.
 * **로그인** 링크를 선택 하 고 동일한 자격 증명을 사용 하 여 로그인 합니다.
 * `Hello YourEmail@provider.com!`페이지로 리디렉션되는 링크를 선택 합니다 `/Identity/Account/Manage/PersonalData` .
 * 왼쪽에서 **개인 데이터** 탭을 선택 하 고 **삭제**를 선택 합니다.
@@ -69,7 +70,7 @@ SendGrid 계정에는 [발신자를 추가](https://sendgrid.com/docs/ui/sending
 
 #### <a name="configure-sendgrid-user-secrets"></a>SendGrid 사용자 비밀 구성
 
-`SendGridUser` `SendGridKey` [암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 및를 설정 합니다. 예:
+`SendGridUser` `SendGridKey` [암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 및를 설정 합니다. 다음은 그 예입니다. 
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -78,9 +79,9 @@ dotnet user-secrets set SendGridKey <key>
 Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-Windows에서 Secret Manager는 디렉터리의 파일 *에 있는secrets.js* 의 키/값 쌍을 저장 `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` 합니다.
+Windows에서 Secret Manager는 디렉터리의 파일 * 에 있는secrets.js* 의 키/값 쌍을 저장 `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` 합니다.
 
-파일의 *secrets.js* 내용이 암호화 되지 않았습니다. 다음 태그는 파일 *의secrets.js* 을 보여 줍니다. `SendGridKey`값이 제거 되었습니다.
+파일의 *secrets.js* 내용이 암호화 되지 않았습니다. 다음 태그는 파일 * 의secrets.js* 을 보여 줍니다. `SendGridKey`값이 제거 되었습니다.
 
 ```json
 {
@@ -233,11 +234,11 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 
 ::: moniker range="< aspnetcore-3.0"
 
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>사전 요구 사항
 
 [.NET Core 2.2 SDK 이상](https://dotnet.microsoft.com/download/dotnet-core)
 
-## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>웹 앱 및 스 캐 폴드 만들기Identity
+## <a name="create-a-web--app-and-scaffold-no-locidentity"></a>웹 앱 및 스 캐 폴드 만들기 Identity
 
 다음 명령을 실행 하 여 인증을 사용 하는 웹 앱을 만듭니다.
 
@@ -277,7 +278,7 @@ dotnet run
 
 [!code-csharp[](accconfirm/sample/WebPWrecover22/Startup.cs?name=snippet1&highlight=8-11)]
 
-`config.SignIn.RequireConfirmedEmail = true;`등록 된 사용자가 전자 메일을 확인할 때까지 로그인 하지 못하도록 합니다.
+`config.SignIn.RequireConfirmedEmail = true;` 등록 된 사용자가 전자 메일을 확인할 때까지 로그인 하지 못하도록 합니다.
 
 ### <a name="configure-email-provider"></a>전자 메일 공급자 구성
 
@@ -289,16 +290,16 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>SendGrid 사용자 비밀 구성
 
-`SendGridUser` `SendGridKey` [암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 및를 설정 합니다. 예:
+`SendGridUser` `SendGridKey` [암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 및를 설정 합니다. 다음은 그 예입니다. 
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
 info: Successfully saved SendGridUser = RickAndMSFT to the secret store.
 ```
 
-Windows에서 Secret Manager는 디렉터리의 파일 *에 있는secrets.js* 의 키/값 쌍을 저장 `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` 합니다.
+Windows에서 Secret Manager는 디렉터리의 파일 * 에 있는secrets.js* 의 키/값 쌍을 저장 `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` 합니다.
 
-파일의 *secrets.js* 내용이 암호화 되지 않았습니다. 다음 태그는 파일 *의secrets.js* 을 보여 줍니다. `SendGridKey`값이 제거 되었습니다.
+파일의 *secrets.js* 내용이 암호화 되지 않았습니다. 다음 태그는 파일 * 의secrets.js* 을 보여 줍니다. `SendGridKey`값이 제거 되었습니다.
 
 ```json
 {

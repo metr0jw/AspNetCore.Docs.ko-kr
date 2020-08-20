@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 04/02/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: web-api/jsonpatch
-ms.openlocfilehash: 09da557d678889ba16abe6f9af40ae1b33583d8b
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e57c5185323305ccbef7960653c9174931e45d75
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022370"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635400"
 ---
 # <a name="jsonpatch-in-aspnet-core-web-api"></a>ASP.NET Core Web API의 JsonPatch
 
@@ -36,7 +37,7 @@ ms.locfileid: "88022370"
 앱에서 JSON 패치 지원을 사용 하도록 설정 하려면 다음 단계를 완료 합니다.
 
 1. [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson/)NuGet 패키지를 설치 합니다.
-1. 프로젝트의 메서드를 업데이트 `Startup.ConfigureServices` 하 여를 호출 <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> 합니다. 예:
+1. 프로젝트의 메서드를 업데이트 `Startup.ConfigureServices` 하 여를 호출 <xref:Microsoft.Extensions.DependencyInjection.NewtonsoftJsonMvcBuilderExtensions.AddNewtonsoftJson*> 합니다. 다음은 그 예입니다. 
 
     ```csharp
     services
@@ -112,7 +113,7 @@ JSON 패치 문서를 리소스에 적용 하 여 변경한 내용은 원자성�
 
 ## <a name="path-syntax"></a>경로 구문
 
-작업 개체의 [path](https://tools.ietf.org/html/rfc6901) 속성에서 수준 사이에는 슬래시가 있습니다. 정의합니다(예: `"/address/zipCode"`).
+작업 개체의 [path](https://tools.ietf.org/html/rfc6901) 속성에서 수준 사이에는 슬래시가 있습니다. 예들 들어 `"/address/zipCode"`입니다.
 
 0부터 시작하는 인덱스는 배열 요소를 지정하는 데 사용됩니다. `addresses` 배열의 첫 번째 요소는 `/addresses/0`에 있습니다. 배열의 끝에 대 한 `add` `-` 인덱스 번호 대신 하이픈 ()을 사용 `/addresses/-` 합니다.
 
@@ -120,7 +121,7 @@ JSON 패치 문서를 리소스에 적용 하 여 변경한 내용은 원자성�
 
 다음 표에서는 [JSON 패치 사양](https://tools.ietf.org/html/rfc6902)에 정의된 지원되는 작업을 보여 줍니다.
 
-|연산  | 참고 |
+|작업(Operation)  | 메모 |
 |-----------|--------------------------------|
 | `add`     | 속성 또는 배열 요소를 추가합니다. 기존 속성의 경우 값을 설정합니다.|
 | `remove`  | 속성 또는 배열 요소를 제거합니다. |
@@ -258,7 +259,7 @@ API 컨트롤러에서 JSON 패치의 작업 메서드는 다음과 같습니다
 * 헤더: `Content-Type: application/json-patch+json`
 * Body: *json 프로젝트 폴더에서 json 패치* 문서 샘플 중 하나를 복사 하 여 붙여넣습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [IETF RFC 5789 PATCH 메서드 사양](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON 패치 사양](https://tools.ietf.org/html/rfc6902)
@@ -324,7 +325,7 @@ JSON 패치 문서를 리소스에 적용하여 변경된 내용은 원자성입
 
 ## <a name="path-syntax"></a>경로 구문
 
-작업 개체의 [path](https://tools.ietf.org/html/rfc6901) 속성에서 수준 사이에는 슬래시가 있습니다. 정의합니다(예: `"/address/zipCode"`).
+작업 개체의 [path](https://tools.ietf.org/html/rfc6901) 속성에서 수준 사이에는 슬래시가 있습니다. 예들 들어 `"/address/zipCode"`입니다.
 
 0부터 시작하는 인덱스는 배열 요소를 지정하는 데 사용됩니다. `addresses` 배열의 첫 번째 요소는 `/addresses/0`에 있습니다. 배열 끝에 `add`(추가)하려면 인덱스 번호가 아닌 하이픈(-)을 사용합니다(`/addresses/-`).
 
@@ -332,7 +333,7 @@ JSON 패치 문서를 리소스에 적용하여 변경된 내용은 원자성입
 
 다음 표에서는 [JSON 패치 사양](https://tools.ietf.org/html/rfc6902)에 정의된 지원되는 작업을 보여 줍니다.
 
-|연산  | 참고 |
+|작업(Operation)  | 메모 |
 |-----------|--------------------------------|
 | `add`     | 속성 또는 배열 요소를 추가합니다. 기존 속성의 경우 값을 설정합니다.|
 | `remove`  | 속성 또는 배열 요소를 제거합니다. |
@@ -470,7 +471,7 @@ API 컨트롤러에서 JSON 패치의 작업 메서드는 다음과 같습니다
 * 헤더: `Content-Type: application/json-patch+json`
 * Body: *json 프로젝트 폴더에서 json 패치* 문서 샘플 중 하나를 복사 하 여 붙여넣습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [IETF RFC 5789 PATCH 메서드 사양](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON 패치 사양](https://tools.ietf.org/html/rfc6902)

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 04/06/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 0d99c5881b1ca786287d8643c82cab6a3f98f988
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 94ae9e52ed99c3fe8e7044f474cdf5b702dc5adf
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019861"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634464"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>ASP.NET Core 성능 모범 사례
 
@@ -31,7 +32,7 @@ ms.locfileid: "88019861"
 
 ## <a name="cache-aggressively"></a>적극적으로 캐시
 
-캐싱은이 문서의 여러 부분에서 설명 합니다. 자세한 내용은 <xref:performance/caching/response>를 참조하세요.
+캐싱은이 문서의 여러 부분에서 설명 합니다. 자세한 내용은 <xref:performance/caching/response>을 참조하세요.
 
 ## <a name="understand-hot-code-paths"></a>핫 코드 경로 이해
 
@@ -83,7 +84,7 @@ ASP.NET Core 앱의 일반적인 성능 문제는 비동기 일 수 있는 호�
 
 * 모든 데이터 액세스 Api를 비동기적 **으로 호출 합니다** .
 * 필요한 것 보다 더 많은 데이터를 검색 **하지** 않습니다. 현재 HTTP 요청에 필요한 데이터만 반환 하는 쿼리를 작성 합니다.
-* 약간 오래 된 데이터를 사용할 수 있는 경우 데이터베이스 또는 원격 서비스에서 검색 되는 자주 액세스 하는 데이터를 캐시 하 **는 것이 좋습니다.** 시나리오에 따라 [Memorycache](xref:performance/caching/memory) 또는 [microsoft.web.distributedcache](xref:performance/caching/distributed)를 사용 합니다. 자세한 내용은 <xref:performance/caching/response>를 참조하세요.
+* 약간 오래 된 데이터를 사용할 수 있는 경우 데이터베이스 또는 원격 서비스에서 검색 되는 자주 액세스 하는 데이터를 캐시 하 **는 것이 좋습니다.** 시나리오에 따라 [Memorycache](xref:performance/caching/memory) 또는 [microsoft.web.distributedcache](xref:performance/caching/distributed)를 사용 합니다. 자세한 내용은 <xref:performance/caching/response>을 참조하세요.
 * 네트워크 왕복 **을 최소화 합니다** . 목표는 여러 호출이 아닌 단일 호출에서 필요한 데이터를 검색 하는 것입니다.
 * 읽기 전용 용도로 데이터에 액세스할 때 Entity Framework Core에서 [추적 안 함 쿼리](/ef/core/querying/tracking#no-tracking-queries) **를 사용 합니다** . EF Core 추적 되지 않는 쿼리 결과를 보다 효율적으로 반환할 수 있습니다.
 * LINQ 쿼리 (예:, 또는 문 포함) **를 필터링 하** 고 집계 `.Where` 하 여 `.Select` `.Sum` 데이터베이스에서 필터링을 수행 하도록 합니다.
@@ -110,7 +111,7 @@ ASP.NET Core 앱의 일반적인 성능 문제는 비동기 일 수 있는 호�
 
 ## <a name="keep-common-code-paths-fast"></a>자주 공용 코드 경로 유지
 
-모든 코드를 빠르게 만들려고 합니다. 자주 호출 되는 코드 경로를 최적화 하는 것이 가장 중요 합니다. 내용은 다음과 같습니다.
+모든 코드를 빠르게 만들려고 합니다. 자주 호출 되는 코드 경로를 최적화 하는 것이 가장 중요 합니다. 여기에는 다음이 포함됩니다.
 
 * 앱의 요청 처리 파이프라인에 있는 미들웨어 구성 요소, 특히 미들웨어는 파이프라인 초기에 실행 됩니다. 이러한 구성 요소는 성능에 큰 영향을 줍니다.
 * 요청 마다 또는 요청 마다 여러 번 실행 되는 코드입니다. 예를 들어 사용자 지정 로깅, 권한 부여 처리기 또는 임시 서비스 초기화가 있습니다.
@@ -195,10 +196,10 @@ ASP.NET Core의 모든 i/o는 비동기입니다. 서버는 `Stream` 동기 및 
 ## <a name="prefer-readformasync-over-requestform"></a>요청을 통해 ReadFormAsync를 선호 합니다.
 
 `HttpContext.Request.Form` 대신 `HttpContext.Request.ReadFormAsync`을(를) 사용합니다.
-`HttpContext.Request.Form`는 다음과 같은 경우에만 안전 하 게 읽을 수 있습니다.
+`HttpContext.Request.Form` 는 다음과 같은 경우에만 안전 하 게 읽을 수 있습니다.
 
 * 을 호출 하 여 폼을 읽은 `ReadFormAsync` 경우
-* 캐시 된 형식 값을 사용 하 여 읽고 있습니다.`HttpContext.Request.Form`
+* 캐시 된 형식 값을 사용 하 여 읽고 있습니다. `HttpContext.Request.Form`
 
 **이 작업을 수행 하지 마십시오.** 다음 예에서는를 사용 `HttpContext.Request.Form` 합니다.  `HttpContext.Request.Form`[비동기를 통한 동기화](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ) 를 사용 하 고 스레드 풀 고갈를 발생 시킬 수 있습니다.
@@ -229,7 +230,7 @@ ASP.NET Core의 모든 i/o는 비동기입니다. 서버는 `Stream` 동기 및 
 
 ## <a name="working-with-a-synchronous-data-processing-api"></a>동기 데이터 처리 API 작업
 
-동기 읽기 및 쓰기를 지 원하는 serializer/직렬 변환기를 사용 하는 경우 (예: [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
+동기 읽기 및 쓰기를 지 원하는 serializer/직렬 변환기를 사용 하는 경우 (예:  [JSON.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)):
 
 * 데이터를 직렬 변환기/역직렬화로 전달 하기 전에 비동기적으로 메모리에 버퍼링 합니다.
 
@@ -261,7 +262,7 @@ ASP.NET Core 3.0는 <xref:System.Text.Json> 기본적으로 JSON serialization�
 
 ## <a name="do-not-access-httpcontext-from-multiple-threads"></a>여러 스레드에서 HttpContext에 액세스 하지 않음
 
-`HttpContext`는 스레드로부터 안전 *하지 않습니다* . `HttpContext`여러 스레드에서 병렬로 액세스 하면 중단, 충돌 및 데이터 손상과 같은 정의 되지 않은 동작이 발생할 수 있습니다.
+`HttpContext` 는 스레드로부터 안전 *하지 않습니다* . `HttpContext`여러 스레드에서 병렬로 액세스 하면 중단, 충돌 및 데이터 손상과 같은 정의 되지 않은 동작이 발생할 수 있습니다.
 
 **이 작업을 수행 하지 마십시오.** 다음 예제에서는 세 개의 병렬 요청을 만들고 나가는 HTTP 요청 전후에 들어오는 요청 경로를 로깅합니다. 요청 경로는 여러 스레드에서 동시에 액세스할 수 있습니다.
 
@@ -273,7 +274,7 @@ ASP.NET Core 3.0는 <xref:System.Text.Json> 기본적으로 JSON serialization�
 
 ## <a name="do-not-use-the-httpcontext-after-the-request-is-complete"></a>요청이 완료 된 후에 HttpContext를 사용 하지 마십시오.
 
-`HttpContext`는 ASP.NET Core 파이프라인에 활성 HTTP 요청이 있는 경우에만 유효 합니다. 전체 ASP.NET Core 파이프라인은 모든 요청을 실행 하는 대리자의 비동기 체인입니다. `Task`이 체인에서 반환 된이 완료 되 면이 `HttpContext` 재활용 됩니다.
+`HttpContext` 는 ASP.NET Core 파이프라인에 활성 HTTP 요청이 있는 경우에만 유효 합니다. 전체 ASP.NET Core 파이프라인은 모든 요청을 실행 하는 대리자의 비동기 체인입니다. `Task`이 체인에서 반환 된이 완료 되 면이 `HttpContext` 재활용 됩니다.
 
 **이 작업을 수행 하지 마십시오.** 다음 예에서는를 사용 하 여 `async void` 첫 번째에 도달할 때 HTTP 요청이 완료 되도록 합니다 `await` .
 
@@ -313,7 +314,7 @@ ASP.NET Core 3.0는 <xref:System.Text.Json> 기본적으로 JSON serialization�
 
 **다음 작업을 수행 합니다.** 다음 예제를 수행 합니다.
 
-* <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory>백그라운드 작업 항목에서 범위를 만들기 위해를 삽입 합니다. `IServiceScopeFactory`는 단일 항목입니다.
+* <xref:Microsoft.Extensions.DependencyInjection.IServiceScopeFactory>백그라운드 작업 항목에서 범위를 만들기 위해를 삽입 합니다. `IServiceScopeFactory` 는 단일 항목입니다.
 * 백그라운드 스레드에서 새 종속성 주입 범위를 만듭니다.
 * 는 컨트롤러에서 아무것도 참조 하지 않습니다.
 * `ContosoDbContext`들어오는 요청에서를 캡처하지 않습니다.

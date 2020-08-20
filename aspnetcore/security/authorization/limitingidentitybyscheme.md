@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/limitingidentitybyscheme
-ms.openlocfilehash: 66b307a3629e18e49b5bb6e65a156054c0002ba8
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: f52f6ec9c557add2c66105397eb2733a0dcb9e87
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022110"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635192"
 ---
 # <a name="authorize-with-a-specific-scheme-in-aspnet-core"></a>ASP.NET Core에서 특정 체계를 사용 하 여 권한 부여
 
 SPAs (단일 페이지 응용 프로그램)와 같은 일부 시나리오에서는 여러 인증 방법을 사용 하는 것이 일반적입니다. 예를 들어 앱은 cookie 기반 인증을 사용 하 여 JavaScript 요청에 대 한 JWT 전달자 인증 및 로그인을 사용할 수 있습니다. 경우에 따라 앱에 인증 처리기의 인스턴스가 여러 개 있을 수 있습니다. 예를 들어, cookie 하나는 기본 id를 포함 하 고 다른 하나는 MFA (multi-factor authentication)가 트리거될 때 생성 되는 두 개의 처리기입니다. 사용자가 추가 보안이 필요한 작업을 요청 하 여 MFA를 트리거할 수 있습니다. 사용자가 MFA를 요구 하는 리소스를 요청할 때 MFA를 적용 하는 방법에 대 한 자세한 내용은 MFA를 사용 하 여 GitHub 문제 [보호 섹션](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195)을 참조 하세요.
 
-인증 체계는 인증 중에 인증 서비스가 구성 될 때 이름이 지정 됩니다. 예:
+인증 체계는 인증 중에 인증 서비스가 구성 될 때 이름이 지정 됩니다. 다음은 그 예입니다. 
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -52,7 +53,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="selecting-the-scheme-with-the-authorize-attribute"></a>권한 부여 특성이 있는 체계 선택
 
-권한 부여 시점에서 앱은 사용할 처리기를 나타냅니다. 쉼표로 구분 된 인증 체계 목록을에 전달 하 여 앱에 권한을 부여 하는 처리기를 선택 `[Authorize]` 합니다. `[Authorize]`특성은 기본값이 구성 되어 있는지 여부에 관계 없이 사용할 인증 체계 또는 체계를 지정 합니다. 예:
+권한 부여 시점에서 앱은 사용할 처리기를 나타냅니다. 쉼표로 구분 된 인증 체계 목록을에 전달 하 여 앱에 권한을 부여 하는 처리기를 선택 `[Authorize]` 합니다. `[Authorize]`특성은 기본값이 구성 되어 있는지 여부에 관계 없이 사용할 인증 체계 또는 체계를 지정 합니다. 다음은 그 예입니다. 
 
 ```csharp
 [Authorize(AuthenticationSchemes = AuthSchemes)]
@@ -128,7 +129,7 @@ public void ConfigureServices(IServiceCollection services)
 > [!NOTE]
 > 기본 인증 체계에는 하나의 JWT 전달자 인증만 등록 됩니다 `JwtBearerDefaults.AuthenticationScheme` . 추가 인증은 고유한 인증 체계를 사용 하 여 등록 해야 합니다.
 
-다음 단계는 두 인증 체계를 모두 허용 하도록 기본 권한 부여 정책을 업데이트 하는 것입니다. 예:
+다음 단계는 두 인증 체계를 모두 허용 하도록 기본 권한 부여 정책을 업데이트 하는 것입니다. 다음은 그 예입니다. 
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

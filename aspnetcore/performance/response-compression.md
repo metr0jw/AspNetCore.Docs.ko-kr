@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/response-compression
-ms.openlocfilehash: 1dd931d0ee654b888814df8a0d0675d32b5c3a20
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b8947e3c3c4f634fbd838c22ff60799257143480
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020966"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634997"
 ---
 # <a name="response-compression-in-aspnet-core"></a>ASP.NET Core 응답 압축
 
@@ -52,14 +53,14 @@ IIS, Apache 또는 Nginx에서 서버 기반 응답 압축 기술을 사용 합�
 
 클라이언트가 압축 된 콘텐츠를 처리할 수 있는 경우 클라이언트는 요청과 함께 헤더를 전송 하 여 해당 기능을 서버에 알려야 합니다 `Accept-Encoding` . 서버는 압축 된 콘텐츠를 보낼 때 `Content-Encoding` 압축 된 응답의 인코딩 방법에 대 한 정보를 헤더에 포함 해야 합니다. 미들웨어에서 지 원하는 콘텐츠 인코딩 명칭은 다음 표에 나와 있습니다.
 
-| `Accept-Encoding`헤더 값 | 미들웨어 지원 | 설명 |
+| `Accept-Encoding` 헤더 값 | 미들웨어 지원 | Description |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | 예(‘기본값’)        | [Brotli 압축 된 데이터 형식](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | 아니요                   | [DEFLATE 압축 데이터 형식](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | 아니요                   | [W3C 효율적인 XML 교환](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `deflate`                       | 예                   | [DEFLATE 압축 데이터 형식](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | 예                   | [W3C 효율적인 XML 교환](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | 예                  | [Gzip 파일 형식](https://tools.ietf.org/html/rfc1952) |
 | `identity`                      | 예                  | "인코딩 안 함" 식별자: 응답은 인코딩되지 않아야 합니다. |
-| `pack200-gzip`                  | 아니요                   | [Java 보관을 위한 네트워크 전송 형식](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `pack200-gzip`                  | 예                   | [Java 보관을 위한 네트워크 전송 형식](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
 | `*`                             | 예                  | 명시적으로 요청 되지 않은 모든 사용 가능한 콘텐츠 인코딩입니다. |
 
 자세한 내용은 [IANA 공식 콘텐츠 코딩 목록](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry)을 참조 하세요.
@@ -111,7 +112,7 @@ public class Startup
 
 참고:
 
-* `app.UseResponseCompression`응답을 압축 하는 미들웨어 전에를 호출 해야 합니다. 자세한 내용은 <xref:fundamentals/middleware/index#middleware-order>를 참조하세요.
+* `app.UseResponseCompression` 응답을 압축 하는 미들웨어 전에를 호출 해야 합니다. 자세한 내용은 <xref:fundamentals/middleware/index#middleware-order>을 참조하세요.
 * [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)또는 [postman](https://www.getpostman.com/) 과 같은 도구를 사용 하 여 요청 헤더를 설정 하 `Accept-Encoding` 고 응답 헤더, 크기 및 본문을 연구 합니다.
 
 헤더 없이 샘플 앱에 요청을 제출 `Accept-Encoding` 하 고 응답이 압축 되지 않은 상태 인지 확인 합니다. `Content-Encoding`및 `Vary` 헤더가 응답에 없습니다.
@@ -146,7 +147,7 @@ public void ConfigureServices(IServiceCollection services)
 
 로 압축 수준을 설정 <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> 합니다. Brotli 압축 공급자는 기본적으로 가장 빠른 압축 수준 ([CompressionLevel](xref:System.IO.Compression.CompressionLevel))으로 설정 되며,이는 가장 효율적인 압축을 생성 하지 않을 수 있습니다. 가장 효율적인 압축이 필요한 경우 최적의 압축을 위해 미들웨어를 구성 합니다.
 
-| 압축 수준 | 설명 |
+| 압축 수준 | Description |
 | ----------------- | ----------- |
 | [CompressionLevel](xref:System.IO.Compression.CompressionLevel) | 결과 출력이 최적으로 압축 되지 않은 경우에도 압축이 최대한 빨리 완료 되어야 합니다. |
 | [CompressionLevel 압축](xref:System.IO.Compression.CompressionLevel) | 압축을 수행할 수 없습니다. |
@@ -186,7 +187,7 @@ public void ConfigureServices(IServiceCollection services)
 
 로 압축 수준을 설정 <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> 합니다. Gzip 압축 공급자는 기본적으로 가장 빠른 압축 수준 ([CompressionLevel](xref:System.IO.Compression.CompressionLevel))으로 설정 되며이는 가장 효율적인 압축을 생성 하지 않을 수 있습니다. 가장 효율적인 압축이 필요한 경우 최적의 압축을 위해 미들웨어를 구성 합니다.
 
-| 압축 수준 | 설명 |
+| 압축 수준 | Description |
 | ----------------- | ----------- |
 | [CompressionLevel](xref:System.IO.Compression.CompressionLevel) | 결과 출력이 최적으로 압축 되지 않은 경우에도 압축이 최대한 빨리 완료 되어야 합니다. |
 | [CompressionLevel 압축](xref:System.IO.Compression.CompressionLevel) | 압축을 수행할 수 없습니다. |
@@ -261,7 +262,7 @@ Nginx에서 요청을 프록시 하는 경우 `Accept-Encoding` 헤더가 제거
 * 요청은 헤더를 포함 하지 않아야 합니다 `Content-Range` .
 * 응답 압축 미들웨어 옵션에 보안 프로토콜 (https)이 구성 되지 않은 경우 요청은 안전 하지 않은 프로토콜 (http)을 사용 해야 합니다. *보안 콘텐츠 압축을 사용 하도록 설정할 때 [위에서 설명한](#compression-with-secure-protocol) 위험에 유의 하십시오.*
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
@@ -298,14 +299,14 @@ IIS, Apache 또는 Nginx에서 서버 기반 응답 압축 기술을 사용 합�
 
 클라이언트가 압축 된 콘텐츠를 처리할 수 있는 경우 클라이언트는 요청과 함께 헤더를 전송 하 여 해당 기능을 서버에 알려야 합니다 `Accept-Encoding` . 서버는 압축 된 콘텐츠를 보낼 때 `Content-Encoding` 압축 된 응답의 인코딩 방법에 대 한 정보를 헤더에 포함 해야 합니다. 미들웨어에서 지 원하는 콘텐츠 인코딩 명칭은 다음 표에 나와 있습니다.
 
-| `Accept-Encoding`헤더 값 | 미들웨어 지원 | 설명 |
+| `Accept-Encoding` 헤더 값 | 미들웨어 지원 | Description |
 | ------------------------------- | :------------------: | ----------- |
 | `br`                            | 예(‘기본값’)        | [Brotli 압축 된 데이터 형식](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | 아니요                   | [DEFLATE 압축 데이터 형식](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | 아니요                   | [W3C 효율적인 XML 교환](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `deflate`                       | 예                   | [DEFLATE 압축 데이터 형식](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | 예                   | [W3C 효율적인 XML 교환](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | 예                  | [Gzip 파일 형식](https://tools.ietf.org/html/rfc1952) |
 | `identity`                      | 예                  | "인코딩 안 함" 식별자: 응답은 인코딩되지 않아야 합니다. |
-| `pack200-gzip`                  | 아니요                   | [Java 보관을 위한 네트워크 전송 형식](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `pack200-gzip`                  | 예                   | [Java 보관을 위한 네트워크 전송 형식](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
 | `*`                             | 예                  | 명시적으로 요청 되지 않은 모든 사용 가능한 콘텐츠 인코딩입니다. |
 
 자세한 내용은 [IANA 공식 콘텐츠 코딩 목록](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry)을 참조 하세요.
@@ -357,7 +358,7 @@ public class Startup
 
 참고:
 
-* `app.UseResponseCompression`응답을 압축 하는 미들웨어 전에를 호출 해야 합니다. 자세한 내용은 <xref:fundamentals/middleware/index#middleware-order>를 참조하세요.
+* `app.UseResponseCompression` 응답을 압축 하는 미들웨어 전에를 호출 해야 합니다. 자세한 내용은 <xref:fundamentals/middleware/index#middleware-order>을 참조하세요.
 * [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)또는 [postman](https://www.getpostman.com/) 과 같은 도구를 사용 하 여 요청 헤더를 설정 하 `Accept-Encoding` 고 응답 헤더, 크기 및 본문을 연구 합니다.
 
 헤더 없이 샘플 앱에 요청을 제출 `Accept-Encoding` 하 고 응답이 압축 되지 않은 상태 인지 확인 합니다. `Content-Encoding`및 `Vary` 헤더가 응답에 없습니다.
@@ -392,7 +393,7 @@ public void ConfigureServices(IServiceCollection services)
 
 로 압축 수준을 설정 <xref:Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions> 합니다. Brotli 압축 공급자는 기본적으로 가장 빠른 압축 수준 ([CompressionLevel](xref:System.IO.Compression.CompressionLevel))으로 설정 되며,이는 가장 효율적인 압축을 생성 하지 않을 수 있습니다. 가장 효율적인 압축이 필요한 경우 최적의 압축을 위해 미들웨어를 구성 합니다.
 
-| 압축 수준 | 설명 |
+| 압축 수준 | Description |
 | ----------------- | ----------- |
 | [CompressionLevel](xref:System.IO.Compression.CompressionLevel) | 결과 출력이 최적으로 압축 되지 않은 경우에도 압축이 최대한 빨리 완료 되어야 합니다. |
 | [CompressionLevel 압축](xref:System.IO.Compression.CompressionLevel) | 압축을 수행할 수 없습니다. |
@@ -432,7 +433,7 @@ public void ConfigureServices(IServiceCollection services)
 
 로 압축 수준을 설정 <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> 합니다. Gzip 압축 공급자는 기본적으로 가장 빠른 압축 수준 ([CompressionLevel](xref:System.IO.Compression.CompressionLevel))으로 설정 되며이는 가장 효율적인 압축을 생성 하지 않을 수 있습니다. 가장 효율적인 압축이 필요한 경우 최적의 압축을 위해 미들웨어를 구성 합니다.
 
-| 압축 수준 | 설명 |
+| 압축 수준 | Description |
 | ----------------- | ----------- |
 | [CompressionLevel](xref:System.IO.Compression.CompressionLevel) | 결과 출력이 최적으로 압축 되지 않은 경우에도 압축이 최대한 빨리 완료 되어야 합니다. |
 | [CompressionLevel 압축](xref:System.IO.Compression.CompressionLevel) | 압축을 수행할 수 없습니다. |
@@ -506,7 +507,7 @@ Nginx에서 요청을 프록시 하는 경우 `Accept-Encoding` 헤더가 제거
 * 요청은 헤더를 포함 하지 않아야 합니다 `Content-Range` .
 * 응답 압축 미들웨어 옵션에 보안 프로토콜 (https)이 구성 되지 않은 경우 요청은 안전 하지 않은 프로토콜 (http)을 사용 해야 합니다. *보안 콘텐츠 압축을 사용 하도록 설정할 때 [위에서 설명한](#compression-with-secure-protocol) 위험에 유의 하십시오.*
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
@@ -543,14 +544,14 @@ IIS, Apache 또는 Nginx에서 서버 기반 응답 압축 기술을 사용 합�
 
 클라이언트가 압축 된 콘텐츠를 처리할 수 있는 경우 클라이언트는 요청과 함께 헤더를 전송 하 여 해당 기능을 서버에 알려야 합니다 `Accept-Encoding` . 서버는 압축 된 콘텐츠를 보낼 때 `Content-Encoding` 압축 된 응답의 인코딩 방법에 대 한 정보를 헤더에 포함 해야 합니다. 미들웨어에서 지 원하는 콘텐츠 인코딩 명칭은 다음 표에 나와 있습니다.
 
-| `Accept-Encoding`헤더 값 | 미들웨어 지원 | 설명 |
+| `Accept-Encoding` 헤더 값 | 미들웨어 지원 | Description |
 | ------------------------------- | :------------------: | ----------- |
-| `br`                            | 아니요                   | [Brotli 압축 된 데이터 형식](https://tools.ietf.org/html/rfc7932) |
-| `deflate`                       | 아니요                   | [DEFLATE 압축 데이터 형식](https://tools.ietf.org/html/rfc1951) |
-| `exi`                           | 아니요                   | [W3C 효율적인 XML 교환](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
+| `br`                            | 예                   | [Brotli 압축 된 데이터 형식](https://tools.ietf.org/html/rfc7932) |
+| `deflate`                       | 예                   | [DEFLATE 압축 데이터 형식](https://tools.ietf.org/html/rfc1951) |
+| `exi`                           | 예                   | [W3C 효율적인 XML 교환](https://tools.ietf.org/id/draft-varga-netconf-exi-capability-00.html) |
 | `gzip`                          | 예(‘기본값’)        | [Gzip 파일 형식](https://tools.ietf.org/html/rfc1952) |
 | `identity`                      | 예                  | "인코딩 안 함" 식별자: 응답은 인코딩되지 않아야 합니다. |
-| `pack200-gzip`                  | 아니요                   | [Java 보관을 위한 네트워크 전송 형식](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
+| `pack200-gzip`                  | 예                   | [Java 보관을 위한 네트워크 전송 형식](https://jcp.org/aboutJava/communityprocess/review/jsr200/index.html) |
 | `*`                             | 예                  | 명시적으로 요청 되지 않은 모든 사용 가능한 콘텐츠 인코딩입니다. |
 
 자세한 내용은 [IANA 공식 콘텐츠 코딩 목록](https://www.iana.org/assignments/http-parameters/http-parameters.xml#http-content-coding-registry)을 참조 하세요.
@@ -602,7 +603,7 @@ public class Startup
 
 참고:
 
-* `app.UseResponseCompression`응답을 압축 하는 미들웨어 전에를 호출 해야 합니다. 자세한 내용은 <xref:fundamentals/middleware/index#middleware-order>를 참조하세요.
+* `app.UseResponseCompression` 응답을 압축 하는 미들웨어 전에를 호출 해야 합니다. 자세한 내용은 <xref:fundamentals/middleware/index#middleware-order>을 참조하세요.
 * [Fiddler](https://www.telerik.com/fiddler), [Firebug](https://getfirebug.com/)또는 [postman](https://www.getpostman.com/) 과 같은 도구를 사용 하 여 요청 헤더를 설정 하 `Accept-Encoding` 고 응답 헤더, 크기 및 본문을 연구 합니다.
 
 헤더 없이 샘플 앱에 요청을 제출 `Accept-Encoding` 하 고 응답이 압축 되지 않은 상태 인지 확인 합니다. `Content-Encoding`및 `Vary` 헤더가 응답에 없습니다.
@@ -637,7 +638,7 @@ public void ConfigureServices(IServiceCollection services)
 
 로 압축 수준을 설정 <xref:Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions> 합니다. Gzip 압축 공급자는 기본적으로 가장 빠른 압축 수준 ([CompressionLevel](xref:System.IO.Compression.CompressionLevel))으로 설정 되며이는 가장 효율적인 압축을 생성 하지 않을 수 있습니다. 가장 효율적인 압축이 필요한 경우 최적의 압축을 위해 미들웨어를 구성 합니다.
 
-| 압축 수준 | 설명 |
+| 압축 수준 | Description |
 | ----------------- | ----------- |
 | [CompressionLevel](xref:System.IO.Compression.CompressionLevel) | 결과 출력이 최적으로 압축 되지 않은 경우에도 압축이 최대한 빨리 완료 되어야 합니다. |
 | [CompressionLevel 압축](xref:System.IO.Compression.CompressionLevel) | 압축을 수행할 수 없습니다. |
@@ -711,7 +712,7 @@ Nginx에서 요청을 프록시 하는 경우 `Accept-Encoding` 헤더가 제거
 * 요청은 헤더를 포함 하지 않아야 합니다 `Content-Range` .
 * 응답 압축 미들웨어 옵션에 보안 프로토콜 (https)이 구성 되지 않은 경우 요청은 안전 하지 않은 프로토콜 (http)을 사용 해야 합니다. *보안 콘텐츠 압축을 사용 하도록 설정할 때 [위에서 설명한](#compression-with-secure-protocol) 위험에 유의 하십시오.*
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>

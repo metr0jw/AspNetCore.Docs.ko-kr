@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/11/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/gdpr
-ms.openlocfilehash: 6392a22e316f903da18cd1a91d1eb779d8dde1b3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 35a12cb8d2a9617e51d886e798cff5ee60b0a8ad
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020017"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634711"
 ---
 # <a name="eu-general-data-protection-regulation-gdpr-support-in-aspnet-core"></a>ASP.NET Core의 GDPR (EU 일반 데이터 보호 규정) 지원
 
@@ -67,7 +68,7 @@ cookieASP.NET Core 3.0 템플릿에서 생성 된 앱의 ASP.NET Core 2.2 템플
 
 ## <a name="aspnet-core-gdpr-support-in-template-generated-code"></a>템플릿 생성 코드에서 GDPR 지원 ASP.NET Core
 
-Razor프로젝트 템플릿을 사용 하 여 만든 페이지 및 MVC 프로젝트에는 다음과 같은 GDPR 지원이 포함 됩니다.
+Razor 프로젝트 템플릿을 사용 하 여 만든 페이지 및 MVC 프로젝트에는 다음과 같은 GDPR 지원이 포함 됩니다.
 
 * [ Cookie Policyoptions](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyoptions) 및 [Use Cookie Policy](/dotnet/api/microsoft.aspnetcore.builder.cookiepolicyappbuilderextensions.usecookiepolicy) 는 클래스에 설정 되어 있습니다 `Startup` .
 * * \_ Cookie ConsentPartial* [부분 뷰입니다](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). **수락** 단추가이 파일에 포함 됩니다. 사용자가 **동의** 단추를 클릭 하면 저장소에 대 한 동의가 cookie 제공 됩니다.
@@ -142,20 +143,20 @@ Razor프로젝트 템플릿을 사용 하 여 만든 페이지 및 MVC 프로젝
 * 는 가장 쉽고 안전한 옵션입니다.
 * 데이터베이스에서 키와 암호화를 관리할 수 있습니다.
 
-예:
+다음은 그 예입니다. 
 
 * Microsoft SQL 및 Azure SQL은 tde ( [투명한 데이터 암호화](/sql/relational-databases/security/encryption/transparent-data-encryption) )를 제공 합니다.
 * [SQL Azure는 기본적으로 데이터베이스를 암호화 합니다.](https://azure.microsoft.com/updates/newly-created-azure-sql-databases-encrypted-by-default/)
 * [Azure blob, 파일, 테이블 및 Queue Storage는 기본적으로 암호화 됩니다](https://azure.microsoft.com/blog/announcing-default-encryption-for-azure-blobs-files-table-and-queue-storage/).
 
-미사용 기본 암호화를 제공 하지 않는 데이터베이스의 경우 디스크 암호화를 사용 하 여 동일한 보호를 제공할 수 있습니다. 예:
+미사용 기본 암호화를 제공 하지 않는 데이터베이스의 경우 디스크 암호화를 사용 하 여 동일한 보호를 제공할 수 있습니다. 다음은 그 예입니다. 
 
 * [Windows Server 용 BitLocker](/windows/security/information-protection/bitlocker/bitlocker-how-to-deploy-on-windows-server)
 * Linux:
   * [eCryptfs](https://launchpad.net/ecryptfs)
   * [Encfs](https://github.com/vgough/encfs).
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [Microsoft.com/GDPR](https://www.microsoft.com/trustcenter/Privacy/GDPR)
 * [GDPR-ASP.NET Core에서 해지 동의 단추를 추가 하는 중](https://www.joeaudette.com/blog/2018/08/28/gdpr---adding-a-revoke-consent-button-in-aspnet-core)

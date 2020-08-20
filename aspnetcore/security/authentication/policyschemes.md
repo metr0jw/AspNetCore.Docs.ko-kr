@@ -5,6 +5,7 @@ description: 인증 정책 스키마를 사용 하면 단일 논리 인증 체�
 ms.author: riande
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/policyschemes
-ms.openlocfilehash: ddee613bf9c603542f17adf59a835a2ddbdc25a3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 60ac9914ef811a705c61ab3b2bec61643acc6ec0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017807"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634984"
 ---
 # <a name="policy-schemes-in-aspnet-core"></a>ASP.NET Core의 정책 스키마
 
@@ -36,7 +37,7 @@ ms.locfileid: "88017807"
 
 [!code-csharp[sample](policyschemes/samples/AuthenticationSchemeOptions.cs?name=snippet)]
 
-## <a name="examples"></a>예
+## <a name="examples"></a>예제
 
 다음 예에서는 하위 수준 스키마를 조합 하는 더 높은 수준의 스키마를 보여 줍니다. Google 인증은 챌린지에 사용 되며, cookie 다른 모든 항목에 대해 인증이 사용 됩니다.
 

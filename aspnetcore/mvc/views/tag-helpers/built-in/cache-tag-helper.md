@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
-ms.openlocfilehash: 7d2ff774b7654993e2cd9b126db252f81a3032d3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b1cab7ab8b491529ee4208d92fb30082be795eda
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018756"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635062"
 ---
 # <a name="cache-tag-helper-in-aspnet-core-mvc"></a>ASP.NET Core MVC의 캐시 태그 도우미
 
@@ -75,7 +76,7 @@ Razor현재 날짜를 캐시 하는 태그는 다음과 같습니다.
 
 ### <a name="expires-after"></a>expires-after
 
-| 특성 유형 | 예제                      | Default    |
+| 특성 유형 | 예제                      | 기본값    |
 | -------------- | ---------------------------- | ---------- |
 | `TimeSpan`     | `@TimeSpan.FromSeconds(120)` | 20분 |
 
@@ -109,7 +110,7 @@ Razor뷰 엔진은 기본값 `expires-after` 을 20 분으로 설정 합니다.
 
 ### <a name="vary-by-header"></a>vary-by-header
 
-| 특성 유형 | 예                                    |
+| 특성 유형 | 예제                                    |
 | -------------- | ------------------------------------------- |
 | String         | `User-Agent`, `User-Agent,content-encoding` |
 
@@ -125,7 +126,7 @@ Razor뷰 엔진은 기본값 `expires-after` 을 20 분으로 설정 합니다.
 
 ### <a name="vary-by-query"></a>vary-by-query
 
-| 특성 유형 | 예             |
+| 특성 유형 | 예제             |
 | -------------- | -------------------- |
 | String         | `Make`, `Make,Model` |
 
@@ -141,7 +142,7 @@ Razor뷰 엔진은 기본값 `expires-after` 을 20 분으로 설정 합니다.
 
 ### <a name="vary-by-route"></a>vary-by-route
 
-| 특성 유형 | 예             |
+| 특성 유형 | 예제             |
 | -------------- | -------------------- |
 | String         | `Make`, `Make,Model` |
 
@@ -167,13 +168,13 @@ routes.MapRoute(
 
 ### <a name="vary-by-no-loccookie"></a>다름cookie
 
-| 특성 유형 | 예                                                                         |
+| 특성 유형 | 예제                                                                         |
 | -------------- | -------------------------------------------------------------------------------- |
 | String         | `.AspNetCore.Identity.Application`, `.AspNetCore.Identity.Application,HairColor` |
 
 `vary-by-cookie`cookie값이 변경 될 때 캐시 새로 고침을 트리거하는 쉼표로 구분 된 이름 목록을 허용 cookie 합니다.
 
-다음 예제에서는 ASP.NET Core 연결 된를 모니터링 합니다 cookie Identity . 사용자가 인증 되 면에서 변경 내용이 Identity cookie 캐시 새로 고침을 트리거합니다.
+다음 예에서는와 연결 된를 모니터링 합니다 cookie ASP.NET Core Identity . 사용자가 인증 되 면에서 변경 내용이 Identity cookie 캐시 새로 고침을 트리거합니다.
 
 ```cshtml
 <cache vary-by-cookie=".AspNetCore.Identity.Application">
@@ -250,7 +251,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 
 캐시 태그 도우미는 [메모리 캐시 서비스](xref:performance/caching/memory)에 의존합니다. 해당 서비스가 추가되지 않은 경우 캐시 태그 도우미가 서비스를 추가합니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:performance/caching/memory>
 * <xref:security/authentication/identity>

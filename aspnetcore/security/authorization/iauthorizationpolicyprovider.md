@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/14/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/iauthorizationpolicyprovider
-ms.openlocfilehash: 724b1f065e83302137d920fe4e0e2b381be505b7
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 2d231440847270b3b2fe47fbe29359f494900292
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88022136"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635205"
 ---
 # <a name="custom-authorization-policy-providers-using-iauthorizationpolicyprovider-in-aspnet-core"></a>ASP.NET Core에서 IAuthorizationPolicyProvider를 사용 하는 사용자 지정 권한 부여 정책 공급자 
 
@@ -101,7 +102,7 @@ public IActionResult RequiresMinimumAge10()
 를 사용 하는 경우 `MinimumAgeAuthorizationAttribute` 권한 부여 정책 이름이 패턴 `"MinimumAge" + Age` 을 따르기 때문에 사용자 지정은 `IAuthorizationPolicyProvider` 다음을 통해 권한 부여 정책을 생성 해야 합니다.
 
 * 정책 이름에서 나이를 구문 분석 합니다.
-* 을 사용 하 여 `AuthorizationPolicyBuilder` 새을 만듭니다.`AuthorizationPolicy`
+* 을 사용 하 여 `AuthorizationPolicyBuilder` 새을 만듭니다. `AuthorizationPolicy`
 * 이 및 다음 예제에서는 사용자가를 통해 인증 된 것으로 간주 됩니다 cookie . 는 `AuthorizationPolicyBuilder` 하나 이상의 인증 체계 이름을 사용 하 여 생성 되거나 항상 성공 해야 합니다. 그렇지 않으면 사용자에 게 챌린지를 제공 하는 방법에 대 한 정보가 없으므로 예외가 throw 됩니다.
 * 사용 기간에 따라 정책에 요구 사항을 추가 `AuthorizationPolicyBuilder.AddRequirements` 합니다. 다른 시나리오에서는, 또는를 대신 사용할 수 있습니다 `RequireClaim` `RequireRole` `RequireUserName` .
 

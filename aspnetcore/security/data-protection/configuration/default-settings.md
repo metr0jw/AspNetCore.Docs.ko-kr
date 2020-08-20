@@ -5,6 +5,7 @@ description: ASP.NET Core의 데이터 보호 키 관리 및 수명에 대해 �
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/default-settings
-ms.openlocfilehash: b39187d93247dc83c34bbbe6ec6accfd77108794
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: b4578737a0ea36463b3c44254aad85a484c46090
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021382"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634477"
 ---
 # <a name="data-protection-key-management-and-lifetime-in-aspnet-core"></a>ASP.NET Core에서 데이터 보호 키 관리 및 수명
 
@@ -63,7 +64,7 @@ Docker 컨테이너에서 호스트 하는 경우 키는 Docker 볼륨 (컨테�
 
 사용 되는 기본 페이로드 보호 알고리즘은 기밀성을 위한 AES-256-HMACSHA256 및 정품 인증입니다. 90 일 마다 변경 된 512 비트 마스터 키는 페이로드에 따라 이러한 알고리즘에 사용 되는 두 개의 하위 키를 파생 하는 데 사용 됩니다. 자세한 내용은 [하위 키 파생](xref:security/data-protection/implementation/subkeyderivation#additional-authenticated-data-and-subkey-derivation) 을 참조 하십시오.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:security/data-protection/extensibility/key-management>
 * <xref:host-and-deploy/web-farm>

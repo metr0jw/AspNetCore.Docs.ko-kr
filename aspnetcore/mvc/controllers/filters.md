@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 11d0c514dd15e787224510991ffb81680c9fc479
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 7134344abb5bc724aceb9a2adb117b3749435f55
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019344"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634854"
 ---
 # <a name="filters-in-aspnet-core"></a>ASP.NET Core에서 필터링
 
@@ -188,12 +189,12 @@ ASP.NET Core에는 서브클래싱 및 사용자 지정할 수 있는 기본 제
   
 다음 예제는 필터 메서드가 동기 작업 필터에 대해 호출되는 순서를 보여줍니다.
 
-| 시퀀스 | 필터 범위 | 필터 메서드 |
+| 순서 | 필터 범위 | 필터 메서드 |
 |:--------:|:------------:|:-------------:|
 | 1 | 전역 | `OnActionExecuting` |
 | 2 | 컨트롤러 또는 Razor 페이지| `OnActionExecuting` |
-| 3 | 메서드 | `OnActionExecuting` |
-| 4 | 메서드 | `OnActionExecuted` |
+| 3 | 방법 | `OnActionExecuting` |
+| 4 | 방법 | `OnActionExecuted` |
 | 5 | 컨트롤러 또는 Razor 페이지 | `OnActionExecuted` |
 | 6 | 전역 | `OnActionExecuted` |
 
@@ -408,7 +409,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 
 ## <a name="action-filters"></a>작업 필터
 
-작업 필터는 페이지에 적용 **되지** 않습니다 Razor . Razor페이지는 <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> 및를 지원 <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> 합니다. 자세한 내용은 [Razor Pages에 대한 필터 메서드](xref:razor-pages/filter)를 참조하세요.
+작업 필터는 페이지에 적용 **되지** 않습니다 Razor . Razor 페이지는 <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> 및를 지원 <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> 합니다. 자세한 내용은 [Razor Pages에 대한 필터 메서드](xref:razor-pages/filter)를 참조하세요.
 
 작업 필터는:
 
@@ -734,13 +735,13 @@ ASP.NET Core에는 서브클래싱 및 사용자 지정할 수 있는 기본 제
   
 다음 예제는 필터 메서드가 동기 작업 필터에 대해 호출되는 순서를 보여줍니다.
 
-| 시퀀스 | 필터 범위 | 필터 메서드 |
+| 순서 | 필터 범위 | 필터 메서드 |
 |:--------:|:------------:|:-------------:|
 | 1 | 전역 | `OnActionExecuting` |
-| 2 | Controller | `OnActionExecuting` |
-| 3 | 메서드 | `OnActionExecuting` |
-| 4 | 메서드 | `OnActionExecuted` |
-| 5 | Controller | `OnActionExecuted` |
+| 2 | 컨트롤러 | `OnActionExecuting` |
+| 3 | 방법 | `OnActionExecuting` |
+| 4 | 방법 | `OnActionExecuted` |
+| 5 | 컨트롤러 | `OnActionExecuted` |
 | 6 | 전역 | `OnActionExecuted` |
 
 이 시퀀스는 다음을 보여 줍니다.
@@ -794,14 +795,14 @@ Razor페이지는 [ Razor 필터 메서드를 재정의 하 여 페이지 필터
 
 이전 예제와 동일한 3개의 작업 필터를 가정해보세요. 컨트롤러와 전역 필터의 `Order` 속성을 각각 1과 2로 설정하면 실행 순서가 반대가 됩니다.
 
-| 시퀀스 | 필터 범위 | `Order` 속성 | 필터 메서드 |
+| 순서 | 필터 범위 | `Order` 속성 | 필터 메서드 |
 |:--------:|:------------:|:-----------------:|:-------------:|
-| 1 | 메서드 | 0 | `OnActionExecuting` |
-| 2 | Controller | 1  | `OnActionExecuting` |
+| 1 | 방법 | 0 | `OnActionExecuting` |
+| 2 | 컨트롤러 | 1  | `OnActionExecuting` |
 | 3 | 전역 | 2  | `OnActionExecuting` |
 | 4 | 전역 | 2  | `OnActionExecuted` |
-| 5 | Controller | 1  | `OnActionExecuted` |
-| 6 | 메서드 | 0  | `OnActionExecuted` |
+| 5 | 컨트롤러 | 1  | `OnActionExecuted` |
+| 6 | 방법 | 0  | `OnActionExecuted` |
 
 `Order` 속성은 필터가 실행되는 순서를 결정할 때 범위를 무시합니다. 필터가 순서에 따라 먼저 정렬된 다음, 범위는 연결을 끊는 데 사용됩니다. 모든 기본 제공 필터는 `IOrderedFilter`을 구현하고 기본 `Order` 값을 0으로 설정합니다. 기본 제공 필터의 경우 `Order`를 0이 아닌 값으로 설정하지 않는 한 범위가 순서를 결정합니다.
 
@@ -942,7 +943,7 @@ FiltersSample.Filters.LogConstantFilter:Information: Method 'Hi' called
 ## <a name="action-filters"></a>작업 필터
 
 > [!IMPORTANT]
-> 작업 필터는 페이지에 적용 **되지** 않습니다 Razor . Razor페이지는 <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> 및를 지원 <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> 합니다. 자세한 내용은 [Razor Pages에 대한 필터 메서드](xref:razor-pages/filter)를 참조하세요.
+> 작업 필터는 페이지에 적용 **되지** 않습니다 Razor . Razor 페이지는 <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> 및를 지원 <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> 합니다. 자세한 내용은 [Razor Pages에 대한 필터 메서드](xref:razor-pages/filter)를 참조하세요.
 
 작업 필터는:
 

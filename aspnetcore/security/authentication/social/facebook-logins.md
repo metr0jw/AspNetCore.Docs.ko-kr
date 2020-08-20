@@ -7,6 +7,7 @@ ms.custom: seoapril2019, mvc, seodec18
 ms.date: 03/19/2020
 monikerRange: '>= aspnetcore-3.0'
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/facebook-logins
-ms.openlocfilehash: ef664645768dac11d0ed68db03cfbaebbcb8c0d3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ce0e7ad30c137562b74dc9fe5c53235e3599e575
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021720"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634360"
 ---
 # <a name="facebook-external-login-setup-in-aspnet-core"></a>ASP.NET Core의 Facebook 외부 로그인 설정
 
@@ -114,7 +115,7 @@ services.AddAuthentication().AddFacebook(facebookOptions =>
 
 ## <a name="react-to-cancel-authorize-external-sign-in"></a>외부 로그인 권한 부여 취소에 대응
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath>사용자가 요청 된 권한 부여 요청을 승인 하지 않은 경우에서 사용자 에이전트에 대 한 리디렉션 경로를 제공할 수 있습니다.
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.AccessDeniedPath> 사용자가 요청 된 권한 부여 요청을 승인 하지 않은 경우에서 사용자 에이전트에 대 한 리디렉션 경로를 제공할 수 있습니다.
 
 다음 코드에서는 `AccessDeniedPath` 를로 설정 합니다 `"/AccessDeniedPathInfo"` .
 
@@ -145,7 +146,7 @@ Facebook 인증에서 지 원하는 구성 옵션에 대 한 자세한 내용은
 
 ## <a name="troubleshooting"></a>문제 해결
 
-* **ASP.NET Core 2.x에만 해당:** Identity에서를 호출 하 여가 구성 되지 않은 경우 `services.AddIdentity` `ConfigureServices` 인증을 시도 하면 ArgumentException이 발생 합니다. *' SignInScheme ' 옵션을 제공 해야*합니다. 이 자습서에서 사용 되는 프로젝트 템플릿은이 작업이 수행 되도록 합니다.
+* **ASP.NET Core 2.x에만 해당:** Identity 에서를 호출 하 여가 구성 되지 않은 경우 `services.AddIdentity` `ConfigureServices` 인증을 시도 하면 ArgumentException이 발생 합니다. *' SignInScheme ' 옵션을 제공 해야*합니다. 이 자습서에서 사용 되는 프로젝트 템플릿은이 작업이 수행 되도록 합니다.
 * 초기 마이그레이션을 적용 하 여 사이트 데이터베이스를 만들지 않은 경우 *요청 오류를 처리 하는 동안 데이터베이스 작업이 실패 했습니다* . **마이그레이션 적용** 을 탭 하 여 데이터베이스를 만들고 새로 고쳐 오류를 계속 합니다.
 
 ## <a name="next-steps"></a>다음 단계

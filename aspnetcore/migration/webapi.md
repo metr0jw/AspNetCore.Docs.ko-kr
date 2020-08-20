@@ -6,6 +6,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 05/26/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/webapi
-ms.openlocfilehash: 4888de6ad55037be540cb62b6e4f02878e2b57ab
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e3e46f8050ba87c3108885341675c9d2a2cb7847
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014817"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635166"
 ---
 # <a name="migrate-from-aspnet-web-api-to-aspnet-core"></a>ASP.NET Web API에서 ASP.NET Core로 마이그레이션
 
@@ -79,12 +80,12 @@ Visual Studio에서 비어 있는 새 솔루션을 만들고 마이그레이션�
 
 ASP.NET Core *App_Start* 폴더 또는 *global.asax* 파일을 사용 하지 않습니다. 또한 *web.config* 파일은 게시할 때 추가 됩니다.
 
-`Startup` 클래스:
+`Startup` 클래스는:
 
 * *Global.asax*를 바꿉니다.
 * 모든 앱 시작 작업을 처리 합니다.
 
-자세한 내용은 <xref:fundamentals/startup>를 참조하세요.
+자세한 내용은 <xref:fundamentals/startup>을 참조하세요.
 
 ## <a name="migrate-models-and-controllers"></a>모델 및 컨트롤러 마이그레이션
 
@@ -146,7 +147,7 @@ ASP.NET Core *API* 프로젝트 템플릿에는 생성 된 코드의 끝점 라�
 
 마이그레이션된 프로젝트를 실행 하 고로 이동 `/api/products` 합니다. 세 제품의 전체 목록이 표시 됩니다. `/api/products/1`으로 이동합니다. 첫 번째 제품이 표시 됩니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
@@ -155,7 +156,7 @@ ASP.NET Core *API* 프로젝트 템플릿에는 생성 된 코드의 끝점 라�
 ::: moniker-end
 
 ::: moniker range="<= aspnetcore-2.2"
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>사전 요구 사항
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs2019-2.2.md)]
 
@@ -192,12 +193,12 @@ Visual Studio에서 다음 단계를 완료 합니다.
 * *App_Start* 폴더 또는 *global.asax* 파일
 * *web.config* 파일은 게시할 때 추가 됩니다.
 
-`Startup` 클래스:
+`Startup` 클래스는:
 
 * *Global.asax*를 바꿉니다.
 * 모든 앱 시작 작업을 처리 합니다.
 
-자세한 내용은 <xref:fundamentals/startup>를 참조하세요.
+자세한 내용은 <xref:fundamentals/startup>을 참조하세요.
 
 ASP.NET Core MVC에서는가에서 호출 될 때 특성 라우팅이 기본적으로 포함 됩니다 <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> `Startup.Configure` . 다음 `UseMvc` 호출은 *ProductsApp* 프로젝트의 *App_Start/Webapicon.cs* 파일을 대체 합니다.
 
@@ -205,7 +206,7 @@ ASP.NET Core MVC에서는가에서 호출 될 때 특성 라우팅이 기본적�
 
 ## <a name="migrate-models-and-controllers"></a>모델 및 컨트롤러 마이그레이션
 
-다음 코드에서는 `ProductsController` ASP.NET Core에 대 한 업데이트를 보여 줍니다.[!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs)]
+다음 코드에서는 `ProductsController` ASP.NET Core에 대 한 업데이트를 보여 줍니다. [!code-csharp[](webapi/sample/2.x/ProductsApp/Controllers/ProductsController.cs)]
 
 `ProductsController`ASP.NET Core에 대 한를 업데이트 합니다.
 
@@ -272,7 +273,7 @@ Web API 호환성 shim은 ASP.NET Core로의 large ASP.NET 4.x 웹 API 프로젝
 * 컨트롤러 작업에서 형식의 매개 변수를 사용할 수 있도록 모델 바인딩을 확장 `HttpRequestMessage` 합니다.
 * 형식의 결과를 반환 하는 작업을 허용 하는 메시지 포맷터를 추가 `HttpResponseMessage` 합니다.
 * 웹 API 2 작업에서 응답을 제공 하는 데 사용할 수 있는 추가 응답 메서드를 추가 합니다.
-  * `HttpResponseMessage`생성기
+  * `HttpResponseMessage` 생성기
     * `CreateResponse<T>`
     * `CreateErrorResponse`
   * 작업 결과 메서드:
@@ -290,7 +291,7 @@ Web API 호환성 shim은 ASP.NET Core로의 large ASP.NET 4.x 웹 API 프로젝
 1. 에서를 호출 하 여 앱의 DI 컨테이너에 호환성 shim의 서비스를 등록 `services.AddMvc().AddWebApiConventions()` `Startup.ConfigureServices` 합니다.
 1. 앱 호출의에서를 사용 하 여 웹 API 관련 경로를 정의 `MapWebApiRoute` `IRouteBuilder` `IApplicationBuilder.UseMvc` 합니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>

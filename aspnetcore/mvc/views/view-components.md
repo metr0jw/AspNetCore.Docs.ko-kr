@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/18/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/view-components
-ms.openlocfilehash: 0c952502d58744bbbe06c92f51bd51bd547fb8ae
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 32ae699c4ef501096a9c4ab7bca6673139910f02
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020953"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635088"
 ---
 # <a name="view-components-in-aspnet-core"></a>ASP.NET Core의 보기 구성 요소
 
@@ -52,7 +53,7 @@ ms.locfileid: "88020953"
 
 보기 구성 요소는 클래스(일반적으로 [ViewComponent](/dotnet/api/microsoft.aspnetcore.mvc.viewcomponent)에서 파생됨)와 보기 구성 요소가 반환하는 결과(일반적으로 보기)의 두 부분으로 구성됩니다. 컨트롤러와 마찬가지로, 뷰 구성 요소는 POCO일 수 있지만 대부분의 개발자는 `ViewComponent`에서 파생되어 사용 가능한 메서드와 속성을 활용하려고 합니다.
 
-뷰 구성 요소가 앱의 사양을 충족 하는지 고려할 때 구성 요소를 대신 사용 하는 것이 좋습니다 Razor . Razor또한 구성 요소는 태그를 c # 코드와 결합 하 여 재사용 가능한 UI 단위를 생성 합니다. Razor구성 요소는 클라이언트 쪽 UI 논리 및 컴퍼지션을 제공할 때 개발자 생산성을 위해 설계 되었습니다. 자세한 내용은 <xref:blazor/components/index>를 참조하세요.
+뷰 구성 요소가 앱의 사양을 충족 하는지 고려할 때 구성 요소를 대신 사용 하는 것이 좋습니다 Razor . Razor 또한 구성 요소는 태그를 c # 코드와 결합 하 여 재사용 가능한 UI 단위를 생성 합니다. Razor 구성 요소는 클라이언트 쪽 UI 논리 및 컴퍼지션을 제공할 때 개발자 생산성을 위해 설계 되었습니다. 자세한 내용은 <xref:blazor/components/index>을 참조하세요.
 
 ## <a name="creating-a-view-component"></a>뷰 구성 요소 만들기
 
@@ -353,6 +354,6 @@ public class PriorityList : ViewComponent
 * ViewComponent가 마크업을 렌더링하지 않습니다.
 * 오류가 throw되지 않습니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * [보기에 종속성 주입](xref:mvc/views/dependency-injection)

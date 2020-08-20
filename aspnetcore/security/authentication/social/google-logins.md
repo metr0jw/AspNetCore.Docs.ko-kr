@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 03/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/google-logins
-ms.openlocfilehash: 7a10b66be7f4dda25f94437b55bad9746bda97e0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a7a5260a2446ac3f3be00755ef051e56080a7485
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020485"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634295"
 ---
 # <a name="google-external-login-setup-in-aspnet-core"></a>ASP.NET Core의 Google 외부 로그인 설정
 
@@ -34,7 +35,7 @@ ms.locfileid: "88020485"
 * [AspNetCore](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Google)를 설치 합니다.
 * [Google 로그인을 웹 앱에 통합](https://developers.google.com/identity/sign-in/web/sign-in) 으로 이동 하 여 **프로젝트 구성**을 선택 합니다.
 * **OAuth 클라이언트 구성** 대화 상자에서 **웹 서버**를 선택 합니다.
-* **권한 있는 리디렉션 uri** 텍스트 항목 상자에서 리디렉션 uri를 설정 합니다. 예, `https://localhost:44312/signin-google`
+* **권한 있는 리디렉션 uri** 텍스트 항목 상자에서 리디렉션 uri를 설정 합니다. 예를 들어 `https://localhost:44312/signin-google`
 * **클라이언트 ID** 및 **클라이언트 암호**를 저장 합니다.
 * 사이트를 배포할 때 **Google 콘솔**에서 새 공용 url을 등록 합니다.
 

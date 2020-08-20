@@ -7,6 +7,7 @@ ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/08/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 21bd1db322a984b5644b817e82a293b6c0b2d91e
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 913f8f1e43586ce71353c080e72be3b80f4c0573
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019331"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634269"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>SPAs에 대 한 인증 및 권한 부여
 
-ASP.NET Core 3.0 이상에서는 API 권한 부여에 대 한 지원을 사용 하 여 SPAs (단일 페이지 앱)의 인증을 제공 합니다. Identity사용자를 인증 하 고 저장 하는 ASP.NET Core는 Openid connect Connect 구현을 위해 [ Identity 서버](https://identityserver.io/) 와 결합 됩니다.
+ASP.NET Core 3.0 이상에서는 API 권한 부여에 대 한 지원을 사용 하 여 SPAs (단일 페이지 앱)의 인증을 제공 합니다. ASP.NET Core Identity사용자를 인증 하 고 저장 하기 위해 Openid connect Connect를 구현 하기 위해 [ Identity 서버](https://identityserver.io/) 와 결합 됩니다.
 
 인증 매개 변수는 **웹 응용 프로그램 (모델-뷰-컨트롤러)** (MVC) 및 **웹 응용 프로그램** (페이지) 프로젝트 템플릿의 인증 매개 변수와 비슷한 **각도** 및 **반응** 프로젝트 템플릿에 추가 되었습니다 Razor . 허용 되는 매개 변수 값은 **None** 및 **개인용**입니다. 현재 **React.js 및 Redux** 프로젝트 템플릿에서 인증 매개 변수를 지원 하지 않습니다.
 
@@ -59,7 +60,7 @@ dotnet new react -o <output_directory_name> -au Individual
 클래스에는 `Startup` 다음과 같은 추가 항목이 있습니다.
 
 * 메서드 내에서 `Startup.ConfigureServices` :
-  * Identity기본 UI 사용:
+  * Identity 기본 UI 사용:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
@@ -196,7 +197,7 @@ services.Configure<JwtBearerOptions>(
 
 API의 JWT 처리기는를 사용 하 여 인증 프로세스를 제어할 수 있는 이벤트를 발생 시킵니다 `JwtBearerEvents` . API 권한 부여에 대 한 지원을 제공 하기 위해는 `AddIdentityServerJwt` 자체 이벤트 처리기를 등록 합니다.
 
-이벤트 처리를 사용자 지정 하려면 필요한 만큼 추가 논리를 사용 하 여 기존 이벤트 처리기를 래핑합니다. 예:
+이벤트 처리를 사용자 지정 하려면 필요한 만큼 추가 논리를 사용 하 여 기존 이벤트 처리기를 래핑합니다. 다음은 그 예입니다. 
 
 ```csharp
 services.Configure<JwtBearerOptions>(
@@ -285,7 +286,7 @@ async populateWeatherData() {
 
 이 섹션에서는 인증서 저장소에 저장 된 인증서를 사용 하 여 Azure App Service에 앱을 배포 하는 방법을 설명 합니다. 인증서 저장소에서 인증서를 로드 하도록 앱을 수정 하려면 이후 단계에서 Azure Portal에서 앱을 구성할 때 표준 계층 서비스 계획 이상이 필요 합니다.
 
-파일 *의 앱appsettings.js* 에서 섹션을 수정 하 여 `IdentityServer` 키 세부 정보를 포함 합니다.
+파일 * 의 앱appsettings.js* 에서 섹션을 수정 하 여 `IdentityServer` 키 세부 정보를 포함 합니다.
 
 ```json
 "IdentityServer": {
@@ -382,7 +383,7 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 });
 ```
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:spa/angular>
 * <xref:spa/react>

@@ -5,6 +5,7 @@ description: ASP.NET Core MVC 컨트롤러가 ASP.NET Core의 종속성 주입�
 ms.author: riande
 ms.date: 02/24/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/dependency-injection
-ms.openlocfilehash: aabb7f893fd9650e2e901dcfdfe845faba391435
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 74c43e4f01e5b0d6923bf06f8859341c49088ef6
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019174"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635244"
 ---
 # <a name="dependency-injection-into-controllers-in-aspnet-core"></a>ASP.NET Core의 컨트롤러에 종속성 주입
 
@@ -64,7 +65,7 @@ ASP.NET Core MVC 컨트롤러는 생성자를 통해 명시적으로 종속성�
 
 컨트롤러 내에서 앱 또는 구성 설정에 액세스하는 것은 일반적인 패턴입니다. <xref:fundamentals/configuration/options>에 설명된 *옵션 패턴*은 설정을 관리하기 위해 선호되는 방법입니다. 일반적으로 컨트롤러에 <xref:Microsoft.Extensions.Configuration.IConfiguration>을 직접 주입하지 마세요.
 
-옵션을 나타내는 클래스를 만듭니다. 예:
+옵션을 나타내는 클래스를 만듭니다. 다음은 그 예입니다. 
 
 [!code-csharp[](dependency-injection/3.1sample/ControllerDI/Models/SampleWebSettings.cs?name=snippet)]
 
@@ -80,7 +81,7 @@ JSON 형식 파일에서 설정을 읽도록 앱을 구성합니다.
 
 [!code-csharp[](dependency-injection/3.1sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * 컨트롤러에서 종속성을 명시적으로 요청하여 코드를 더 쉽게 테스트할 수 있는 방법을 알아보려면 <xref:mvc/controllers/testing>을 참조하세요.
 
@@ -128,7 +129,7 @@ ASP.NET Core MVC 컨트롤러는 생성자를 통해 명시적으로 종속성�
 
 컨트롤러 내에서 앱 또는 구성 설정에 액세스하는 것은 일반적인 패턴입니다. <xref:fundamentals/configuration/options>에 설명된 *옵션 패턴*은 설정을 관리하기 위해 선호되는 방법입니다. 일반적으로 컨트롤러에 <xref:Microsoft.Extensions.Configuration.IConfiguration>을 직접 주입하지 마세요.
 
-옵션을 나타내는 클래스를 만듭니다. 예:
+옵션을 나타내는 클래스를 만듭니다. 다음은 그 예입니다. 
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Models/SampleWebSettings.cs?name=snippet)]
 
@@ -144,7 +145,7 @@ JSON 형식 파일에서 설정을 읽도록 앱을 구성합니다.
 
 [!code-csharp[](dependency-injection/sample/ControllerDI/Controllers/SettingsController.cs?name=snippet)]
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * 컨트롤러에서 종속성을 명시적으로 요청하여 코드를 더 쉽게 테스트할 수 있는 방법을 알아보려면 <xref:mvc/controllers/testing>을 참조하세요.
 

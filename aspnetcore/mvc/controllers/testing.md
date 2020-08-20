@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 7/22/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/testing
-ms.openlocfilehash: 311f1ce9eb2b0e358ddc01a1982dc39379f53b8f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d6c70d828d6c2f62f9e7b849a299df3077f2da32
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88020914"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635231"
 ---
 # <a name="unit-test-controller-logic-in-aspnet-core"></a>ASP.NET Core에서 컨트롤러 논리 단위 테스트
 
@@ -354,7 +355,7 @@ ASP.NET Core 2.1 이상에서 [ \<T> actionresult](xref:web-api/action-return-ty
 
 ::: moniker-end
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:test/integration-tests>
 * [Visual Studio를 사용 하 여 단위 테스트 만들기 및 실행](/visualstudio/test/unit-test-your-code)

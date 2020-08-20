@@ -5,6 +5,7 @@ description: 권한 부여 특성을 사용 하 여 ASP.NET Core 컨트롤러 �
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/simple
-ms.openlocfilehash: b503f5e79cbfbbd3e74e18356884c3223ede66a6
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: edf027b23ba6b22146e4521c134e67ac6fe1bd03
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019029"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634802"
 ---
 # <a name="simple-authorization-in-aspnet-core"></a>ASP.NET Core의 단순 권한 부여
 
@@ -62,7 +63,7 @@ public class AccountController : Controller
 
 이제 인증 된 사용자만 함수에 액세스할 수 있습니다 `Logout` .
 
-또한 특성을 사용 `AllowAnonymous` 하 여 인증 되지 않은 사용자의 개별 작업에 대 한 액세스를 허용할 수 있습니다. 예:
+또한 특성을 사용 `AllowAnonymous` 하 여 인증 되지 않은 사용자의 개별 작업에 대 한 액세스를 허용할 수 있습니다. 다음은 그 예입니다. 
 
 ```csharp
 [Authorize]
@@ -82,7 +83,7 @@ public class AccountController : Controller
 이렇게 하면 인증 된 사용자 `AccountController` `Login` 또는 인증 되지 않은/익명 상태에 관계 없이 모든 사용자가 액세스할 수 있는 동작을 제외 하 고는 인증 된 사용자만을 사용할 수 있습니다.
 
 > [!WARNING]
-> `[AllowAnonymous]`모든 권한 부여 문을 무시 합니다. `[AllowAnonymous]`및 특성을 함께 사용할 경우 `[Authorize]` `[Authorize]` 특성이 무시 됩니다. 예를 들어 `[AllowAnonymous]` 컨트롤러 수준에서를 적용 하는 경우 `[Authorize]` 동일한 컨트롤러의 모든 특성 (또는 그 안에 있는 모든 작업)은 무시 됩니다.
+> `[AllowAnonymous]` 모든 권한 부여 문을 무시 합니다. `[AllowAnonymous]`및 특성을 함께 사용할 경우 `[Authorize]` `[Authorize]` 특성이 무시 됩니다. 예를 들어 `[AllowAnonymous]` 컨트롤러 수준에서를 적용 하는 경우 `[Authorize]` 동일한 컨트롤러의 모든 특성 (또는 그 안에 있는 모든 작업)은 무시 됩니다.
 
 [!INCLUDE[](~/includes/requireAuth.md)]
 
