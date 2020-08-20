@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/concurrency
-ms.openlocfilehash: bb29001e30578e0992e578c2f98cda82c5dcf185
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: e03711d970c83c2b7d6cc76039cb0d556a751018
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018665"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628913"
 ---
 # <a name="part-8-no-locrazor-pages-with-ef-core-in-aspnet-core---concurrency"></a>8부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 동시성
 
@@ -455,7 +456,7 @@ John이 예산이 여전히 $350,000.00인 편집 페이지에서 **저장**을 
 
 ### <a name="detecting-concurrency-conflicts-on-a-row"></a>행에서 동시성 충돌 감지
 
-동시성 충돌을 감지하기 위해 [rowversion](/sql/t-sql/data-types/rowversion-transact-sql) 추적 열이 모델에 추가됩니다.  `rowversion`은:
+동시성 충돌을 감지하기 위해 [rowversion](/sql/t-sql/data-types/rowversion-transact-sql) 추적 열이 모델에 추가됩니다.  `rowversion` :
 
 * SQL Server 한정적입니다. 다른 데이터베이스는 유사한 기능을 제공하지 않을 수 있습니다.
 * DB에서 페치된 이후로 엔터티가 변경되지 않았는지를 확인하는 데 사용됩니다. 

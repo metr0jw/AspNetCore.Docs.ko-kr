@@ -5,6 +5,7 @@ description: ASP.NET Core용 인터페이스에 정의된 HTTP 요청 및 응답
 ms.author: riande
 ms.date: 10/14/2016
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -15,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/request-features
-ms.openlocfilehash: 4b6b34724bc848578293e586da12ead63c96cfbd
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3b5c929519407de5dc582c10a86745efddc8a38a
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016793"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634516"
 ---
 # <a name="request-features-in-aspnet-core"></a>ASP.NET Core의 요청 기능
 
