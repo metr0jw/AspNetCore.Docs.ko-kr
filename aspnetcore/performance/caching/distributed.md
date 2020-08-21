@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/caching/distributed
-ms.openlocfilehash: a25cbaf9a4e7dc5f1bd3706d01f409208a39aaa3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 0d27206412a098f4ea749ec10189bf24d2322de1
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626729"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712482"
 ---
 # <a name="distributed-caching-in-aspnet-core"></a>ASP.NET Core 분산 캐싱
 
@@ -116,16 +116,13 @@ Table and index were created successfully.
 
 ### <a name="distributed-redis-cache"></a>분산 Redis Cache
 
-[Redis](https://redis.io/) 는 분산 캐시로 자주 사용 되는 오픈 소스 메모리 내 데이터 저장소입니다. Redis를 로컬로 사용할 수 있으며, Azure에서 호스트 되는 ASP.NET Core 앱에 대 한 [Azure Redis Cache](https://azure.microsoft.com/services/cache/) 를 구성할 수 있습니다.
+[Redis](https://redis.io/) 는 분산 캐시로 자주 사용 되는 오픈 소스 메모리 내 데이터 저장소입니다.  Azure에서 호스트 되는 ASP.NET Core 앱에 대 한 [Azure Redis Cache](https://azure.microsoft.com/services/cache/) 를 구성 하 고 로컬 개발에 Azure Redis Cache를 사용할 수 있습니다.
 
-앱은 <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*> 다음과 같은 개발 이외의 환경에서 인스턴스 ()를 사용 하 여 캐시 구현을 구성 합니다 `Startup.ConfigureServices` .
+앱은 인스턴스 ()를 사용 하 여 캐시 구현을 구성 합니다 <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*> .
 
-[!code-csharp[](distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddStackExchangeRedisCache)]
+자세한 내용은 [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview)를 참조하세요.
 
-로컬 컴퓨터에 Redis를 설치 하려면 다음을 수행 합니다.
-
-1. [Chocolatey Redis 패키지](https://chocolatey.org/packages/redis-64/)를 설치 합니다.
-1. `redis-server`명령 프롬프트에서를 실행 합니다.
+로컬 Redis cache에 대 한 대체 접근 방식에 대 한 설명은 [이 GitHub 문제](https://github.com/dotnet/AspNetCore.Docs/issues/19542) 를 참조 하세요.
 
 ### <a name="distributed-ncache-cache"></a>Distributed NCache Cache
 
@@ -175,7 +172,7 @@ NCache를 구성 하려면:
 
 * 기존 인프라
 * 성능 요구 사항
-* Cost
+* 비용
 * 팀 환경
 
 캐싱 솔루션은 일반적으로 메모리 내 저장소를 사용 하 여 캐시 된 데이터를 신속 하 게 검색 하지만 메모리는 제한 된 리소스 이며 확장 하는 데 비용이 많이 듭니다. 일반적으로 사용 되는 데이터를 캐시에만 저장 합니다.
@@ -184,7 +181,7 @@ NCache를 구성 하려면:
 
 SQL Server를 분산 캐시 백업 저장소로 사용 하는 경우 캐시에 대해 동일한 데이터베이스를 사용 하 고 앱의 일반 데이터 저장 및 검색을 사용 하면 두 성능에 부정적인 영향을 줄 수 있습니다. 분산 캐시 백업 저장소에 전용 SQL Server 인스턴스를 사용 하는 것이 좋습니다.
 
-## <a name="additional-resources"></a>추가 자료
+## <a name="additional-resources"></a>추가 리소스
 
 * [Azure의 Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure의 SQL Database](/azure/sql-database/)
@@ -345,7 +342,7 @@ NCache를 구성 하려면:
 
 * 기존 인프라
 * 성능 요구 사항
-* Cost
+* 비용
 * 팀 환경
 
 캐싱 솔루션은 일반적으로 메모리 내 저장소를 사용 하 여 캐시 된 데이터를 신속 하 게 검색 하지만 메모리는 제한 된 리소스 이며 확장 하는 데 비용이 많이 듭니다. 일반적으로 사용 되는 데이터를 캐시에만 저장 합니다.
@@ -354,7 +351,7 @@ NCache를 구성 하려면:
 
 SQL Server를 분산 캐시 백업 저장소로 사용 하는 경우 캐시에 대해 동일한 데이터베이스를 사용 하 고 앱의 일반 데이터 저장 및 검색을 사용 하면 두 성능에 부정적인 영향을 줄 수 있습니다. 분산 캐시 백업 저장소에 전용 SQL Server 인스턴스를 사용 하는 것이 좋습니다.
 
-## <a name="additional-resources"></a>추가 자료
+## <a name="additional-resources"></a>추가 리소스
 
 * [Azure의 Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure의 SQL Database](/azure/sql-database/)
@@ -521,7 +518,7 @@ NCache를 구성 하려면:
 
 * 기존 인프라
 * 성능 요구 사항
-* Cost
+* 비용
 * 팀 환경
 
 캐싱 솔루션은 일반적으로 메모리 내 저장소를 사용 하 여 캐시 된 데이터를 신속 하 게 검색 하지만 메모리는 제한 된 리소스 이며 확장 하는 데 비용이 많이 듭니다. 일반적으로 사용 되는 데이터를 캐시에만 저장 합니다.
@@ -530,7 +527,7 @@ NCache를 구성 하려면:
 
 SQL Server를 분산 캐시 백업 저장소로 사용 하는 경우 캐시에 대해 동일한 데이터베이스를 사용 하 고 앱의 일반 데이터 저장 및 검색을 사용 하면 두 성능에 부정적인 영향을 줄 수 있습니다. 분산 캐시 백업 저장소에 전용 SQL Server 인스턴스를 사용 하는 것이 좋습니다.
 
-## <a name="additional-resources"></a>추가 자료
+## <a name="additional-resources"></a>추가 리소스
 
 * [Azure의 Redis Cache](/azure/azure-cache-for-redis/)
 * [Azure의 SQL Database](/azure/sql-database/)
@@ -544,4 +541,3 @@ SQL Server를 분산 캐시 백업 저장소로 사용 하는 경우 캐시에 �
 * <xref:host-and-deploy/web-farm>
 
 ::: moniker-end
- 
