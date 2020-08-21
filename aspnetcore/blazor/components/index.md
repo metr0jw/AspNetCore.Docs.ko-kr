@@ -5,8 +5,9 @@ description: 데이터에 바인딩하고, 이벤트를 처리하고, 구성 요
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/14/2020
+ms.date: 08/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: a145cfd551650445f9ff35259cbedf71ebb686f0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6ee767ee76b622e15a1dc5a7fe2f3e05f03dabd0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014596"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628497"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>ASP.NET Core Razor 구성 요소 만들기 및 사용
 
@@ -265,7 +266,7 @@ namespace BlazorSample
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> 자체 *구성 요소 매개 변수*에 쓰는 구성 요소를 만들지 말고 대신 private 필드를 사용합니다. 자세한 내용은 [자체 매개 변수 속성에 쓰는 구성 요소 만들지 않음](#dont-create-components-that-write-to-their-own-parameter-properties) 섹션을 참조하세요.
+> 구성 요소 콘텐츠가 <xref:Microsoft.AspNetCore.Components.RenderFragment>로 렌더링되는 경우 자체 구성 요소 매개 변수에 쓰는 구성 요소를 만드는 대신 프라이빗 필드를 사용합니다. 자세한 내용은 [`RenderFragment`로 덮어쓴 매개 변수](#overwritten-parameters-with-renderfragment) 섹션을 참조하세요.
 
 ## <a name="child-content"></a>자식 콘텐츠
 
@@ -317,28 +318,20 @@ Blazor가 자식 콘텐츠를 렌더링하는 방식 때문에 `for` 루프 내�
 
 ```razor
 <input id="useIndividualParams"
-       maxlength="@Maxlength"
-       placeholder="@Placeholder"
-       required="@Required"
-       size="@Size" />
+       maxlength="@maxlength"
+       placeholder="@placeholder"
+       required="@required"
+       size="@size" />
 
 <input id="useAttributesDict"
        @attributes="InputAttributes" />
 
 @code {
-    [Parameter]
-    public string Maxlength { get; set; } = "10";
+    public string maxlength = "10";
+    public string placeholder = "Input placeholder text";
+    public string required = "required";
+    public string size = "50";
 
-    [Parameter]
-    public string Placeholder { get; set; } = "Input placeholder text";
-
-    [Parameter]
-    public string Required { get; set; } = "required";
-
-    [Parameter]
-    public string Size { get; set; } = "50";
-
-    [Parameter]
     public Dictionary<string, object> InputAttributes { get; set; } =
         new Dictionary<string, object>()
         {
@@ -350,7 +343,7 @@ Blazor가 자식 콘텐츠를 렌더링하는 방식 때문에 `for` 루프 내�
 }
 ```
 
-매개 변수의 형식은 문자열 키를 사용하여 `IEnumerable<KeyValuePair<string, object>>`를 구현해야 합니다. 이 시나리오에서는 `IReadOnlyDictionary<string, object>`를 사용할 수도 있습니다.
+매개 변수의 형식은 문자열 키를 사용하여 `IEnumerable<KeyValuePair<string, object>>` 또는 `IReadOnlyDictionary<string, object>`를 구현해야 합니다.
 
 두 방법을 사용하여 렌더링되는 `<input>` 요소는 동일합니다.
 
@@ -433,10 +426,10 @@ public IDictionary<string, object> AdditionalAttributes { get; set; }
 * 자식 구성 요소와 동일한 유형으로 필드를 정의합니다.
 
 ```razor
-<MyLoginDialog @ref="loginDialog" ... />
+<CustomLoginDialog @ref="loginDialog" ... />
 
 @code {
-    private MyLoginDialog loginDialog;
+    private CustomLoginDialog loginDialog;
 
     private void OnSomething()
     {
@@ -632,7 +625,7 @@ public class NotifierService
 
 [`@key`][5]에 사용되는 값이 충돌하지 않는지 확인합니다. 동일한 부모 요소 내에서 충돌하는 값이 감지되면 이전 요소나 구성 요소를 새 요소나 구성 요소에 확정적으로 매핑할 수 없으므로 Blazor는 예외를 throw합니다. 개체 인스턴스 또는 기본 키 값과 같은 고유 값만 사용합니다.
 
-## <a name="dont-create-components-that-write-to-their-own-parameter-properties"></a>자체 매개 변수 속성에 쓰는 구성 요소를 만들지 않음
+## <a name="overwritten-parameters-with-renderfragment"></a>`RenderFragment`로 덮어쓴 매개 변수
 
 다음 조건에서는 매개 변수를 덮어씁니다.
 
@@ -647,17 +640,13 @@ public class NotifierService
 * 구성 요소 매개 변수로 자식 콘텐츠 표시를 설정/해제합니다.
 
 ```razor
-<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
-        <div class="panel-heading">
-            <h2>Toggle (<code>Expanded</code> = @Expanded)</h2>
-        </div>
+        <h2 class="card-title">Toggle (<code>Expanded</code> = @Expanded)</h2>
 
         @if (Expanded)
         {
-            <div class="card-text">
-                @ChildContent
-            </div>
+            <p class="card-text">@ChildContent</p>
         }
     </div>
 </div>
@@ -703,17 +692,13 @@ public class NotifierService
 * Private 필드를 사용하여 내부 설정/해제 상태를 유지합니다.
 
 ```razor
-<div @onclick="@Toggle" class="card text-white bg-success mb-3">
+<div @onclick="@Toggle" class="card bg-light mb-3" style="width:30rem">
     <div class="card-body">
-        <div class="panel-heading">
-            <h2>Toggle (<code>expanded</code> = @expanded)</h2>
-        </div>
+        <h2 class="card-title">Toggle (<code>expanded</code> = @expanded)</h2>
 
         @if (expanded)
         {
-            <div class="card-text">
-                @ChildContent
-            </div>
+            <p class="card-text">@ChildContent</p>
         }
     </div>
 </div>

@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 07/16/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: fe9bd270ce509e8389dd3d4f3f6f3a6dda03d425
-ms.sourcegitcommit: dfea24471f4f3d7904faa92fe60c000853bddc3b
+ms.openlocfilehash: 391a38e9af42b162fc74bac803e6aa3cf687e7d5
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88504543"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626066"
 ---
 # <a name="secure-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly 보호
 
@@ -52,7 +53,7 @@ SameSite cookie를 사용하는 것과 같이 SPA를 인증하기 위한 다른 
 
 * 익명 사용자가 로그인 단추를 선택하거나 [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) 특성이 적용된 페이지를 요청하면 앱의 로그인 페이지(`/authentication/login`)로 리디렉션됩니다.
 * 로그인 페이지에서 인증 라이브러리는 권한 부여 엔드포인트로의 리디렉션을 준비합니다. 권한 부여 엔드포인트는 Blazor WebAssembly 앱 외부에 있으며 별도의 원본에 호스트될 수 있습니다. 엔드포인트는 사용자가 인증되었는지 여부를 확인하고 응답으로 하나 이상의 토큰을 발급합니다. 인증 라이브러리는 인증 응답을 받기 위한 로그인 콜백을 제공합니다.
-  * 사용자가 인증되지 않은 경우 사용자는 기본 인증 시스템, 일반적으로 ASP.NET Core Identity로 리디렉션됩니다.
+  * 사용자가 인증되지 않은 경우 사용자는 기본 인증 시스템으로 리디렉션되며 이는 일반적으로 ASP.NET Core Identity입니다.
   * 사용자가 이미 인증된 경우에는 권한 부여 엔드포인트에서 적절한 토큰을 생성하고 브라우저를 다시 로그인 콜백 엔드포인트(`/authentication/login-callback`)로 리디렉션합니다.
 * Blazor WebAssembly 앱이 로그인 콜백 엔드포인트(`/authentication/login-callback`)를 로드하면 인증 응답이 처리됩니다.
   * 인증 프로세스가 완료되면 사용자는 인증되고 필요에 따라 사용자가 요청한 원래의 보호된 URL로 다시 돌아갑니다.

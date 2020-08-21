@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: fe0a0d3dbb87455be602234825d702fab02df936
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ed40800f3e363cc3fd6f57492d76a42095e5b97b
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634594"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712560"
 ---
 # <a name="configuration-in-aspnet-core"></a>ASP.NET Core의 구성
 
@@ -98,6 +98,8 @@ ASP.NET Core에서 구성은 하나 이상의 [구성 공급자](#cp)를 사용�
 [기본](#default) 구성을 사용하여 *appsettings.json* 및 *appsettings.* `Environment` *.json* 파일은 [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75)를 통해 사용하도록 설정됩니다. 앱이 시작된 후 *appsettings.json* 및 *appsettings.* `Environment` *.json* 파일에 대한 변경 내용을 [JSON 구성 공급자](#jcp)에서 읽습니다.******
 
 추가 JSON 구성 파일 추가에 대한 자세한 내용은 이 문서의 [JSON 구성 공급자](#jcp)를 참조하세요.
+
+## <a name="combining-service-collection"></a>서비스 컬렉션 결합
 
 [!INCLUDE[](~/includes/combine-di.md)]
 
@@ -1105,7 +1107,7 @@ public static readonly Dictionary<string, string> _switchMappings =
 
 생성된 스위치 매핑 사전은 다음 표의 데이터를 포함합니다.
 
-| 키       | 값             |
+| Key       | 값             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1682,7 +1684,7 @@ config.AddJsonFile(
 
 표에 표시된 키-값 쌍이 구성으로 로드됩니다.
 
-| 키             | 값  |
+| Key             | 값  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 

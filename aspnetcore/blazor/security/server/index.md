@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/02/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: 4dc9040b9410304eb33e5df7c47db2f9a42152d3
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ba9fe3c0149679fa5760c0c9214cd426f1804c31
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88013998"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626456"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>ASP.NET Core Blazor Server 앱 보호
 
@@ -62,7 +63,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 | 인증 메커니즘 | 설명 |
 | ------------------------ | ----------- |
 | `None`(기본값)         | 인증 없음 |
-| `Individual`             | ASP.NET Core Identity을 사용하여 앱에 저장된 사용자 |
+| `Individual`             | ASP.NET Core Identity를 사용하여 앱에 저장된 사용자 |
 | `IndividualB2C`          | [Azure AD B2C](xref:security/authentication/azure-ad-b2c)에 저장된 사용자 |
 | `SingleOrg`              | 단일 테넌트에 대한 조직 인증 |
 | `MultiOrg`               | 여러 테넌트에 대한 조직 인증 |
@@ -81,7 +82,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 
 1. **새 Blazor Server 앱 구성** 단계의 **인증** 드롭다운에서 **개별 인증(앱 내)** 을 선택합니다.
 
-1. ASP.NET Core Identity을 사용하여 앱에 저장된 개별 사용자에 대한 앱이 만들어집니다.
+1. ASP.NET Core Identity를 사용하여 앱에 저장된 개별 사용자에 대한 앱이 만들어집니다.
 
 # <a name="net-core-cli"></a>[.NET Core CLI](#tab/netcore-cli/)
 
@@ -96,7 +97,7 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 | 인증 메커니즘 | 설명 |
 | ------------------------ | ----------- |
 | `None`(기본값)         | 인증 없음 |
-| `Individual`             | ASP.NET Core Identity을 사용하여 앱에 저장된 사용자 |
+| `Individual`             | ASP.NET Core Identity를 사용하여 앱에 저장된 사용자 |
 | `IndividualB2C`          | [Azure AD B2C](xref:security/authentication/azure-ad-b2c)에 저장된 사용자 |
 | `SingleOrg`              | 단일 테넌트에 대한 조직 인증 |
 | `MultiOrg`               | 여러 테넌트에 대한 조직 인증 |
