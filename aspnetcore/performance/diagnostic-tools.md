@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/diagnostic-tools
-ms.openlocfilehash: ef2730156e0b6e6a1456b720dbdf7db48386b8e6
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5f3daaf132b903898e756160a459d4df5f421c11
+ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631864"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88746548"
 ---
 # <a name="performance-diagnostic-tools"></a>성능 진단 도구
 
@@ -83,5 +83,5 @@ PerfCollect를 설치 하 고 시작 하는 방법에 대 한 자세한 내용�
 다음 목록에는 .NET Core 응용 프로그램의 성능 조사에 유용한 일부 타사 성능 도구가 나와 있습니다.
 
 - [Miniprofiler 활용](https://miniprofiler.com/)
-- JetBrains의 dotTrace 및 dotMemory
-- Intel의 VTune
+- [JetBrains](https://www.jetbrains.com/) 의 [dotTrace](https://www.jetbrains.com/profiler/) 및 [dotMemory](https://www.jetbrains.com/dotmemory/)
+- Intel의 [VTune](https://software.intel.com/content/www/us/en/develop/tools/vtune-profiler.html)

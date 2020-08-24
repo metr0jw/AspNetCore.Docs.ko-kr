@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 94ae9e52ed99c3fe8e7044f474cdf5b702dc5adf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 587872b269d897d7c86eb77c110a4b6432218ed3
+ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634464"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88746561"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>ASP.NET Core 성능 모범 사례
 
@@ -32,7 +32,7 @@ ms.locfileid: "88634464"
 
 ## <a name="cache-aggressively"></a>적극적으로 캐시
 
-캐싱은이 문서의 여러 부분에서 설명 합니다. 자세한 내용은 <xref:performance/caching/response>을 참조하세요.
+캐싱은이 문서의 여러 부분에서 설명 합니다. 자세한 내용은 <xref:performance/caching/response>를 참조하세요.
 
 ## <a name="understand-hot-code-paths"></a>핫 코드 경로 이해
 
@@ -57,6 +57,12 @@ ASP.NET Core 앱의 일반적인 성능 문제는 비동기 일 수 있는 호�
 * 컨트롤러/ Razor 페이지 작업을 비동기식으로 만듭니다. 비동기 [/](/dotnet/csharp/programming-guide/concepts/async/) 대기 패턴을 활용 하기 위해 전체 호출 스택은 비동기입니다.
 
 [Perfview](https://github.com/Microsoft/perfview)와 같은 프로파일러를 사용 하 여 [스레드 풀](/windows/desktop/procthread/thread-pools)에 자주 추가 되는 스레드를 찾을 수 있습니다. 이벤트는 스레드 `Microsoft-Windows-DotNETRuntime/ThreadPoolWorkerThread/Start` 풀에 추가 된 스레드를 나타냅니다. <!--  For more information, see [async guidance docs](TBD-Link_To_Davifowl_Doc)  -->
+
+## <a name="return-ienumerablet-or-iasyncenumerablet"></a>IEnumerable \<T> 또는 IAsyncEnumerable을 반환 합니다.\<T>
+
+작업에서 반환 하면 serializer에의 `IEnumerable<T>` 한 동기 컬렉션 반복이 발생 합니다. 그 결과는 호출 차단이며 스레드 풀 고갈의 가능성도 있습니다. 동기 열거를 방지 하려면 `ToListAsync` 열거 가능를 반환 하기 전에를 사용 합니다.
+
+ASP.NET Core 3.0부터는를 `IAsyncEnumerable<T>` 비동기적으로 열거 하는 대신 사용할 수 있습니다 `IEnumerable<T>` . 자세한 내용은 [컨트롤러 작업 반환 형식](xref:web-api/action-return-types#return-ienumerablet-or-iasyncenumerablet)을 참조 하세요.
 
 ## <a name="minimize-large-object-allocations"></a>대량 개체 할당 최소화
 
@@ -84,7 +90,7 @@ ASP.NET Core 앱의 일반적인 성능 문제는 비동기 일 수 있는 호�
 
 * 모든 데이터 액세스 Api를 비동기적 **으로 호출 합니다** .
 * 필요한 것 보다 더 많은 데이터를 검색 **하지** 않습니다. 현재 HTTP 요청에 필요한 데이터만 반환 하는 쿼리를 작성 합니다.
-* 약간 오래 된 데이터를 사용할 수 있는 경우 데이터베이스 또는 원격 서비스에서 검색 되는 자주 액세스 하는 데이터를 캐시 하 **는 것이 좋습니다.** 시나리오에 따라 [Memorycache](xref:performance/caching/memory) 또는 [microsoft.web.distributedcache](xref:performance/caching/distributed)를 사용 합니다. 자세한 내용은 <xref:performance/caching/response>을 참조하세요.
+* 약간 오래 된 데이터를 사용할 수 있는 경우 데이터베이스 또는 원격 서비스에서 검색 되는 자주 액세스 하는 데이터를 캐시 하 **는 것이 좋습니다.** 시나리오에 따라 [Memorycache](xref:performance/caching/memory) 또는 [microsoft.web.distributedcache](xref:performance/caching/distributed)를 사용 합니다. 자세한 내용은 <xref:performance/caching/response>를 참조하세요.
 * 네트워크 왕복 **을 최소화 합니다** . 목표는 여러 호출이 아닌 단일 호출에서 필요한 데이터를 검색 하는 것입니다.
 * 읽기 전용 용도로 데이터에 액세스할 때 Entity Framework Core에서 [추적 안 함 쿼리](/ef/core/querying/tracking#no-tracking-queries) **를 사용 합니다** . EF Core 추적 되지 않는 쿼리 결과를 보다 효율적으로 반환할 수 있습니다.
 * LINQ 쿼리 (예:, 또는 문 포함) **를 필터링 하** 고 집계 `.Where` 하 여 `.Select` `.Sum` 데이터베이스에서 필터링을 수행 하도록 합니다.
@@ -357,3 +363,11 @@ ASP.NET Core는 HTTP 응답 본문을 버퍼링 하지 않습니다. 처음 응�
 ## <a name="do-not-call-next-if-you-have-already-started-writing-to-the-response-body"></a>응답 본문에 대 한 쓰기를 이미 시작한 경우 next ()를 호출 하지 마십시오.
 
 구성 요소는 응답을 처리 하 고 조작할 수 있는 경우에만 호출 될 것으로 예상 됩니다.
+
+## <a name="use-in-process-hosting-with-iis"></a>IIS를 사용 하 여 in-process 호스팅 사용
+
+In-Process 호스팅을 사용하면 ASP.NET Core 앱은 IIS 작업자 프로세스와 동일한 프로세스에서 실행됩니다. In-process 호스트는 루프백 어댑터를 통해 요청이 프록시 되지 않으므로 out-of-process 호스팅을 통해 향상 된 성능을 제공 합니다. 루프백 어댑터는 나가는 네트워크 트래픽을 동일한 컴퓨터로 다시 반환 하는 네트워크 인터페이스입니다. IIS는 [Windows Process Activation Service(WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was)를 사용하여 프로세스 관리를 처리합니다.
+
+프로젝트는 ASP.NET Core 3.0 이상에서 in-process 호스팅 모델로 기본 됩니다.
+
+자세한 내용은 [IIS를 사용 하 여 Windows의 호스트 ASP.NET Core](xref:host-and-deploy/iis/index) 를 참조 하세요.

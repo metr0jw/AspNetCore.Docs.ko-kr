@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/index
-ms.openlocfilehash: 7f5d2835d93631ac73b3da0c3dc26d87ef64c57d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f1a5af60f8dce83d9622ed9d2c6bcb4b8fc22b73
+ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634763"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88712495"
 ---
 # <a name="migrate-from-aspnet-to-aspnet-core"></a>ASP.NET에서 ASP.NET Core로 마이그레이션
 
@@ -203,6 +203,12 @@ ASP.NET Core에서 정적 파일은 별도로 구성되지 않는 한 “웹 루
     ├── ...
     └── web.config
 ```
+
+## <a name="bind-and-input-formatters"></a>[BIND] 및 입력 포맷터
+
+[이전 버전의 ASP.NET](/aspnet/mvc/overview/getting-started/introduction/examining-the-edit-methods-and-edit-view)에서는 `[Bind]` 특성을 사용하여 초과 게시 공격으로부터 보호했습니다. ASP.NET Core에서 [입력 포맷터](xref:mvc/models/model-binding#input-formatters)는 다르게 작동합니다. JSON 또는 XML을 구문 분석하기 위해 입력 포맷터와 함께 사용되는 경우 `[Bind]` 특성은 더 이상 초과 게시를 방지하도록 설계되지 않습니다. 이 특성은 데이터의 소스가 `x-www-form-urlencoded` 콘텐츠 양식으로 게시된 양식 데이터인 경우 모델 바인딩에 영향을 줍니다.
+
+JSON 정보를 컨트롤러에 게시하고 JSON 입력 포맷터를 사용하여 데이터를 구문 분석하는 앱의 경우에는 `[Bind]` 특성을 `[Bind]` 특성으로 정의된 속성과 일치하는 보기 모델로 바꾸는 것이 좋습니다.
 
 ## <a name="additional-resources"></a>추가 자료
 
