@@ -5,8 +5,9 @@ description: Blazor 앱의 구성 요소 및 DOM 요소에 대한 데이터 바�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/26/2020
+ms.date: 08/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 6f5ad6b8f225834c92d6e33d8bcf608b56678e67
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3b41aedcbd0d2c22b20d8fa3a21b8af97d1fbb2c
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014674"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628562"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>ASP.NET Core Blazor 데이터 바인딩
 
@@ -30,19 +31,27 @@ ms.locfileid: "88014674"
 
 Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bind`](xref:mvc/views/razor#bind)라는 HTML 요소 특성을 통해 데이터 바인딩 기능을 제공합니다.
 
-다음 예제에서는 `CurrentValue` 속성을 텍스트 상자의 값에 바인딩합니다.
+다음 예제에서는 `<input>` 요소를 `currentValue` 필드에 바인딩하고 `<input>` 요소를 `CurrentValue` 속성에 바인딩합니다.
 
 ```razor
-<input @bind="CurrentValue" />
+<p>
+    <input @bind="currentValue" /> Current value: @currentValue
+</p>
+
+<p>
+    <input @bind="CurrentValue" /> Current value: @CurrentValue
+</p>
 
 @code {
+    private string currentValue;
+
     private string CurrentValue { get; set; }
 }
 ```
 
-텍스트 상자가 포커스를 잃으면 속성 값이 업데이트됩니다.
+요소 중 하나가 포커스를 잃으면 바인딩된 필드 또는 속성이 업데이트됩니다.
 
-텍스트 상자는 속성 값 변경에 대한 대응이 아니라, 구성 요소가 렌더링되는 경우에만 UI에서 업데이트됩니다. 이벤트 처리기 코드를 실행하면 구성 요소가 자체적으로 렌더링되므로 속성 업데이트는 *일반적으로* 이벤트 처리기가 트리거되는 즉시 UI에 반영됩니다.
+텍스트 상자는 필드 또는 속성 값 변경에 대한 대응이 아니라, 구성 요소가 렌더링되는 경우에만 UI에서 업데이트됩니다. 이벤트 처리기 코드를 실행하면 구성 요소가 자체적으로 렌더링되므로 필드 및 속성 업데이트는 ‘일반적으로’ 이벤트 처리기가 트리거되는 즉시 UI에 반영됩니다.
 
 `CurrentValue` 속성에 [`@bind`](xref:mvc/views/razor#bind)를 사용하는 것(`<input @bind="CurrentValue" />`)은 기본적으로 다음과 같습니다.
 
@@ -50,7 +59,7 @@ Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bi
 <input value="@CurrentValue"
     @onchange="@((ChangeEventArgs __e) => CurrentValue = 
         __e.Value.ToString())" />
-        
+
 @code {
     private string CurrentValue { get; set; }
 }
@@ -70,11 +79,15 @@ Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bi
 
 요소가 포커스를 잃을 때 발생하는 `onchange`와는 달리 텍스트 상자의 값이 변경될 때 `oninput`이 발생합니다.
 
-`value` 이외의 요소 특성을 바인딩하려면 `@bind-{ATTRIBUTE}:event` 구문에 `@bind-{ATTRIBUTE}`를 사용합니다. 다음 예제에서는 `paragraphStyle` 값이 변경될 때 단락 스타일이 업데이트됩니다.
+`value` 이외의 요소 특성을 바인딩하려면 `@bind-{ATTRIBUTE}:event` 구문에 `@bind-{ATTRIBUTE}`를 사용합니다. 다음 예제에서는
+
+* 구성 요소가 로드될 때(`style="color:red"`) 단락의 스타일은 **빨간색**입니다.
+* 사용자는 텍스트 상자의 값을 변경하여 다른 CSS 색 스타일을 반영하고 페이지의 요소 포커스를 변경합니다. 예를 들어 사용자가 텍스트 상자 값을 `color:blue`로 변경하고 키보드의 <kbd>Tab</kbd> 키를 누릅니다.
+* 요소 포커스가 변경되면 다음과 같이 됩니다.
+  * `paragraphStyle` 값이 `<input>` 요소의 값에서 할당됩니다.
+  * 단락 스타일이 업데이트되어 `paragraphStyle`의 새 스타일을 반영합니다. 스타일이 `color:blue`로 업데이트되면 텍스트 색이 **파란색**으로 변경됩니다.
 
 ```razor
-@page "/binding-example"
-
 <p>
     <input type="text" @bind="paragraphStyle" />
 </p>
@@ -102,13 +115,13 @@ Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bi
 * `<input>` 요소는 초기 값 `123`을 사용하여 `int` 형식에 바인딩됩니다.
 
   ```razor
-  <input @bind="MyProperty" />
+  <input @bind="inputValue" />
 
   @code {
-      [Parameter]
-      public int MyProperty { get; set; } = 123;
+      private int inputValue = 123;
   }
   ```
+
 * 사용자는 페이지에서 요소의 값을 `123.45`로 업데이트하고 요소 포커스를 변경합니다.
 
 위의 시나리오에서 요소의 값은 `123`으로 되돌아갑니다. 값 `123.45`가 원래 값 `123`에 따라 거부되면 사용자는 해당 값이 수용되지 않았다는 것을 이해합니다.
@@ -117,7 +130,7 @@ Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bi
 
 * `oninput` 이벤트를 사용하지 마세요. 기본 `onchange` 이벤트를 사용합니다(`@bind="{PROPERTY OR FIELD}"`만 지정). 이 경우 요소가 포커스를 잃을 때까지 잘못된 값은 복귀되지 않습니다.
 * `int?` 또는 `string`과 같은 nullable 형식에 바인딩하고 잘못된 항목을 처리하기 위한 사용자 지정 논리를 제공합니다.
-* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> 또는 <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>와 같은 [양식 유효성 검사 구성 요소](xref:blazor/forms-validation)를 사용합니다. 양식 유효성 검사 구성 요소에는 잘못된 입력을 관리하기 위한 기본 제공 지원이 있습니다. 양식 유효성 검사 구성 요소:
+* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> 또는 <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>와 같은 [양식 유효성 검사 구성 요소](xref:blazor/forms-validation)를 사용합니다. 양식 유효성 검사 구성 요소에는 잘못된 입력을 관리하기 위한 기본 제공 지원이 있습니다. 자세한 내용은 <xref:blazor/forms-validation>를 참조하세요. 양식 유효성 검사 구성 요소:
   * 사용자가 연결된 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>에서 잘못된 입력을 제공하고 유효성 검사 오류를 수신할 수 있도록 허용합니다.
   * 사용자가 추가 Webform 데이터를 입력하는 것을 방해하지 않고 UI에서 유효성 검사 오류를 표시합니다.
 
@@ -126,11 +139,10 @@ Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bi
 데이터 바인딩은 `@bind:format`을 사용하여 <xref:System.DateTime> 형식 문자열에 작동합니다. 통화 또는 숫자 형식 등의 다른 형식 식은 현재 사용할 수 없습니다.
 
 ```razor
-<input @bind="StartDate" @bind:format="yyyy-MM-dd" />
+<input @bind="startDate" @bind:format="yyyy-MM-dd" />
 
 @code {
-    [Parameter]
-    public DateTime StartDate { get; set; } = new DateTime(2020, 1, 1);
+    private DateTime startDate = new DateTime(2020, 1, 1);
 }
 ```
 
@@ -146,103 +158,86 @@ Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bi
 Blazor에서는 기본적으로 날짜 형식을 지정할 수 있도록 지원하므로 `date` 필드의 형식을 지정하는 것은 권장되지 않습니다. 권장 사항에도 불구하고 `date` 필드의 형식이 제공된 경우 바인딩이 올바르게 작동하려면 `yyyy-MM-dd` 날짜 형식만 사용합니다.
 
 ```razor
-<input type="date" @bind="StartDate" @bind:format="yyyy-MM-dd">
+<input type="date" @bind="startDate" @bind:format="yyyy-MM-dd">
 ```
 
 ## <a name="parent-to-child-binding-with-component-parameters"></a>구성 요소 매개 변수를 사용한 부모-자식 바인딩
 
-바인딩은 구성 요소 매개 변수를 인식합니다. 여기서 `@bind-{PROPERTY}`는 부모 구성 요소의 속성 값을 자식 구성 요소에 바인딩할 수 있습니다. 자식에서 부모로의 바인딩은 [체인 바인딩을 사용한 자식-부모 바인딩](#child-to-parent-binding-with-chained-bind)에 설명되어 있습니다.
+구성 요소 매개 변수는 `@bind-{PROPERTY OR FIELD}` 구문을 사용하여 부모 구성 요소의 속성 및 필드 바인딩을 허용합니다.
 
-다음 자식 구성 요소(`ChildComponent`)에는 `Year` 구성 요소 매개 변수와 `YearChanged` 콜백이 있습니다.
+다음 `Child` 구성 요소(`Child.razor`)에는 `Year` 구성 요소 매개 변수와 `YearChanged` 콜백이 있습니다.
 
 ```razor
-<h2>Child Component</h2>
-
-<p>Year: @Year</p>
+<div class="card bg-light mt-3" style="width:18rem ">
+    <div class="card-body">
+        <h3 class="card-title">Child Component</h3>
+        <p class="card-text">Child <code>Year</code>: @Year</p>
+        <p>
+            <button @onclick="UpdateYear">
+                Update Child <code>Year</code> and call 
+                <code>YearChanged.InvokeAsync(Year)</code>
+            </button>
+        </p>
+    </div>
+</div>
 
 @code {
+    private Random r = new Random();
+
     [Parameter]
     public int Year { get; set; }
 
     [Parameter]
     public EventCallback<int> YearChanged { get; set; }
-}
-```
 
-<xref:Microsoft.AspNetCore.Components.EventCallback%601>의 이름은 구성 요소 매개 변수 이름 뒤에 `Changed` 접미사(`{PARAMETER NAME}Changed`)(위의 예에서는 `YearChanged`)를 붙여 지정해야 합니다. <xref:Microsoft.AspNetCore.Components.EventCallback%601>에 대한 자세한 내용은 <xref:blazor/components/event-handling#eventcallback>를 참조하세요.
-
-다음 부모 구성 요소는
-
-* `ChildComponent`를 사용하고 부모의 `ParentYear` 매개 변수를 자식 구성 요소의 `Year` 매개 변수에 바인딩합니다.
-* `onclick` 이벤트는 `ChangeTheYear` 메서드를 트리거하는 데 사용됩니다. 자세한 내용은 <xref:blazor/components/event-handling>를 참조하세요.
-
-```razor
-@page "/ParentComponent"
-
-<h1>Parent Component</h1>
-
-<p>ParentYear: @ParentYear</p>
-
-<ChildComponent @bind-Year="ParentYear" />
-
-<button class="btn btn-primary" @onclick="ChangeTheYear">
-    Change Year to 1986
-</button>
-
-@code {
-    [Parameter]
-    public int ParentYear { get; set; } = 1978;
-
-    private void ChangeTheYear()
+    private Task UpdateYear()
     {
-        ParentYear = 1986;
+        Year = r.Next(10050, 12021);
+
+        return YearChanged.InvokeAsync(Year);
     }
 }
 ```
 
-`ParentComponent`를 로드하면 다음 태그가 생성됩니다.
+콜백(<xref:Microsoft.AspNetCore.Components.EventCallback%601>)의 이름은 구성 요소 매개 변수 이름 뒤에 “`Changed`” 접미사(`{PARAMETER NAME}Changed`)를 붙여 지정해야 합니다. 이전 예제에서 콜백의 이름은 `YearChanged`로 지정됩니다. <xref:Microsoft.AspNetCore.Components.EventCallback%601>에 대한 자세한 내용은 <xref:blazor/components/event-handling#eventcallback>를 참조하세요.
 
-```html
+다음 `Parent` 구성 요소(`Parent.razor`)에서 `year` 필드는 자식 구성 요소의 `Year` 매개 변수에 바인딩됩니다.
+
+```razor
+@page "/Parent"
+
 <h1>Parent Component</h1>
 
-<p>ParentYear: 1978</p>
+<p>Parent <code>year</code>: @year</p>
 
-<h2>Child Component</h2>
+<button @onclick="UpdateYear">Update Parent <code>year</code></button>
 
-<p>Year: 1978</p>
-```
+<Child @bind-Year="year" />
 
-`ParentComponent`의 단추를 선택 하 여 `ParentYear` 속성 값이 변경 되 면 `ChildComponent`의 `Year` 속성이 업데이트 됩니다. `Year`의 새 값은 `ParentComponent`가 다시 렌더링될 때 UI에서 렌더링됩니다.
+@code {
+    private Random r = new Random();
+    private int year = 1978;
 
-```html
-<h1>Parent Component</h1>
-
-<p>ParentYear: 1986</p>
-
-<h2>Child Component</h2>
-
-<p>Year: 1986</p>
+    private void UpdateYear()
+    {
+        year = r.Next(1950, 2021);
+    }
+}
 ```
 
 `Year` 매개 변수는 `Year` 매개 변수 형식과 일치하는 도우미 `YearChanged` 이벤트를 포함하기 때문에 바인딩 가능합니다.
 
-규칙에 따르면 `<ChildComponent @bind-Year="ParentYear" />`는 기본적으로 다음을 쓰는 것과 같습니다.
+일반적으로 속성은 처리기에 할당된 `@bind-{PROPERTY}:event` 특성을 포함하여 해당 이벤트 처리기에 바인딩될 수 있습니다. `<Child @bind-Year="year" />`는 다음과 같이 작성하는 것과 같습니다.
 
 ```razor
-<ChildComponent @bind-Year="ParentYear" @bind-Year:event="YearChanged" />
-```
-
-일반적으로 속성은 `@bind-{PROPRETY}:event` 특성을 포함하여 해당 이벤트 처리기에 바인딩할 수 있습니다. 예를 들어, `MyProp` 속성은 다음 두 가지 특성을 사용하여 `MyEventHandler`에 바인딩될 수 있습니다.
-
-```razor
-<MyComponent @bind-MyProp="MyValue" @bind-MyProp:event="MyEventHandler" />
+<Child @bind-Year="year" @bind-Year:event="YearChanged" />
 ```
 
 ## <a name="child-to-parent-binding-with-chained-bind"></a>체인 바인딩을 사용한 자식-부모 바인딩
 
 일반적인 시나리오는 데이터 바인딩 매개 변수를 구성 요소 출력의 페이지 요소에 체인하는 것입니다. 여러 수준의 바인딩이 동시에 발생하기 때문에 이 시나리오를 *체인 바인딩*이라고 합니다.
 
-페이지의 요소에 [`@bind`](xref:mvc/views/razor#bind) 구문을 사용하여 체인 바인딩을 구현할 수 없습니다. 이벤트 처리기 및 값은 별도로 지정해야 합니다. 그러나 부모 구성 요소는 구성 요소의 매개 변수에서 [`@bind`](xref:mvc/views/razor#bind) 구문을 사용할 수 있습니다.
+자식 구성 요소에 [`@bind`](xref:mvc/views/razor#bind) 구문을 사용하여 체인 바인딩을 구현할 수 없습니다. 이벤트 처리기 및 값은 별도로 지정해야 합니다. 그러나 부모 구성 요소는 자식 구성 요소의 매개 변수에서 [`@bind`](xref:mvc/views/razor#bind) 구문을 사용할 수 있습니다.
 
 다음 `PasswordField` 구성 요소(`PasswordField.razor`)는
 
@@ -253,7 +248,7 @@ Blazor에서는 기본적으로 날짜 형식을 지정할 수 있도록 지원�
 ```razor
 <h1>Child Component</h1>
 
-Password: 
+Password:
 
 <input @oninput="OnPasswordChanged" 
        required 
@@ -290,7 +285,7 @@ Password:
 `PasswordField` 구성 요소는 다른 구성 요소에서 사용됩니다.
 
 ```razor
-@page "/ParentComponent"
+@page "/Parent"
 
 <h1>Parent Component</h1>
 

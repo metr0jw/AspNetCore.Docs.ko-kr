@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc, seodec18
 ms.date: 09/26/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: cd6624d107fb19da92a7e58a747cc85e876a6ba4
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 00d5c348b7ab06f9044e6705026e43feb7807ae3
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88018639"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88630307"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>ASP.NET Core에서 Entity Framework Core를 사용한 Razor Pages - 자습서 1/8
 
@@ -89,7 +90,7 @@ SQLite를 사용하도록 선택하는 경우 [SQLite용 DB 브라우저](https:
 완료된 프로젝트를 다운로드한 후 앱을 실행하려면 다음을 수행합니다.
 
 * *ContosoUniversity.csproj*를 삭제하고 *ContosoUniversitySQLite.csproj*의 이름을 *ContosoUniversity.csproj*로 바꿉니다.
-* *Startup.cs*를 삭제하고 *StartupSQLite.cs*의 이름을 *Startup.cs*로 바꿉니다.
+* *Program.cs*에서 `StartupSQLite`를 사용하도록 `#define Startup`을 주석으로 처리합니다.
 * *appSettings.json*을 삭제하고 *appSettingsSQLite.json*의 이름을 *appSettings.json*으로 바꿉니다.
 * *Migrations* 폴더를 삭제하고 *MigrationsSQL*의 이름을 *Migrations*로 바꿉니다.
 * `#if SQLiteVersion`에 대한 전체 검색을 수행하고 `#if SQLiteVersion` 및 관련된 `#endif` 문을 제거합니다.

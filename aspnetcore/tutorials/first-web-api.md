@@ -4,8 +4,9 @@ author: rick-anderson
 description: ASP.NET Core를 사용하여 웹 API를 빌드하는 방법을 알아봅니다.
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/25/2020
+ms.date: 08/13/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-web-api
-ms.openlocfilehash: ad6eac246e5bc7039158981bbe96036389512e4f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: ce0dfdf1ce88b55790d33918a2d20bc19a09b288
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88019237"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88626898"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>자습서: ASP.NET Core를 사용하여 웹 API 만들기
 
@@ -293,7 +294,8 @@ ASP.NET Core에서는 DB 컨텍스트와 같은 서비스를 [DI(종속성 주�
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+dotnet tool update -g Dotnet-aspnet-codegenerator
+dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
 이전 명령은
@@ -324,6 +326,8 @@ ASP.NET Core 템플릿과 관련해서 다음 사항을 확인합니다.
 
 위의 코드는 [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) 특성으로 표시되는 HTTP POST 메서드입니다. 이 메서드는 HTTP 요청 본문에서 할 일 항목 값을 가져옵니다.
 
+자세한 내용은 [Http[동사] 특성을 사용한 특성 라우팅](xref:mvc/controllers/routing#attribute-routing-with-httpverb-attributes)을 참조하세요.
+
 <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> 메서드는 다음 작업을 수행합니다.
 
 * 성공 시 HTTP 201 상태 코드를 반환합니다. HTTP 201은 서버에서 새 리소스를 만드는 HTTP POST 메서드의 표준 응답입니다.
@@ -348,6 +352,7 @@ ASP.NET Core 템플릿과 관련해서 다음 사항을 확인합니다.
 
 * 새 요청을 만듭니다.
 * HTTP 메서드를 `POST`로 설정합니다.
+* URI를 `https://localhost:<port>/api/TodoItems`로 설정합니다. 예: `https://localhost:5001/api/TodoItems`.
 * **본문** 탭을 선택합니다.
 * **원시** 라디오 단추를 선택합니다.
 * 유형을 **JSON(application/json)** 으로 설정합니다.
@@ -364,15 +369,15 @@ ASP.NET Core 템플릿과 관련해서 다음 사항을 확인합니다.
 
   ![생성 요청이 있는 Postman](first-web-api/_static/3/create.png)
 
-### <a name="test-the-location-header-uri"></a>위치 헤더 URI 테스트
+### <a name="test-the-location-header-uri-with-postman"></a>Postman을 사용하여 위치 헤더 URI 테스트
 
 * **응답** 창에서 **헤더** 탭을 선택합니다.
 * **위치** 헤더 값을 복사합니다.
 
   ![Postman 콘솔의 헤더 탭](first-web-api/_static/3/create.png)
 
-* 메서드를 GET으로 설정합니다.
-* URI(예: `https://localhost:5001/api/TodoItems/1`)를 붙여넣습니다.
+* HTTP 메서드를 `GET`로 설정합니다.
+* URI를 `https://localhost:<port>/api/TodoItems/1`로 설정합니다. 예: `https://localhost:5001/api/TodoItems/1`.
 * **보내기**를 선택합니다.
 
 ## <a name="examine-the-get-methods"></a>GET 메서드 검사
@@ -403,7 +408,7 @@ ASP.NET Core 템플릿과 관련해서 다음 사항을 확인합니다.
 
 * 새 요청을 만듭니다.
 * HTTP 메서드를 **GET**으로 설정합니다.
-* 요청 URL을 `https://localhost:<port>/api/TodoItems`로 설정합니다. 예: `https://localhost:5001/api/TodoItems`.
+* 요청 URI를 `https://localhost:<port>/api/TodoItems`로 설정합니다. 예: `https://localhost:5001/api/TodoItems`.
 * Postman에서 **두 개의 창 보기**를 설정합니다.
 * **보내기**를 선택합니다.
 
@@ -804,7 +809,7 @@ ASP.NET Core에서는 DB 컨텍스트와 같은 서비스를 [DI(종속성 주�
 
 * 새 요청을 만듭니다.
   * HTTP 메서드를 **GET**으로 설정합니다.
-  * 요청 URL을 `https://localhost:<port>/api/todo`로 설정합니다. 예: `https://localhost:5001/api/todo`.
+  * 요청 URI를 `https://localhost:<port>/api/todo`로 설정합니다. 예: `https://localhost:5001/api/todo`.
 * Postman에서 **두 개의 창 보기**를 설정합니다.
 * **보내기**를 선택합니다.
 
@@ -830,6 +835,7 @@ ASP.NET Core에서는 DB 컨텍스트와 같은 서비스를 [DI(종속성 주�
 
 * 프로젝트를 빌드합니다.
 * Postman에서 HTTP 메서드를 `POST`로 설정합니다.
+* URI를 `https://localhost:<port>/api/TodoItem`으로 설정합니다. 예: `https://localhost:5001/api/TodoItem`.
 * **본문** 탭을 선택합니다.
 * **원시** 라디오 단추를 선택합니다.
 * 유형을 **JSON(application/json)** 으로 설정합니다.
@@ -856,7 +862,7 @@ ASP.NET Core에서는 DB 컨텍스트와 같은 서비스를 [DI(종속성 주�
   ![Postman 콘솔의 헤더 탭](first-web-api/_static/pmc2.png)
 
 * 메서드를 GET으로 설정합니다.
-* URI(예: `https://localhost:5001/api/Todo/2`)를 붙여넣습니다.
+\* URI를  `https://localhost:<port>/api/TodoItems/2`로 설정합니다. 예:  `https://localhost:5001/api/TodoItems/2`.
 * **보내기**를 선택합니다.
 
 ## <a name="add-a-puttodoitem-method"></a>PutTodoItem 메서드 추가

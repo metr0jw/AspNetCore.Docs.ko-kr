@@ -5,8 +5,9 @@ description: ASP.NET Core Blazor 호스팅 모델 구성의 추가 시나리오�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/10/2020
+ms.date: 08/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: dbad91e46a95d9ab5ec62d66e0d9a18938ff4520
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 6f092f3f9a18883c31b217b59d0b0abe802aff01
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014466"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628303"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>ASP.NET Core Blazor 호스팅 모델 구성
 
@@ -264,6 +265,46 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 * 애플리케이션 상태에 의해 수정될 수 있습니다. 하드 코드된 HTML 태그는 애플리케이션 상태에 의해 수정될 수 없습니다.
 * 부모 구성 요소가 더 이상 렌더링되지 않으면 HTML `<head>`에서 제거됩니다.
 
-## <a name="additional-resources"></a>추가 리소스
+## <a name="static-files"></a>정적 파일
+
+‘이 섹션은 Blazor Server에 적용됩니다.’
+
+<xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider>를 사용하여 추가 파일 매핑을 만들거나 다른 <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>를 구성하려면 다음 방법 중 **하나**를 사용합니다. 다음 예제에서 `{EXTENSION}` 자리 표시자는 파일 확장명이고 `{CONTENT TYPE}` 자리 표시자는 콘텐츠 형식입니다.
+
+* <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>를 사용하여 `Startup.ConfigureServices`(`Startup.cs`)에서 [DI(종속성 주입)](xref:blazor/fundamentals/dependency-injection)를 통해 옵션을 구성합니다.
+
+  ```csharp
+  using Microsoft.AspNetCore.StaticFiles;
+
+  ...
+
+  var provider = new FileExtensionContentTypeProvider();
+  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
+
+  services.Configure<StaticFileOptions>(options =>
+  {
+      options.ContentTypeProvider = provider;
+  });
+  ```
+
+  이 방법에서는 `blazor.server.js`를 처리하는 데 사용되는 것과 동일한 파일 공급자를 구성하므로 사용자 지정 구성이 `blazor.server.js` 처리를 방해하지 않는지 확인해야 합니다. 예를 들어 `provider.Mappings.Remove(".js")`를 통해 공급자를 구성하여 JavaScript 파일에 대한 매핑을 제거하지 마세요.
+
+* `Startup.Configure`(`Startup.cs`)에서 <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>에 대한 두 호출을 사용합니다.
+  * <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>를 사용하여 첫 번째 호출에서 사용자 지정 파일 공급자를 구성합니다.
+  * 두 번째 미들웨어는 Blazor 프레임워크에서 제공하는 기본 정적 파일 구성을 사용하는 `blazor.server.js`를 처리합니다.
+
+  ```csharp
+  using Microsoft.AspNetCore.StaticFiles;
+
+  ...
+
+  var provider = new FileExtensionContentTypeProvider();
+  provider.Mappings["{EXTENSION}"] = "{CONTENT TYPE}";
+
+  app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
+  app.UseStaticFiles();
+  ```
+
+## <a name="additional-resources"></a>추가 자료
 
 * <xref:fundamentals/logging/index>

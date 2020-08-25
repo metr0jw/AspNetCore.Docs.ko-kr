@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 08/03/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 06059e0f9ff6a3f4073d8d01d1ac541c30ad1ab1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 9e3933d8800c00eb135c041bb1c65fbf01d4ef83
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014193"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628042"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core 호스트 및 배포 Blazor WebAssembly
 
@@ -85,6 +86,12 @@ Blazor는 호스트를 사용하여 적절한 압축 파일을 제공합니다. 
 <PropertyGroup>
   <BlazorEnableCompression>false</BlazorEnableCompression>
 </PropertyGroup>
+```
+
+명령 셸에서 다음 구문을 사용하여 `BlazorEnableCompression` 속성을 [`dotnet publish`](/dotnet/core/tools/dotnet-publish) 명령에 전달할 수 있습니다.
+
+```dotnetcli
+dotnet publish -p:BlazorEnableCompression=false
 ```
 
 ## <a name="rewrite-urls-for-correct-routing"></a>올바른 라우팅을 위해 URL 다시 생성
@@ -715,7 +722,7 @@ Blazor는 각 릴리스 빌드에 대해 IL(중간 언어) 연결을 수행하�
 
 `loadBootResource` 매개 변수는 다음 표에 나와 있습니다.
 
-| 매개 변수    | 설명 |
+| 매개 변수    | Description |
 | ------------ | ----------- |
 | `type`       | 리소스 형식입니다. 허용되는 형식: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, `timezonedata` |
 | `name`       | 리소스의 이름입니다. |

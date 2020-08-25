@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 6/23/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -14,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 32f794d498533e846343831d2360e98939105fb1
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 24fda96dbe48945d172eb36e8a91af31f168ff7f
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016682"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627665"
 ---
 # <a name="static-files-in-aspnet-core"></a>ASP.NET Core의 정적 파일
 
@@ -103,6 +104,19 @@ HTML, CSS, 이미지 및 JavaScript와 같은 정적 파일은 기본적으로 A
 ## <a name="static-file-authorization"></a>정적 파일 권한 부여
 
 정적 파일 미들웨어는 권한 부여 검사를 제공하지 않습니다. `wwwroot` 아래의 항목을 비롯한 제공되는 모든 파일은 공개적으로 액세스할 수 있습니다. 권한 부여를 기반으로 파일을 제공하려면 다음을 수행합니다.
+
+* 파일을 `wwwroot` 외부의 기본 정적 파일 미들웨어에 액세스할 수 있는 임의의 디렉터리에 저장합니다.
+* `UseAuthorization` 다음에 `UseStaticFiles`를 호출하고 경로를 지정합니다.
+
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet2)]
+  
+  위의 방법을 사용하려면 사용자를 인증해야 합니다.
+
+  [!code-csharp[](static-files/samples/3.x/StaticFileAuth/Startup.cs?name=snippet1&highlight=20-99)]
+
+   [!INCLUDE[](~/includes/requireAuth.md)]
+
+권한 부여를 기반으로 파일을 제공하는 대체 방법:
 
 * 파일을 `wwwroot` 외부의 정적 파일 미들웨어에 액세스할 수 있는 임의의 디렉터리에 저장합니다.
 * 권한 부여가 적용되는 작업 메서드를 통해 파일을 제공하고 <xref:Microsoft.AspNetCore.Mvc.FileResult> 개체를 반환합니다.
@@ -445,6 +459,8 @@ URL은 파일 계층 구조 및 이전 코드를 사용하여 다음과 같이 �
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupFileExtensionContentTypeProvider.cs?name=snippet_ConfigureMethod&highlight=3-12,19)]
 
 [MIME 콘텐츠 형식](https://www.iana.org/assignments/media-types/media-types.xhtml)을 참조하세요.
+
+사용자 지정 <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider>를 사용하거나 Blazor Server 앱에서 다른 <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>를 구성하는 방법에 대한 자세한 내용은 <xref:blazor/fundamentals/additional-scenarios#static-files>를 참조하세요.
 
 ## <a name="non-standard-content-types"></a>비표준 콘텐츠 형식
 

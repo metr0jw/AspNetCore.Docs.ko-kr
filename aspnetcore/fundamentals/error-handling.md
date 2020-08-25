@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/error-handling
-ms.openlocfilehash: 2e6aabda449a24496916c6ea9fcbd38062b54c04
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: a1f40bdcdd4f2472aa86b311bfd9302e6aa8adc0
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88017456"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88635101"
 ---
 # <a name="handle-errors-in-aspnet-core"></a>ASP.NET Core에서 오류 처리
 
@@ -34,7 +35,7 @@ ms.locfileid: "88017456"
 
 ## <a name="developer-exception-page"></a>개발자 예외 페이지
 
-개발자 예외 페이지에는 요청 예외에 대한 자세한 정보가 표시됩니다. 이 페이지는 [Microsoft.AspNetCore.App 메타패키지](xref:fundamentals/metapackage-app)에 있는 [Microsoft.AspNetCore.Diagnostics](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics/) 패키지를 통해 사용할 수 있습니다. 앱이 개발 [환경](xref:fundamentals/environments)에서 실행 중이면 페이지를 사용하도록 설정하는 코드를 `Startup.Configure` 메서드에 추가합니다.
+개발자 예외 페이지에는 요청 예외에 대한 자세한 정보가 표시됩니다. 이 페이지는 [`Microsoft.AspNetCore.App` 공유 프레임워크](xref:fundamentals/metapackage-app)에 있는 `Microsoft.AspNetCore.Diagnostics` 어셈블리에서 사용할 수 있습니다. 앱이 개발 [환경](xref:fundamentals/environments)에서 실행 중이면 페이지를 사용하도록 설정하는 코드를 `Startup.Configure` 메서드에 추가합니다.
 
 [!code-csharp[](error-handling/samples/2.x/ErrorHandlingSample/Startup.cs?name=snippet_DevPageAndHandlerPage&highlight=1-4)]
 

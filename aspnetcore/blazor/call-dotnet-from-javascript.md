@@ -5,8 +5,9 @@ description: Blazor 앱의 JavaScript 함수에서 .NET 메서드를 호출하�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/07/2020
+ms.date: 08/12/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/call-dotnet-from-javascript
-ms.openlocfilehash: 5a0731b45424ffd8560bb3b0d9123c686ae9e247
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3df0fafe85d6decac3be41d4e25a4db51d8d72d8
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88012568"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88627054"
 ---
 # <a name="call-net-methods-from-javascript-functions-in-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor의 JavaScript 함수에서 .NET 메서드 호출
 
@@ -233,11 +234,16 @@ Hello, Blazor!
 * `invokeMethod` 또는 `invokeMethodAsync` 함수를 사용하여 구성 요소에 대한 정적 메서드 호출을 수행합니다.
 * 구성 요소의 정적 메서드는 인스턴스 메서드 호출을 호출되는 <xref:System.Action>으로 래핑합니다.
 
+> [!NOTE]
+> 여러 사용자가 동일한 구성 요소를 동시에 사용할 수 있는 Blazor Server 앱의 경우 도우미 클래스를 사용하여 인스턴스 메서드를 호출합니다.
+>
+> 자세한 내용은 [구성 요소 인스턴스 메서드 도우미 클래스](#component-instance-method-helper-class) 섹션을 참조하세요.
+
 클라이언트 쪽 JavaScript에서 다음을 실행합니다.
 
 ```javascript
 function updateMessageCallerJS() {
-  DotNet.invokeMethod('{APP ASSEMBLY}', 'UpdateMessageCaller');
+  DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller');
 }
 ```
 
@@ -279,7 +285,70 @@ function updateMessageCallerJS() {
 }
 ```
 
-여러 구성 요소가 있고 각각 호출하는 인스턴스 메서드를 포함하는 경우 도우미 클래스를 사용하여 각 구성 요소의 인스턴스 메서드(<xref:System.Action>)를 호출합니다.
+인스턴스 메서드에 인수를 전달하려면 다음을 수행합니다.
+
+* JS 메서드 호출에 매개 변수를 추가합니다. 다음 예제에서는 이름이 메서드에 전달됩니다. 필요에 따라 목록에 매개 변수를 추가할 수 있습니다.
+
+  ```javascript
+  function updateMessageCallerJS(name) {
+    DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'UpdateMessageCaller', name);
+  }
+  ```
+  
+  자리 표시자 `{APP ASSEMBLY}`는 앱의 앱 어셈블리 이름입니다(예: `BlazorSample`).
+
+* 매개 변수에 대한 <xref:System.Action>에 올바른 형식을 제공합니다. C# 메서드에 매개 변수 목록을 제공합니다. 매개 변수(`action.Invoke(name)`)를 사용하여 <xref:System.Action>(`UpdateMessage`)을 호출합니다.
+
+  `Pages/JSInteropComponent.razor`:
+
+  ```razor
+  @page "/JSInteropComponent"
+
+  <p>
+      Message: @message
+  </p>
+
+  <p>
+      <button onclick="updateMessageCallerJS('Sarah Jane')">
+          Call JS Method
+      </button>
+  </p>
+
+  @code {
+      private static Action<string> action;
+      private string message = "Select the button.";
+
+      protected override void OnInitialized()
+      {
+          action = UpdateMessage;
+      }
+
+      private void UpdateMessage(string name)
+      {
+          message = $"{name}, UpdateMessage Called!";
+          StateHasChanged();
+      }
+
+      [JSInvokable]
+      public static void UpdateMessageCaller(string name)
+      {
+          action.Invoke(name);
+      }
+  }
+  ```
+
+  **JS 메서드 호출** 단추가 선택된 경우 `message`를 출력합니다.
+
+  ```
+  Sarah Jane, UpdateMessage Called!
+  ```
+
+## <a name="component-instance-method-helper-class"></a>구성 요소 인스턴스 메서드 도우미 클래스
+
+도우미 클래스는 인스턴스 메서드를 <xref:System.Action>으로 호출하는 데 사용됩니다. 도우미 클래스는 다음과 같은 경우에 유용합니다.
+
+* 동일한 형식의 여러 구성 요소가 동일한 페이지에 렌더링되는 경우
+* 여러 사용자가 구성 요소를 동시에 사용할 수 있는 Blazor Server 앱을 사용하는 경우
 
 다음 예제에서는
 

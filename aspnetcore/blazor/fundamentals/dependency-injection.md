@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/dependency-injection
-ms.openlocfilehash: c8209b9374b448562c173f9f879e75a5da5f2301
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 3dc15f5efcc8f48a809bf9132588fb38732a7b35
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014414"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628289"
 ---
 # <a name="aspnet-core-no-locblazor-dependency-injection"></a>ASP.NET Core Blazor 종속성 주입
 
@@ -289,94 +290,9 @@ Blazor 앱에서 서비스 수명을 제한하는 방법은 <xref:Microsoft.AspN
   </ul>
   ```
 
-## <a name="use-of-entity-framework-dbcontext-from-di"></a>DI의 Entity Framework DbContext 사용
+## <a name="use-of-an-entity-framework-core-ef-core-dbcontext-from-di"></a>DI에서 EF Core(Entity Framework Core) DbContext 사용
 
-웹앱의 DI에서 검색할 하나의 공통 서비스 형식은 EF(Entity Framework)<xref:Microsoft.EntityFrameworkCore.DbContext> 개체입니다. <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A>를 사용하여 EF 서비스를 등록하면 기본적으로 <xref:Microsoft.EntityFrameworkCore.DbContext>를 범위가 지정된 서비스로 추가합니다. 범위가 지정된 서비스로 등록하면 <xref:Microsoft.EntityFrameworkCore.DbContext> 인스턴스가 수명이 길며 앱 전체에서 공유되기 때문에 Blazor 앱에서 문제가 발생할 수 있습니다. <xref:Microsoft.EntityFrameworkCore.DbContext>는 스레드로부터 안전하지 않으며 동시에 사용하지 않아야 합니다.
-
-앱에 따라 <xref:Microsoft.AspNetCore.Components.OwningComponentBase>를 사용하여 <xref:Microsoft.EntityFrameworkCore.DbContext>의 범위를 단일 구성 요소로 제한하면 이 문제를 해결*할 수 있습니다*. 구성 요소가 동시에 <xref:Microsoft.EntityFrameworkCore.DbContext>를 사용하지 않는 경우 <xref:Microsoft.AspNetCore.Components.OwningComponentBase>에서 구성 요소를 파생시키고 <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices>에서 <xref:Microsoft.EntityFrameworkCore.DbContext>를 검색하는 것는 것만으로 다음이 보장되므로 충분합니다.
-
-* 개별 구성 요소는 <xref:Microsoft.EntityFrameworkCore.DbContext>를 공유하지 않습니다.
-* <xref:Microsoft.EntityFrameworkCore.DbContext>는 종속되는 구성 요소가 있는 경우에만 존재합니다.
-
-단일 구성 요소에서 <xref:Microsoft.EntityFrameworkCore.DbContext>를 동시에 사용할 수 있는 경우(예: 사용자가 단추를 선택할 때마다) <xref:Microsoft.AspNetCore.Components.OwningComponentBase>를 사용하더라도 동시 EF 작업과 관련된 문제를 피할 수 있습니다. 이 경우 각 논리적 EF 작업에 대해 다른 <xref:Microsoft.EntityFrameworkCore.DbContext>를 사용합니다. 다음 방식 중 하나를 사용합니다.
-
-* <xref:Microsoft.EntityFrameworkCore.DbContextOptions%601>를 인수로 사용하여 <xref:Microsoft.EntityFrameworkCore.DbContext>를 직접 만듭니다. 이 항목은 DI에서 검색할 수 있으며 스레드로부터 안전합니다.
-
-    ```razor
-    @page "/example"
-    @inject DbContextOptions<AppDbContext> DbContextOptions
-
-    <ul>
-        @foreach (var item in data)
-        {
-            <li>@item</li>
-        }
-    </ul>
-
-    <button @onclick="LoadData">Load Data</button>
-
-    @code {
-        private List<string> data = new List<string>();
-
-        private async Task LoadData()
-        {
-            data = await GetAsync();
-            StateHasChanged();
-        }
-
-        public async Task<List<string>> GetAsync()
-        {
-            using (var context = new AppDbContext(DbContextOptions))
-            {
-                return await context.Products.Select(p => p.Name).ToListAsync();
-            }
-        }
-    }
-    ```
-
-* 임시 수명을 사용하여 서비스 컨테이너의 <xref:Microsoft.EntityFrameworkCore.DbContext>를 등록합니다.
-  * 컨텍스트를 등록할 때 <xref:Microsoft.OData.ServiceLifetime.Transient?displayProperty=nameWithType>를 사용합니다. <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A> 확장 메서드는 <xref:Microsoft.Extensions.DependencyInjection.ServiceLifetime> 형식의 두 가지 선택적 매개 변수를 사용합니다. 이 방법을 사용하려면 `contextLifetime` 매개 변수만 <xref:Microsoft.OData.ServiceLifetime.Transient?displayProperty=nameWithType>이면 됩니다. `optionsLifetime`은 기본값 <xref:Microsoft.OData.ServiceLifetime.Scoped?displayProperty=nameWithType>를 유지할 수 있습니다.
-
-    ```csharp
-    services.AddDbContext<AppDbContext>(options =>
-         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
-         ServiceLifetime.Transient);
-    ```  
-
-  * 임시 <xref:Microsoft.EntityFrameworkCore.DbContext>는 여러 EF 작업을 동시에 실행하지 않는 구성 요소에 일반([`@inject`](xref:mvc/views/razor#inject) 사용)으로 주입될 수 있습니다. 여러 EF 작업을 동시에 수행할 수 있는 항목은 <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A>를 사용하여 각 병렬 작업에 대해 별도의 <xref:Microsoft.EntityFrameworkCore.DbContext> 개체를 요청할 수 있습니다.
-
-    ```razor
-    @page "/example"
-    @using Microsoft.Extensions.DependencyInjection
-    @inject IServiceProvider ServiceProvider
-
-    <ul>
-        @foreach (var item in data)
-        {
-            <li>@item</li>
-        }
-    </ul>
-
-    <button @onclick="LoadData">Load Data</button>
-
-    @code {
-        private List<string> data = new List<string>();
-
-        private async Task LoadData()
-        {
-            data = await GetAsync();
-            StateHasChanged();
-        }
-
-        public async Task<List<string>> GetAsync()
-        {
-            using (var context = ServiceProvider.GetRequiredService<AppDbContext>())
-            {
-                return await context.Products.Select(p => p.Name).ToListAsync();
-            }
-        }
-    }
-    ```
+자세한 내용은 <xref:blazor/blazor-server-ef-core>를 참조하세요.
 
 ## <a name="detect-transient-disposables"></a>임시 삭제 가능 항목 검색
 

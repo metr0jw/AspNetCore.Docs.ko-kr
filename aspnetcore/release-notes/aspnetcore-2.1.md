@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: aspnetcore-2.1
-ms.openlocfilehash: 3fb524748b9e2aa2c12b64f67a7960c4f0f911b0
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: d10fd89a3eac34e855ba92673033edc541aa6393
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88021161"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88632410"
 ---
 # <a name="whats-new-in-aspnet-core-21"></a>ASP.NET Core 2.1의 새로운 기능
 

@@ -6,6 +6,7 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 07/27/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -16,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 5aca81da34e5ed51b2dc4f404c1ba4d7377a422f
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 28e4f372e301a673644bfa97763ebc930f2d0ad5
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88016247"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88634334"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>.NET 클라이언트를 사용하여 gRPC 서비스 호출
 
@@ -136,7 +137,7 @@ await foreach (var response in call.ResponseStream.ReadAllAsync())
 
 ### <a name="client-streaming-call"></a>클라이언트 스트리밍 호출
 
-클라이언트 스트리밍 호출은 클라이언트에서 메시지를 보내지 ‘않고’ 시작됩니다. 클라이언트는 `RequestStream.WriteAsync`를 사용하여 메시지를 보내도록 선택할 수 있습니다. 클라이언트가 메시지 전송을 완료하면 서비스에 알리기 위해 `RequestStream.CompleteAsync`를 호출해야 합니다. 서비스에서 응답 메시지를 반환하면 호출이 완료됩니다.
+클라이언트 스트리밍 호출은 클라이언트에서 메시지를 보내지 ‘않고’ 시작됩니다. 클라이언트는 `RequestStream.WriteAsync`를 사용하여 메시지를 보내도록 선택할 수 있습니다. 클라이언트가 메시지 전송을 완료하면 서비스에 알리기 위해 `RequestStream.CompleteAsync()`를 호출해야 합니다. 서비스에서 응답 메시지를 반환하면 호출이 완료됩니다.
 
 ```csharp
 var client = new Counter.CounterClient(channel);
@@ -188,6 +189,14 @@ Console.WriteLine("Disconnecting");
 await call.RequestStream.CompleteAsync();
 await readTask;
 ```
+
+최적의 성능을 얻고 클라이언트 및 서비스에서 불필요한 오류를 방지하려면 양방향 스트리밍 호출을 정상적으로 완료해 보세요. 서버에서 요청 스트림 읽기를 마치고 클라이언트에서 응답 스트림 읽기를 완료하면 양방향 호출이 정상적으로 완료됩니다. 위의 샘플 호출은 정상적으로 종료되는 양방향 호출의 한 예입니다. 호출에서 클라이언트는 다음을 수행합니다.
+
+1. `EchoClient.Echo`를 호출하여 새 양방향 스트리밍 호출을 시작합니다.
+2. `ResponseStream.ReadAllAsync()`를 사용하여 서비스에서 메시지를 읽는 백그라운드 작업을 만듭니다.
+3. `RequestStream.WriteAsync`를 사용하여 메시지를 서버에 보냅니다.
+4. `RequestStream.CompleteAsync()`를 사용하여 메시지를 보냈다고 서버에 알립니다.
+5. 백그라운드 작업에서 들어오는 모든 메시지를 읽을 때까지 기다립니다.
 
 양방향 스트리밍 호출 중에 클라이언트와 서비스는 언제든지 서로에게 메시지를 보낼 수 있습니다. 양방향 호출과 상호 작용하는 데 가장 적합한 클라이언트 논리는 서비스 논리에 따라 다릅니다.
 

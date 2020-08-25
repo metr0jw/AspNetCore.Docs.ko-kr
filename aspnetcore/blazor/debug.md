@@ -5,8 +5,9 @@ description: Blazor 앱을 디버그하는 방법을 알아봅니다.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/30/2020
+ms.date: 08/17/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 225916411550cc8e89c604e1426316843bb0ff52
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 5aeb333dc36ebc4c3a324b397793343e0335b1e1
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014544"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628367"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly 디버그
 
@@ -42,7 +43,7 @@ Blazor WebAssembly 앱은 Chromium 기반 브라우저(Edge/Chrome)의 브라우
 현재 사용 가능하지 ‘않은’ 시나리오는 다음과 같습니다.
 
 * 처리되지 않은 예외에서 중단합니다.
-* 앱 시작 중에 중단점을 적중시킵니다.
+* 디버그 프록시가 실행되기 전에 앱을 시작하는 동안 중단점에 적중합니다. 여기에는 `Program.Main`(`Program.cs`)의 중단점과 애플리케이션에서 요청하는 첫 페이지에서 로드되는 구성 요소의 [`OnInitialized{Async}` 메서드](xref:blazor/components/lifecycle#component-initialization-methods)의 중단점이 포함됩니다.
 
 향후 릴리스에서 계속해서 디버깅 환경을 개선하기 위해 노력하겠습니다.
 
@@ -80,7 +81,7 @@ Visual Studio에서 Blazor WebAssembly 앱을 디버그하려면:
 1. <kbd>F5</kbd> 키를 눌러 디버거에서 앱을 실행합니다.
 
    > [!NOTE]
-   > **디버깅하지 않고 시작**(<kbd>Ctrl</kbd>+<kbd>F5</kbd>)은 지원되지 않습니다.
+   > **디버깅하지 않고 시작**(<kbd>Ctrl</kbd>+<kbd>F5</kbd>)은 지원되지 않습니다. 디버그 구성에서 앱을 실행하는 경우 디버깅 오버헤드로 인해 항상 약간의 성능 저하가 발생합니다.
 
 1. `IncrementCount` 메서드의 `Pages/Counter.razor`에서 중단점을 설정합니다.
 1. **`Counter`** 탭으로 이동하여 중단점을 적중시키도록 단추를 선택합니다.
@@ -128,7 +129,7 @@ Blazor WebAssembly 앱을 디버그하는 동안 서버 코드도 디버그할 �
 1. <kbd>F5</kbd> 바로 가기 키 또는 메뉴 항목을 사용하여 디버깅을 시작합니다.
 
    > [!NOTE]
-   > **디버깅하지 않고 실행**(<kbd>Ctrl</kbd>+<kbd>F5</kbd>)은 지원되지 않습니다.
+   > **디버깅하지 않고 시작**(<kbd>Ctrl</kbd>+<kbd>F5</kbd>)은 지원되지 않습니다. 디버그 구성에서 앱을 실행하는 경우 디버깅 오버헤드로 인해 항상 약간의 성능 저하가 발생합니다.
 
 1. 메시지가 표시되면 **Blazor WebAssembly 디버그** 옵션을 선택하여 디버깅을 시작합니다.
 
@@ -284,3 +285,13 @@ protected override async Task OnInitializedAsync()
     ...
 }
 ```
+
+### <a name="visual-studio-timeout"></a>Visual Studio 시간 제한
+
+Visual Studio에서 시간 제한에 도달했다는 메시지가 표시되며 디버그 어댑터가 실행되지 않는 예외가 throw되는 경우 레지스트리 설정을 사용하여 시간 제한을 조정할 수 있습니다.
+
+```console
+VsRegEdit.exe set "<VSInstallFolder>" HKCU JSDebugger\Options\Debugging "BlazorTimeoutInMilliseconds" dword {TIMEOUT}
+```
+
+이전 명령의 `{TIMEOUT}` 자리 표시자는 밀리초 단위입니다. 예를 들어 1분은 `60000`으로 할당됩니다.

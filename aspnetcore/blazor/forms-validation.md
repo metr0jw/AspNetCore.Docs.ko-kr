@@ -5,8 +5,9 @@ description: Blazor에서 양식 및 필드 유효성 검사 시나리오를 사
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/06/2020
+ms.date: 08/18/2020
 no-loc:
+- ASP.NET Core Identity
 - cookie
 - Cookie
 - Blazor
@@ -17,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 3e719261315ed3a17833da7751d801d79a11ee6c
-ms.sourcegitcommit: 497be502426e9d90bb7d0401b1b9f74b6a384682
+ms.openlocfilehash: 4690c279c24ef23806a6e72aece5f7cd821752bc
+ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/08/2020
-ms.locfileid: "88014480"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88628328"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor 양식 및 유효성 검사
 
-작성자: [Daniel Roth](https://github.com/danroth27) 및 [Luke Latham](https://github.com/guardrex)
+작성자: [Daniel Roth](https://github.com/danroth27), [Rémi Bourgarel](https://remibou.github.io/), [Luke Latham](https://github.com/guardrex)
 
 양식 및 유효성 검사는 [데이터 주석](xref:mvc/models/validation)을 사용하여 Blazor에서 지원됩니다.
 
@@ -60,7 +61,7 @@ public class ExampleModel
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 }
 ```
@@ -71,7 +72,7 @@ public class ExampleModel
 * <xref:Microsoft.AspNetCore.Components.Forms.InputText> 구성 요소의 `@bind-Value`는 다음과 같이 바인딩합니다.
   * 모델 속성(`exampleModel.Name`)을 <xref:Microsoft.AspNetCore.Components.Forms.InputText> 구성 요소의 `Value` 속성에 바인딩합니다. 속성 바인딩에 대한 자세한 내용은 <xref:blazor/components/data-binding#parent-to-child-binding-with-component-parameters>를 참조하세요.
   * 변경 이벤트 대리자를 <xref:Microsoft.AspNetCore.Components.Forms.InputText> 구성 요소의 `ValueChanged` 속성에 바인딩합니다.
-* <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소는 데이터 주석을 사용하여 유효성 검사 지원을 연결합니다.
+* <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> [유효성 검사기 구성 요소](#validator-components)는 데이터 주석을 사용하여 유효성 검사 지원을 연결합니다.
 * <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> 구성 요소는 유효성 검사 메시지를 요약합니다.
 * 양식이 성공적으로 제출되면(유효성 검사 통과) `HandleValidSubmit`가 트리거됩니다.
 
@@ -189,23 +190,31 @@ public class Starship
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.Forms.EditForm>은 수정된 필드와 현재 유효성 검사 메시지를 포함하여 편집 프로세스에 대한 메타데이터를 추적하는 [계단식 값](xref:blazor/components/cascading-values-and-parameters)으로 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>를 만듭니다. <xref:Microsoft.AspNetCore.Components.Forms.EditForm>은 유효한 제출과 잘못된 제출에 대한 편리한 이벤트(<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit>)도 제공합니다. 또는 <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>를 사용하여 유효성 검사를 트리거하고 사용자 지정 유효성 검사 코드로 필드 값을 확인할 수 있습니다.
+<xref:Microsoft.AspNetCore.Components.Forms.EditForm>은 수정된 필드와 현재 유효성 검사 메시지를 포함하여 편집 프로세스에 대한 메타데이터를 추적하는 [계단식 값](xref:blazor/components/cascading-values-and-parameters)으로 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>를 만듭니다.
+
+****<xref:Microsoft.AspNetCore.Components.Forms.EditContext> **또는** <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>을 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>에 할당합니다. 두 항목을 모두 할당할 수 없으며, 그러면 **런타임 오류**가 발생합니다.
+
+<xref:Microsoft.AspNetCore.Components.Forms.EditForm>은 유효한 양식 제출과 잘못된 양식 제출에 대한 편리한 이벤트를 제공합니다.
+
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit>
+
+사용자 지정 코드를 사용하여 유효성 검사를 트리거하고 필드 값을 확인하려면 <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>을 사용합니다.
 
 다음 예제에서는
 
 * **`Submit`** 단추를 선택하면 `HandleSubmit` 메서드가 실행됩니다.
-* 양식의 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>를 사용하여 양식의 유효성을 검사합니다.
-* 서버에서 웹 API 엔드포인트를 호출하는 `ServerValidate` 메서드에 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>를 전달하여 양식의 유효성을 추가로 검사합니다(‘표시되지 않음’).
-* `isValid`를 확인하여 클라이언트 쪽 및 서버 쪽 유효성 검사 결과에 따라 추가 코드를 실행합니다.
+* <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType>를 호출하여 양식의 유효성을 검사합니다.
+* 유효성 검사 결과에 따라 추가 코드가 실행됩니다. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>에 할당된 메서드에 비즈니스 논리를 삽입합니다.
 
 ```razor
 <EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
@@ -216,7 +225,7 @@ public class Starship
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
     private EditContext editContext;
 
     protected override void OnInitialized()
@@ -226,8 +235,7 @@ public class Starship
 
     private async Task HandleSubmit()
     {
-        var isValid = editContext.Validate() && 
-            await ServerValidate(editContext);
+        var isValid = editContext.Validate();
 
         if (isValid)
         {
@@ -238,15 +246,428 @@ public class Starship
             ...
         }
     }
+}
+```
 
-    private async Task<bool> ServerValidate(EditContext editContext)
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.Forms.EditContext>에서 직접 유효성 검사 메시지를 지울 수 있는 프레임워크 API는 없습니다. 따라서 일반적으로 양식의 새 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>에 유효성 검사 메시지를 추가하지 않는 것이 좋습니다. 유효성 검사 메시지를 관리하려면 이 문서에 설명된 대로 [비즈니스 논리 유효성 검사 코드](#business-logic-validation)에서 [유효성 검사기 구성 요소](#validator-components)를 사용합니다.
+
+## <a name="validator-components"></a>유효성 검사기 구성 요소
+
+유효성 검사기 구성 요소는 양식의 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>에 대한 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>를 관리하여 양식 유효성 검사를 지원합니다.
+
+Blazor 프레임워크는 [유효성 검사 특성(데이터 주석)](xref:mvc/models/validation#validation-attributes)을 기반으로 양식에 유효성 검사 지원을 연결하는 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소를 제공합니다. 사용자 지정 유효성 검사기 구성 요소를 만들어 동일한 페이지의 다른 양식에 대한 유효성 검사 메시지를 처리하거나, 다양한 양식 처리 단계에서 동일한 양식에 대한 유효성 검사 메시지를 처리할 수 있습니다. 예를 들어 클라이언트 쪽 유효성 검사 후 서버 쪽 유효성 검사를 수행합니다. 이 섹션에 표시된 유효성 검사기 구성 요소 예제(`CustomValidator`)는 이 문서의 다음 섹션에서 사용됩니다.
+
+* [비즈니스 논리 유효성 검사](#business-logic-validation)
+* [서버 유효성 검사](#server-validation)
+
+> [!NOTE]
+> 대부분의 경우 사용자 지정 유효성 검사기 구성 요소 대신 사용자 지정 데이터 주석 유효성 검사 특성을 사용할 수 있습니다. 양식의 모델에 적용된 사용자 지정 특성은 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소를 사용하여 활성화합니다. 서버 쪽 유효성 검사에 사용하는 경우 모델에 적용된 사용자 지정 특성을 서버에서 실행 가능해야 합니다. 자세한 내용은 <xref:mvc/models/validation#alternatives-to-built-in-attributes>를 참조하세요.
+
+<xref:Microsoft.AspNetCore.Components.ComponentBase>에서 유효성 검사기 구성 요소를 만듭니다.
+
+* 양식의 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>는 구성 요소의 [연계 매개 변수](xref:blazor/components/cascading-values-and-parameters)입니다.
+* 유효성 검사기 구성 요소가 초기화되면 현재 양식 오류 목록을 유지하기 위해 새 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>가 만들어집니다.
+* 양식의 구성 요소에 있는 개발자 코드에서 `DisplayErrors` 메서드를 호출하면 메시지 저장소에 오류가 수신됩니다. 오류는 [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary`2)의 `DisplayErrors` 메서드에 전달됩니다. 사전에서 키는 하나 이상의 오류가 발생한 양식 필드의 이름입니다. 값은 오류 목록입니다.
+* 다음 중 하나가 발생하면 메시지가 지워집니다.
+  * <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> 이벤트가 발생하면 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>에서 유효성 검사가 요청됩니다. 모든 오류는 지워집니다.
+  * <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> 이벤트가 발생하면 양식의 필드가 변경됩니다. 해당 필드에 대한 오류만 지워집니다.
+  * `ClearErrors` 메서드는 개발자 코드에 의해 호출됩니다. 모든 오류는 지워집니다.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+
+namespace BlazorSample.Client
+{
+    public class CustomValidator : ComponentBase
     {
-        var serverChecksValid = ...
+        private ValidationMessageStore messageStore;
 
-        return serverChecksValid;
+        [CascadingParameter]
+        private EditContext CurrentEditContext { get; set; }
+
+        protected override void OnInitialized()
+        {
+            if (CurrentEditContext == null)
+            {
+                throw new InvalidOperationException(
+                    $"{nameof(CustomValidator)} requires a cascading " +
+                    $"parameter of type {nameof(EditContext)}. " +
+                    $"For example, you can use {nameof(CustomValidator)} " +
+                    $"inside an {nameof(EditForm)}.");
+            }
+
+            messageStore = new ValidationMessageStore(CurrentEditContext);
+
+            CurrentEditContext.OnValidationRequested += (s, e) => 
+                messageStore.Clear();
+            CurrentEditContext.OnFieldChanged += (s, e) => 
+                messageStore.Clear(e.FieldIdentifier);
+        }
+
+        public void DisplayErrors(Dictionary<string, List<string>> errors)
+        {
+            foreach (var err in errors)
+            {
+                messageStore.Add(CurrentEditContext.Field(err.Key), err.Value);
+            }
+
+            CurrentEditContext.NotifyValidationStateChanged();
+        }
+
+        public void ClearErrors()
+        {
+            messageStore.Clear();
+            CurrentEditContext.NotifyValidationStateChanged();
+        }
     }
 }
 ```
+
+## <a name="business-logic-validation"></a>비즈니스 논리 유효성 검사
+
+비즈니스 논리 유효성 검사는 사전에서 양식 오류를 수신하는 [유효성 검사기 구성 요소](#validator-components)를 사용하여 수행할 수 있습니다.
+
+다음 예제에서는
+
+* 이 문서의 [유효성 검사기 구성 요소](#validator-components) 섹션에서 `CustomValidator` 구성 요소가 사용됩니다.
+* 사용자가 `Defense` 배송 분류(`Classification`)를 선택하는 경우 유효성 검사에는 배송 설명(`Description`)에 대한 값이 필요합니다.
+
+유효성 검사 메시지가 구성 요소에 설정되어 있으면 해당 메시지가 유효성 검사기의 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>에 추가되고 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>에 표시됩니다.
+
+```csharp
+@page "/FormsValidation"
+
+<h1>Starfleet Starship Database</h1>
+
+<h2>New Ship Entry Form</h2>
+
+<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <CustomValidator @ref="customValidator" />
+    <ValidationSummary />
+
+    ...
+
+</EditForm>
+
+@code {
+    private CustomValidator customValidator;
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
+
+    private void HandleValidSubmit()
+    {
+        customValidator.ClearErrors();
+
+        var errors = new Dictionary<string, List<string>>();
+
+        if (starship.Classification == "Defense" &&
+                string.IsNullOrEmpty(starship.Description))
+        {
+            errors.Add(nameof(starship.Description),
+                new List<string>() { "For a 'Defense' ship classification, " +
+                "'Description' is required." });
+        }
+
+        if (errors.Count() > 0)
+        {
+            customValidator.DisplayErrors(errors);
+        }
+        else
+        {
+            // Process the form
+        }
+    }
+}
+```
+
+> [!NOTE]
+> [유효성 검사 구성 요소](#validator-components)를 사용하는 대신 데이터 주석 유효성 검사 특성을 사용할 수 있습니다. 양식의 모델에 적용된 사용자 지정 특성은 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소를 사용하여 활성화합니다. 서버 쪽 유효성 검사에 사용하는 경우 특성을 서버에서 실행 가능해야 합니다. 자세한 내용은 <xref:mvc/models/validation#alternatives-to-built-in-attributes>를 참조하세요.
+
+## <a name="server-validation"></a>서버 유효성 검사
+
+서버 [유효성 검사기 구성 요소](#validator-components)를 사용하여 서버 유효성 검사를 수행할 수 있습니다.
+
+* <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소를 사용하여 양식에서 클라이언트 쪽 유효성 검사를 처리합니다.
+* 양식이 클라이언트 쪽 유효성 검사를 통과하면(<xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>이 호출됨) 양식 처리를 위해 <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Model?displayProperty=nameWithType>을 백 엔드 서버 API로 보냅니다.
+* 서버에서 모델 유효성 검사를 처리합니다.
+* 서버 API는 개발자가 제공하는 기본 제공 프레임워크 데이터 주석 유효성 검사와 사용자 지정 유효성 검사 논리를 모두 포함합니다. 서버에서 유효성 검사를 통과하면 양식을 처리하고 성공 상태 코드(‘200 - 정상’)를 다시 보냅니다. 유효성 검사에 실패하면 실패 상태 코드(‘400 - 잘못된 요청’) 및 필드 유효성 검사 오류가 반환됩니다.
+* 성공 시 양식을 사용하지 않도록 설정하거나 오류를 표시합니다.
+
+다음 예제는 다음을 기반으로 합니다.
+
+* [Blazor 호스트된 프로젝트 템플릿](xref:blazor/hosting-models#blazor-webassembly)에서 만든 호스트된 Blazor 솔루션. 이 예제는 [보안 및 Identity 설명서](xref:blazor/security/webassembly/index#implementation-guidance)에 설명된 보안 호스트된 Blazor 솔루션과 함께 사용할 수 있습니다.
+* 이전 [기본 제공 양식 구성 요소](#built-in-forms-components) 섹션의 ‘Starfleet Starship 데이터베이스’ 양식 예제.
+* Blazor 프레임워크의 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소.
+* [유효성 검사기 구성 요소](#validator-components) 섹션에 표시된 `CustomValidator` 구성 요소.
+
+다음 예에서 사용자가 `Defense` 배송 분류(`Classification`)를 선택하는 경우 서버 API는 배송 설명(`Description`)에 대한 값이 제공되는지 확인합니다.
+
+클라이언트 앱과 서버 앱이 모두 모델을 사용할 수 있도록 `Starship` 모델을 솔루션의 `Shared` 프로젝트에 배치합니다. 모델에 데이터 주석이 필요하므로 [`System.ComponentModel.Annotations`](https://www.nuget.org/packages/System.ComponentModel.Annotations)에 대한 패키지 참조를 `Shared` 프로젝트의 프로젝트 파일에 추가합니다.
+
+```xml
+<ItemGroup>
+  <PackageReference Include="System.ComponentModel.Annotations" Version="{VERSION}" />
+</ItemGroup>
+```
+
+미리 보기가 아닌 최신 버전의 패키지를 확인하려면 [NuGet.org](https://www.nuget.org/packages/System.ComponentModel.Annotations)에서 패키지 **버전 기록**을 참조하세요.
+
+서버 API 프로젝트에서 starship 유효성 검사 요청(`Controllers/StarshipValidation.cs`)을 처리하고 실패한 유효성 검사 메시지를 반환하는 컨트롤러를 추가합니다.
+
+```csharp
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using BlazorSample.Shared;
+
+namespace BlazorSample.Server.Controllers
+{
+    [Authorize]
+    [ApiController]
+    [Route("[controller]")]
+    public class StarshipValidationController : ControllerBase
+    {
+        private readonly ILogger<StarshipValidationController> logger;
+
+        public StarshipValidationController(
+            ILogger<StarshipValidationController> logger)
+        {
+            this.logger = logger;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Starship starship)
+        {
+            try
+            {
+                if (starship.Classification == "Defense" && 
+                    string.IsNullOrEmpty(starship.Description))
+                {
+                    ModelState.AddModelError(nameof(starship.Description),
+                        "For a 'Defense' ship " +
+                        "classification, 'Description' is required.");
+                }
+                else
+                {
+                    // Process the form asynchronously
+                    // async ...
+
+                    return Ok(ModelState);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Validation Error: {MESSAGE}", ex.Message);
+            }
+
+            return BadRequest(ModelState);
+        }
+    }
+}
+```
+
+서버에서 모델 바인딩 유효성 검사 오류가 발생하는 경우 [`ApiController`](xref:web-api/index)(<xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>)는 일반적으로 <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>를 사용하여 [기본 잘못된 요청 응답](xref:web-api/index#default-badrequest-response)을 반환합니다. ‘Starfleet Starship 데이터베이스’ 양식의 모든 필드가 제출되지 않고 양식에서 유효성 검사가 실패하는 경우, 다음 예제에 표시된 것처럼 응답에는 유효성 검사 오류 외에 추가 데이터가 포함되어 있습니다.
+
+```json
+{
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "errors": {
+    "Identifier": ["The Identifier field is required."],
+    "Classification": ["The Classification field is required."],
+    "IsValidatedDesign": ["This form disallows unapproved ships."],
+    "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
+  }
+}
+```
+
+서버 API가 이전의 기본 JSON 응답을 반환하는 경우 클라이언트는 응답을 구문 분석하여 `errors` 노드의 자식을 가져올 수 있습니다. 하지만 파일을 구문 분석하는 것은 불편할 수 있습니다. JSON을 구문 분석하려면 양식 유효성 검사 오류 처리를 위한 오류 [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary`2)을 생성하기 위해 <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>를 호출한 후 추가 코드가 필요합니다. 서버 API는 유효성 검사 오류만 반환하는 것이 가장 좋습니다.
+
+```json
+{
+  "Identifier": ["The Identifier field is required."],
+  "Classification": ["The Classification field is required."],
+  "IsValidatedDesign": ["This form disallows unapproved ships."],
+  "MaximumAccommodation": ["Accommodation invalid (1-100000)."]
+}
+```
+
+유효성 검사 오류만 반환하도록 서버 API의 응답을 수정하려면 `Startup.ConfigureServices`에서 <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> 주석 처리된 작업에 대해 호출되는 대리자를 변경합니다. API 엔드포인트(`/StarshipValidation`)의 경우 <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary>를 사용하여 <xref:Microsoft.AspNetCore.Mvc.BadRequestObjectResult>를 반환합니다. 다른 API 엔드포인트의 경우 새 <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>를 통해 개체 결과를 반환하여 기본 동작을 유지합니다.
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+
+...
+
+services.AddControllersWithViews()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            if (context.HttpContext.Request.Path == "/StarshipValidation")
+            {
+                return new BadRequestObjectResult(context.ModelState);
+            }
+            else
+            {
+                return new BadRequestObjectResult(
+                    new ValidationProblemDetails(context.ModelState));
+            }
+        };
+    });
+```
+
+자세한 내용은 <xref:web-api/handle-errors#validation-failure-error-response>를 참조하세요.
+
+클라이언트 프로젝트에서 [유효성 검사기 구성 요소](#validator-components) 섹션에 표시된 유효성 검사기 구성 요소를 추가합니다.
+
+클라이언트 프로젝트에서 `CustomValidator` 구성 요소에 대한 도움말과 함께 서버 유효성 검사 오류를 표시하도록 ‘Starfleet Starship 데이터베이스’ 양식이 업데이트됩니다. 서버 API에서 반환되는 유효성 검사 메시지는 `CustomValidator` 구성 요소의 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>에 추가됩니다. 오류는 양식의 <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>에서 표시하기 위해 양식의 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>에서 사용할 수 있습니다.
+
+```csharp
+@page "/FormValidation"
+@using System.Net
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Extensions.Logging
+@using BlazorSample.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+@inject ILogger<FormValidation> Logger
+
+<h1>Starfleet Starship Database</h1>
+
+<h2>New Ship Entry Form</h2>
+
+<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <CustomValidator @ref="customValidator" />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Identifier:
+            <InputText @bind-Value="starship.Identifier" disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Description (optional):
+            <InputTextArea @bind-Value="starship.Description" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Primary Classification:
+            <InputSelect @bind-Value="starship.Classification" disabled="@disabled">
+                <option value="">Select classification ...</option>
+                <option value="Exploration">Exploration</option>
+                <option value="Diplomacy">Diplomacy</option>
+                <option value="Defense">Defense</option>
+            </InputSelect>
+        </label>
+    </p>
+    <p>
+        <label>
+            Maximum Accommodation:
+            <InputNumber @bind-Value="starship.MaximumAccommodation" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Engineering Approval:
+            <InputCheckbox @bind-Value="starship.IsValidatedDesign" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Production Date:
+            <InputDate @bind-Value="starship.ProductionDate" disabled="@disabled" />
+        </label>
+    </p>
+
+    <button type="submit" disabled="@disabled">Submit</button>
+
+    <p style="@messageStyles">
+        @message
+    </p>
+
+    <p>
+        <a href="http://www.startrek.com/">Star Trek</a>,
+        &copy;1966-2019 CBS Studios, Inc. and
+        <a href="https://www.paramount.com">Paramount Pictures</a>
+    </p>
+</EditForm>
+
+@code {
+    private bool disabled;
+    private string message;
+    private string messageStyles = "visibility:hidden";
+    private CustomValidator customValidator;
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
+
+    private async Task HandleValidSubmit(EditContext editContext)
+    {
+        customValidator.ClearErrors();
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync<Starship>(
+                "StarshipValidation", (Starship)editContext.Model);
+
+            var errors = await response.Content
+                .ReadFromJsonAsync<Dictionary<string, List<string>>>();
+
+            if (response.StatusCode == HttpStatusCode.BadRequest && 
+                errors.Count() > 0)
+            {
+                customValidator.DisplayErrors(errors);
+            }
+            else if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(
+                    $"Validation failed. Status Code: {response.StatusCode}");
+            }
+            else
+            {
+                disabled = true;
+                messageStyles = "color:green";
+                message = "The form has been processed.";
+            }
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            ex.Redirect();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Form processing error: {MESSAGE}", ex.Message);
+            disabled = true;
+            messageStyles = "color:red";
+            message = "There was an error processing the form.";
+        }
+    }
+}
+```
+
+> [!NOTE]
+> [유효성 검사 구성 요소](#validator-components) 대신 데이터 주석 유효성 검사 특성을 사용할 수 있습니다. 양식의 모델에 적용된 사용자 지정 특성은 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소를 사용하여 활성화합니다. 서버 쪽 유효성 검사에 사용하는 경우 특성을 서버에서 실행 가능해야 합니다. 자세한 내용은 <xref:mvc/models/validation#alternatives-to-built-in-attributes>를 참조하세요.
+
+> [!NOTE]
+> 이 섹션의 서버 쪽 유효성 검사 방법은 이 설명서 집합의 Blazor WebAssembly 호스트된 솔루션 예제에 적합합니다.
+>
+> * [AAD(Azure Active Directory)](xref:blazor/security/webassembly/hosted-with-azure-active-directory)
+> * [AAD(Azure Active Directory) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
+> * [Identity서버](xref:blazor/security/webassembly/hosted-with-identity-server)
 
 ## <a name="inputtext-based-on-the-input-event"></a>입력 이벤트를 기반으로 하는 InputText
 
@@ -294,7 +715,7 @@ public class Starship
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("OnValidSubmit");
+        ...
     }
 
     public class ExampleModel
@@ -383,7 +804,7 @@ public class Starship
 
     private void HandleValidSubmit()
     {
-        Console.WriteLine("valid");
+        ...
     }
 
     public class Model
@@ -485,6 +906,9 @@ private class CustomValidator : ValidationAttribute
 
 [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)는 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소를 사용하여 유효성 검사 환경 차이를 완화하는 패키지입니다. 이 패키지는 현재 ‘실험적’입니다.
 
+> [!NOTE]
+> [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) 패키지는 [Nuget.org](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)에 최신 버전의 ‘릴리스 후보’가 있습니다. 여기서는 ‘실험적’ 릴리스 후보 패키지를 계속 사용합니다. 이후 릴리스에서 패키지의 어셈블리가 프레임워크 또는 런타임으로 이동될 수 있습니다. [알림 GitHub 리포지토리](https://github.com/aspnet/Announcements), [dotnet/aspnetcore GitHub 리포지토리](https://github.com/dotnet/aspnetcore) 또는 이 항목 섹션에서 추가 업데이트를 확인하세요.
+
 ### <a name="compareproperty-attribute"></a>[CompareProperty] 특성
 
 <xref:System.ComponentModel.DataAnnotations.CompareAttribute>는 유효성 검사 결과를 특정 멤버에 연결하지 않으므로 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소에서 제대로 작동하지 않습니다. 이로 인해 제출 시 전체 모델의 유효성을 검사하는 경우와 필드 수준 유효성 검사 간에 동작이 일치하지 않을 수 있습니다. [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) ‘실험적’ 패키지는 해당 제한 사항을 해결하는 추가 유효성 검사 특성인 `ComparePropertyAttribute`를 도입합니다. Blazor 앱에서 `[CompareProperty]`는 [`[Compare]`](xref:System.ComponentModel.DataAnnotations.CompareAttribute) 특성을 직접 대체합니다.
@@ -547,6 +971,9 @@ public class ShipDescription
 * 컨텍스트의 <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged> 콜백에서 양식의 유효성을 검사하여 제출 단추를 사용하거나 사용하지 않도록 설정합니다.
 * `Dispose` 메서드에서 이벤트 처리기를 언후크합니다. 자세한 내용은 <xref:blazor/components/lifecycle#component-disposal-with-idisposable>를 참조하세요.
 
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Components.Forms.EditContext>를 사용하는 경우 <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model>을 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>에 할당하지 마세요.
+
 ```razor
 @implements IDisposable
 
@@ -560,7 +987,7 @@ public class ShipDescription
 </EditForm>
 
 @code {
-    private Starship starship = new Starship();
+    private Starship starship = new Starship() { ProductionDate = DateTime.UtcNow };
     private bool formInvalid = true;
     private EditContext editContext;
 
@@ -619,7 +1046,7 @@ public class ShipDescription
 
 > InvalidOperationException: EditForm에는 모델 매개 변수 또는 EditContext 매개 변수를 사용해야 합니다(둘 다 사용할 필요는 없음).
 
-<xref:Microsoft.AspNetCore.Components.Forms.EditForm>에 <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> 또는 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>가 있는지 확인합니다.
+<xref:Microsoft.AspNetCore.Components.Forms.EditForm>에 <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model> **또는** <xref:Microsoft.AspNetCore.Components.Forms.EditContext>가 있는지 확인합니다. 동일한 양식에 대해 둘 다 사용하지 마세요.
 
 양식에 <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model>을 할당하는 경우 다음 예제와 같이 모델 형식이 인스턴스화되는지 확인합니다.
 
