@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 48b9c41b468f04134164a9c499e7fadca107cab2
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 04d2f0d289e2c9ec13aeb880df47240bec19d3ec
+ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
 ms.translationtype: MT
 ms.contentlocale: ko-KR
 ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865102"
+ms.locfileid: "88876765"
 ---
 # <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>인증을 사용 cookie 하지 않고 사용 ASP.NET Core Identity
 
@@ -116,6 +116,8 @@ ASP.NET Core의 [데이터 보호](xref:security/data-protection/using-data-prot
 [!code-csharp[](cookie/samples/3.x/CookieSample/Pages/Account/Login.cshtml.cs?name=snippet2)]
 
 `CookieAuthenticationDefaults.AuthenticationScheme`(또는 " Cookie s")가 구성표 (예: "Contoso")로 사용 되지 않는 경우 Cookie 인증 공급자를 구성할 때 사용 되는 체계를 제공 합니다. 그렇지 않으면 기본 체계가 사용 됩니다.
+
+서버에는 클라이언트 브라우저가 제어 되지 않습니다. 사용자가 브라우저 또는 탭을 닫으면 서버에서 사용자를 로그 아웃할 수 없습니다. 브라우저를 닫을 때 사용자 로그 아웃을 구현 하려면 JavaScript를 사용 하 여 해당 사용자를 검색 해야 합니다. "브라우저 창 탭 닫기 이벤트를 검색 하는 방법"을 검색 합니다.
 
 ## <a name="react-to-back-end-changes"></a>백 엔드 변경 내용에 대응
 
