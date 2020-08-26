@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/mvc
-ms.openlocfilehash: cd1a7ff57d911f96f0adfe4b548fa80ec844886d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d615f67fc5cb23499ee7e14b747390a7a1b5a693
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632241"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865128"
 ---
 # <a name="migrate-from-aspnet-mvc-to-aspnet-core-mvc"></a>ASP.NET MVC에서 ASP.NET Core MVC로 마이그레이션
 
@@ -38,7 +38,7 @@ ASP.NET MVC에서 마이그레이션하는 과정은 여러 단계로 진행 됩
 
 구성 및 코드 마이그레이션에 대 한 자세한 Identity 내용은 [ASP.NET Core 구성 마이그레이션](xref:migration/configuration) 및 [인증 및 Identity ASP.NET Core 마이그레이션](xref:migration/identity)을 참조 하세요.
 
-## <a name="prerequisites"></a>사전 요구 사항
+## <a name="prerequisites"></a>사전 준비 사항
 
 [!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
 
@@ -77,7 +77,7 @@ ASP.NET Core에서 클래스는 `Startup` 다음과 같습니다.
 * *Global.asax*를 바꿉니다.
 * 모든 앱 시작 작업을 처리 합니다.
 
-자세한 내용은 <xref:fundamentals/startup>을 참조하세요.
+자세한 내용은 <xref:fundamentals/startup>를 참조하세요.
 
 ASP.NET Core 프로젝트에서 *Startup.cs* 파일을 엽니다.
 
@@ -86,8 +86,8 @@ ASP.NET Core 프로젝트에서 *Startup.cs* 파일을 엽니다.
 ASP.NET Core 앱은 미들웨어를 사용 하 여 프레임 워크 기능을 옵트인 (opt in) 해야 합니다. 이전 템플릿에서 생성 된 코드는 다음 서비스 및 미들웨어를 추가 합니다.
 
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A>확장 메서드는 컨트롤러, API 관련 기능 및 뷰에 대 한 MVC 서비스 지원을 등록 합니다. MVC 서비스 등록 옵션에 대 한 자세한 내용은 [mvc 서비스 등록](xref:migration/22-to-30#mvc-service-registration) 을 참조 하세요.
-* <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>확장 메서드는 정적 파일 처리기를 추가 합니다 `Microsoft.AspNetCore.StaticFiles` . `UseStaticFiles`확장 메서드는 이전에 호출 해야 합니다 `UseRouting` . 자세한 내용은 <xref:fundamentals/static-files>을 참조하세요.
-* <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>확장 메서드는 라우팅을 추가 합니다. 자세한 내용은 <xref:fundamentals/routing>을 참조하세요.
+* <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>확장 메서드는 정적 파일 처리기를 추가 합니다 `Microsoft.AspNetCore.StaticFiles` . `UseStaticFiles`확장 메서드는 이전에 호출 해야 합니다 `UseRouting` . 자세한 내용은 <xref:fundamentals/static-files>를 참조하세요.
+* <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>확장 메서드는 라우팅을 추가 합니다. 자세한 내용은 <xref:fundamentals/routing>를 참조하세요.
 
 이 기존 구성에는 예제 ASP.NET MVC 프로젝트를 마이그레이션하는 데 필요한 항목이 포함 되어 있습니다. 미들웨어 옵션 ASP.NET Core에 대 한 자세한 내용은을 참조 하십시오 <xref:fundamentals/startup> .
 
@@ -97,7 +97,7 @@ ASP.NET Core 프로젝트에서 마이그레이션할 ASP.NET MVC 프로젝트�
 
 ASP.NET Core *WebApp1* 프로젝트에는 ASP.NET MVC 프로젝트와 동일한 이름의 최소 예제 컨트롤러 및 뷰가 이미 포함 되어 있습니다. ASP.NET MVC 컨트롤러에 대 한 자리 표시자와 ASP.NET MVC *WebApp1* 프로젝트에서 마이그레이션할 뷰를 제공 합니다.
 
-1. ASP.NET MVC에서 메서드를 복사 `HomeController` 하 여 새 ASP.NET Core 메서드를 `HomeController` 대체 합니다. 작업 메서드의 반환 형식을 변경할 필요가 없습니다. ASP.NET MVC 기본 제공 템플릿의 컨트롤러 작업 메서드 반환 형식은 [Actionresult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx);입니다. ASP.NET Core MVC에서 작업 메서드는 대신을 반환 합니다 `IActionResult` . `ActionResult`는 `IActionResult`를 구현합니다.
+1. ASP.NET MVC에서 메서드를 복사 `HomeController` 하 여 새 ASP.NET Core 메서드를 `HomeController` 대체 합니다. 작업 메서드의 반환 형식을 변경할 필요가 없습니다. ASP.NET MVC 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은입니다 <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> . MVC ASP.NET Core 작업 메서드는 대신을 반환 합니다 `IActionResult` . `ActionResult`는 `IActionResult`를 구현합니다.
 1. ASP.NET Core 프로젝트에서 *Views/Home* 디렉터리를 마우스 오른쪽 단추로 클릭 하 고 **Add** > **기존 항목**추가를 선택 합니다.
 1. **기존 항목 추가** 대화 상자에서 ASP.NET MVC *WebApp1* 프로젝트의 *Views/Home* 디렉터리로 이동 합니다.
 1. *About. cshtml*및 *Contact*를 선택 하 고,이 파일을 *인덱스* 를 선택 하 고, Razor **추가**를 선택 하 고 기존 파일을 바꿉니다.
@@ -109,7 +109,7 @@ ASP.NET Core *WebApp1* 프로젝트에는 ASP.NET MVC 프로젝트와 동일한 
 그러나 각 컨트롤러 끝점을 테스트할 수 있지만 레이아웃 및 스타일은 문서의 뒷부분에서 다룹니다.
 
 1. ASP.NET Core 앱을 실행 합니다.
-1. 현재 포트 번호를 ASP.NET Core 프로젝트에 사용 되는 포트 번호로 바꿔서 실행 중인 ASP.NET Core 앱의 브라우저에서 렌더링 된 뷰를 호출 합니다. 예들 들어 `https://localhost:44375/home/about`입니다.
+1. 현재 포트 번호를 ASP.NET Core 프로젝트에 사용 되는 포트 번호로 바꿔서 실행 중인 ASP.NET Core 앱의 브라우저에서 렌더링 된 뷰를 호출 합니다. 예: `https://localhost:44375/home/about`.
 
 ## <a name="migrate-static-content"></a>정적 콘텐츠 마이그레이션
 
@@ -291,7 +291,7 @@ ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 
 
 ## <a name="controllers-and-views"></a>컨트롤러 및 뷰
 
-* ASP.NET MVC의 각 메서드 `HomeController` 를 새로 복사 `HomeController` 합니다. ASP.NET MVC에서 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은 [Actionresult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx)입니다. ASP.NET Core MVC에서 작업 메서드는 대신을 반환 합니다 `IActionResult` . `ActionResult` 는 `IActionResult` 를 구현 하므로 작업 메서드의 반환 형식을 변경할 필요가 없습니다.
+* ASP.NET MVC의 각 메서드 `HomeController` 를 새로 복사 `HomeController` 합니다. ASP.NET MVC에서 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은입니다. <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ASP.NET CORE mvc에서는 작업 메서드가 대신을 반환 합니다 `IActionResult` . `ActionResult` 는 `IActionResult` 를 구현 하므로 작업 메서드의 반환 형식을 변경할 필요가 없습니다.
 
 * *Contact.cshtml*ASP.NET MVC 프로젝트에서 MVC ASP.NET Core 프로젝트에 *대 한*파일을 *복사 합니다.* Razor
 
@@ -477,7 +477,7 @@ ASP.NET Core 처리 되지 않은 예외를 HTTP 500 오류 응답으로 변환 
 
 ## <a name="controllers-and-views"></a>컨트롤러 및 뷰
 
-* ASP.NET MVC의 각 메서드 `HomeController` 를 새로 복사 `HomeController` 합니다. ASP.NET MVC에서 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은 [Actionresult](https://msdn.microsoft.com/library/system.web.mvc.actionresult(v=vs.118).aspx)입니다. ASP.NET Core MVC에서 작업 메서드는 대신을 반환 합니다 `IActionResult` . `ActionResult` 는 `IActionResult` 를 구현 하므로 작업 메서드의 반환 형식을 변경할 필요가 없습니다.
+* ASP.NET MVC의 각 메서드 `HomeController` 를 새로 복사 `HomeController` 합니다. ASP.NET MVC에서 기본 제공 템플릿의 컨트롤러 동작 메서드 반환 형식은입니다. <https://docs.microsoft.com/dotnet/api/system.web.mvc.actionresult?view=aspnet-mvc-5.2> ASP.NET CORE mvc에서는 작업 메서드가 대신을 반환 합니다 `IActionResult` . `ActionResult` 는 `IActionResult` 를 구현 하므로 작업 메서드의 반환 형식을 변경할 필요가 없습니다.
 
 * *Contact.cshtml*ASP.NET MVC 프로젝트에서 MVC ASP.NET Core 프로젝트에 *대 한*파일을 *복사 합니다.* Razor
 

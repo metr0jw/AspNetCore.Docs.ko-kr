@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/advanced/custom-model-binding
-ms.openlocfilehash: 4bef68fffbdfaff023f71964a27ead56863e4192
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7e1151b04f39f637f889e690bccc97eb6f0c91ea
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630434"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865579"
 ---
 # <a name="custom-model-binding-in-aspnet-core"></a>ASP.NET Core의 사용자 지정 모델 바인딩
 
@@ -127,7 +127,7 @@ public IModelBinder GetBinder(ModelBinderProviderContext context)
 
 [!code-csharp[](custom-model-binding/samples/3.x/CustomModelBindingSample/Startup.cs?name=snippet_ConfigureServices&highlight=5-8)]
 
-모델 바인더를 평가할 때 공급자 컬렉션은 순서대로 검사됩니다. 바인더를 반환하는 첫 번째 공급자가 사용됩니다. 컬렉션 끝에 공급자를 추가하면 사용자 지정 바인더가 기회를 얻기도 전에 기본 제공 모델 바인더가 호출될 수 있습니다. 이 예제에서는 `Author` 작업 인수에 사용되도록 사용자 지정 공급자를 컬렉션의 시작 부분에 추가합니다.
+모델 바인더를 평가할 때 공급자 컬렉션은 순서대로 검사됩니다. 입력 모델과 일치 하는 바인더를 반환 하는 첫 번째 공급자가 사용 됩니다. 따라서 컬렉션의 끝에 공급자를 추가 하면 사용자 지정 바인더가 가능 하기 전에 기본 제공 모델 바인더가 호출 될 수 있습니다. 이 예제에서는 작업 인수에 항상 사용 되도록 사용자 지정 공급자를 컬렉션의 시작 부분에 추가 합니다 `Author` .
 
 ### <a name="polymorphic-model-binding"></a>다형 모델 바인딩
 

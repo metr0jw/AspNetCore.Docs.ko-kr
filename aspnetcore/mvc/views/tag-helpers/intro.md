@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/tag-helpers/intro
-ms.openlocfilehash: 42a7231b529dd9f8ecbce4f8116111e1c96c830d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 345d20494111b808dac9678637de060169730a53
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633099"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865351"
 ---
 # <a name="tag-helpers-in-aspnet-core"></a>ASP.NET Core의 태그 도우미
 
@@ -254,9 +254,9 @@ Visual Studio 편집기를 사용하면 레지스터 양식의 태그 도우미 
 
 ## <a name="tag-helpers-compared-to-web-server-controls"></a>웹 서버 컨트롤과 비교한 태그 도우미
 
-* 태그 도우미는 연결된 요소가 없고, 단순히 요소 및 콘텐츠 렌더링에 참여할 뿐입니다. 페이지에서 ASP.NET [웹 서버 컨트롤](https://msdn.microsoft.com/library/7698y1f0.aspx)이 선언 및 호출됩니다.
+* 태그 도우미는 연결된 요소가 없고, 단순히 요소 및 콘텐츠 렌더링에 참여할 뿐입니다. ASP.NET <https://docs.microsoft.com/previous-versions/dotnet/netframework-3.0/7698y1f0(v=vs.85)> 는 페이지에서 선언 및 호출 됩니다.
 
-* [웹 서버 컨트롤](https://msdn.microsoft.com/library/zsyt68f1.aspx)에는 개발 및 디버깅을 어렵게 만들 수 있는 중요한 수명 주기가 있습니다.
+* <https://docs.microsoft.com/previous-versions/zsyt68f1(v=vs.140)> 개발 및 디버깅을 어렵게 만들 수 있는 특수 한 수명 주기가 있습니다.
 
 * 웹 서버 컨트롤을 사용하면 클라이언트 컨트롤을 사용하여 클라이언트 DOM(문서 개체 모델) 요소에 기능을 추가할 수 있습니다. 태그 도우미에는 DOM이 없습니다.
 

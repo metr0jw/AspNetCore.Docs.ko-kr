@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/cookie
-ms.openlocfilehash: 2e9eb58837d74343d8de6903372146570b43f330
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 48b9c41b468f04134164a9c499e7fadca107cab2
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627145"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865102"
 ---
 # <a name="use-no-loccookie-authentication-without-no-locaspnet-core-identity"></a>인증을 사용 cookie 하지 않고 사용 ASP.NET Core Identity
 
@@ -48,7 +48,7 @@ ASP.NET Core Identity 는 로그인을 만들고 유지 관리 하기 위한 완
 
 앱의 인증 체계가 앱의 인증 체계와 다릅니다 cookie . cookie인증 체계가에 제공 되지 않는 경우 <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s")를 사용 합니다.
 
-인증 cookie 의 <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> 속성은 기본적으로로 설정 됩니다 `true` . cookie사이트 방문자가 데이터 수집에 동의한 하지 않은 경우에는 인증을 사용할 수 있습니다. 자세한 내용은 <xref:security/gdpr#essential-cookies>을 참조하세요.
+인증 cookie 의 <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> 속성은 기본적으로로 설정 됩니다 `true` . cookie사이트 방문자가 데이터 수집에 동의한 하지 않은 경우에는 인증을 사용할 수 있습니다. 자세한 내용은 <xref:security/gdpr#essential-cookies>를 참조하세요.
 
 에서 `Startup.Configure` 및를 `UseAuthentication` 호출 `UseAuthorization` 하 여 속성을 설정 하 `HttpContext.User` 고 요청에 대 한 권한 부여 미들웨어를 실행 합니다. `UseAuthentication`를 `UseAuthorization` 호출 하기 전에 및 메서드를 호출 합니다 `UseEndpoints` .
 
@@ -251,7 +251,7 @@ await HttpContext.SignInAsync(
 
 ::: moniker range="< aspnetcore-3.0"
 
-ASP.NET Core Identity 는 로그인을 만들고 유지 관리 하기 위한 완전 한 기능을 갖춘 완전 한 인증 공급자입니다. 그러나를 cookie 사용 하지 않는 기반 인증 인증 공급자를 ASP.NET Core Identity 사용할 수 있습니다. 자세한 내용은 <xref:security/authentication/identity>를 참조하세요.
+ASP.NET Core Identity 는 로그인을 만들고 유지 관리 하기 위한 완전 한 기능을 갖춘 완전 한 인증 공급자입니다. 그러나를 cookie 사용 하지 않는 기반 인증 공급자를 ASP.NET Core Identity 사용할 수 있습니다. 자세한 내용은 <xref:security/authentication/identity>를 참조하세요.
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/security/authentication/cookie/samples) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
@@ -269,7 +269,7 @@ ASP.NET Core Identity 는 로그인을 만들고 유지 관리 하기 위한 완
 
 앱의 인증 체계가 앱의 인증 체계와 다릅니다 cookie . cookie인증 체계가에 제공 되지 않는 경우 <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*> `CookieAuthenticationDefaults.AuthenticationScheme` (" Cookie s")를 사용 합니다.
 
-인증 cookie 의 <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> 속성은 기본적으로로 설정 됩니다 `true` . cookie사이트 방문자가 데이터 수집에 동의한 하지 않은 경우에는 인증을 사용할 수 있습니다. 자세한 내용은 <xref:security/gdpr#essential-cookies>을 참조하세요.
+인증 cookie 의 <xref:Microsoft.AspNetCore.Http.CookieBuilder.IsEssential> 속성은 기본적으로로 설정 됩니다 `true` . cookie사이트 방문자가 데이터 수집에 동의한 하지 않은 경우에는 인증을 사용할 수 있습니다. 자세한 내용은 <xref:security/gdpr#essential-cookies>를 참조하세요.
 
 `Startup.Configure`메서드에서 메서드를 호출 하 여 `UseAuthentication` 속성을 설정 하는 인증 미들웨어를 호출 합니다 `HttpContext.User` . 또는를 `UseAuthentication` 호출 하기 전에 메서드를 호출 합니다 `UseMvcWithDefaultRoute` `UseMvc` .
 

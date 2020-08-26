@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Electron
 uid: security/samesite
-ms.openlocfilehash: c95952face8763dc9f2dd12312cab1a1bc07528a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 3ba033b4165b19131d11311e5ae9d64e6afe48ca
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632345"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865428"
 ---
 # <a name="work-with-samesite-no-loccookies-in-aspnet-core"></a>cookieASP.NET Core에서 SameSite s 작업
 
@@ -73,11 +73,11 @@ SameSite은 CSRF (교차 사이트 요청 위조) 공격에 대 한 보호를 �
 
 ## <a name="net-core-support-for-the-samesite-attribute"></a>SameSite 특성에 대 한 .NET Core 지원
 
-.NET Core 2.2는 12 월 2019의 업데이트 출시 이후 SameSite의 2019 초안 표준을 지원 합니다. 개발자는 속성을 사용 하 여 sameSite 특성의 값을 프로그래밍 방식으로 제어할 수 있습니다 `HttpCookie.SameSite` . 속성을 `SameSite` Strict, Strict 또는 None으로 설정 하면 해당 값이로 네트워크에 기록 됩니다 cookie . 이 값을 (SameSiteMode) (-1)로 설정 하면 네트워크에 sameSite 특성이 포함 되지 않음을 나타냅니다. cookie
+.NET Core 2.2 이상에서는 12 월 2019의 업데이트 출시 이후 SameSite의 2019 초안 표준을 지원 합니다. 개발자는 속성을 사용 하 여 sameSite 특성의 값을 프로그래밍 방식으로 제어할 수 있습니다 `HttpCookie.SameSite` . 속성을 `SameSite` Strict, Strict 또는 None으로 설정 하면 해당 값이로 네트워크에 기록 됩니다 cookie . 이 값을로 설정 `(SameSiteMode)(-1)` 하면 네트워크에 sameSite 특성이 포함 되지 않음을 나타냅니다. cookie
 
 [!code-csharp[](samesite/snippets/Privacy.cshtml.cs?name=snippet)]
 
-.NET Core 3.0는 업데이트 된 SameSite 값을 지원 하 고 열거형에 추가 열거형 값을 추가 합니다 `SameSiteMode.Unspecified` `SameSiteMode` .
+.NET Core 3.0 이상에서는 업데이트 된 SameSite 값을 지원 하 고 열거형에 추가 열거형 값을 추가 합니다 `SameSiteMode.Unspecified` `SameSiteMode` .
 이 새 값은를 사용 하 여 sameSite를 전송 하지 않음을 나타냅니다 cookie .
 
 ::: moniker-end

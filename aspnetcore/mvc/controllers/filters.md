@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/filters
-ms.openlocfilehash: 7134344abb5bc724aceb9a2adb117b3749435f55
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: c97e3afbbf94a4cb721c5d814a377eec3e26a03b
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634854"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865403"
 ---
 # <a name="filters-in-aspnet-core"></a>ASP.NET Core에서 필터링
 
@@ -103,7 +103,7 @@ ASP.NET Core에서 *필터*를 사용하면 요청 처리 파이프라인의 특
 * 비동기: <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter> 및 <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>
 * <xref:Microsoft.AspNetCore.Mvc.Filters.IOrderedFilter>
 
-필터 인터페이스의 동기 또는 비동기 버전을 모두 구현하지 **말고** 그 중 **한 가지**만 구현하세요. 런타임은 먼저 필터가 비동기 인터페이스를 구현하는지를 확인하고 그렇다면 이를 호출합니다. 그렇지 않으면 동기 인터페이스의 메서드를 호출합니다. 비동기 및 동기 인터페이스가 모두 하나의 클래스에 구현된 경우에는 비동기 메서드만 호출됩니다. <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> 같은 추상 클래스를 사용하는 경우 각 필터 형식에 대한 동기 메서드 또는 비동기 메서드만 재정의합니다.
+필터 인터페이스의 동기 또는 비동기 버전을 모두 구현하지 **말고** 그 중 **한 가지**만 구현하세요. 런타임은 먼저 필터가 비동기 인터페이스를 구현하는지를 확인하고 그렇다면 이를 호출합니다. 그렇지 않으면 동기 인터페이스의 메서드를 호출합니다. 비동기 및 동기 인터페이스가 모두 하나의 클래스에 구현된 경우에는 비동기 메서드만 호출됩니다. 와 같은 추상 클래스를 사용 하는 경우 <xref:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute> 각 필터 형식에 대해 동기 메서드 또는 비동기 메서드만 재정의 합니다.
 
 ### <a name="built-in-filter-attributes"></a>기본 제공 필터 특성
 
@@ -193,8 +193,8 @@ ASP.NET Core에는 서브클래싱 및 사용자 지정할 수 있는 기본 제
 |:--------:|:------------:|:-------------:|
 | 1 | 전역 | `OnActionExecuting` |
 | 2 | 컨트롤러 또는 Razor 페이지| `OnActionExecuting` |
-| 3 | 방법 | `OnActionExecuting` |
-| 4 | 방법 | `OnActionExecuted` |
+| 3 | 메서드 | `OnActionExecuting` |
+| 4 | 메서드 | `OnActionExecuted` |
 | 5 | 컨트롤러 또는 Razor 페이지 | `OnActionExecuted` |
 | 6 | 전역 | `OnActionExecuted` |
 
@@ -739,8 +739,8 @@ ASP.NET Core에는 서브클래싱 및 사용자 지정할 수 있는 기본 제
 |:--------:|:------------:|:-------------:|
 | 1 | 전역 | `OnActionExecuting` |
 | 2 | 컨트롤러 | `OnActionExecuting` |
-| 3 | 방법 | `OnActionExecuting` |
-| 4 | 방법 | `OnActionExecuted` |
+| 3 | 메서드 | `OnActionExecuting` |
+| 4 | 메서드 | `OnActionExecuted` |
 | 5 | 컨트롤러 | `OnActionExecuted` |
 | 6 | 전역 | `OnActionExecuted` |
 
@@ -797,12 +797,12 @@ Razor페이지는 [ Razor 필터 메서드를 재정의 하 여 페이지 필터
 
 | 순서 | 필터 범위 | `Order` 속성 | 필터 메서드 |
 |:--------:|:------------:|:-----------------:|:-------------:|
-| 1 | 방법 | 0 | `OnActionExecuting` |
+| 1 | 메서드 | 0 | `OnActionExecuting` |
 | 2 | 컨트롤러 | 1  | `OnActionExecuting` |
 | 3 | 전역 | 2  | `OnActionExecuting` |
 | 4 | 전역 | 2  | `OnActionExecuted` |
 | 5 | 컨트롤러 | 1  | `OnActionExecuted` |
-| 6 | 방법 | 0  | `OnActionExecuted` |
+| 6 | 메서드 | 0  | `OnActionExecuted` |
 
 `Order` 속성은 필터가 실행되는 순서를 결정할 때 범위를 무시합니다. 필터가 순서에 따라 먼저 정렬된 다음, 범위는 연결을 끊는 데 사용됩니다. 모든 기본 제공 필터는 `IOrderedFilter`을 구현하고 기본 `Order` 값을 0으로 설정합니다. 기본 제공 필터의 경우 `Order`를 0이 아닌 값으로 설정하지 않는 한 범위가 순서를 결정합니다.
 

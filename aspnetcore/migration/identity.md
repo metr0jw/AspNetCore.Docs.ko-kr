@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/identity
-ms.openlocfilehash: 85674d7ed02f189f78da92bffdf927a3ca21357d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: c8e6a1a8bf9ef06d98db0e7e0a6a0e5ff393e322
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629511"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865532"
 ---
 # <a name="migrate-authentication-and-no-locidentity-to-aspnet-core"></a>인증 및 Identity ASP.NET Core로 마이그레이션
 
@@ -33,7 +33,7 @@ ms.locfileid: "88629511"
 
 ASP.NET MVC에서 인증 및 id 기능은 Identity *App_Start* 폴더에 있는 *Startup.Auth.cs* 및 * Identity Config.cs*의 ASP.NET를 사용 하 여 구성 됩니다. ASP.NET Core MVC에서 이러한 기능은 *Startup.cs*에서 구성 됩니다.
 
-다음 NuGet 패키지를 설치 합니다.
+다음 NuGet 패키지를 설치합니다.
 
 * `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
 * `Microsoft.AspNetCore.Authentication.Cookies`

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/http-modules
-ms.openlocfilehash: 8be09171991964540cd41a1324fb87503591151f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 213807634a2a6990e9025de7871295cf97a81faf
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632176"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865585"
 ---
 # <a name="migrate-http-handlers-and-modules-to-aspnet-core-middleware"></a>HTTP 처리기 및 모듈을 ASP.NET Core 미들웨어로 마이그레이션
 
@@ -55,7 +55,7 @@ ms.locfileid: "88632176"
 
 **모듈에서 들어오는 요청을 처리 하는 순서는 다음에 의해 결정 됩니다.**
 
-1. [응용 프로그램 수명 주기](https://msdn.microsoft.com/library/ms227673.aspx)-ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)등에서 발생 하는 시리즈 이벤트입니다. 각 모듈은 하나 이상의 이벤트에 대 한 처리기를 만들 수 있습니다.
+1. <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)>ASP.NET: [BeginRequest](/dotnet/api/system.web.httpapplication.beginrequest), [AuthenticateRequest](/dotnet/api/system.web.httpapplication.authenticaterequest)등에 의해 발생 된 시리즈 이벤트 인입니다. 각 모듈은 하나 이상의 이벤트에 대 한 처리기를 만들 수 있습니다.
 
 2. 동일한 이벤트의 경우 *Web.config*에서 구성 된 순서입니다.
 
@@ -92,7 +92,7 @@ ms.locfileid: "88632176"
 
 **미들웨어와 모듈은 다른 순서로 처리 됩니다.**
 
-* 미들웨어의 순서는 요청 파이프라인에 삽입 되는 순서를 기반으로 하며, 모듈 순서는 주로 [응용 프로그램 수명 주기](https://msdn.microsoft.com/library/ms227673.aspx) 이벤트를 기반으로 합니다.
+* 미들웨어의 순서는 요청 파이프라인에 삽입 되는 순서를 기반으로 하며, 모듈 순서는 주로 이벤트를 기반으로 합니다. <https://docs.microsoft.com/previous-versions/ms227673(v=vs.140)>
 
 * 응답에 대 한 미들웨어의 순서는 요청의 반대 이며, 모듈 순서는 요청 및 응답에 대해 동일 합니다.
 

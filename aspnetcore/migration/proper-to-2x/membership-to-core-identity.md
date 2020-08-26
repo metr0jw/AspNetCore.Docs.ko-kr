@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: migration/proper-to-2x/membership-to-core-identity
-ms.openlocfilehash: de9d1e5f6f595269595212fbab60d12dfd5a29e4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a9ec02381b156a6599042d8e504a476036246302
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633645"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865565"
 ---
 # <a name="migrate-from-aspnet-membership-authentication-to-aspnet-core-20-no-locidentity"></a>ASP.NET Membership authentication에서 ASP.NET Core 2.0으로 마이그레이션 Identity
 
@@ -35,7 +35,7 @@ ms.locfileid: "88633645"
 
 ## <a name="review-of-membership-schema"></a>멤버 자격 스키마 검토
 
-ASP.NET 2.0 이전에는 개발자가 앱에 대 한 전체 인증 및 권한 부여 프로세스를 만드는 작업을 수행 했습니다. ASP.NET 2.0를 사용 하 여 멤버 자격이 도입 되었으므로 ASP.NET apps 내에서 보안을 처리 하는 상용구 솔루션을 제공 합니다. 이제 개발자는 [aspnet_regsql.exe](https://msdn.microsoft.com/library/ms229862.aspx) 명령을 사용 하 여 스키마를 SQL Server 데이터베이스로 부트스트랩 할 수 있었습니다. 이 명령을 실행 하면 데이터베이스에서 다음 테이블이 생성 됩니다.
+ASP.NET 2.0 이전에는 개발자가 앱에 대 한 전체 인증 및 권한 부여 프로세스를 만드는 작업을 수행 했습니다. ASP.NET 2.0를 사용 하 여 멤버 자격이 도입 되었으므로 ASP.NET apps 내에서 보안을 처리 하는 상용구 솔루션을 제공 합니다. 개발자는 이제 명령을 사용 하 여 스키마를 SQL Server 데이터베이스로 부트스트랩 할 수 있었습니다 <https://docs.microsoft.com/previous-versions/ms229862(v=vs.140)> . 이 명령을 실행 하면 데이터베이스에서 다음 테이블이 생성 됩니다.
 
   ![멤버 자격 테이블](identity/_static/membership-tables.png)
 
@@ -78,7 +78,7 @@ ASP.NET Core 2.0에 대 한 스키마를 보는 가장 빠른 방법은 Identity
 
 ### <a name="users"></a>사용자
 
-|Identity<br>( `dbo.AspNetUsers` ) 열  |Type     |Membership<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` ) 열|Type      |
+|Identity<br>( `dbo.AspNetUsers` ) 열  |형식     |Membership<br>( `dbo.aspnet_Users`  /  `dbo.aspnet_Membership` ) 열|형식      |
 |-------------------------------------------|-----------------------------------------------------------------------|
 | `Id`                            | `string`| `aspnet_Users.UserId`                                      | `string` |
 | `UserName`                      | `string`| `aspnet_Users.UserName`                                    | `string` |
@@ -93,7 +93,7 @@ ASP.NET Core 2.0에 대 한 스키마를 보는 가장 빠른 방법은 Identity
 
 ### <a name="roles"></a>역할
 
-|Identity<br>( `dbo.AspNetRoles` ) 열|Type|Membership<br>( `dbo.aspnet_Roles` ) 열|Type|
+|Identity<br>( `dbo.AspNetRoles` ) 열|형식|Membership<br>( `dbo.aspnet_Roles` ) 열|형식|
 |----------------------------------------|-----------------------------------|
 |`Id`                           |`string`|`RoleId`         | `string`        |
 |`Name`                         |`string`|`RoleName`       | `string`        |
@@ -101,7 +101,7 @@ ASP.NET Core 2.0에 대 한 스키마를 보는 가장 빠른 방법은 Identity
 
 ### <a name="user-roles"></a>사용자 역할
 
-|Identity<br>( `dbo.AspNetUserRoles` ) 열|Type|Membership<br>( `dbo.aspnet_UsersInRoles` ) 열|Type|
+|Identity<br>( `dbo.AspNetUserRoles` ) 열|형식|Membership<br>( `dbo.aspnet_UsersInRoles` ) 열|형식|
 |-------------------------|----------|--------------|---------------------------|
 |`RoleId`                 |`string`  |`RoleId`      |`string`                   |
 |`UserId`                 |`string`  |`UserId`      |`string`                   |
