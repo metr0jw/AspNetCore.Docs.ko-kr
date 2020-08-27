@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/accconfirm
-ms.openlocfilehash: 57607390e7d5e58df9f27437faecd57504ad64df
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d6ea37ceb83ffbaa94187e0c541c79428594e4b4
+ms.sourcegitcommit: 2039e60eb7b482da8298f82dcd5eda27cf747f32
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635374"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88906451"
 ---
 # <a name="account-confirmation-and-password-recovery-in-aspnet-core"></a>ASP.NET Core의 계정 확인 및 암호 복구
 
@@ -37,7 +37,7 @@ ms.locfileid: "88635374"
 
 ::: moniker range=">= aspnetcore-3.0"
 
-## <a name="prerequisites"></a>사전 요구 사항
+## <a name="prerequisites"></a>필수 구성 요소
 
 [.NET Core 3.0 SDK 이상](https://dotnet.microsoft.com/download/dotnet-core/3.0)
 
@@ -70,7 +70,7 @@ SendGrid 계정에는 [발신자를 추가](https://sendgrid.com/docs/ui/sending
 
 #### <a name="configure-sendgrid-user-secrets"></a>SendGrid 사용자 비밀 구성
 
-`SendGridUser` `SendGridKey` [암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 및를 설정 합니다. 다음은 그 예입니다. 
+`SendGridUser` `SendGridKey` [암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 및를 설정 합니다. 예를 들면
 
 ```dotnetcli
 dotnet user-secrets set SendGridUser RickAndMSFT
@@ -160,7 +160,13 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 * 계정을 등록 하는 데 사용한 전자 메일을 입력 합니다.
 * 암호를 재설정 하는 링크가 포함 된 전자 메일이 전송 됩니다. 전자 메일을 확인 하 고 링크를 클릭 하 여 암호를 다시 설정 합니다. 암호를 성공적으로 재설정 한 후에는 전자 메일 및 새 암호로 로그인 할 수 있습니다.
 
-## <a name="change-email-and-activity-timeout"></a>전자 메일 및 작업 시간 제한 변경
+<a name="resend"></a>
+
+## <a name="resend-email-confirmation"></a>전자 메일 다시 보내기 확인
+
+ASP.NET Core 5.0 이상에서는 **로그인** 페이지에서 **전자 메일 다시 보내기 확인** 링크를 선택 합니다.
+
+### <a name="change-email-and-activity-timeout"></a>전자 메일 및 작업 시간 제한 변경
 
 기본 비활성 시간 제한은 14 일입니다. 다음 코드는 비활성 시간 제한을 5 일로 설정 합니다.
 
@@ -185,10 +191,6 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 서비스 컨테이너에 사용자 지정 공급자를 추가 합니다.
 
 [!code-csharp[](accconfirm/sample/WebPWrecover30/StartupEmail.cs?name=snippet1&highlight=10-16)]
-
-### <a name="resend-email-confirmation"></a>전자 메일 다시 보내기 확인
-
-이 [GitHub 문제](https://github.com/dotnet/AspNetCore/issues/5410)를 참조하세요.
 
 <a name="debug"></a>
 
@@ -234,7 +236,7 @@ https://github.com/dotnet/aspnetcore/blob/master/src/Identity/UI/src/Areas/Ident
 
 ::: moniker range="< aspnetcore-3.0"
 
-## <a name="prerequisites"></a>사전 요구 사항
+## <a name="prerequisites"></a>필수 구성 요소
 
 [.NET Core 2.2 SDK 이상](https://dotnet.microsoft.com/download/dotnet-core)
 
@@ -290,7 +292,7 @@ dotnet run
 
 #### <a name="configure-sendgrid-user-secrets"></a>SendGrid 사용자 비밀 구성
 
-`SendGridUser` `SendGridKey` [암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 및를 설정 합니다. 다음은 그 예입니다. 
+`SendGridUser` `SendGridKey` [암호 관리자 도구](xref:security/app-secrets)를 사용 하 여 및를 설정 합니다. 예를 들면
 
 ```console
 C:/WebAppl>dotnet user-secrets set SendGridUser RickAndMSFT
