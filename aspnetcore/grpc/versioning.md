@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/versioning
-ms.openlocfilehash: 079cca8a7d47897827c314b82136e9eb10b7a516
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 0d8c5d953c9d703788a1686bbc800248c46efa48
+ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633957"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88945404"
 ---
 # <a name="versioning-grpc-services"></a>gRPC 서비스 버전 관리
 
@@ -117,3 +117,7 @@ app.UseEndpoints(endpoints =>
 [!code-csharp[](versioning/sample/GreeterServiceV1.cs?highlight=10,19)]
 
 서로 다른 패키지 이름을 사용하여 생성된 서비스와 메시지는 **다른 .NET 형식**이 됩니다. 비즈니스 논리를 중앙 위치에 이동하려면 메시지를 공통 형식으로 매핑해야 합니다.
+
+## <a name="additional-resources"></a>추가 리소스
+
+* <xref:grpc/protobuf>

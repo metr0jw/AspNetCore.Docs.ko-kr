@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/entity-framework-6
-ms.openlocfilehash: d01c0a1bdf29dbb79c04504d747b319fff710d89
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 64d420d7076f1da453ee423cc4a3732eeb47b221
+ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633762"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88876700"
 ---
 # <a name="aspnet-core-and-entity-framework-6"></a>ASP.NET Core 및 Entity Framework 6
 ::: moniker range=">= aspnetcore-3.0"
@@ -51,7 +51,7 @@ ASP.NET Core 애플리케이션에서 Entity Framework 6을 사용하는 권장�
 
 .NET Core 프로젝트는 *Enable-Migrations*와 같은 EF6 명령이 요구하는 모든 기능을 지원하지 않으므로 ASP.NET Core 프로젝트에 EF6 컨텍스트를 배치할 수 없습니다.    
 
-EF6 컨텍스트를 찾는 프로젝트 형식에 관계없이 EF6 명령줄 도구만 EF6 컨텍스트에서 작동합니다. 예를 들어 `Scaffold-DbContext`는 Entity Framework Core에서만 사용할 수 있습니다. 데이터베이스를 EF6 모델로 리버스 엔지니어링해야 하는 경우 [기존 데이터베이스에 대한 Code First](https://msdn.microsoft.com/jj200620)를 참조하세요.  
+EF6 컨텍스트를 찾는 프로젝트 형식에 관계없이 EF6 명령줄 도구만 EF6 컨텍스트에서 작동합니다. 예를 들어 `Scaffold-DbContext`는 Entity Framework Core에서만 사용할 수 있습니다. 데이터베이스를 EF6 모델로 리버스 엔지니어링해야 하는 경우 <https://docs.microsoft.com/ef/ef6/modeling/code-first/workflows/existing-database>를 참조하세요.    
 
 ## <a name="reference-full-framework-and-ef6-in-the-aspnet-core-project"></a>ASP.NET Core 프로젝트에서 전체 프레임워크 및 EF6 참조 
 
@@ -67,7 +67,7 @@ EF6 클래스 라이브러리 프로젝트에서 사용할 EF6 명령줄 도구�
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContext.cs?name=snippet_Constructor)]   
 
-EF6 컨텍스트에는 매개 변수가 없는 생성자가 없으므로 EF6 프로젝트는 [IDbContextFactory](https://msdn.microsoft.com/library/hh506876)의 구현을 제공해야 합니다. EF6 명령줄 도구는 해당 구현을 찾아 사용하므로 컨텍스트를 인스턴스화할 수 있습니다. 예를 들면 다음과 같습니다.    
+EF6 컨텍스트에는 매개 변수가 없는 생성자가 없으므로 EF6 프로젝트는 <https://docs.microsoft.com/dotnet/api/system.data.entity.infrastructure.idbcontextfactory-1?view=entity-framework-6.2.0>의 구현을 제공해야 합니다. EF6 명령줄 도구는 해당 구현을 찾아 사용하므로 컨텍스트를 인스턴스화할 수 있습니다. 예를 들면 다음과 같습니다.   
 
 [!code-csharp[](entity-framework-6/sample/EF6/SchoolContextFactory.cs?name=snippet_IDbContextFactory)]  
 
