@@ -336,6 +336,10 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputNumber
                   href: blazor/forms-validation.md#built-in-forms-components
+                - name: InputRadio
+                  href: blazor/forms-validation.md#built-in-forms-components
+                - name: InputRadioGroup
+                  href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputSelect
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputText
@@ -715,6 +719,8 @@
       uid: grpc/diagnostics
     - name: 보안 고려 사항
       uid: grpc/security
+    - name: 성능 모범 사례
+      uid: grpc/performance
     - name: gRPC 서비스 버전 관리
       uid: grpc/versioning
     - name: dotnet-grpc를 사용하여 Protobuf 참조를 관리하세요.
