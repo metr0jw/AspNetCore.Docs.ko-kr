@@ -710,6 +710,8 @@
           uid: grpc/basics
         - name: gRPC 서비스 만들기
           uid: grpc/services
+        - name: Protobuf 메시지 만들기
+          uid: grpc/protobuf
     - name: ASP.NET Core를 사용하는 gRPC 서비스
       uid: grpc/aspnetcore
     - name: .NET 클라이언트로 gRPC 서비스 호출
@@ -728,8 +730,6 @@
       uid: grpc/diagnostics
     - name: 보안 고려 사항
       uid: grpc/security
-    - name: Protobuf 메시지 만들기
-      uid: grpc/protobuf
     - name: 성능 모범 사례
       uid: grpc/performance
     - name: gRPC 서비스 버전 관리
