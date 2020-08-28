@@ -94,6 +94,9 @@
         - name: 모바일 백 엔드
           displayName: tutorial
           uid: mobile/native-mobile-backend
+        - name: Azure API Management에 게시
+          displayName: tutorial
+          uid: tutorials/publish-to-azure-api-management-using-vs
     - name: 실시간 웹앱
       items:
         - name: JavaScript를 사용한 SignalR
@@ -702,7 +705,11 @@
         - name: gRPC 서비스 시작
           uid: tutorials/grpc/grpc-start
     - name: C#을 사용하는 gRPC 서비스
-      uid: grpc/basics
+      items:
+        - name: 개요
+          uid: grpc/basics
+        - name: gRPC 서비스 만들기
+          uid: grpc/services
     - name: ASP.NET Core를 사용하는 gRPC 서비스
       uid: grpc/aspnetcore
     - name: .NET 클라이언트로 gRPC 서비스 호출
@@ -711,6 +718,8 @@
       uid: grpc/clientfactory
     - name: 브라우저 앱에서 gRPC 사용
       uid: grpc/browser
+    - name: gRPC와 프로세스 간 통신
+      uid: grpc/interprocess
     - name: Configuration
       uid: grpc/configuration
     - name: 인증 및 권한 부여
@@ -719,6 +728,8 @@
       uid: grpc/diagnostics
     - name: 보안 고려 사항
       uid: grpc/security
+    - name: Protobuf 메시지 만들기
+      uid: grpc/protobuf
     - name: 성능 모범 사례
       uid: grpc/performance
     - name: gRPC 서비스 버전 관리
