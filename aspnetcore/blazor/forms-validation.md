@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 4690c279c24ef23806a6e72aece5f7cd821752bc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 6fde5800a6a791c4a5923c13964c34977a59c017
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628328"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865301"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor 양식 및 유효성 검사
 
@@ -47,7 +47,7 @@ public class ExampleModel
 양식은 <xref:Microsoft.AspNetCore.Components.Forms.EditForm> 구성 요소를 사용하여 정의합니다. 다음 양식은 일반적인 요소, 구성 요소 및 Razor 코드를 보여 줍니다.
 
 ```razor
-<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -78,20 +78,39 @@ public class ExampleModel
 
 ## <a name="built-in-forms-components"></a>기본 제공 양식 구성 요소
 
-기본 제공 입력 구성 요소 집합을 사용하여 사용자 입력을 받고 유효성을 검사할 수 있습니다. 입력을 변경할 때와 양식을 제출할 때 입력의 유효성이 검사됩니다. 사용 가능한 입력 구성 요소는 다음 표에 나와 있습니다.
+기본 제공 구성 요소 세트를 사용하여 사용자 입력을 수신하고 유효성을 검사할 수 있습니다. 입력을 변경할 때와 양식을 제출할 때 입력의 유효성이 검사됩니다. 사용 가능한 입력 구성 요소는 다음 표에 나와 있습니다.
+
+::: moniker range=">= aspnetcore-5.0"
 
 | 입력 구성 요소 | 렌더링 형식&hellip; |
 | --------------- | ------------------- |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
-| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| [`InputRadio`](#radio-buttons) | `<input type="radio">` |
+| [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+| 입력 구성 요소 | 렌더링 형식&hellip; |
+| --------------- | ------------------- |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
+| <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+::: moniker-end
 
 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>을 비롯한 모든 입력 구성 요소는 임의 특성을 지원합니다. 구성 요소 매개 변수와 일치하지 않는 특성은 렌더링된 HTML 요소에 추가됩니다.
 
-입력 구성 요소는 편집 시 유효성 검사와 필드 상태에 따른 CSS 클래스 변경의 기본 동작을 제공합니다. 일부 구성 요소는 유용한 구문 분석 논리를 포함합니다. 예를 들어 <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> 및 <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>는 구문 분석할 수 없는 값을 유효성 검사 오류로 등록하여 정상적으로 처리합니다. Null 값을 허용할 수 있는 형식은 대상 필드의 Null 허용 여부도 지원합니다(예: `int?`).
+입력 구성 요소는 필드 상태를 반영하기 위해 필드 CSS 클래스를 업데이트하는 작업을 포함하여 필드 변경이 발생하는 경우 유효성 검사의 기본 동작을 제공합니다. 일부 구성 요소는 유용한 구문 분석 논리를 포함합니다. 예를 들어 <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> 및 <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>는 구문 분석할 수 없는 값을 유효성 검사 오류로 등록하여 구문 분석 불가능한 값을 정상적으로 처리합니다. Null 값을 허용할 수 있는 형식은 대상 필드의 Null 허용 여부도 지원합니다(예: `int?`).
 
 다음 `Starship` 형식은 이전 `ExampleModel`보다 큰 속성 및 데이터 주석 집합을 사용하여 유효성 검사 논리를 정의합니다.
 
@@ -134,7 +153,7 @@ public class Starship
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -252,6 +271,39 @@ public class Starship
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Components.Forms.EditContext>에서 직접 유효성 검사 메시지를 지울 수 있는 프레임워크 API는 없습니다. 따라서 일반적으로 양식의 새 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>에 유효성 검사 메시지를 추가하지 않는 것이 좋습니다. 유효성 검사 메시지를 관리하려면 이 문서에 설명된 대로 [비즈니스 논리 유효성 검사 코드](#business-logic-validation)에서 [유효성 검사기 구성 요소](#validator-components)를 사용합니다.
 
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="display-name-support"></a>표시 이름 지원
+
+‘이 섹션은 9월 중순에 출시되는 .NET 5 RC1(릴리스 후보 1) 이상에 적용됩니다.’
+
+다음 기본 제공 구성 요소는 `DisplayName` 매개 변수를 사용하여 표시 이름을 지원합니다.
+
+* <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601>
+* <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601>
+
+다음 `InputDate` 구성 요소 예제에서
+
+* 표시 이름(`DisplayName`)이 `birthday`로 설정되어 있습니다.
+* 구성 요소는 `BirthDate` 속성에 `DateTime` 형식으로 바인딩됩니다.
+
+```razor
+<InputDate @bind-Value="@BirthDate" DisplayName="birthday" />
+
+@code {
+    public DateTime BirthDate { get; set; }
+}
+```
+
+사용자가 날짜 값을 제공하지 않는 경우 다음과 같은 유효성 검사 오류가 표시됩니다.
+
+```
+The birthday must be a date.
+```
+
+::: moniker-end
+
 ## <a name="validator-components"></a>유효성 검사기 구성 요소
 
 유효성 검사기 구성 요소는 양식의 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>에 대한 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>를 관리하여 양식 유효성 검사를 지원합니다.
@@ -345,7 +397,7 @@ namespace BlazorSample.Client
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <CustomValidator @ref="customValidator" />
     <ValidationSummary />
@@ -545,7 +597,7 @@ services.AddControllersWithViews()
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="@starship" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <CustomValidator @ref="customValidator" />
     <ValidationSummary />
@@ -694,10 +746,10 @@ services.AddControllersWithViews()
 `Pages/TestForm.razor`:
 
 ```razor
-@page  "/testform"
+@page "/testform"
 @using System.ComponentModel.DataAnnotations;
 
-<EditForm Model="@exampleModel" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@exampleModel" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -728,6 +780,77 @@ services.AddControllersWithViews()
 ```
 
 ## <a name="radio-buttons"></a>라디오 단추
+
+::: moniker range=">= aspnetcore-5.0"
+
+`InputRadioGroup` 구성 요소와 함께 `InputRadio` 구성 요소를 사용하여 라디오 단추 그룹을 만듭니다. 다음 예제에서는 [기본 제공 양식 구성 요소](#built-in-forms-components) 단원에 설명된 `Starship` 모델에 속성을 추가합니다.
+
+```csharp
+[Required]
+[Range(typeof(Manufacturer), nameof(Manufacturer.SpaceX), 
+    nameof(Manufacturer.VirginGalactic), ErrorMessage = "Pick a manufacturer.")]
+public Manufacturer Manufacturer { get; set; } = Manufacturer.Unknown;
+
+[Required, EnumDataType(typeof(Color))]
+public Color? Color { get; set; } = null;
+
+[Required, EnumDataType(typeof(Engine))]
+public Engine? Engine { get; set; } = null;
+```
+
+앱에 다음 `enums`를 추가합니다. `enums`를 저장할 새 파일을 만들거나 `Starship.cs` 파일에 `enums`를 추가합니다. `Starship` 모델 및 ‘Starfleet Starship Database’ 양식에서 `enums`에 액세스할 수 있도록 만듭니다.
+
+```csharp
+public enum Manufacturer { SpaceX, NASA, ULA, Virgin, Unknown }
+public enum Color { ImperialRed, SpacecruiserGreen, StarshipBlue, VoyagerOrange }
+public enum Engine { Ion, Plasma, Fusion, Warp }
+```
+
+[기본 제공 양식 구성 요소](#built-in-forms-components) 섹션에 설명된 ‘Starfleet Starship Database’ 양식을 업데이트합니다. 생성할 구성 요소를 추가합니다.
+
+* 선박 제조업체의 라디오 단추 그룹.
+* 선박 색 및 엔진에 해당하는 중첩된 라디오 단추 그룹.
+
+```razor
+<p>
+    <InputRadioGroup @bind-Value="starship.Manufacturer">
+        Manufacturer:
+        <br>
+        @foreach (var manufacturer in (Manufacturer[])Enum
+            .GetValues(typeof(Manufacturer)))
+        {
+            <InputRadio Value="manufacturer" />
+            @manufacturer
+            <br>
+        }
+    </InputRadioGroup>
+</p>
+
+<p>
+    Pick one color and one engine:
+    <InputRadioGroup Name="engine" @bind-Value="starship.Engine">
+        <InputRadioGroup Name="color" @bind-Value="starship.Color">
+            <InputRadio Name="color" Value="Color.ImperialRed" />Imperial Red<br>
+            <InputRadio Name="engine" Value="Engine.Ion" />Ion<br>
+            <InputRadio Name="color" Value="Color.SpacecruiserGreen" />
+                Spacecruiser Green<br>
+            <InputRadio Name="engine" Value="Engine.Plasma" />Plasma<br>
+            <InputRadio Name="color" Value="Color.StarshipBlue" />Starship Blue<br>
+            <InputRadio Name="engine" Value="Engine.Fusion" />Fusion<br>
+            <InputRadio Name="color" Value="Color.VoyagerOrange" />
+                Voyager Orange<br>
+            <InputRadio Name="engine" Value="Engine.Warp" />Warp<br>
+        </InputRadioGroup>
+    </InputRadioGroup>
+</p>
+```
+
+> [!NOTE]
+> `Name`이 생략되면 `InputRadio` 구성 요소가 가장 최근 상위 항목을 기준으로 그룹화됩니다.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
 
 양식에서 라디오 단추를 사용하는 경우, 라디오 단추는 그룹으로 평가되기 때문에 데이터 바인딩이 다른 요소와 다르게 처리됩니다. 각 라디오 단추의 값은 고정되어 있지만 라디오 단추 그룹의 값은 선택한 라디오 단추의 값입니다. 아래 예제는 다음과 같은 작업의 방법을 보여 줍니다.
 
@@ -782,7 +905,7 @@ services.AddControllersWithViews()
 
 <h1>Radio Button Group Test</h1>
 
-<EditForm Model="model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -814,6 +937,8 @@ services.AddControllersWithViews()
     }
 }
 ```
+
+::: moniker-end
 
 ## <a name="binding-select-element-options-to-c-object-null-values"></a>C# 개체 `null` 값에 `<select>` 요소 옵션 바인딩
 
@@ -920,7 +1045,7 @@ Blazor는 기본 제공 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotati
 컬렉션 형식 및 복합 형식 속성을 포함한 바인딩된 모델의 전체 개체 그래프에 대해 유효성을 검사하려면 다음과 같이 ‘실험적’ [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation) 패키지에서 제공하는 `ObjectGraphDataAnnotationsValidator`를 사용합니다.
 
 ```razor
-<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     ...
 </EditForm>
@@ -1021,7 +1146,7 @@ public class ShipDescription
 * 제출 단추를 선택할 때 <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> 구성 요소가 표시되도록 설정합니다(예: `HandleValidSubmit` 메서드에서).
 
 ```razor
-<EditForm EditContext="@editContext" OnValidSubmit="HandleValidSubmit">
+<EditForm EditContext="@editContext" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary style="@displaySummary" />
 

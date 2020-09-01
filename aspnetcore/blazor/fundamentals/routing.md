@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: 0c878a05a50e5a6879278ee737ada167669ee0ff
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: eb9e3cbddd2eaca8fef9a6782c28bbce4c029f58
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626482"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865326"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>ASP.NET Core Blazor 라우팅
 
@@ -169,13 +169,43 @@ Blazor Server 앱에서 `_Host.cshtml`의 기본 경로는 `/`(`@page "/"`)입�
 
 `"/{**path}"` 템플릿에는 다음이 포함되어 있습니다.
 
-* 슬래시(`/`)를 인코딩하지 않고 여러 폴더 경계에 걸쳐 있는 경로를 캡처하기 위한 이중 별표 *catch-all* 구문(`**`)
+* 슬래시(`/`)를 디코딩하지 않고 여러 폴더 경계에 걸쳐 있는 경로를 캡처하기 위한 이중 별표 ‘catch-all’ 구문(`**`)
 * `path` 경로 매개 변수 이름
 
-> [!NOTE]
-> *Catch-all* 매개 변수 구문(`*`/`**`)은 Razor 구성 요소(`.razor`)에서 지원되지 **않습니다**.
-
 자세한 내용은 <xref:fundamentals/routing>를 참조하세요.
+
+## <a name="catch-all-route-parameters"></a>모든 경로 매개 변수 catch
+
+::: moniker range=">= aspnetcore-5.0"
+
+‘이 섹션은 9월 중순에 출시되는 .NET 5 RC1(릴리스 후보 1) 이상에 적용됩니다.’
+
+여러 폴더 경계에서 경로를 캡처하는 catch-all 경로 매개 변수는 구성 요소에서 지원됩니다. catch-all 경로 매개 변수는 다음을 충족해야 합니다.
+
+* 이름이 경로 세그먼트 이름과 일치합니다. 이름 지정에서 대소문자를 구분하지 않습니다.
+* `string` 형식입니다. 프레임워크가 자동 캐스팅을 제공하지 않습니다.
+* URL의 끝부분에 있습니다.
+
+```razor
+@page "/page/{*pageRoute}"
+
+@code {
+    [Parameter]
+    public string PageRoute { get; set; }
+}
+```
+
+`/page/{*pageRoute}`의 경로 템플릿이 있는 URL `/page/this/is/a/test`의 경우 `PageRoute`의 값이 `this/is/a/test`로 설정됩니다.
+
+캡처된 경로의 슬래시 및 세그먼트가 디코딩됩니다. `/page/{*pageRoute}`의 경로 템플릿의 경우 `/page/this/is/a%2Ftest%2A` URL은 `this/is/a/test*`를 생성합니다.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+catch-all 경로 매개 변수는 9월 중순에 출시되는 .NET 5 RC1(릴리스 후보 1) 이상에서 지원됩니다.*
+
+::: moniker-end
 
 ## <a name="navlink-component"></a>NavLink 구성 요소
 

@@ -5,7 +5,7 @@ description: ASP.NET Core Blazor WebAssembly 앱에서 어셈블리를 지연 �
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/16/2020
+ms.date: 08/25/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 31e6c9638d3262d3cb0a5e0fbcf34d24e2d1e91c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 46f98080ad40f614f9cb1af2190f263d205c1016
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625806"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865152"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly의 어셈블리 지연 로드
 
@@ -47,6 +47,15 @@ Blazor의 지연 로드 기능을 사용하면 사용자가 특정 경로로 이
 ```
 
 앱이 사용하는 어셈블리만 지연 로드될 수 있습니다. 링커는 게시된 출력에서 사용되지 않는 어셈블리를 제거합니다.
+
+> [!NOTE]
+> 9월 중순에 출시되는 .NET 5 RC1(릴리스 후보 1) 이상에서 어셈블리 이름에 `.dll` 확장명이 필요합니다.
+>
+> ```xml
+> <ItemGroup>
+>  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
+> </ItemGroup>
+> ```
 
 ## <a name="router-component"></a>`Router` 구성 요소
 
@@ -170,6 +179,15 @@ Blazor의 `Router` 구성 요소는 Blazor가 라우팅 가능한 구성 요소�
 
 > [!NOTE]
 > `NavigationContext`의 취소 토큰이 취소되는 경우 throw하지 않으면 이전 탐색에서 구성 요소를 렌더링하는 것과 같은 의도하지 않은 동작이 발생할 수 있습니다.
+
+### <a name="onnavigateasync-events-and-renamed-assembly-files"></a>`OnNavigateAsync` 이벤트 및 이름이 바뀐 어셈블리 파일
+
+리소스 로더는 `blazor.boot.json` 파일에 정의된 어셈블리 이름을 사용합니다. [어셈블리의 이름이 바뀌는](xref:blazor/host-and-deploy/webassembly#change-the-filename-extension-of-dll-files) 경우 `OnNavigateAsync` 메서드에 사용되는 어셈블리 이름과 `blazor.boot.json` 파일의 어셈블리 이름이 동기화되지 않습니다.
+
+해결하려면 다음을 수행합니다.
+
+* 사용할 어셈블리 이름을 결정할 때 앱이 프로덕션 환경에서 실행 중인지 확인합니다.
+* 바뀐 어셈블리 이름을 별도의 파일에 저장하고 해당 파일에서 읽어서 `LazyLoadAssemblyService` 메서드와 `OnNavigateAsync` 메서드에 사용할 어셈블리 이름을 결정합니다.
 
 ### <a name="complete-example"></a>전체 예제
 

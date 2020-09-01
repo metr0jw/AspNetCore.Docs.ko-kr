@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/basics
-ms.openlocfilehash: 61ac7b84ec6a5eeb344cbf6f9a6712366be7d3c9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: aacaf9cca131d3fba1c3ae96cf42d51d3fdc17b6
+ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627080"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88945430"
 ---
 # <a name="grpc-services-with-c"></a>C\#을 사용하는 gRPC 서비스
 
@@ -37,7 +37,7 @@ gRPC는 API 개발에 계약 중심 접근 방식을 사용합니다. 기본적�
 * gRPC 서비스 정의
 * 클라이언트와 서버 간에 전송된 메시지
 
-protobuf 파일 구문에 대한 자세한 내용은 [공식 문서](https://developers.google.com/protocol-buffers/docs/proto3)(protobuf)를 참조하세요.
+protobuf 파일의 구문에 대한 자세한 내용은 <xref:grpc/protobuf>를 참조하세요.
 
 예를 들어 [gRPC 서비스 시작](xref:tutorials/grpc/grpc-start)에서 사용된 *greet.proto* 파일의 내용은 다음과 같습니다.
 

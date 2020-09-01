@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/progressive-web-app
-ms.openlocfilehash: 230b2a801a76e2d719fba8e2b97fddb0b32a9634
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4f184a1264614b16ce98ba5474aacd60f175bd8a
+ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627964"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88865218"
 ---
 # <a name="build-progressive-web-applications-with-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly를 사용하여 프로그레시브 웹 애플리케이션 빌드
 
@@ -72,7 +72,7 @@ dotnet new blazorwasm -o MyNewProject --pwa
 
 PWA 템플릿을 사용하여 만든 앱을 방문하는 사용자에게는 해당 OS의 시작 메뉴, 도킹 또는 홈 화면에 앱을 설치할 수 있는 옵션이 제공됩니다. 이 옵션이 표시되는 방법은 사용자의 브라우저에 따라 달라집니다. Edge 또는 Chrome과 같은 데스크톱 Chromium 기반 브라우저를 사용하는 경우 URL 표시줄에 **추가** 단추가 나타납니다. 사용자가 **추가** 단추를 선택하면 확인 대화 상자가 표시됩니다.
 
-![Google Chrome의 확인 대화 상자는 사용자에게 ‘MyBlazorPwa’ 앱의 설치 단추를 표시합니다.](progressive-web-app/_static/image2.png)
+![Google Chrome의 확인 대화 상자는 사용자에게 ‘MyBlazorPwa’ 앱의 설치 단추를 제공합니다.](progressive-web-app/_static/image2.png)
 
 iOS에서 방문자는 Safari의 **‘공유’** 단추 및 **‘홈 화면에 추가’** 옵션을 사용하여 PWA를 설치할 수 있습니다. Android용 Chrome에서 사용자는 오른쪽 위에 있는 **메뉴** 단추를 탭한 다음 **홈 화면에 추가**를 선택해야 합니다.
 
@@ -292,7 +292,7 @@ PWA 템플릿은 인증과 함께 사용할 수 있습니다. 사용자가 초�
 * 앱이 오프라인 상태인 동안 작업을 큐에 추가한 후 앱이 온라인으로 전환되면 작업을 적용합니다.
 * 로그아웃하는 동안 저장된 사용자를 지웁니다.
 
-[`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) 샘플 앱은 위의 방법을 보여 줍니다. 앱의 다음 부분을 참조하세요.
+[`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) 샘플 앱은 위의 접근 방식을 보여 줍니다. 앱의 다음 부분을 참조하세요.
 
 * `OfflineAccountClaimsPrincipalFactory` (`Client/Data/OfflineAccountClaimsPrincipalFactory.cs`)
 * `LocalVehiclesStore` (`Client/Data/LocalVehiclesStore.cs`)
