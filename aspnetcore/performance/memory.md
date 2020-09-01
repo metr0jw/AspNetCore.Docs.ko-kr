@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/memory
-ms.openlocfilehash: c409eaaf07109d363581ee7d61dc76521d6818d0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9bb055670b73c9a1ae04083bc326200a42151708
+ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630668"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89102798"
 ---
 # <a name="memory-management-and-garbage-collection-gc-in-aspnet-core"></a>ASP.NET Core의 메모리 관리 및 GC (가비지 수집)
 
@@ -150,7 +150,7 @@ GC 모드는 프로젝트 파일이 나 게시 된 앱의 파일에 있는 *runt
 
 `ServerGarbageCollection`프로젝트 파일에서 변경 하려면 앱을 다시 빌드해야 합니다.
 
-**참고:** 단일 코어가 있는 컴퓨터에서는 서버 가비지 수집을 사용할 수 **없습니다** . 자세한 내용은 <xref:System.Runtime.GCSettings.IsServerGC>을 참조하세요.
+**참고:** 단일 코어가 있는 컴퓨터에서는 서버 가비지 수집을 사용할 수 **없습니다** . 자세한 내용은 <xref:System.Runtime.GCSettings.IsServerGC>를 참조하세요.
 
 다음 이미지는 워크스테이션 GC를 사용 하는 5K RPS 아래의 메모리 프로필을 보여 줍니다.
 
@@ -235,7 +235,7 @@ public void GetFileProvider()
 
 ### <a name="large-objects-heap"></a>Large objects 힙
 
-메모리를 자주 할당/해제 하는 주기는 메모리를 조각화 할 수 있습니다. 특히 대량의 메모리를 할당 하는 경우입니다. 개체는 인접 한 메모리 블록에 할당 됩니다. 조각화를 완화 하기 위해 GC에서 메모리를 해제 하는 경우 조각 모음을 수행 합니다. 이 프로세스를 **압축**이라고 합니다. 압축에는 개체 이동이 포함 됩니다. 개체를 이동 하면 성능이 저하 됩니다. 이러한 이유로, GC는 LOH ( [large object heap](/dotnet/standard/garbage-collection/large-object-heap) ) 라는 _커다란_ 개체에 대 한 특수 메모리 영역을 만듭니다. 85000 바이트 (약 83 KB) 보다 큰 개체는 다음과 같습니다.
+메모리를 자주 할당/해제 하는 주기는 메모리를 조각화 할 수 있습니다. 특히 대량의 메모리를 할당 하는 경우입니다. 개체는 인접 한 메모리 블록에 할당 됩니다. 조각화를 완화 하기 위해 GC가 메모리를 해제 하는 경우 조각 모음을 시도 합니다. 이 프로세스를 **압축**이라고 합니다. 압축에는 개체 이동이 포함 됩니다. 개체를 이동 하면 성능이 저하 됩니다. 이러한 이유로, GC는 LOH ( [large object heap](/dotnet/standard/garbage-collection/large-object-heap) ) 라는 _커다란_ 개체에 대 한 특수 메모리 영역을 만듭니다. 85000 바이트 (약 83 KB) 보다 큰 개체는 다음과 같습니다.
 
 * LOH에 배치 됩니다.
 * 압축 되지 않습니다.
@@ -443,7 +443,7 @@ public byte[] GetPooledArray(int size)
 
 주요 차이점은 바이트를 할당 하는 것이 고, 결과적으로 0 세대 수집이 훨씬 더 적기 때문입니다.
 
-## <a name="additional-resources"></a>추가 자료
+## <a name="additional-resources"></a>추가 리소스
 
 * [가비지 수집](/dotnet/standard/garbage-collection/)
 * [동시성 시각화 도우미를 사용 하 여 다양 한 GC 모드 이해](https://blogs.msdn.microsoft.com/seteplia/2017/01/05/understanding-different-gc-modes-with-concurrency-visualizer/)

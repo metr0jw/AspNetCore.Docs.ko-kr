@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/razor
-ms.openlocfilehash: e42ee7a80475e784ea4791395d9b0665aca94a03
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 9c2bbd2d463af8a2ea7db716d01bf1436338ea77
+ms.sourcegitcommit: cd861463faf44956855e3c4b3669483bbc4a7463
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865165"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89101363"
 ---
 # <a name="no-locrazor-syntax-reference-for-aspnet-core"></a>Razor ASP.NET Core에 대 한 구문 참조
 
@@ -131,17 +131,15 @@ C# `await` 키워드를 제외하고, 암시적 식에 공백이 있으면 안 �
 @("<span>Hello World</span>")
 ```
 
-이 코드는 다음 HTML을 렌더링합니다.
+위의 코드는 다음 HTML을 렌더링 합니다.
 
 ```html
 &lt;span&gt;Hello World&lt;/span&gt;
 ```
 
-다음과 같은 이유로 HTML은 브라우저에 표시됩니다.
+HTML은 브라우저에서 일반 텍스트로 표시 됩니다.
 
-```html
-<span>Hello World</span>
-```
+&lt;범위 &gt; Hello World &lt; /span&gt;
 
 `HtmlHelper.Raw` 출력은 인코딩되지 않지만 HTML 태그로 렌더링됩니다.
 
@@ -498,7 +496,7 @@ Razor구성 요소의 경우 `@code` 는의 별칭이 [`@functions`](#functions)
 
 ::: moniker-end
 
-예를 들어:
+예를 들면 다음과 같습니다.
 
 [!code-cshtml[](razor/sample/Views/Home/Contact6.cshtml)]
 
@@ -885,7 +883,7 @@ public class Pet
 
 [태그 도우미](xref:mvc/views/tag-helpers/intro)와 관련된 세 가지 지시문이 있습니다.
 
-| 지시문 | 기능 |
+| 지시문 | 함수 |
 | --------- | -------- |
 | [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | 보기에 태그 도우미를 제공합니다. |
 | [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | 보기에서 이전에 추가된 태그 도우미를 제거합니다. |
@@ -1006,6 +1004,6 @@ Razor뷰 엔진은 뷰에 대해 대/소문자를 구분 하는 조회를 수행
 
 대/소문자를 일치시키면 배포 시 기본 파일 시스템에 관계 없이 해당 보기를 잘 찾습니다.
 
-## <a name="additional-resources"></a>추가 자료
+## <a name="additional-resources"></a>추가 리소스
 
 을 [사용 하는 Razor ASP.NET 웹 프로그래밍 소개 구문은](/aspnet/web-pages/overview/getting-started/introducing-razor-syntax-c) 구문을 사용한 프로그래밍의 많은 예제를 제공 Razor 합니다.
