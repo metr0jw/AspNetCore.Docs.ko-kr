@@ -6,17 +6,19 @@ metadata:
   description: ASP.NET Core 문서의 새로운 내용과 업데이트된 내용에 대해 알아보세요.
   ms.topic: landing-page
   ms.date: 08/03/2020
-  ms.openlocfilehash: 3ca3a87e748c5f563bbbd38e4d4d0166964fc263
-  ms.sourcegitcommit: 37f6f2e13ceb4eae268d20973d76e4b83acf6a24
+  ms.openlocfilehash: 5d8bc150d91010cce31d885b3a15e80a8efc7ac3
+  ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
   ms.translationtype: HT
   ms.contentlocale: ko-KR
-  ms.lasthandoff: 08/03/2020
-  ms.locfileid: "87526266"
+  ms.lasthandoff: 09/01/2020
+  ms.locfileid: "89280415"
 landingContent:
 - title: ASP.NET Core 문서 업데이트 찾기
   linkLists:
   - linkListType: whats-new
     links:
+    - text: 2020년 8월
+      url: 2020-08.md
     - text: 2020년 7월
       url: 2020-07.md
     - text: 2020년 6월
@@ -27,8 +29,6 @@ landingContent:
       url: 2020-04.md
     - text: 2020년 3월
       url: 2020-03.md
-    - text: 2020년 2월
-      url: 2020-02.md
 - title: 참여 - ASP.NET Core 문서에 기여
   linkLists:
   - linkListType: overview
