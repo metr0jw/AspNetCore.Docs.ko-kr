@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: 3b41aedcbd0d2c22b20d8fa3a21b8af97d1fbb2c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d88cad10314872271250cd43212a64698f485381
+ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628562"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "89280402"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>ASP.NET Core Blazor 데이터 바인딩
 
@@ -79,27 +79,7 @@ Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bi
 
 요소가 포커스를 잃을 때 발생하는 `onchange`와는 달리 텍스트 상자의 값이 변경될 때 `oninput`이 발생합니다.
 
-`value` 이외의 요소 특성을 바인딩하려면 `@bind-{ATTRIBUTE}:event` 구문에 `@bind-{ATTRIBUTE}`를 사용합니다. 다음 예제에서는
-
-* 구성 요소가 로드될 때(`style="color:red"`) 단락의 스타일은 **빨간색**입니다.
-* 사용자는 텍스트 상자의 값을 변경하여 다른 CSS 색 스타일을 반영하고 페이지의 요소 포커스를 변경합니다. 예를 들어 사용자가 텍스트 상자 값을 `color:blue`로 변경하고 키보드의 <kbd>Tab</kbd> 키를 누릅니다.
-* 요소 포커스가 변경되면 다음과 같이 됩니다.
-  * `paragraphStyle` 값이 `<input>` 요소의 값에서 할당됩니다.
-  * 단락 스타일이 업데이트되어 `paragraphStyle`의 새 스타일을 반영합니다. 스타일이 `color:blue`로 업데이트되면 텍스트 색이 **파란색**으로 변경됩니다.
-
-```razor
-<p>
-    <input type="text" @bind="paragraphStyle" />
-</p>
-
-<p @bind-style="paragraphStyle" @bind-style:event="onchange">
-    Blazorify the app!
-</p>
-
-@code {
-    private string paragraphStyle = "color:red";
-}
-```
+<!-- Hold location for resolution of https://github.com/dotnet/AspNetCore.Docs/issues/19721 -->
 
 특성 바인딩은 대/소문자를 구분합니다.
 

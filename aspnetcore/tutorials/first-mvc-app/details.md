@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/details
-ms.openlocfilehash: b25113f8e2132c06e06d53a25e71ed2a42deb00f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 4683f106b3372a2f14f289b39c8a0b8b6c8b5aa1
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629706"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379369"
 ---
 # <a name="part-10-examine-the-details-and-delete-methods-of-an-aspnet-core-app"></a>10부. ASP.NET Core 앱의 Details 및 Delete 메서드 검토
 
@@ -64,7 +64,7 @@ public async Task<IActionResult> Delete(int id, bool notUsed)
 
 ### <a name="publish-to-azure"></a>Azure에 게시
 
-Azure에 배포하는 방법에 대한 자세한 내용은 [자습서: Azure App Service에서 .NET Core 및 SQL Database 웹앱 빌드](/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb)를 참조하세요.
+Azure에 배포하는 방법에 대한 자세한 내용은 [자습서: Azure App Service에서 ASP.NET Core 및 SQL Database 앱 빌드](/azure/app-service/tutorial-dotnetcore-sqldb-app)에서 중단한 곳에서 이어집니다.
 
 > [!div class="step-by-step"]
 > [이전](validation.md)

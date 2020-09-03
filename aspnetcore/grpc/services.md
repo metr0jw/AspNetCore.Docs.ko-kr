@@ -17,14 +17,16 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/services
-ms.openlocfilehash: fde589b2de9d908db26a2557c5f57c715625aadc
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 878792120d69bea9ca6f620a87a7e04da2ec1815
+ms.sourcegitcommit: 111b4e451da2e275fb074cde5d8a84b26a81937d
 ms.translationtype: HT
 ms.contentlocale: ko-KR
 ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945514"
+ms.locfileid: "89040842"
 ---
 # <a name="create-grpc-services-and-methods"></a>gRPC 서비스 및 메서드 만들기
+
+작성자: [James Newton-King](https://twitter.com/jamesnk)
 
 이 문서에서는 C#에서 gRPC 서비스 및 메서드를 만드는 방법을 설명합니다. 다룰 주제는 다음과 같습니다.
 
