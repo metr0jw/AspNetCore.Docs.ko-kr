@@ -17,30 +17,32 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/services
-ms.openlocfilehash: fde589b2de9d908db26a2557c5f57c715625aadc
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 878792120d69bea9ca6f620a87a7e04da2ec1815
+ms.sourcegitcommit: 111b4e451da2e275fb074cde5d8a84b26a81937d
 ms.translationtype: HT
 ms.contentlocale: ko-KR
 ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945514"
+ms.locfileid: "89040842"
 ---
-# <a name="create-grpc-services-and-methods"></a><span data-ttu-id="c4a3c-103">gRPC 서비스 및 메서드 만들기</span><span class="sxs-lookup"><span data-stu-id="c4a3c-103">Create gRPC services and methods</span></span>
+# <a name="create-grpc-services-and-methods"></a><span data-ttu-id="37f26-103">gRPC 서비스 및 메서드 만들기</span><span class="sxs-lookup"><span data-stu-id="37f26-103">Create gRPC services and methods</span></span>
 
-<span data-ttu-id="c4a3c-104">이 문서에서는 C#에서 gRPC 서비스 및 메서드를 만드는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-104">This document explains how to create gRPC services and methods in C#.</span></span> <span data-ttu-id="c4a3c-105">다룰 주제는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-105">Topics include:</span></span>
+<span data-ttu-id="37f26-104">작성자: [James Newton-King](https://twitter.com/jamesnk)</span><span class="sxs-lookup"><span data-stu-id="37f26-104">By [James Newton-King](https://twitter.com/jamesnk)</span></span>
 
-* <span data-ttu-id="c4a3c-106">*.proto* 파일에서 서비스 및 메서드를 정의하는 방법</span><span class="sxs-lookup"><span data-stu-id="c4a3c-106">How to define services and methods in *.proto* files.</span></span>
-* <span data-ttu-id="c4a3c-107">gRPC C# 도구를 사용하여 생성된 코드</span><span class="sxs-lookup"><span data-stu-id="c4a3c-107">Generated code using gRPC C# tooling.</span></span>
-* <span data-ttu-id="c4a3c-108">gRPC 서비스 및 메서드 구현</span><span class="sxs-lookup"><span data-stu-id="c4a3c-108">Implementing gRPC services and methods.</span></span>
+<span data-ttu-id="37f26-105">이 문서에서는 C#에서 gRPC 서비스 및 메서드를 만드는 방법을 설명합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-105">This document explains how to create gRPC services and methods in C#.</span></span> <span data-ttu-id="37f26-106">다룰 주제는 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-106">Topics include:</span></span>
 
-## <a name="create-new-grpc-services"></a><span data-ttu-id="c4a3c-109">새 gRPC 서비스 만들기</span><span class="sxs-lookup"><span data-stu-id="c4a3c-109">Create new gRPC services</span></span>
+* <span data-ttu-id="37f26-107">*.proto* 파일에서 서비스 및 메서드를 정의하는 방법</span><span class="sxs-lookup"><span data-stu-id="37f26-107">How to define services and methods in *.proto* files.</span></span>
+* <span data-ttu-id="37f26-108">gRPC C# 도구를 사용하여 생성된 코드</span><span class="sxs-lookup"><span data-stu-id="37f26-108">Generated code using gRPC C# tooling.</span></span>
+* <span data-ttu-id="37f26-109">gRPC 서비스 및 메서드 구현</span><span class="sxs-lookup"><span data-stu-id="37f26-109">Implementing gRPC services and methods.</span></span>
 
-<span data-ttu-id="c4a3c-110">[C#을 사용하는 gRPC 서비스](xref:grpc/basics)에는 API 개발에 대해 gRPC의 계약 중심 접근 방식이 도입되었습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-110">[gRPC services with C#](xref:grpc/basics) introduced gRPC's contract-first approach to API development.</span></span> <span data-ttu-id="c4a3c-111">서비스 및 메시지는 *.proto* 파일에서 정의됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-111">Services and messages are defined in *.proto* files.</span></span> <span data-ttu-id="c4a3c-112">그런 다음 C# 도구가 *.proto* 파일에서 코드를 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-112">C# tooling then generates code from *.proto* files.</span></span> <span data-ttu-id="c4a3c-113">서버 쪽 자산의 경우 임의의 메시지의 클래스와 함께 각 서비스에 대해 추상 기본 형식이 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-113">For server-side assets, an abstract base type is generated for each service, along with classes for any messages.</span></span>
+## <a name="create-new-grpc-services"></a><span data-ttu-id="37f26-110">새 gRPC 서비스 만들기</span><span class="sxs-lookup"><span data-stu-id="37f26-110">Create new gRPC services</span></span>
 
-<span data-ttu-id="c4a3c-114">아래의 *.proto* 파일은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-114">The following *.proto* file:</span></span>
+<span data-ttu-id="37f26-111">[C#을 사용하는 gRPC 서비스](xref:grpc/basics)에는 API 개발에 대해 gRPC의 계약 중심 접근 방식이 도입되었습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-111">[gRPC services with C#](xref:grpc/basics) introduced gRPC's contract-first approach to API development.</span></span> <span data-ttu-id="37f26-112">서비스 및 메시지는 *.proto* 파일에서 정의됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-112">Services and messages are defined in *.proto* files.</span></span> <span data-ttu-id="37f26-113">그런 다음 C# 도구가 *.proto* 파일에서 코드를 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-113">C# tooling then generates code from *.proto* files.</span></span> <span data-ttu-id="37f26-114">서버 쪽 자산의 경우 임의의 메시지의 클래스와 함께 각 서비스에 대해 추상 기본 형식이 생성됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-114">For server-side assets, an abstract base type is generated for each service, along with classes for any messages.</span></span>
 
-* <span data-ttu-id="c4a3c-115">`Greeter` 서비스를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-115">Defines a `Greeter` service.</span></span>
-* <span data-ttu-id="c4a3c-116">`Greeter` 서비스가 `SayHello` 호출을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-116">The `Greeter` service defines a `SayHello` call.</span></span>
-* <span data-ttu-id="c4a3c-117">`SayHello`가 `HelloRequest` 메시지를 보내고 `HelloReply` 메시지를 수신합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-117">`SayHello` sends a `HelloRequest` message and receives a `HelloReply` message</span></span>
+<span data-ttu-id="37f26-115">아래의 *.proto* 파일은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-115">The following *.proto* file:</span></span>
+
+* <span data-ttu-id="37f26-116">`Greeter` 서비스를 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-116">Defines a `Greeter` service.</span></span>
+* <span data-ttu-id="37f26-117">`Greeter` 서비스가 `SayHello` 호출을 정의합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-117">The `Greeter` service defines a `SayHello` call.</span></span>
+* <span data-ttu-id="37f26-118">`SayHello`가 `HelloRequest` 메시지를 보내고 `HelloReply` 메시지를 수신합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-118">`SayHello` sends a `HelloRequest` message and receives a `HelloReply` message</span></span>
 
 ```protobuf
 syntax = "proto3";
@@ -58,7 +60,7 @@ message HelloReply {
 }
 ```
 
-<span data-ttu-id="c4a3c-118">C# 도구가 C# `GreeterBase` 기본 형식을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-118">C# tooling generates the C# `GreeterBase` base type:</span></span>
+<span data-ttu-id="37f26-119">C# 도구가 C# `GreeterBase` 기본 형식을 생성합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-119">C# tooling generates the C# `GreeterBase` base type:</span></span>
 
 ```csharp
 public abstract partial class GreeterBase
@@ -80,7 +82,7 @@ public class HelloReply
 }
 ```
 
-<span data-ttu-id="c4a3c-119">기본적으로, 생성된 `GreeterBase`는 아무것도 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-119">By default the generated `GreeterBase` doesn't do anything.</span></span> <span data-ttu-id="c4a3c-120">가상 `SayHello` 메서드는 호출한 클라이언트에 `UNIMPLEMENTED` 오류를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-120">Its virtual `SayHello` method will return an `UNIMPLEMENTED` error to any clients that call it.</span></span> <span data-ttu-id="c4a3c-121">서비스가 유용하려면 앱이 `GreeterBase`의 구체적인 구현을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-121">For the service to be useful an app must create a concrete implementation of `GreeterBase`:</span></span>
+<span data-ttu-id="37f26-120">기본적으로, 생성된 `GreeterBase`는 아무것도 하지 않습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-120">By default the generated `GreeterBase` doesn't do anything.</span></span> <span data-ttu-id="37f26-121">가상 `SayHello` 메서드는 호출한 클라이언트에 `UNIMPLEMENTED` 오류를 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-121">Its virtual `SayHello` method will return an `UNIMPLEMENTED` error to any clients that call it.</span></span> <span data-ttu-id="37f26-122">서비스가 유용하려면 앱이 `GreeterBase`의 구체적인 구현을 만들어야 합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-122">For the service to be useful an app must create a concrete implementation of `GreeterBase`:</span></span>
 
 ```csharp
 public class GreeterService : GreeterBase
@@ -92,7 +94,7 @@ public class GreeterService : GreeterBase
 }
 ```
 
-<span data-ttu-id="c4a3c-122">서비스 구현이 앱에 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-122">The service implementation is registered with the app.</span></span> <span data-ttu-id="c4a3c-123">ASP.NET Core gRPC가 서비스를 호스트하는 경우 `MapGrpcService` 메서드를 사용하여 서비스를 라우팅 파이프라인에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-123">If the service is hosted by ASP.NET Core gRPC, it should be added to the routing pipeline with the `MapGrpcService` method.</span></span>
+<span data-ttu-id="37f26-123">서비스 구현이 앱에 등록됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-123">The service implementation is registered with the app.</span></span> <span data-ttu-id="37f26-124">ASP.NET Core gRPC가 서비스를 호스트하는 경우 `MapGrpcService` 메서드를 사용하여 서비스를 라우팅 파이프라인에 추가해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-124">If the service is hosted by ASP.NET Core gRPC, it should be added to the routing pipeline with the `MapGrpcService` method.</span></span>
 
 ```csharp
 app.UseEndpoints(endpoints =>
@@ -101,18 +103,18 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-<span data-ttu-id="c4a3c-124">자세한 내용은 <xref:grpc/aspnetcore> 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-124">See <xref:grpc/aspnetcore> for more information.</span></span>
+<span data-ttu-id="37f26-125">자세한 내용은 <xref:grpc/aspnetcore> 를 참조하세요.</span><span class="sxs-lookup"><span data-stu-id="37f26-125">See <xref:grpc/aspnetcore> for more information.</span></span>
 
-## <a name="implement-grpc-methods"></a><span data-ttu-id="c4a3c-125">gRPC 메서드 구현</span><span class="sxs-lookup"><span data-stu-id="c4a3c-125">Implement gRPC methods</span></span>
+## <a name="implement-grpc-methods"></a><span data-ttu-id="37f26-126">gRPC 메서드 구현</span><span class="sxs-lookup"><span data-stu-id="37f26-126">Implement gRPC methods</span></span>
 
-<span data-ttu-id="c4a3c-126">gRPC 서비스에는 다양한 형식의 메서드가 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-126">A gRPC service can have different types of methods.</span></span> <span data-ttu-id="c4a3c-127">서비스에서 메시지를 보내고 받는 방법은 정의된 메서드 형식에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-127">How messages are sent and received by a service depends on the type of method defined.</span></span> <span data-ttu-id="c4a3c-128">gRPC 메서드 형식은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-128">The gRPC method types are:</span></span>
+<span data-ttu-id="37f26-127">gRPC 서비스에는 다양한 형식의 메서드가 있을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-127">A gRPC service can have different types of methods.</span></span> <span data-ttu-id="37f26-128">서비스에서 메시지를 보내고 받는 방법은 정의된 메서드 형식에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-128">How messages are sent and received by a service depends on the type of method defined.</span></span> <span data-ttu-id="37f26-129">gRPC 메서드 형식은 다음과 같습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-129">The gRPC method types are:</span></span>
 
-* <span data-ttu-id="c4a3c-129">단항</span><span class="sxs-lookup"><span data-stu-id="c4a3c-129">Unary</span></span>
-* <span data-ttu-id="c4a3c-130">서버 스트리밍</span><span class="sxs-lookup"><span data-stu-id="c4a3c-130">Server streaming</span></span>
-* <span data-ttu-id="c4a3c-131">클라이언트 스트리밍</span><span class="sxs-lookup"><span data-stu-id="c4a3c-131">Client streaming</span></span>
-* <span data-ttu-id="c4a3c-132">양방향 스트리밍</span><span class="sxs-lookup"><span data-stu-id="c4a3c-132">Bi-directional streaming</span></span>
+* <span data-ttu-id="37f26-130">단항</span><span class="sxs-lookup"><span data-stu-id="37f26-130">Unary</span></span>
+* <span data-ttu-id="37f26-131">서버 스트리밍</span><span class="sxs-lookup"><span data-stu-id="37f26-131">Server streaming</span></span>
+* <span data-ttu-id="37f26-132">클라이언트 스트리밍</span><span class="sxs-lookup"><span data-stu-id="37f26-132">Client streaming</span></span>
+* <span data-ttu-id="37f26-133">양방향 스트리밍</span><span class="sxs-lookup"><span data-stu-id="37f26-133">Bi-directional streaming</span></span>
 
-<span data-ttu-id="c4a3c-133">스트리밍 호출은 *.proto* 파일에서 `stream` 키워드를 사용하여 지정됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-133">Streaming calls are specified with the `stream` keyword in the *.proto* file.</span></span> <span data-ttu-id="c4a3c-134">`stream`은 호출의 요청 메시지나 응답 메시지 또는 두 메시지 모두에 배치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-134">`stream` can be placed on a call's request message, response message, or both.</span></span>
+<span data-ttu-id="37f26-134">스트리밍 호출은 *.proto* 파일에서 `stream` 키워드를 사용하여 지정됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-134">Streaming calls are specified with the `stream` keyword in the *.proto* file.</span></span> <span data-ttu-id="37f26-135">`stream`은 호출의 요청 메시지나 응답 메시지 또는 두 메시지 모두에 배치할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-135">`stream` can be placed on a call's request message, response message, or both.</span></span>
 
 ```protobuf
 syntax = "proto3";
@@ -132,11 +134,11 @@ service ExampleService {
 }
 ```
 
-<span data-ttu-id="c4a3c-135">각 호출 유형에는 다른 메서드 시그니처가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-135">Each call type has a different method signature.</span></span> <span data-ttu-id="c4a3c-136">구체적인 구현에서 추상 기본 서비스 유형에서 생성된 메서드를 재정의하면 올바른 인수와 반환 형식이 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-136">Overriding generated methods from the abstract base service type in a concrete implementation ensures the correct arguments and return type are used.</span></span>
+<span data-ttu-id="37f26-136">각 호출 유형에는 다른 메서드 시그니처가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-136">Each call type has a different method signature.</span></span> <span data-ttu-id="37f26-137">구체적인 구현에서 추상 기본 서비스 유형에서 생성된 메서드를 재정의하면 올바른 인수와 반환 형식이 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-137">Overriding generated methods from the abstract base service type in a concrete implementation ensures the correct arguments and return type are used.</span></span>
 
-### <a name="unary-method"></a><span data-ttu-id="c4a3c-137">단항 메서드</span><span class="sxs-lookup"><span data-stu-id="c4a3c-137">Unary method</span></span>
+### <a name="unary-method"></a><span data-ttu-id="37f26-138">단항 메서드</span><span class="sxs-lookup"><span data-stu-id="37f26-138">Unary method</span></span>
 
-<span data-ttu-id="c4a3c-138">단항 메서드는 매개 변수로 요청 메시지를 가져오고 응답을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-138">A unary method gets the request message as a parameter, and returns the response.</span></span> <span data-ttu-id="c4a3c-139">응답이 반환되면 단항 호출이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-139">A unary call is complete when the response is returned.</span></span>
+<span data-ttu-id="37f26-139">단항 메서드는 매개 변수로 요청 메시지를 가져오고 응답을 반환합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-139">A unary method gets the request message as a parameter, and returns the response.</span></span> <span data-ttu-id="37f26-140">응답이 반환되면 단항 호출이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-140">A unary call is complete when the response is returned.</span></span>
 
 ```csharp
 public override Task<ExampleResponse> UnaryCall(ExampleRequest request,
@@ -147,7 +149,7 @@ public override Task<ExampleResponse> UnaryCall(ExampleRequest request,
 }
 ```
 
-<span data-ttu-id="c4a3c-140">단항 호출은 [웹 API 컨트롤러의 작업](xref:web-api/index)과 가장 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-140">Unary calls are the most similar to [actions on web API controllers](xref:web-api/index).</span></span> <span data-ttu-id="c4a3c-141">gRPC 메서드가 작업과 다른 한 가지 중요한 차이점은 gRPC 메서드가 요청의 일부를 다른 메서드 인수에 바인딩할 수 없다는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-141">One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments.</span></span> <span data-ttu-id="c4a3c-142">gRPC 메서드에는 들어오는 요청 데이터에 대해 항상 하나의 메시지 인수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-142">gRPC methods always have one message argument for the incoming request data.</span></span> <span data-ttu-id="c4a3c-143">요청 메시지의 필드로 만들어 여러 값을 gRPC 서비스로 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-143">Multiple values can still be sent to a gRPC service by making them fields on the request message:</span></span>
+<span data-ttu-id="37f26-141">단항 호출은 [웹 API 컨트롤러의 작업](xref:web-api/index)과 가장 비슷합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-141">Unary calls are the most similar to [actions on web API controllers](xref:web-api/index).</span></span> <span data-ttu-id="37f26-142">gRPC 메서드가 작업과 다른 한 가지 중요한 차이점은 gRPC 메서드가 요청의 일부를 다른 메서드 인수에 바인딩할 수 없다는 것입니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-142">One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments.</span></span> <span data-ttu-id="37f26-143">gRPC 메서드에는 들어오는 요청 데이터에 대해 항상 하나의 메시지 인수가 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-143">gRPC methods always have one message argument for the incoming request data.</span></span> <span data-ttu-id="37f26-144">요청 메시지의 필드로 만들어 여러 값을 gRPC 서비스로 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-144">Multiple values can still be sent to a gRPC service by making them fields on the request message:</span></span>
 
 ```protobuf
 message ExampleRequest {
@@ -157,9 +159,9 @@ message ExampleRequest {
 }
 ```
 
-### <a name="server-streaming-method"></a><span data-ttu-id="c4a3c-144">서버 스트리밍 메서드</span><span class="sxs-lookup"><span data-stu-id="c4a3c-144">Server streaming method</span></span>
+### <a name="server-streaming-method"></a><span data-ttu-id="37f26-145">서버 스트리밍 메서드</span><span class="sxs-lookup"><span data-stu-id="37f26-145">Server streaming method</span></span>
 
-<span data-ttu-id="c4a3c-145">서버 스트리밍 메서드는 요청 메시지를 매개 변수로 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-145">A server streaming method gets the request message as a parameter.</span></span> <span data-ttu-id="c4a3c-146">여러 메시지를 다시 호출자에 스트리밍할 수 있으므로 응답 메시지를 보내는 데 `responseStream.WriteAsync`를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-146">Because multiple messages can be streamed back to the caller, `responseStream.WriteAsync` is used to send response messages.</span></span> <span data-ttu-id="c4a3c-147">메서드가 반환되면 서버 스트리밍 호출이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-147">A server streaming call is complete when the method returns.</span></span>
+<span data-ttu-id="37f26-146">서버 스트리밍 메서드는 요청 메시지를 매개 변수로 가져옵니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-146">A server streaming method gets the request message as a parameter.</span></span> <span data-ttu-id="37f26-147">여러 메시지를 다시 호출자에 스트리밍할 수 있으므로 응답 메시지를 보내는 데 `responseStream.WriteAsync`를 사용합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-147">Because multiple messages can be streamed back to the caller, `responseStream.WriteAsync` is used to send response messages.</span></span> <span data-ttu-id="37f26-148">메서드가 반환되면 서버 스트리밍 호출이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-148">A server streaming call is complete when the method returns.</span></span>
 
 ```csharp
 public override async Task StreamingFromServer(ExampleRequest request,
@@ -173,10 +175,10 @@ public override async Task StreamingFromServer(ExampleRequest request,
 }
 ```
 
-<span data-ttu-id="c4a3c-148">클라이언트에는 서버 스트리밍 메서드가 시작된 후 추가 메시지나 데이터를 보낼 방법이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-148">The client has no way to send additional messages or data once the server streaming method has started.</span></span> <span data-ttu-id="c4a3c-149">일부 스트리밍 메서드는 계속 실행되도록 설계되었습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-149">Some streaming methods are designed to run forever.</span></span> <span data-ttu-id="c4a3c-150">연속 스트리밍 메서드의 경우 클라이언트는 더 이상 필요하지 않을 때 호출을 취소할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-150">For continuous streaming methods, a client can cancel the call when it's no longer needed.</span></span> <span data-ttu-id="c4a3c-151">취소가 발생하면 클라이언트가 서버에 신호를 보내고 [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken)이 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-151">When cancellation happens the client sends a signal to the server and the [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised.</span></span> <span data-ttu-id="c4a3c-152">비동기 메서드를 사용하는 서버에서 `CancellationToken` 토큰을 사용하여 다음과 같이 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-152">The `CancellationToken` token should be used on the server with async methods so that:</span></span>
+<span data-ttu-id="37f26-149">클라이언트에는 서버 스트리밍 메서드가 시작된 후 추가 메시지나 데이터를 보낼 방법이 없습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-149">The client has no way to send additional messages or data once the server streaming method has started.</span></span> <span data-ttu-id="37f26-150">일부 스트리밍 메서드는 계속 실행되도록 설계되었습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-150">Some streaming methods are designed to run forever.</span></span> <span data-ttu-id="37f26-151">연속 스트리밍 메서드의 경우 클라이언트는 더 이상 필요하지 않을 때 호출을 취소할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-151">For continuous streaming methods, a client can cancel the call when it's no longer needed.</span></span> <span data-ttu-id="37f26-152">취소가 발생하면 클라이언트가 서버에 신호를 보내고 [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken)이 발생합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-152">When cancellation happens the client sends a signal to the server and the [ServerCallContext.CancellationToken](xref:System.Threading.CancellationToken) is raised.</span></span> <span data-ttu-id="37f26-153">비동기 메서드를 사용하는 서버에서 `CancellationToken` 토큰을 사용하여 다음과 같이 수행해야 합니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-153">The `CancellationToken` token should be used on the server with async methods so that:</span></span>
 
-* <span data-ttu-id="c4a3c-153">모든 비동기 작업은 스트리밍 호출과 함께 취소됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-153">Any asynchronous work is canceled together with the streaming call.</span></span>
-* <span data-ttu-id="c4a3c-154">메서드가 신속하게 종료됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-154">The method exits quickly.</span></span>
+* <span data-ttu-id="37f26-154">모든 비동기 작업은 스트리밍 호출과 함께 취소됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-154">Any asynchronous work is canceled together with the streaming call.</span></span>
+* <span data-ttu-id="37f26-155">메서드가 신속하게 종료됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-155">The method exits quickly.</span></span>
 
 ```csharp
 public override async Task StreamingFromServer(ExampleRequest request,
@@ -190,9 +192,9 @@ public override async Task StreamingFromServer(ExampleRequest request,
 }
 ```
 
-### <a name="client-streaming-method"></a><span data-ttu-id="c4a3c-155">클라이언트 스트리밍 메서드</span><span class="sxs-lookup"><span data-stu-id="c4a3c-155">Client streaming method</span></span>
+### <a name="client-streaming-method"></a><span data-ttu-id="37f26-156">클라이언트 스트리밍 메서드</span><span class="sxs-lookup"><span data-stu-id="37f26-156">Client streaming method</span></span>
 
-<span data-ttu-id="c4a3c-156">클라이언트 스트리밍 메서드는 메시지를 수신하지 ‘않고도’ 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-156">A client streaming method starts *without* the method receiving a message.</span></span> <span data-ttu-id="c4a3c-157">`requestStream` 매개 변수는 클라이언트에서 메시지를 읽는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-157">The `requestStream` parameter is used to read messages from the client.</span></span> <span data-ttu-id="c4a3c-158">응답 메시지가 반환되면 클라이언트 스트리밍 호출이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-158">A client streaming call is complete when a response message is returned:</span></span>
+<span data-ttu-id="37f26-157">클라이언트 스트리밍 메서드는 메시지를 수신하지 ‘않고도’ 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-157">A client streaming method starts *without* the method receiving a message.</span></span> <span data-ttu-id="37f26-158">`requestStream` 매개 변수는 클라이언트에서 메시지를 읽는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-158">The `requestStream` parameter is used to read messages from the client.</span></span> <span data-ttu-id="37f26-159">응답 메시지가 반환되면 클라이언트 스트리밍 호출이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-159">A client streaming call is complete when a response message is returned:</span></span>
 
 ```csharp
 public override async Task<ExampleResponse> StreamingFromClient(
@@ -207,7 +209,7 @@ public override async Task<ExampleResponse> StreamingFromClient(
 }
 ```
 
-<span data-ttu-id="c4a3c-159">C# 8 이상을 사용하는 경우 `await foreach` 구문을 사용하여 메시지를 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-159">When using C# 8 or later, the `await foreach` syntax can be used to read messages.</span></span> <span data-ttu-id="c4a3c-160">`IAsyncStreamReader<T>.ReadAllAsync()` 확장 메서드는 요청 스트림에서 모든 메시지를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-160">The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the request stream:</span></span>
+<span data-ttu-id="37f26-160">C# 8 이상을 사용하는 경우 `await foreach` 구문을 사용하여 메시지를 읽을 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-160">When using C# 8 or later, the `await foreach` syntax can be used to read messages.</span></span> <span data-ttu-id="37f26-161">`IAsyncStreamReader<T>.ReadAllAsync()` 확장 메서드는 요청 스트림에서 모든 메시지를 읽습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-161">The `IAsyncStreamReader<T>.ReadAllAsync()` extension method reads all messages from the request stream:</span></span>
 
 ```csharp
 public override async Task<ExampleResponse> StreamingFromClient(
@@ -221,9 +223,9 @@ public override async Task<ExampleResponse> StreamingFromClient(
 }
 ```
 
-### <a name="bi-directional-streaming-method"></a><span data-ttu-id="c4a3c-161">양방향 스트리밍 메서드</span><span class="sxs-lookup"><span data-stu-id="c4a3c-161">Bi-directional streaming method</span></span>
+### <a name="bi-directional-streaming-method"></a><span data-ttu-id="37f26-162">양방향 스트리밍 메서드</span><span class="sxs-lookup"><span data-stu-id="37f26-162">Bi-directional streaming method</span></span>
 
-<span data-ttu-id="c4a3c-162">양방향 스트리밍 메서드는 메시지를 수신하지 ‘않고도’ 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-162">A bi-directional streaming method starts *without* the method receiving a message.</span></span> <span data-ttu-id="c4a3c-163">`requestStream` 매개 변수는 클라이언트에서 메시지를 읽는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-163">The `requestStream` parameter is used to read messages from the client.</span></span> <span data-ttu-id="c4a3c-164">메서드는 `responseStream.WriteAsync`를 사용하여 메시지를 보내도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-164">The method can choose to send messages with `responseStream.WriteAsync`.</span></span> <span data-ttu-id="c4a3c-165">메서드가 반환되면 양방향 스트리밍 호출이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-165">A bi-directional streaming call is complete when the the method returns:</span></span>
+<span data-ttu-id="37f26-163">양방향 스트리밍 메서드는 메시지를 수신하지 ‘않고도’ 시작됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-163">A bi-directional streaming method starts *without* the method receiving a message.</span></span> <span data-ttu-id="37f26-164">`requestStream` 매개 변수는 클라이언트에서 메시지를 읽는 데 사용됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-164">The `requestStream` parameter is used to read messages from the client.</span></span> <span data-ttu-id="37f26-165">메서드는 `responseStream.WriteAsync`를 사용하여 메시지를 보내도록 선택할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-165">The method can choose to send messages with `responseStream.WriteAsync`.</span></span> <span data-ttu-id="37f26-166">메서드가 반환되면 양방향 스트리밍 호출이 완료됩니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-166">A bi-directional streaming call is complete when the the method returns:</span></span>
 
 ```csharp
 public override async Task StreamingBothWays(IAsyncStreamReader<ExampleRequest> requestStream,
@@ -236,12 +238,12 @@ public override async Task StreamingBothWays(IAsyncStreamReader<ExampleRequest> 
 }
 ```
 
-<span data-ttu-id="c4a3c-166">위의 코드는</span><span class="sxs-lookup"><span data-stu-id="c4a3c-166">The preceding code:</span></span>
+<span data-ttu-id="37f26-167">위의 코드는</span><span class="sxs-lookup"><span data-stu-id="37f26-167">The preceding code:</span></span>
 
-* <span data-ttu-id="c4a3c-167">각 요청에 대한 응답을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-167">Sends a response for each request.</span></span>
-* <span data-ttu-id="c4a3c-168">양방향 스트리밍의 기본적인 사용 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-168">Is a basic usage of bi-directional streaming.</span></span>
+* <span data-ttu-id="37f26-168">각 요청에 대한 응답을 보냅니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-168">Sends a response for each request.</span></span>
+* <span data-ttu-id="37f26-169">양방향 스트리밍의 기본적인 사용 방법입니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-169">Is a basic usage of bi-directional streaming.</span></span>
 
-<span data-ttu-id="c4a3c-169">동시에 요청을 읽고 응답을 보내는 것과 같이 더욱 복잡한 시나리오를 지원할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-169">It is possible to support more complex scenarios, such as reading requests and sending responses simultaneously:</span></span>
+<span data-ttu-id="37f26-170">동시에 요청을 읽고 응답을 보내는 것과 같이 더욱 복잡한 시나리오를 지원할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-170">It is possible to support more complex scenarios, such as reading requests and sending responses simultaneously:</span></span>
 
 ```csharp
 public override async Task StreamingBothWays(IAsyncStreamReader<ExampleRequest> requestStream,
@@ -265,11 +267,11 @@ public override async Task StreamingBothWays(IAsyncStreamReader<ExampleRequest> 
 }
 ```
 
-<span data-ttu-id="c4a3c-170">양방향 스트리밍 메서드에서 클라이언트와 서비스는 언제든지 서로에게 메시지를 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-170">In a bi-directional streaming method, the client and service can send messages to each other at any time.</span></span> <span data-ttu-id="c4a3c-171">양방향 메서드를 구현하는 최상의 방법은 요구 사항에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-171">The best implementation of a bi-directional method varies depending upon requirements.</span></span>
+<span data-ttu-id="37f26-171">양방향 스트리밍 메서드에서 클라이언트와 서비스는 언제든지 서로에게 메시지를 보낼 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-171">In a bi-directional streaming method, the client and service can send messages to each other at any time.</span></span> <span data-ttu-id="37f26-172">양방향 메서드를 구현하는 최상의 방법은 요구 사항에 따라 다릅니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-172">The best implementation of a bi-directional method varies depending upon requirements.</span></span>
 
-## <a name="access-grpc-request-headers"></a><span data-ttu-id="c4a3c-172">gRPC 요청 헤더 액세스</span><span class="sxs-lookup"><span data-stu-id="c4a3c-172">Access gRPC request headers</span></span>
+## <a name="access-grpc-request-headers"></a><span data-ttu-id="37f26-173">gRPC 요청 헤더 액세스</span><span class="sxs-lookup"><span data-stu-id="37f26-173">Access gRPC request headers</span></span>
 
-<span data-ttu-id="c4a3c-173">요청 메시지는 클라이언트에서 gRPC 서비스로 데이터를 보내는 유일한 방법은 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-173">A request message is not the only way for a client to send data to a gRPC service.</span></span> <span data-ttu-id="c4a3c-174">`ServerCallContext.RequestHeaders`를 사용하면 서비스에서 헤더 값을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="c4a3c-174">Header values are available in a service using `ServerCallContext.RequestHeaders`.</span></span>
+<span data-ttu-id="37f26-174">요청 메시지는 클라이언트에서 gRPC 서비스로 데이터를 보내는 유일한 방법은 아닙니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-174">A request message is not the only way for a client to send data to a gRPC service.</span></span> <span data-ttu-id="37f26-175">`ServerCallContext.RequestHeaders`를 사용하면 서비스에서 헤더 값을 사용할 수 있습니다.</span><span class="sxs-lookup"><span data-stu-id="37f26-175">Header values are available in a service using `ServerCallContext.RequestHeaders`.</span></span>
 
 ```csharp
 public override Task<ExampleResponse> UnaryCall(ExampleRequest request, ServerCallContext context)
@@ -281,7 +283,7 @@ public override Task<ExampleResponse> UnaryCall(ExampleRequest request, ServerCa
 }
 ```
 
-## <a name="additional-resources"></a><span data-ttu-id="c4a3c-175">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="c4a3c-175">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="37f26-176">추가 리소스</span><span class="sxs-lookup"><span data-stu-id="37f26-176">Additional resources</span></span>
 
 * <xref:grpc/basics>
 * <xref:grpc/client>
