@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: 53293ae9780129530ce5a41639e19284f47aa245
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a8d2ceaffb670723d7662234f3dc964c864e6763
+ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628081"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "89280428"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-models"></a>ASP.NET Core Blazor 호스팅 모델
 
@@ -84,6 +84,9 @@ Blazor Server 호스팅 모델은 다음과 같은 몇 가지 혜택을 제공�
 * 서버의 .NET Core가 앱을 실행하는 데 사용되므로 디버깅과 같은 기존 .NET 도구가 정상적으로 작동합니다.
 * 씬 클라이언트가 지원됩니다. 예를 들어 Blazor Server 앱은 WebAssembly를 지원하지 않는 브라우저와 리소스가 제한된 디바이스에서 작동합니다.
 * 앱 구성 요소 코드를 비롯한 앱의 .NET/C# 코드베이스가 클라이언트에 제공되지 않습니다.
+
+> [!IMPORTANT]
+> Blazor Server 앱은 첫 번째 클라이언트 요청에 대응하여 미리 렌더링되며 이에 따라 서버의 UI 상태가 설정됩니다. 클라이언트가 SignalR 연결을 만들려는 경우 **클라이언트는 동일한 서버에 다시 연결해야 합니다**. 둘 이상의 백 엔드 서버를 사용하는 Blazor Server 앱은 SignalR 연결에 사용할 ‘고정 세션’을 구현해야 합니다. 자세한 내용은 [서버에 대한 연결](#connection-to-the-server) 섹션을 참조하세요.
 
 Blazor Server 호스팅에는 다음과 같은 단점이 있습니다.
 

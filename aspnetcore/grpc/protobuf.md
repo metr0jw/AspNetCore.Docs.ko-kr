@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: b8149b79c1e7b204e52cc8595d1193b623bb0008
-ms.sourcegitcommit: 47c9a59ff8a359baa6bca2637d3af87ddca1245b
+ms.openlocfilehash: 60af1add9ae2f8b2b94bc19b65667d7af91fb122
+ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88945524"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89102668"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>.NET 앱에 대한 Protobuf 메시지 만들기
 
 작성자: [James Newton-King](https://twitter.com/jamesnk) 및 [Mark Rendle](https://twitter.com/markrendle)
 
-gRPC는 IDL(Interface Design Language)로 [Protobuf](https://developers.google.com/protocol-buffers)를 사용합니다. Protobuf IDL은 gRPC 서비스에서 보내고 받는 메시지를 지정하기 위한 언어 중립적인 형식입니다. Protobuf 메시지는 *.proto* 파일에서 정의됩니다. 이 문서에서는 Protobuf 개념이 .NET에 어떻게 매핑되는지 설명합니다.
+gRPC는 IDL(Interface Design Language)로 [Protobuf](https://developers.google.com/protocol-buffers)를 사용합니다. Protobuf IDL은 gRPC 서비스에서 보내고 받는 메시지를 지정하기 위한 언어 중립적인 형식입니다. Protobuf 메시지는 `.proto` 파일에서 정의됩니다. 이 문서에서는 Protobuf 개념이 .NET에 어떻게 매핑되는지 설명합니다.
 
 ## <a name="protobuf-messages"></a>Protobuf 메시지
 
@@ -50,7 +50,7 @@ message Person {
 
 메시지 정의의 각 필드에는 이름 외에도 고유한 번호가 있습니다. 필드 번호는 메시지가 Protobuf로 직렬화될 때 필드를 식별하는 데 사용됩니다. 작은 수를 직렬화하는 것은 전체 필드 이름을 직렬화하는 것보다 더 빠릅니다. 필드 번호는 필드를 식별하기 때문에 필드를 변경할 때는 주의해야 합니다. Protobuf 메시지 변경에 대한 자세한 내용은 <xref:grpc/versioning>를 참조하세요.
 
-앱을 빌드할 때 Protobuf 도구는 *.proto* 파일에서 .NET 형식을 생성합니다. `Person` 메시지는 .NET 클래스를 생성합니다.
+앱을 빌드할 때 Protobuf 도구는 `.proto` 파일에서 .NET 형식을 생성합니다. `Person` 메시지는 .NET 클래스를 생성합니다.
 
 ```csharp
 public class Person
@@ -87,15 +87,15 @@ Protobuf는 네이티브 스칼라 값 형식의 범위를 지원합니다. 모�
 
 ### <a name="dates-and-times"></a>날짜 및 시간
 
-네이티브 스칼라 형식은 .NET의 <xref:System.DateTimeOffset>, <xref:System.DateTime>, <xref:System.TimeSpan>에 해당하는 날짜 및 시간 값을 제공하지 않습니다. 이 형식은 Protobuf의 “잘 알려진 형식” 확장 중 일부를 사용하여 지정할 수 있습니다. 이 확장은 지원되는 플랫폼에서 복합 필드 형식을 위한 코드 생성과 런타임을 지원합니다.
+네이티브 스칼라 형식은 .NET의 <xref:System.DateTimeOffset>, <xref:System.DateTime>, <xref:System.TimeSpan>에 해당하는 날짜 및 시간 값을 제공하지 않습니다. 해당 형식은 Protobuf의 ‘잘 알려진 형식’ 확장 중 일부를 사용하여 지정할 수 있습니다. 이 확장은 지원되는 플랫폼에서 복합 필드 형식을 위한 코드 생성과 런타임을 지원합니다.
 
 다음 표에는 날짜 및 시간 형식이 나와 있습니다.
 
-| .NET 형식 | Protobuf 잘 알려진 형식 |
-| ------- | ------------------------ |
+| .NET 형식        | Protobuf 잘 알려진 형식    |
+| ---------------- | --------------------------- |
 | `DateTimeOffset` | `google.protobuf.Timestamp` |
-| `DateTime` | `google.protobuf.Timestamp` |
-| `TimeSpan` | `google.protobuf.Duration` |
+| `DateTime`       | `google.protobuf.Timestamp` |
+| `TimeSpan`       | `google.protobuf.Duration`  |
 
 ```protobuf  
 syntax = "proto3"
@@ -132,7 +132,7 @@ var duration = meeting.Duration?.ToTimeSpan();
 
 C#에 해당하는 Protobuf 코드를 생성하는 데에는 네이티브 형식을 사용합니다(예: `int32`에 대해 `int` 사용). 따라서 값이 항상 포함되며 `null`일 수 없습니다.
 
-C# 코드에 `int?`가 사용되는 것과 같이 명시적인 `null`이 필요한 값의 경우 Protobuf의 “잘 알려진 형식”은 null 허용 C# 형식으로 컴파일되는 래퍼를 포함합니다. 이 래퍼를 사용하려면 다음 코드와 같이 `.proto` 파일에 `wrappers.proto`를 가져옵니다.
+C# 코드에 `int?`가 사용되는 것과 같이 명시적인 `null`이 필요한 값의 경우 Protobuf의 잘 알려진 형식은 null 허용 C# 형식으로 컴파일되는 래퍼를 포함합니다. 이 래퍼를 사용하려면 다음 코드와 같이 `.proto` 파일에 `wrappers.proto`를 가져옵니다.
 
 ```protobuf  
 syntax = "proto3"
@@ -284,11 +284,17 @@ person.Attributes.Add(attributes);
 
 ## <a name="unstructured-and-conditional-messages"></a>비구조적 메시지 및 조건부 메시지
 
-Protobuf는 계약 중심 메시지 형식이고, 앱을 빌드할 때 *.proto* 파일에 앱 메시지를 지정해야 합니다. 고급 시나리오의 경우 Protobuf는 조건부 메시지 및 알 수 없는 메시지를 지원하는 언어 기능과 잘 알려진 형식을 제공합니다.
+Protobuf는 계약 중심 메시징 형식입니다. 필드와 유형을 포함하여 앱의 메시지는 앱을 빌드할 때 `.proto` 파일에서 지정해야 합니다. Protobuf의 계약 중심 디자인은 메시지 콘텐츠를 적용하는 데 적합하지만 다음과 같이 엄격한 계약이 필요하지 않은 시나리오를 제한할 수 있습니다.
+
+* 알 수 없는 페이로드가 포함된 메시지. 예를 들어 메시지를 포함할 수 있는 필드가 있는 메시지입니다.
+* 조건부 메시지. 예를 들어 gRPC 서비스에서 반환된 메시지는 성공 결과 또는 오류 결과일 수 있습니다.
+* 동적 값. 예를 들어 JSON과 유사한 비구조적 값 컬렉션을 포함하는 필드가 있는 메시지입니다.
+
+Protobuf는 해당 시나리오를 지원하기 위한 언어 기능과 형식을 제공합니다.
 
 ### <a name="any"></a>모두
 
-`Any` 형식을 사용하면 *.proto* 정의 없이도 메시지를 포함된 형식으로 사용할 수 있습니다. `Any` 형식을 사용하려면 `any.proto`를 가져옵니다.
+`Any` 형식을 사용하면 `.proto` 정의 없이도 메시지를 포함된 형식으로 사용할 수 있습니다. `Any` 형식을 사용하려면 `any.proto`를 가져옵니다.
 
 ```protobuf
 import "google/protobuf/any.proto";
@@ -338,7 +344,7 @@ message ResponseMessage {
 `oneof`를 사용하면 생성된 C# 코드에는 설정된 필드를 지정하는 열거형이 포함됩니다. 열거형을 테스트하여 설정된 필드를 찾을 수 있습니다. 설정되지 않은 필드는 예외를 throw하는 대신 `null` 또는 기본값을 반환합니다.
 
 ```csharp
-var response = client.GetPersonAsync(new RequestMessage());
+var response = await client.GetPersonAsync(new RequestMessage());
 
 switch (response.ResultCase)
 {
@@ -355,7 +361,7 @@ switch (response.ResultCase)
 
 ### <a name="value"></a>값
 
-`Value` 형식은 동적으로 형식화된 값을 나타냅니다. `null`, 숫자, 문자열, 부울, 값의 사전(`Struct`)이거나 값의 목록(`ValueList`)일 수 있습니다. `Value`는 앞에서 설명한 `oneof` 기능을 사용하는 잘 알려진 형식입니다. `Value` 형식을 사용하려면 `struct.proto`를 가져옵니다.
+`Value` 형식은 동적으로 형식화된 값을 나타냅니다. `null`, 숫자, 문자열, 부울, 값의 사전(`Struct`)이거나 값의 목록(`ValueList`)일 수 있습니다. `Value`는 앞에서 설명한 `oneof` 기능을 사용하는 Protobuf 잘 알려진 형식입니다. `Value` 형식을 사용하려면 `struct.proto`를 가져옵니다.
 
 ```protobuf
 import "google/protobuf/struct.proto";

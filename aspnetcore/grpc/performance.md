@@ -1,5 +1,5 @@
 ---
-title: ASP.NET Core용 gRPC의 성능 모범 사례
+title: gRPC 관련 성능 모범 사례
 author: jamesnk
 description: 고성능 gRPC 서비스를 빌드하기 위한 모범 사례를 알아봅니다.
 monikerRange: '>= aspnetcore-3.0'
@@ -17,24 +17,24 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: f9cefa89ec6e533920b33223b34333f6ebe38428
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: a0a1a6901e07fb0074ca403870378f267d3d4403
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876726"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379447"
 ---
-# <a name="performance-best-practices-in-grpc-for-aspnet-core"></a>ASP.NET Core용 gRPC의 성능 모범 사례
+# <a name="performance-best-practices-with-grpc"></a>gRPC 관련 성능 모범 사례
 
 작성자: [James Newton-King](https://twitter.com/jamesnk)
 
 gRPC는 고성능 서비스를 위해 설계되었습니다. 이 문서에서는 gRPC에서 가능한 최상의 성능을 얻는 방법을 설명합니다.
 
-## <a name="reuse-channel"></a>채널 재사용
+## <a name="reuse-grpc-channels"></a>gRPC 채널 다시 사용
 
 gRPC 호출 시 gRPC 채널을 재사용해야 합니다. 채널을 재사용하면 기존 HTTP/2 연결을 통해 호출이 멀티플렉싱될 수 있습니다.
 
-gRPC 호출별로 새 채널을 생성하는 경우 완료하는 데 상당히 오랜 시간이 걸릴 수 있습니다. 호출할 때마다 HTTP/2 연결을 만들기 위해 클라이언트와 서버 간에 여러 번의 네트워크 왕복이 필요합니다.
+gRPC 호출별로 새 채널을 생성하는 경우 완료하는 데 상당히 오랜 시간이 걸릴 수 있습니다. 호출할 때마다 새 HTTP/2 연결을 만들기 위해 클라이언트와 서버 간에 여러 번의 네트워크 왕복이 필요합니다.
 
 1. 소켓 열기
 2. TCP 연결 설정
@@ -48,6 +48,8 @@ gRPC 호출 간에 채널을 공유하고 재사용할 수 있습니다.
 * 다양한 형식의 클라이언트를 포함하여 여러 gRPC 클라이언트를 한 채널에서 만들 수 있습니다.
 * 채널 및 채널에서 만든 클라이언트를 여러 스레드에서 안전하게 사용할 수 있습니다.
 * 채널에서 만든 클라이언트는 여러 개의 동시 호출을 수행할 수 있습니다.
+
+gRPC 클라이언트 팩터리는 중앙 집중식으로 채널을 구성하는 방법을 제공합니다. 자동으로 기본 채널을 다시 사용합니다. 자세한 내용은 <xref:grpc/clientfactory>를 참조하세요.
 
 ## <a name="connection-concurrency"></a>연결 동시성
 
@@ -85,6 +87,38 @@ var channel = GrpcChannel.ForAddress("https://localhost", new GrpcChannelOptions
 >
 > * 연결에 쓰려고 시도하는 스트림 간에 스레드 경합이 발생합니다.
 > * 연결 패킷 손실로 인해 TCP 계층에서 모든 호출이 차단됩니다.
+
+## <a name="load-balancing"></a>부하 분산
+
+일부 부하 분산 장치는 gRPC에서 효과적으로 작동하지 않습니다. L4(전송) 부하 분산 장치는 엔드포인트 간에 TCP 연결을 분산하여 연결 수준에서 작동합니다. 이 접근 방식은 HTTP/1.1을 사용하여 수행된 API 호출의 부하를 분산하는 데 적합합니다. HTTP/1.1을 사용하여 수행된 동시 호출은 여러 연결에서 전송되므로 엔드포인트에서 호출의 부하를 분산할 수 있습니다.
+
+L4 부하 분산 장치는 연결 수준에서 작동하므로 gRPC에서 제대로 작동하지 않습니다. gRPC는 단일 TCP 연결에서 여러 호출을 멀티플렉싱하는 HTTP/2를 사용합니다. 해당 연결을 통한 모든 gRPC 호출은 하나의 엔드포인트로 이동합니다.
+
+gRPC의 부하를 효과적으로 분산하는 두 가지 옵션이 있습니다.
+
+* 클라이언트 쪽 부하 분산
+* L7(애플리케이션) 프록시 부하 분산
+
+> [!NOTE]
+> 엔드포인트 간에 gRPC 호출의 부하만 분산할 수 있습니다. 스트리밍 gRPC 호출이 설정되면 스트림을 통해 전송되는 모든 메시지가 하나의 엔드포인트로 이동합니다.
+
+### <a name="client-side-load-balancing"></a>클라이언트 쪽 부하 분산
+
+클라이언트 쪽 부하 분산을 사용하면 클라이언트가 엔드포인트를 인식합니다. 각 gRPC 호출을 위해 클라이언트는 호출을 전송할 다른 엔드포인트를 선택합니다. 클라이언트 쪽 부하 분산은 대기 시간이 중요한 경우에 적합합니다. 클라이언트와 서비스 간에 프록시가 없으므로 호출이 서비스로 직접 전송됩니다. 클라이언트 쪽 부하 분산의 단점은 각 클라이언트가 사용해야 하는 사용 가능한 엔드포인트를 추적해야 한다는 것입니다.
+
+할당 준비 클라이언트 부하 분산은 부하 분산 상태가 중앙 위치에 저장되는 기술입니다. 클라이언트는 부하 분산을 결정할 때 사용할 정보를 중앙 위치에서 주기적으로 쿼리합니다.
+
+`Grpc.Net.Client`는 현재 클라이언트 쪽 부하 분산을 지원하지 않습니다. [Grpc.Core](https://www.nuget.org/packages/Grpc.Core)는 .NET에서 클라이언트 쪽 부하 분산이 필요한 경우에 적합합니다.
+
+### <a name="proxy-load-balancing"></a>프록시 부하 분산
+
+L7(애플리케이션) 프록시는 L4(전송) 프록시보다 더 높은 수준에서 작동합니다. L7 프록시는 HTTP/2를 해석하며 하나의 HTTP/2 연결을 통해 프록시로 멀티플렉싱된 gRPC 호출을 여러 엔드포인트에서 분산할 수 있습니다. 프록시 사용은 클라이언트 쪽 부하 분산보다 더 간단하지만 gRPC 호출에 대기 시간을 더 추가할 수 있습니다.
+
+많은 L7 프록시를 사용할 수 있습니다. 몇 가지 옵션은 다음과 같습니다.
+
+* [Envoy](https://www.envoyproxy.io/) - 인기 있는 오픈 소스 프록시입니다.
+* [Linkerd](https://linkerd.io/) - Kubernetes용 서비스 메시입니다.
+* [YARP: 역방향 프록시](https://microsoft.github.io/reverse-proxy/) - .NET으로 작성된 미리 보기 오픈 소스 프록시입니다.
 
 ::: moniker range=">= aspnetcore-5.0"
 

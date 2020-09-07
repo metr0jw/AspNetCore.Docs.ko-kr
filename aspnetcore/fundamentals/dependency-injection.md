@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/dependency-injection
-ms.openlocfilehash: 0a51647463362d6cfac335688d42d4be013f8b9c
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: 2d002e075f9d57654589b540e522307c363d9660
+ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712517"
+ms.lasthandoff: 08/31/2020
+ms.locfileid: "89153547"
 ---
 # <a name="dependency-injection-in-aspnet-core"></a>ASP.NET Core에서 종속성 주입
 
@@ -345,7 +345,6 @@ An `OperationService` is registered that depends on each of the other `Operation
 
 * 범위가 지정된 서비스는 루트 서비스 공급자에서 확인되지 않습니다.
 * 범위가 지정된 서비스는 싱글톤에 삽입되지 않습니다.
-* 임시 서비스는 싱글톤이나 범위가 지정된 서비스에 주입되지 않습니다.
 
 루트 서비스 공급자는 <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A>를 호출할 때 만들어집니다. 루트 서비스 공급자의 수명은 공급자가 앱과 함께 시작되고 앱이 종료될 때 삭제되는 앱의 수명에 해당합니다.
 
@@ -518,7 +517,7 @@ ASP.NET Core 앱에서 사용할 수 있는 타사 컨테이너는 다음과 같
   [!code-csharp[](dependency-injection/samples/3.x/AntiPattern3/Startup.cs?name=snippet)]
 
 * 삭제 가능한 임시 서비스는 삭제를 위해 컨테이너에서 캡처됩니다. 따라서 최상위 컨테이너에서 해결할 경우 메모리 누수가 발생할 수 있습니다.
-* 범위 유효성 검사를 사용하도록 설정하여 싱글톤을 캡처하는 범위가 지정된 서비스가 앱에 없는지 확인합니다. 자세한 내용은 [범위 유효성 검사](#scope-validation)를 참조하세요.
+* 범위 유효성 검사를 사용하여 범위가 지정된 서비스를 캡처하는 싱글톤이 앱에 없는지 확인합니다. 자세한 내용은 [범위 유효성 검사](#scope-validation)를 참조하세요.
 
 모든 권장 사항과 마찬가지로, 권장 사항을 무시해야 하는 상황이 발생할 수 있습니다. 예외는 드물게 발생하며 대부분 프레임워크 자체 내에서 특별한 경우에만 발생합니다.
 
@@ -996,7 +995,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-다음 예제에서는
+다음 예제에서,
 
 * 서비스 인스턴스가 서비스 컨테이너에 의해 만들어지지 않습니다.
 * 의도된 서비스 수명을 프레임워크가 알지 못합니다.

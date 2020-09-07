@@ -4,7 +4,7 @@ author: scottaddie
 description: 번들링 및 축소 기술을 적용하여 ASP.NET Core 웹 애플리케이션에서 정적 리소스를 최적화하는 방법을 알아봅니다.
 ms.author: scaddie
 ms.custom: mvc
-ms.date: 07/23/2020
+ms.date: 09/02/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: client-side/bundling-and-minification
-ms.openlocfilehash: 84123464e8f01f8a3caa65035b3174cc04aea7cf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: f696df0b421e5aab6f50cfaec3ca8edac894cea9
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625858"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379395"
 ---
 # <a name="bundle-and-minify-static-assets-in-aspnet-core"></a>ASP.NET Core에서 정적 자산 번들링 및 축소하기
 
@@ -77,6 +77,9 @@ ms.locfileid: "88625858"
 MVC 및 Razor Pages 프로젝트 템플릿은 JSON 구성 파일로 구성된 묶음 및 축소용 솔루션을 제공합니다. [Grunt](xref:client-side/using-grunt) 작업 실행기와 같은 타사 도구는 동일한 작업을 약간 더 복잡하게 수행합니다. 타사 도구는 개발 워크플로에 lint 및 이미지 최적화와 같은 묶음 및 축소 이외의 처리가 필요한 경우에 적합합니다. 디자인 타임 묶음 및 축소를 사용하여 앱 배포 전에 축소된 파일이 생성됩니다. 배포 전 묶음 및 축소는 서버 부하 감소라는 이점을 제공합니다. 그러나 디자인 타임 묶음 및 축소는 빌드 복잡성을 높이고 정적 파일에만 작동한다는 것을 인식하는 것이 중요합니다.
 
 ## <a name="configure-bundling-and-minification"></a>번들링 및 축소 구성하기
+
+> [!NOTE]
+> 이 작업을 수행하려면 [BuildBundlerMinifier](https://www.nuget.org/packages/BuildBundlerMinifier) NuGet 패키지를 프로젝트에 추가해야 합니다.
 
 ::: moniker range="<= aspnetcore-2.0"
 

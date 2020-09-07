@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: b71b742c8a60b4b563649baa181b8c332ff02501
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 7627d6981fbee66ba19a7065cefb197e50a5fd25
+ms.sourcegitcommit: 4cce99cbd44372fd4575e8da8c0f4345949f4d9a
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865201"
+ms.lasthandoff: 08/31/2020
+ms.locfileid: "89153521"
 ---
 # <a name="aspnet-core-no-locblazor-server-with-entity-framework-core-efcore"></a>EFCore(Entity Framework Core)를 사용한 ASP.NET Core Blazor Server
 
@@ -107,7 +107,8 @@ EF Core에서는 <xref:Microsoft.EntityFrameworkCore.DbContext>를 사용하여 
 
 [!code-csharp[](./common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
 
-> ![참고] `Wrapper`는 `GridWrapper` 구성 요소에 대한 [구성 요소 참조](xref:blazor/components/index#capture-references-to-components)입니다. [샘플 앱](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor)의 `Index` 구성 요소(`Pages/Index.razor`)를 참조하세요.
+> [!NOTE]
+> `Wrapper`는 `GridWrapper` 구성 요소에 대한 [구성 요소 참조](xref:blazor/components/index#capture-references-to-components)입니다. [샘플 앱](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/5.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor)의 `Index` 구성 요소(`Pages/Index.razor`)를 참조하세요.
 
 ### <a name="scope-to-the-component-lifetime"></a>구성 요소 수명으로 범위 지정
 
@@ -213,7 +214,8 @@ EF Core에서는 <xref:Microsoft.EntityFrameworkCore.DbContext>를 사용하여 
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor?name=snippet1)]
 
-> ![참고] `Wrapper`는 `GridWrapper` 구성 요소에 대한 [구성 요소 참조](xref:blazor/components/index#capture-references-to-components)입니다. [샘플 앱](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor)의 `Index` 구성 요소(`Pages/Index.razor`)를 참조하세요.
+> [!NOTE]
+> `Wrapper`는 `GridWrapper` 구성 요소에 대한 [구성 요소 참조](xref:blazor/components/index#capture-references-to-components)입니다. [샘플 앱](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor)의 `Index` 구성 요소(`Pages/Index.razor`)를 참조하세요.
 
 ### <a name="scope-to-the-component-lifetime"></a>구성 요소 수명으로 범위 지정
 
@@ -242,4 +244,4 @@ EF Core에서는 <xref:Microsoft.EntityFrameworkCore.DbContext>를 사용하여 
 
 ## <a name="additional-resources"></a>추가 자료
 
-> [EF Core 설명서](/ef/)
+* [EF Core 설명서](/ef/)

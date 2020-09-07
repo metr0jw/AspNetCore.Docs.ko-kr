@@ -5,7 +5,7 @@ description: ASP.NET Core를 사용하여 Blazor Server 앱을 호스트 및 배
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/14/2020
+ms.date: 08/26/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/server
-ms.openlocfilehash: 72a22fc2dd50bbcda230bb1824bb4fe176bf2189
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: afbaad2f27359a4a1cac5c5fe1da16d3e80d038f
+ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628055"
+ms.lasthandoff: 08/29/2020
+ms.locfileid: "89102655"
 ---
 # <a name="host-and-deploy-no-locblazor-server"></a>Blazor Server 호스트 및 배포
 
@@ -65,7 +65,19 @@ Blazor는 짧은 대기 시간, 안정성 및 [보안](xref:signalr/security) �
 
 #### <a name="azure-no-locsignalr-service"></a>Azure SignalR 서비스
 
-Blazor Server 앱에 [Azure SignalR Service](/azure/azure-signalr)를 사용하는 것이 좋습니다. 이 서비스를 사용하면 Blazor Server 앱을 다수의 동시 SignalR 연결로 스케일 업할 수 있습니다. 또한 SignalR 서비스의 글로벌 및 고성능 데이터 센터는 지리적 위치로 인한 대기 시간을 줄이는 데 큰 도움이 됩니다. 앱을 구성하고 원하는 경우 Azure SignalR Service를 프로비전하려면 다음 단계를 따릅니다.
+Blazor Server 앱에 [Azure SignalR Service](xref:signalr/scale#azure-signalr-service)를 사용하는 것이 좋습니다. 이 서비스를 사용하면 Blazor Server 앱을 다수의 동시 SignalR 연결로 스케일 업할 수 있습니다. 또한 SignalR 서비스의 글로벌 및 고성능 데이터 센터는 지리적 위치로 인한 대기 시간을 줄이는 데 큰 도움이 됩니다.
+
+> [!IMPORTANT]
+> [WebSocket](https://wikipedia.org/wiki/WebSocket)이 사용되지 않는 경우 Azure App Service는 HTTP 긴 폴링을 사용하여 실시간 연결을 시뮬레이트합니다. HTTP 긴 폴링은 WebSocket을 사용하여 실행하는 것보다 훨씬 더 느리므로 클라이언트-서버 연결을 시뮬레이트하는 데는 폴링을 사용하지 않습니다.
+>
+> Azure App Service에 배포된 Blazor Server 앱에 WebSocket을 사용하는 것이 좋습니다. [Azure SignalR Service](xref:signalr/scale#azure-signalr-service)는 기본적으로 WebSocket을 사용합니다. 앱이 Azure SignalR Service를 사용하지 않는 경우 <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service> 항목을 참조하세요.
+>
+> 자세한 내용은 다음을 참조하십시오.
+>
+> * [Azure SignalR Service란?](/azure/azure-signalr/signalr-overview)
+> * [Azure SignalR Service를 위한 성능 가이드](/azure-signalr/signalr-concept-performance#performance-factors)
+
+앱을 구성하고 원하는 경우 Azure SignalR Service를 프로비전하려면 다음 단계를 따릅니다.
 
 1. [사전 렌더링하는 경우 클라이언트를 동일한 서버로 다시 리디렉션하는](xref:blazor/hosting-models#connection-to-the-server)*고정 세션*을 지원하려면 해당 서비스를 사용하도록 설정합니다. `ServerStickyMode` 옵션 또는 구성 값을 `Required`(으)로 설정합니다. 일반적으로 앱은 다음 방법 중 **하나**를 사용하여 구성을 만듭니다.
 

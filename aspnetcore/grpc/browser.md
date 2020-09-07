@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/browser
-ms.openlocfilehash: 8d1f761731ab3840d009eba1ff5316808bafec40
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5c9501b3e7cbdcbb02e3d78d67185a0a75ccba7c
+ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634412"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89379409"
 ---
 # <a name="use-grpc-in-browser-apps"></a>브라우저 앱에서 gRPC 사용
 
@@ -132,7 +132,32 @@ gRPC-Web을 사용하려면 다음을 수행합니다.
 > [!IMPORTANT]
 > 생성된 gRPC 클라이언트에는 단항 메서드를 호출하기 위한 동기 및 비동기 메서드가 있습니다. 예를 들어 `SayHello`는 동기이고, `SayHelloAsync`는 비동기입니다. Blazor WebAssembly 앱에서 동기 메서드를 호출하면 앱이 응답하지 않게 됩니다. 비동기 메서드는 항상 Blazor WebAssembly에서 사용해야 합니다.
 
+### <a name="use-grpc-client-factory-with-grpc-web"></a>gRPC-Web과 함께 gRPC 클라이언트 팩터리 사용
+
+gRPC-Web 호환 .NET 클라이언트는 [HttpClientFactory](xref:System.Net.Http.IHttpClientFactory)와 통합된 gRPC를 사용하여 만들 수 있습니다.
+
+클라이언트 팩터리와 함께 gRPC-Web을 사용하려면:
+
+* 다음 패키지의 프로젝트 파일에 패키지 참조를 추가합니다.
+  * [Grpc.Net.Client.Web](https://www.nuget.org/packages/Grpc.Net.Client.Web)
+  * [Grpc.Net.ClientFactory](https://www.nuget.org/packages/Grpc.Net.ClientFactory)
+* 제네릭 `AddGrpcClient` 확장 메서드를 사용하여 DI(종속성 주입)에 gRPC 클라이언트를 등록합니다. Blazor WebAssembly 앱에서 서비스는 `Program.cs`의 DI에 등록됩니다.
+* <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> 확장 메서드를 사용하여 `GrpcWebHandler`를 구성합니다.
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greet.GreeterClient>((services, options) =>
+    {
+        options.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(
+        () => new GrpcWebHandler(GrpcWebMode.GrpcWebText, new HttpClientHandler()));
+```
+
+자세한 내용은 <xref:grpc/clientfactory>를 참조하세요.
+
 ## <a name="additional-resources"></a>추가 자료
 
 * [웹 클라이언트용 gRPC GitHub 프로젝트](https://github.com/grpc/grpc-web)
 * <xref:security/cors>
+* <xref:grpc/httpapi>
