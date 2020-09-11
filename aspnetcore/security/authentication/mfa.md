@@ -3,7 +3,7 @@ title: ASP.NET Core에서 multi-factor authentication
 author: damienbod
 description: ASP.NET Core 앱에서 MFA (multi-factor authentication)를 설정 하는 방법에 대해 알아봅니다.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: rick-anderson
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/17/2020
 no-loc:
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/mfa
-ms.openlocfilehash: 048d88a121d0a4a7ab3d3adee9b426b95fd68a80
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e224f947335ea8ea6ed8887dfadb52202bfd7866
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629589"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009507"
 ---
 # <a name="multi-factor-authentication-in-aspnet-core"></a>ASP.NET Core에서 multi-factor authentication
 

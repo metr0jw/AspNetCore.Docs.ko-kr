@@ -4,7 +4,7 @@ author: rick-anderson
 description: ASP.NET Core에서 데이터 보호를 구성 하는 방법에 대해 알아봅니다.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2019
+ms.date: 09/04/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/data-protection/configuration/overview
-ms.openlocfilehash: aa7f6f3c1ff8042bd11bba485a2d7b8aaa6ef88a
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 72aa7c210bdff2729be3dabe7a630e578334aef9
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626716"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009715"
 ---
 # <a name="configure-aspnet-core-data-protection"></a>ASP.NET Core 데이터 보호 구성
 
@@ -42,8 +42,8 @@ ms.locfileid: "88626716"
 
 이 문서에서 사용 되는 데이터 보호 확장에는 다음 NuGet 패키지가 필요 합니다.
 
-* [AspNetCore. AzureStorage](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage/)
-* [AspNetCore. AzureKeyVault](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureKeyVault/)
+* [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs)
+* [Azure.Extensions.AspNetCore.DataProtection.Keys](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys)
 
 ::: moniker-end
 
@@ -51,7 +51,7 @@ ms.locfileid: "88626716"
 
 ## <a name="protectkeyswithazurekeyvault"></a>ProtectKeysWithAzureKeyVault
 
-[Azure Key Vault](https://azure.microsoft.com/services/key-vault/)에 키를 저장 하려면 클래스에서 [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) 를 사용 하 여 시스템을 구성 합니다 `Startup` .
+[Azure Key Vault](https://azure.microsoft.com/services/key-vault/)에 키를 저장 하려면 클래스에서 [ProtectKeysWithAzureKeyVault](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault) 를 사용 하 여 시스템을 구성 `Startup` 합니다. `blobUriWithSasToken` 키 파일을 저장 해야 하는 전체 URI입니다. URI에는 SAS 토큰이 쿼리 문자열 매개 변수로 포함 되어야 합니다.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -72,7 +72,14 @@ public void ConfigureServices(IServiceCollection services)
 * [ProtectKeysWithAzureKeyVault (IDataProtectionBuilder, string, string, X509Certificate2)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_String_System_String_System_Security_Cryptography_X509Certificates_X509Certificate2_) 를 사용 하 여 `ClientId` 데이터 보호 시스템에서 키 자격 증명 모음을 사용할 수 있도록 및 [X509Certificate](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2) 를 사용할 수 있습니다.
 * [ProtectKeysWithAzureKeyVault (IDataProtectionBuilder, string, string, string)](/dotnet/api/microsoft.aspnetcore.dataprotection.azuredataprotectionbuilderextensions.protectkeyswithazurekeyvault#Microsoft_AspNetCore_DataProtection_AzureDataProtectionBuilderExtensions_ProtectKeysWithAzureKeyVault_Microsoft_AspNetCore_DataProtection_IDataProtectionBuilder_System_String_System_String_System_String_) 는를 사용 하 여 `ClientId` `ClientSecret` 데이터 보호 시스템에서 키 자격 증명 모음을 사용할 수 있도록 합니다.
 
-Keyvault와 azure storage의 조합을 사용 하 여 키를 저장 하 고 보호 하는 경우 `System.UriFormatException` 에 키를 저장할 blob이 아직 없는 경우이 throw 됩니다. 이는 응용 프로그램을 실행 하기 전에 수동으로 만들 수도 있고, `.ProtectKeysWithAzureKeyVault()` 첫 번째 실행을 위해 제거 하 여 blob을 만든 다음 후속 실행을 위해 추가할 수도 있습니다. 를 제거 하는 것 `.ProtectKeysWithAzureKeyVault()` 이 좋습니다. 이렇게 하면 적절 한 스키마 및 값을 사용 하 여 파일을 만들 수 있습니다.
+앱이 이전 Azure 패키지 (및)를 사용 하 고 키를 [`Microsoft.AspNetCore.DataProtection.AzureStorage`](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureStorage) [`Microsoft.AspNetCore.DataProtection.AzureKeyVault`](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.AzureKeyVault) 저장 하 고 보호 하는 Azure Key Vault 및 Azure Storage의 조합을 사용 하는 경우 <xref:System.UriFormatException?displayProperty=nameWithType> 키 저장소에 대 한 blob이 존재 하지 않으면이 throw 됩니다. Azure Portal에서 앱을 실행 하기 전에 수동으로 blob을 만들거나 다음 절차를 사용할 수 있습니다.
+
+1. `ProtectKeysWithAzureKeyVault`첫 번째 실행에 대 한 호출을 제거 하 여 현재 위치의 blob을 만듭니다.
+1. `ProtectKeysWithAzureKeyVault`후속 실행에 대 한 호출을 추가 합니다.
+
+`ProtectKeysWithAzureKeyVault`적절 한 스키마 및 값을 사용 하 여 파일이 생성 되도록 하기 때문에 첫 번째 실행을 제거 하는 것이 좋습니다. 
+
+제공 된 API는 blob이 없는 경우 자동으로 만들기 때문에 [AspNetCore](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs) 및 [AspNetCore](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys) 패키지를 다시 업그레이드 하는 것이 좋습니다.
 
 ```csharp
 var storageAccount = CloudStorageAccount.Parse("<storage account connection string">);

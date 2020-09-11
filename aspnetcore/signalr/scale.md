@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: fc257015a9ee972da90b0f206a60b07bd6cc1f97
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bba965e14058663c3ed9c0f15afc6a8d78997aea
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631110"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009754"
 ---
 # <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.NET Core SignalR 호스팅 및 크기 조정
 
@@ -51,7 +51,7 @@ SignalR 특정 연결에 대 한 모든 HTTP 요청을 동일한 서버 프로�
 
 에서 연결 관련 리소스를 많이 사용 하는 SignalR 것은 동일한 서버에서 호스트 되는 다른 웹 앱에 영향을 줄 수 있습니다. SignalR가 열리고 사용 가능한 마지막 TCP 연결을 보유 하는 경우 동일한 서버의 다른 웹 앱에도 더 이상 사용할 수 있는 연결이 없습니다.
 
-서버에 연결 되지 않은 경우 임의의 소켓 오류 및 연결 다시 설정 오류가 표시 됩니다. 다음은 그 예입니다. 
+서버에 연결 되지 않은 경우 임의의 소켓 오류 및 연결 다시 설정 오류가 표시 됩니다. 예를 들면 다음과 같습니다.
 
 ```
 An attempt was made to access a socket in a way forbidden by its access permissions...
@@ -82,7 +82,7 @@ Azure SignalR 서비스는 후면판이 아닌 프록시입니다. 클라이언�
 규모 확장에 대 한이 방법은 Redis 후면판 대안에 비해 몇 가지 이점이 있습니다.
 
 * [클라이언트 선호도](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity)라고도 하는 고정 세션은 클라이언트에서 연결할 때 Azure 서비스로 즉시 리디렉션되도록 할 필요가 없습니다 SignalR .
-* SignalR앱은 전송 된 메시지 수에 따라 규모를 확장할 수 있으며, Azure SignalR 서비스는 연결 수에 관계 없이 자동으로 크기를 조정 합니다. 예를 들어 수천 개의 클라이언트가 있을 수 있지만, 초당 몇 개의 메시지만 보내는 경우 SignalR 앱은 연결 자체를 처리 하기 위해 여러 서버로 확장할 필요가 없습니다.
+* SignalR앱은 전송 된 메시지 수를 기준으로 규모를 확장할 수 있으며, Azure SignalR 서비스는 연결 수를 제한 하도록 확장 합니다. 예를 들어 수천 개의 클라이언트가 있을 수 있지만, 초당 몇 개의 메시지만 보내는 경우 SignalR 앱은 연결 자체를 처리 하기 위해 여러 서버로 확장할 필요가 없습니다.
 * 앱은를 SignalR 사용 하지 않고 웹 앱 보다 훨씬 더 많은 연결 리소스를 사용 하지 않습니다 SignalR .
 
 이러한 이유로 SignalR SignalR App Service, vm 및 컨테이너를 포함 하 여 azure에서 호스트 되는 모든 ASP.NET Core 앱에 대 한 azure 서비스를 권장 합니다.
