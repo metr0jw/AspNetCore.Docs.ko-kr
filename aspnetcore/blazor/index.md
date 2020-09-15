@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/index
-ms.openlocfilehash: abebd5fde514975b1dcb642a3d378e33c3836fa9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ace2285e3265e7bb2ec50c8afce2eb9c296fd524
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628068"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080344"
 ---
 # <a name="introduction-to-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor 소개
 
@@ -131,9 +131,21 @@ Blazor WebAssembly 앱이 빌드되고 브라우저에서 실행되는 경우:
 
 게시된 앱의 크기인 해당 페이로드 크기는 앱의 유용성에 중요한 성능 요소입니다. 대규모 앱은 브라우저에 다운로드되는 데 비교적 오랜 시간이 걸리므로 사용자 환경이 감소됩니다. Blazor WebAssembly는 페이로드 크기를 최적화하여 다운로드 시간을 줄입니다.
 
+::: moniker range=">= aspnetcore-5.0"
+
+* [IL(중간 언어) 트리머](xref:blazor/host-and-deploy/configure-trimmer)에서 게시하면 사용되지 않는 코드가 앱에서 제거됩니다.
+* HTTP 응답이 압축됩니다.
+* .NET 런타임 및 어셈블리가 브라우저에 캐시됩니다.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * [IL(중간 언어) 링커](xref:blazor/host-and-deploy/configure-linker)에서 게시하면 사용되지 않는 코드가 앱에서 제거됩니다.
 * HTTP 응답이 압축됩니다.
 * .NET 런타임 및 어셈블리가 브라우저에 캐시됩니다.
+
+::: moniker-end
 
 ## Blazor Server
 
