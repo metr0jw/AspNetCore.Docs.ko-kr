@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/index
-ms.openlocfilehash: 26e8239634c3edb99c7606ab2e250c69af4e746f
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: be1584e72fc1504ac9f8ca10a6b084c95a579b5b
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865294"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009624"
 ---
 # <a name="create-and-use-aspnet-core-no-locrazor-components"></a>ASP.NET Core Razor 구성 요소 만들기 및 사용
 
@@ -266,7 +266,7 @@ namespace BlazorSample
 [!code-razor[](index/samples_snapshot/ParentComponent.razor?highlight=5-6)]
 
 > [!WARNING]
-> 구성 요소 콘텐츠가 <xref:Microsoft.AspNetCore.Components.RenderFragment>로 렌더링되는 경우 자체 구성 요소 매개 변수에 쓰는 구성 요소를 만드는 대신 프라이빗 필드를 사용합니다. 자세한 내용은 [`RenderFragment`로 덮어쓴 매개 변수](#overwritten-parameters-with-renderfragment) 섹션을 참조하세요.
+> 자체 *구성 요소 매개 변수*에 쓰는 구성 요소를 만들지 말고 대신 private 필드를 사용합니다. 자세한 내용은 [덮어쓴 매개 변수](#overwritten-parameters) 섹션을 참조하세요.
 
 ## <a name="child-content"></a>자식 콘텐츠
 
@@ -625,14 +625,9 @@ public class NotifierService
 
 [`@key`][5]에 사용되는 값이 충돌하지 않는지 확인합니다. 동일한 부모 요소 내에서 충돌하는 값이 감지되면 이전 요소나 구성 요소를 새 요소나 구성 요소에 확정적으로 매핑할 수 없으므로 Blazor는 예외를 throw합니다. 개체 인스턴스 또는 기본 키 값과 같은 고유 값만 사용합니다.
 
-## <a name="overwritten-parameters-with-renderfragment"></a>`RenderFragment`로 덮어쓴 매개 변수
+## <a name="overwritten-parameters"></a>덮어쓴 매개 변수
 
-다음 조건에서는 매개 변수를 덮어씁니다.
-
-* 자식 구성 요소 콘텐츠가 <xref:Microsoft.AspNetCore.Components.RenderFragment>로 렌더링되는 경우
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>가 부모 구성 요소에서 호출되는 경우
-
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>가 호출될 때 부모 구성 요소가 렌더링되고 자식 구성 요소에 새 매개 변수 값이 제공되므로 매개 변수가 재설정됩니다.
+부모 구성 요소가 다시 렌더링될 때 새 매개 변수 값이 제공됩니다. 일반적으로 기존 값을 덮어씁니다.
 
 다음을 수행하는 `Expander` 구성 요소를 고려해 보세요.
 
