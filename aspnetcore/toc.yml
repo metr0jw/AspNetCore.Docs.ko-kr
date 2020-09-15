@@ -447,6 +447,8 @@
               uid: blazor/host-and-deploy/server
             - name: 링커 구성
               uid: blazor/host-and-deploy/configure-linker
+            - name: 트리머 구성
+              uid: blazor/host-and-deploy/configure-trimmer
         - name: Blazor Server 및 EF Core
           uid: blazor/blazor-server-ef-core
         - name: 고급 시나리오
