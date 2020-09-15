@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/cross-site-scripting
-ms.openlocfilehash: 03bdfe9260ef6433456ba53d0cab8c7bf9f86377
-ms.sourcegitcommit: 422e02bad384775bfe19a90910737340ad106c5b
+ms.openlocfilehash: 38e9e102e9ac18ec14bceebf391c11a434492ac9
+ms.sourcegitcommit: 6ecdc481d5b9a10d2c6e091217f017b36bdba957
 ms.translationtype: MT
 ms.contentlocale: ko-KR
 ms.lasthandoff: 09/15/2020
-ms.locfileid: "90083468"
+ms.locfileid: "90456064"
 ---
 # <a name="prevent-cross-site-scripting-xss-in-aspnet-core"></a>ASP.NET Core에서 XSS (교차 사이트 스크립팅) 방지
 
@@ -133,8 +133,8 @@ JavaScript에 값을 삽입 하 여 보기에서 처리할 수 있는 경우가 
         injectedData.dataset.untrustedinput;
 
     // Put the injected, untrusted data into the scriptedWrite div tag.
-// Do NOT use document.write() on dynamically generated data as it can
-// lead to XSS.
+    // Do NOT use document.write() on dynamically generated data as it can
+    // lead to XSS.
 
     document.getElementById("scriptedWrite").innerText += clientSideUntrustedInputOldStyle;
 
