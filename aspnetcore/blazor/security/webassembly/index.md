@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/webassembly/index
-ms.openlocfilehash: 391a38e9af42b162fc74bac803e6aa3cf687e7d5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e1af8f1de61edd934505a44e75ea07e0f09a67b5
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626066"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592958"
 ---
 # <a name="secure-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly 보호
 
@@ -98,6 +98,13 @@ Blazor WebAssembly 앱에서는 사용자가 클라이언트 쪽 코드를 모�
 새로 고침 토큰은 Blazor WebAssembly 앱에서 클라이언트 쪽으로 보호할 수 없습니다. 따라서 직접 사용하기 위해 새로 고침 토큰이 앱에 전송되어서는 안됩니다.
 
 새로 고침 토큰은 타사 API에 액세스하는 호스트된 Blazor WebAssembly 솔루션의 서버 쪽 앱에서 유지 관리하고 사용될 수 있습니다. 자세한 내용은 <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>를 참조하세요.
+
+## <a name="establish-claims-for-users"></a>사용자 클레임 설정
+
+앱에서는 종종 서버에 대한 웹 API 호출을 기반으로 사용자 클레임을 수행해야 합니다. 예를 들어 클레임은 앱에서 [권한 부여를 설정](xref:blazor/security/index#authorization)하는 데 자주 사용됩니다. 이러한 시나리오에서 앱은 서비스에 액세스하기 위해 액세스 토큰을 요청하고 이 토큰을 사용하여 클레임을 위한 사용자 데이터를 가져옵니다. 예제를 보려면 다음 리소스를 참조하세요.
+
+* [추가 시나리오: 사용자의 사용자 지정](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
+* <xref:blazor/security/webassembly/aad-groups-roles>
 
 ## <a name="implementation-guidance"></a>구현 지침
 
