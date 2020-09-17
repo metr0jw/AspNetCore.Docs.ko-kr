@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: performance/performance-best-practices
-ms.openlocfilehash: 587872b269d897d7c86eb77c110a4b6432218ed3
-ms.sourcegitcommit: dd0e87abf2bb50ee992d9185bb256ed79d48f545
+ms.openlocfilehash: 01575ec87d2d346da7367523ca5e257d53de4983
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88746561"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722620"
 ---
 # <a name="aspnet-core-performance-best-practices"></a>ASP.NET Core 성능 모범 사례
 
@@ -42,7 +42,7 @@ ms.locfileid: "88746561"
 
 ASP.NET Core 앱은 여러 요청을 동시에 처리 하도록 설계 해야 합니다. 비동기 Api를 사용 하면 작은 스레드 풀에서 차단 호출을 기다리지 않고 수천 개의 동시 요청을 처리할 수 있습니다. 장기 실행 동기 작업이 완료 되기를 기다리지 않고 스레드가 다른 요청에서 작동할 수 있습니다.
 
-ASP.NET Core 앱의 일반적인 성능 문제는 비동기 일 수 있는 호출을 차단 하는 것입니다. 많은 동기 차단 호출이 [스레드 풀 고갈](https://blogs.msdn.microsoft.com/vancem/2018/10/16/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall/) 및 저하 된 응답 시간을 초래 합니다.
+ASP.NET Core 앱의 일반적인 성능 문제는 비동기 일 수 있는 호출을 차단 하는 것입니다. 많은 동기 차단 호출이 [스레드 풀 고갈](/archive/blogs/vancem/diagnosing-net-core-threadpool-starvation-with-perfview-why-my-service-is-not-saturating-all-cores-or-seems-to-stall) 및 저하 된 응답 시간을 초래 합니다.
 
 안 **함**:
 

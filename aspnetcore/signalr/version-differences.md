@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/version-differences
-ms.openlocfilehash: a8336a6c13c502f5a0fad150785cd9d484064618
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 965fbb3d8007cb64aaf51d82d87ed7a3a5298e9b
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633008"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721790"
 ---
 # <a name="differences-between-aspnet-no-locsignalr-and-aspnet-core-no-locsignalr"></a>ASP.NET SignalR 와 ASP.NET Core 간의 차이점 SignalR
 
@@ -156,7 +156,7 @@ ASP.NET Core는 SignalR 이제 허브에서 클라이언트로의 [스트리밍 
 
 ### <a name="persistentconnection-removal"></a>PersistentConnection 제거
 
-ASP.NET Core SignalR [PersistentConnection](https://docs.microsoft.com/previous-versions/aspnet/jj919047(v%3dvs.118)) 클래스가 제거 되었습니다.
+ASP.NET Core SignalR [PersistentConnection](/previous-versions/aspnet/jj919047(v=vs.118)) 클래스가 제거 되었습니다.
 
 ### <a name="globalhost"></a>GlobalHost
 
@@ -289,7 +289,7 @@ ASP.NET는 SignalR SQL Server 및 Redis를 지원 합니다. ASP.NET Core는 Sig
 * [Azure SignalR 서비스](/azure/azure-signalr/)
 * [Redis 백플레인](xref:signalr/redis-backplane)
 
-## <a name="additional-resources"></a>추가 자료
+## <a name="additional-resources"></a>추가 리소스
 
 * [허브](xref:signalr/hubs)
 * [JavaScript 클라이언트](xref:signalr/javascript-client)

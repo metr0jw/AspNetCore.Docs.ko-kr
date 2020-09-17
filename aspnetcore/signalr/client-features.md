@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/client-features
-ms.openlocfilehash: df0084411134167df31506a01362a0520821e577
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bb8352b11e78582c4a32b67da7dcb701d020b0d9
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631760"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721712"
 ---
 # <a name="aspnet-core-no-locsignalr-clients"></a>ASP.NET Core SignalR 클라이언트
 
@@ -51,7 +51,7 @@ SignalR클라이언트는 서버 구성 요소와 함께 제공 되며 일치 �
 | Azure SignalR 서비스 지원 |2.1.0|1.0.0|1.0.0|1.0.0|
 | [서버-클라이언트 스트리밍](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|
 | [클라이언트와 서버 간 스트리밍](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|
-| 자동 다시 연결 ([.net](/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio#handle-lost-connection), [JavaScript](/aspnet/core/signalr/javascript-client?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
+| 자동 다시 연결 ([.net](./dotnet-client.md?tabs=visual-studio&view=aspnetcore-3.0#handle-lost-connection), [JavaScript](./javascript-client.md?view=aspnetcore-3.0#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|
 | Websocket 전송 |2.1.0|1.0.0|1.0.0|1.0.0|
 | 서버에서 보낸 이벤트 전송 |2.1.0|1.0.0|1.0.0|❌|
 | 긴 폴링 전송 |2.1.0|1.0.0|1.0.0|3.0.0|
@@ -60,7 +60,7 @@ SignalR클라이언트는 서버 구성 요소와 함께 제공 되며 일치 �
 
 추가 클라이언트 기능 사용에 대 한 지원은 [문제 추적기](https://github.com/dotnet/AspNetCore/issues)에서 추적 됩니다.
 
-## <a name="additional-resources"></a>추가 자료
+## <a name="additional-resources"></a>추가 리소스
 
 * [SignalRASP.NET Core에 대 한 시작](xref:tutorials/signalr)
 * [지원되는 플랫폼](xref:signalr/supported-platforms)

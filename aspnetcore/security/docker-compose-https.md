@@ -18,17 +18,17 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-compose-https
-ms.openlocfilehash: 75a205c1eb21394ed36c00359f0dc4ca7e6d09e0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 71ead7dcce32dab090a9b0b3573aa855d00fa7f1
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631643"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722763"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-compose-over-https"></a>HTTPS를 통해 Docker Compose를 사용 하 여 ASP.NET Core 이미지 호스팅
 
 
-ASP.NET Core는 [기본적으로 HTTPS를](/aspnet/core/security/enforcing-ssl)사용 합니다. [HTTPS](https://en.wikipedia.org/wiki/HTTPS) 는 [인증서](https://en.wikipedia.org/wiki/Public_key_certificate) 를 신뢰, id 및 암호화에 의존 합니다.
+ASP.NET Core는 [기본적으로 HTTPS를](./enforcing-ssl.md)사용 합니다. [HTTPS](https://en.wikipedia.org/wiki/HTTPS) 는 [인증서](https://en.wikipedia.org/wiki/Public_key_certificate) 를 신뢰, id 및 암호화에 의존 합니다.
 
 이 문서에서는 HTTPS를 사용 하 여 미리 작성 된 컨테이너 이미지를 실행 하는 방법을 설명 합니다.
 
@@ -36,7 +36,7 @@ ASP.NET Core는 [기본적으로 HTTPS를](/aspnet/core/security/enforcing-ssl)�
 
 이 샘플에는 docker [클라이언트](https://www.docker.com/products/docker)의 [docker 17.06](https://docs.docker.com/release-notes/docker-ce) 이상이 필요 합니다.
 
-## <a name="prerequisites"></a>사전 요구 사항
+## <a name="prerequisites"></a>필수 구성 요소
 
 이 문서의 지침 중 일부에는 [.Net Core 2.2 SDK](https://dotnet.microsoft.com/download) 이상이 필요 합니다.
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/scale
-ms.openlocfilehash: bba965e14058663c3ed9c0f15afc6a8d78997aea
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 2bfe05748e6740043be7f1ccc6dbe22ad4b0ca44
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009754"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722568"
 ---
 # <a name="aspnet-core-no-locsignalr-hosting-and-scaling"></a>ASP.NET Core SignalR 호스팅 및 크기 조정
 
@@ -33,7 +33,7 @@ ms.locfileid: "90009754"
 
 ## <a name="sticky-sessions"></a>고정 세션
 
-SignalR 특정 연결에 대 한 모든 HTTP 요청을 동일한 서버 프로세스에서 처리 해야 합니다. SignalR가 서버 팜 (여러 서버)에서 실행 되는 경우 "고정 세션"을 사용 해야 합니다. "고정 세션"은 일부 부하 분산 장치에서 세션 선호도 라고도 합니다. Azure App Service는 ARR ( [응용 프로그램 요청 라우팅](https://docs.microsoft.com/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) )을 사용 하 여 요청을 라우팅합니다. Azure App Service에서 "ARR 선호도" 설정을 사용 하도록 설정 하면 "고정 세션"을 사용할 수 있습니다. 고정 세션이 필요 하지 않은 유일한 경우는 다음과 같습니다.
+SignalR 특정 연결에 대 한 모든 HTTP 요청을 동일한 서버 프로세스에서 처리 해야 합니다. SignalR가 서버 팜 (여러 서버)에서 실행 되는 경우 "고정 세션"을 사용 해야 합니다. "고정 세션"은 일부 부하 분산 장치에서 세션 선호도 라고도 합니다. Azure App Service는 ARR ( [응용 프로그램 요청 라우팅](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) )을 사용 하 여 요청을 라우팅합니다. Azure App Service에서 "ARR 선호도" 설정을 사용 하도록 설정 하면 "고정 세션"을 사용할 수 있습니다. 고정 세션이 필요 하지 않은 유일한 경우는 다음과 같습니다.
 
 1. 단일 서버에서 호스팅할 때 단일 프로세스에서.
 1. Azure 서비스를 사용 하는 경우 SignalR .

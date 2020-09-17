@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/enforcing-ssl
-ms.openlocfilehash: 1cb2c2d18b717dc99c6ef4dac9954fef149c6deb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: b5260084c2fdd296168e918f06d8b54faf1865d5
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631565"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722659"
 ---
 # <a name="enforce-https-in-aspnet-core"></a>ASP.NET Core에서 HTTPS 적용
 
@@ -109,7 +109,7 @@ API가 없으면 클라이언트가 첫 번째 요청에서 중요 한 데이터
 
 ::: moniker range=">= aspnetcore-3.0"
 
-* `https_port` [호스트 설정을](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#https_port)다음과 같이 설정 합니다.
+* `https_port` [호스트 설정을](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#https_port)다음과 같이 설정 합니다.
 
   * 호스트 구성에서.
   * `ASPNETCORE_HTTPS_PORT`환경 변수를 설정 합니다.
@@ -117,7 +117,7 @@ API가 없으면 클라이언트가 첫 번째 요청에서 중요 한 데이터
 
     [!code-json[](enforcing-ssl/sample-snapshot/3.x/appsettings.json?highlight=2)]
 
-* [ASPNETCORE_URLS 환경 변수](/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0#urls)를 사용 하 여 보안 체계가 있는 포트를 표시 합니다. 환경 변수는 서버를 구성 합니다. 미들웨어는를 통해 HTTPS 포트를 간접적으로 검색 합니다 <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> . 이 방법은 역방향 프록시 배포에서 작동 하지 않습니다.
+* [ASPNETCORE_URLS 환경 변수](../fundamentals/host/generic-host.md?view=aspnetcore-3.0#urls)를 사용 하 여 보안 체계가 있는 포트를 표시 합니다. 환경 변수는 서버를 구성 합니다. 미들웨어는를 통해 HTTPS 포트를 간접적으로 검색 합니다 <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature> . 이 방법은 역방향 프록시 배포에서 작동 하지 않습니다.
 
 ::: moniker-end
 
