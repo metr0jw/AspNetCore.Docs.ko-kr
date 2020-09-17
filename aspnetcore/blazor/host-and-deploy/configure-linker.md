@@ -2,7 +2,7 @@
 title: ASP.NET Core Blazor용 링커 구성
 author: guardrex
 description: Blazor 앱을 빌드할 때 IL(중간 언어) 링커를 제어하는 방법을 알아봅니다.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-3.1 < aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/19/2020
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/configure-linker
-ms.openlocfilehash: 27a7edf0de1acc107d324afe07db63624615e550
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 34582fdeb4951a110b03880887b978add07687f4
+ms.sourcegitcommit: 0cfada7cbcd8e76aba0ae70eb6bbbf4437f287cc
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628133"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90081639"
 ---
 # <a name="configure-the-linker-for-aspnet-core-no-locblazor"></a>ASP.NET Core Blazor용 링커 구성
 
@@ -31,7 +31,7 @@ ms.locfileid: "88628133"
 
 Blazor WebAssembly는 빌드 중에 [IL(중간 언어)](/dotnet/standard/managed-code#intermediate-language--execution) 연결을 수행하여 앱의 출력 어셈블리에서 불필요한 IL을 잘라냅니다. 디버그 구성에서 빌드할 때 링커를 사용할 수 없습니다. 링커를 사용하도록 설정하려면 앱이 릴리스 구성으로 빌드해야 합니다. Blazor WebAssembly 앱을 배포할 때 릴리스에서 빌드하는 것이 좋습니다. 
 
-앱 연결은 크기에 맞게 최적화되지만 부작용이 발생할 수 있습니다. 링커는 이 동적 동작에 대한 정보를 알지 못하고 일반적으로 런타임에서 리플렉션에 필요한 형식을 결정할 수 없기 때문에, 리플렉션 또는 관련 동적 기능을 사용하는 앱은 잘린 경우 중단될 수 있습니다. 이러한 앱을 잘라내려면 링커에서는 앱이 의존하는 코드 및 패키지 또는 프레임워크의 리플렉션에서 필요로 하는 형식에 대해 알고 있어야 합니다. 
+앱 연결은 크기에 맞게 최적화되지만 부작용이 발생할 수 있습니다. 링커는 이 동적 동작에 대한 정보를 알지 못하고 일반적으로 런타임에서 리플렉션에 필요한 형식을 결정할 수 없기 때문에, 리플렉션 또는 관련 동적 기능을 사용하는 앱은 잘린 경우 중단될 수 있습니다. 이러한 앱을 잘라내려면 링커에서는 앱이 의존하는 코드 및 패키지 또는 프레임워크의 리플렉션에서 필요로 하는 형식에 대해 알고 있어야 합니다.
 
 잘린 앱이 배포된 후 올바로 작동하도록 하려면 개발하는 동안 앱의 릴리스 빌드를 자주 테스트하는 것이 중요합니다.
 
