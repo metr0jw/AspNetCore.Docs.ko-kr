@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: ed40800f3e363cc3fd6f57492d76a42095e5b97b
-ms.sourcegitcommit: 9a90b956af8d8584d597f1e5c1dbfb0ea9bb8454
+ms.openlocfilehash: c6b77f20792c32a697fff8d1d78ef3c2536c5f8f
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88712560"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722899"
 ---
 # <a name="configuration-in-aspnet-core"></a>ASP.NET Core의 구성
 
@@ -732,7 +732,7 @@ Index: 5  Value: value5
 
 ## <a name="default-host-configuration"></a>기본 호스트 구성
 
-[웹 호스트](xref:fundamentals/host/web-host)를 사용하는 경우 기본 구성에 대한 자세한 내용은 [이 항목의 ASP.NET Core 2.2 버전](/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2)을 참조하세요.
+[웹 호스트](xref:fundamentals/host/web-host)를 사용하는 경우 기본 구성에 대한 자세한 내용은 [이 항목의 ASP.NET Core 2.2 버전](?view=aspnetcore-2.2)을 참조하세요.
 
 * 호스트 구성은 다음에 의해 제공됩니다.
   * [환경 변수 구성 공급자](#environment-variables)를 사용하는 `DOTNET_` 접두사가 붙은 환경 변수(예: `DOTNET_ENVIRONMENT`). 구성 키-값 쌍이 로드되면 접두사(`DOTNET_`)는 제거됩니다.
@@ -1107,7 +1107,7 @@ public static readonly Dictionary<string, string> _switchMappings =
 
 생성된 스위치 매핑 사전은 다음 표의 데이터를 포함합니다.
 
-| Key       | 값             |
+| 키       | 값             |
 | --------- | ----------------- |
 | `-CLKey1` | `CommandLineKey1` |
 | `-CLKey2` | `CommandLineKey2` |
@@ -1684,7 +1684,7 @@ config.AddJsonFile(
 
 표에 표시된 키-값 쌍이 구성으로 로드됩니다.
 
-| Key             | 값  |
+| 키             | 값  |
 | :-------------: | :----: |
 | array:entries:3 | value3 |
 

@@ -337,6 +337,8 @@
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputDate
                   href: blazor/forms-validation.md#built-in-forms-components
+                - name: InputFile
+                  href: blazor/file-uploads.md
                 - name: InputNumber
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputRadio
@@ -363,6 +365,8 @@
                   href: blazor/fundamentals/routing.md#route-templates
                 - name: title
                   href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
+                - name: Virtualize
+                  href: blazor/components/virtualization.md
             - name: 연계 값 및 매개 변수
               uid: blazor/components/cascading-values-and-parameters
             - name: 데이터 바인딩
@@ -371,6 +375,8 @@
               uid: blazor/components/event-handling
             - name: 수명 주기
               uid: blazor/components/lifecycle
+            - name: 구성 요소 가상화
+              uid: blazor/components/virtualization
             - name: 템플릿 기반 구성 요소
               uid: blazor/components/templated-components
             - name: 구성 요소 통합
@@ -383,6 +389,8 @@
           uid: blazor/layouts
         - name: 양식 및 유효성 검사
           uid: blazor/forms-validation
+        - name: 파일 업로드
+          uid: blazor/file-uploads
         - name: .NET에서 JavaScript 호출
           uid: blazor/call-javascript-from-dotnet
         - name: JavaScript에서 .NET 호출
@@ -714,16 +722,20 @@
           uid: grpc/services
         - name: Protobuf 메시지 만들기
           uid: grpc/protobuf
+        - name: gRPC 서비스 버전 관리
+          uid: grpc/versioning
+    - name: C#으로 gRPC 서비스 호출
+      items:
+        - name: 개요
+          uid: grpc/client
+        - name: gRPC 클라이언트 팩터리 통합
+          uid: grpc/clientfactory
+        - name: 마감일 및 취소
+          uid: grpc/deadlines-cancellation
     - name: ASP.NET Core를 사용하는 gRPC 서비스
       uid: grpc/aspnetcore
-    - name: .NET 클라이언트로 gRPC 서비스 호출
-      uid: grpc/client
-    - name: gRPC 클라이언트 팩터리 통합
-      uid: grpc/clientfactory
     - name: 브라우저 앱에서 gRPC 사용
       uid: grpc/browser
-    - name: 마감일 및 취소
-      uid: grpc/deadlines-cancellation
     - name: Configuration
       uid: grpc/configuration
     - name: 인증 및 권한 부여
@@ -734,11 +746,13 @@
       uid: grpc/security
     - name: 성능 모범 사례
       uid: grpc/performance
-    - name: gRPC 서비스 버전 관리
-      uid: grpc/versioning
+    - name: 프로세스 간 통신
+      uid: grpc/interprocess
+    - name: GRPC에서 JSON 웹 API 만들기
+      uid: grpc/httpapi
     - name: dotnet-grpc를 사용하여 Protobuf 참조를 관리하세요.
       uid: grpc/dotnet-grpc
-    - name: gRPC 도구를 사용하여 서비스 테스트
+    - name: gRPCurl로 gRPC 서비스 테스트
       uid: grpc/test-tools
     - name: C-core에서 gRPC 서비스 마이그레이션
       uid: grpc/migration
@@ -746,8 +760,6 @@
       uid: grpc/wcf
     - name: gRPC 서비스와 HTTP API 비교
       uid: grpc/comparison
-    - name: GRPC에서 JSON 웹 API 만들기
-      uid: grpc/httpapi
     - name: 샘플
       href: 'https://github.com/grpc/grpc-dotnet/tree/master/examples'
     - name: 문제 해결
