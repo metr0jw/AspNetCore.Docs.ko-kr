@@ -338,7 +338,7 @@
                 - name: InputDate
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputFile
-                  href: blazor/file-uploads.md
+                  uid: blazor/file-uploads
                 - name: InputNumber
                   href: blazor/forms-validation.md#built-in-forms-components
                 - name: InputRadio
@@ -366,7 +366,7 @@
                 - name: title
                   href: blazor/fundamentals/additional-scenarios.md#influence-html-head-tag-elements
                 - name: Virtualize
-                  href: blazor/components/virtualization.md
+                  uid: blazor/components/virtualization
             - name: 연계 값 및 매개 변수
               uid: blazor/components/cascading-values-and-parameters
             - name: 데이터 바인딩
