@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/microsoft-logins
-ms.openlocfilehash: 3430d842b6a4f7da30370977f72e6f132e28bb7f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 36341a0e439be57d7da4f787aa6103b92c624e96
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634256"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847587"
 ---
 # <a name="microsoft-account-external-login-setup-with-aspnet-core"></a>ASP.NET Core를 사용 하 여 Microsoft 계정 외부 로그인 설정
 
@@ -41,7 +41,9 @@ Microsoft 계정 없는 경우 **만들기**를 선택 합니다. 로그인 하�
 * **새 등록** 선택
 * **이름**을 입력합니다.
 * **지원 되는 계정 유형에**대 한 옵션을 선택 합니다.  <!-- Accounts for any org work with MS domain accounts. Most folks probably want the last option, personal MS accounts. It took 24 hours after setting this up for the keys to work -->
-* **URI 리디렉션**에서 추가 된로 개발 URL을 입력 `/signin-microsoft` 합니다. 예들 들어 `https://localhost:5001/signin-microsoft`입니다. 이 샘플의 뒷부분에서 구성 된 Microsoft 인증 체계는 OAuth 흐름을 구현 하는 경로에서 요청을 자동으로 처리 합니다 `/signin-microsoft` .
+  * 이 `MicrosoftAccount` 패키지는 기본적으로 "모든 조직 디렉터리의 계정" 또는 "조직 디렉터리 및 Microsoft 계정의 계정" 옵션을 사용 하 여 만든 앱 등록을 지원 합니다.
+  * 다른 옵션을 사용 하려면를 설정 하 `AuthorizationEndpoint` 고, `TokenEndpoint` `MicrosoftAccountOptions` 앱 등록의 **끝점** 페이지에 표시 되는 Url ( **개요** 페이지의 끝점을 클릭 하 여 사용 가능)에 Microsoft 계정 인증을 초기화 하는 데 사용 되는 멤버를 설정 합니다.
+* **URI 리디렉션**에서 추가 된로 개발 URL을 입력 `/signin-microsoft` 합니다. `https://localhost:5001/signin-microsoft`)을 입력합니다. 이 샘플의 뒷부분에서 구성 된 Microsoft 인증 체계는 OAuth 흐름을 구현 하는 경로에서 요청을 자동으로 처리 합니다 `/signin-microsoft` .
 * **등록**을 선택합니다.
 
 ### <a name="create-client-secret"></a>클라이언트 암호 만들기
