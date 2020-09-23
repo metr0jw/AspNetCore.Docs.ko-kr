@@ -5,7 +5,7 @@ description: 앱에서 요청을 라우팅하는 방법과 NavLink 구성 요소
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/14/2020
+ms.date: 09/02/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/routing
-ms.openlocfilehash: eb9e3cbddd2eaca8fef9a6782c28bbce4c029f58
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 09e7ca9c03103de116c566352496174e97fbc3ce
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865326"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593010"
 ---
 # <a name="aspnet-core-no-locblazor-routing"></a>ASP.NET Core Blazor 라우팅
 
@@ -161,16 +161,35 @@ Blazor Server는 [ASP.NET Core 엔드포인트 라우팅](xref:fundamentals/rout
 
 ### <a name="routing-with-urls-that-contain-dots"></a>점이 포함된 URL을 사용한 라우팅
 
-Blazor Server 앱에서 `_Host.cshtml`의 기본 경로는 `/`(`@page "/"`)입니다. 점(`.`)이 포함된 요청 URL은 URL이 파일을 요청하는 것 같으므로 기본 경로와 일치되지 않습니다. Blazor 앱은 존재하지 않는 정적 파일에 대해 *404 - 찾을 수 없음* 응답을 반환합니다. 점이 포함된 경로를 사용하려면 다음 경로 템플릿을 통해 `_Host.cshtml`을 구성합니다.
+호스트된 Blazor WebAssembly 및 Blazor Server 앱의 경우 서버 쪽 기본 경로 템플릿에서 요청 URL의 마지막 세그먼트에 파일을 요청하는 점(`.`)이 포함되어 있다고 가정합니다(예: `https://localhost.com:5001/example/some.thing`). 추가 구성이 없는 앱은 ‘404 - 찾을 수 없음’ 응답을 반환하여 구성 요소로 라우팅되도록 합니다. 점이 포함된 하나 이상의 매개 변수가 있는 경로를 사용하려면 앱에서 사용자 지정 템플릿을 사용하여 경로를 구성해야 합니다.
 
-```cshtml
-@page "/{**path}"
+URL의 마지막 세그먼트에서 경로 매개 변수를 받을 수 있는 다음 `Example` 구성 요소를 고려합니다.
+
+```razor
+@page "/example"
+@page "/example/{param}"
+
+<p>
+    Param: @Param
+</p>
+
+@code {
+    [Parameter]
+    public string Param { get; set; }
+}
 ```
 
-`"/{**path}"` 템플릿에는 다음이 포함되어 있습니다.
+호스트된 Blazor WebAssembly 솔루션의 *Server* 앱이 `param` 매개 변수의 점으로 요청을 라우팅하도록 허용하려면 `Startup.Configure`(`Startup.cs`)에서 선택적 매개 변수를 사용하여 대체 파일 경로 템플릿을 추가합니다.
 
-* 슬래시(`/`)를 디코딩하지 않고 여러 폴더 경계에 걸쳐 있는 경로를 캡처하기 위한 이중 별표 ‘catch-all’ 구문(`**`)
-* `path` 경로 매개 변수 이름
+```csharp
+endpoints.MapFallbackToFile("/example/{param?}", "index.html");
+```
+
+`param` 매개 변수에서 점을 사용하여 요청을 라우팅하도록 Blazor Server 앱을 구성하려면 `Startup.Configure`(`Startup.cs`)에서 선택적 매개 변수를 사용하여 대체 페이지 경로 템플릿을 추가합니다.
+
+```csharp
+endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
+```
 
 자세한 내용은 <xref:fundamentals/routing>를 참조하세요.
 
@@ -178,7 +197,7 @@ Blazor Server 앱에서 `_Host.cshtml`의 기본 경로는 `/`(`@page "/"`)입�
 
 ::: moniker range=">= aspnetcore-5.0"
 
-‘이 섹션은 9월 중순에 출시되는 .NET 5 RC1(릴리스 후보 1) 이상에 적용됩니다.’
+‘이 섹션은 .NET 5 RC1(릴리스 후보 1) 이상의 ASP.NET Core에 적용됩니다.’
 
 여러 폴더 경계에서 경로를 캡처하는 catch-all 경로 매개 변수는 구성 요소에서 지원됩니다. catch-all 경로 매개 변수는 다음을 충족해야 합니다.
 
@@ -203,7 +222,7 @@ Blazor Server 앱에서 `_Host.cshtml`의 기본 경로는 `/`(`@page "/"`)입�
 
 ::: moniker range="< aspnetcore-5.0"
 
-catch-all 경로 매개 변수는 9월 중순에 출시되는 .NET 5 RC1(릴리스 후보 1) 이상에서 지원됩니다.*
+Catch-all 경로 매개 변수는 .NET 5 RC1(릴리스 후보 1) 이상의 ASP.NET Core에서 지원됩니다.*
 
 ::: moniker-end
 

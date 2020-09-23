@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: b485a62c61d404a91134f49cf2a49134ec9f5123
-ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
+ms.openlocfilehash: 5efea1728a1460c728a0d90002fb1504fe5b3bbb
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "89280389"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593023"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor 양식 및 유효성 검사
 
@@ -105,6 +105,9 @@ public class ExampleModel
 | <xref:Microsoft.AspNetCore.Components.Forms.InputSelect%601> | `<select>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
+
+> [!NOTE]
+> `InputRadio` 및 `InputRadioGroup` 구성 요소는 ASP.NET Core 5.0 이상에서 사용할 수 있습니다. 자세한 내용을 보려면 이 문서의 5.0 이상 버전을 선택하세요.
 
 ::: moniker-end
 
@@ -275,7 +278,7 @@ public class Starship
 
 ## <a name="display-name-support"></a>표시 이름 지원
 
-‘이 섹션은 9월 중순에 출시되는 .NET 5 RC1(릴리스 후보 1) 이상에 적용됩니다.’
+‘이 섹션은 .NET 5 RC1(릴리스 후보 1) 이상의 ASP.NET Core에 적용됩니다.’
 
 다음 기본 제공 구성 요소는 `DisplayName` 매개 변수를 사용하여 표시 이름을 지원합니다.
 
@@ -390,7 +393,7 @@ namespace BlazorSample.Client
 
 유효성 검사 메시지가 구성 요소에 설정되어 있으면 해당 메시지가 유효성 검사기의 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>에 추가되고 <xref:Microsoft.AspNetCore.Components.Forms.EditForm>에 표시됩니다.
 
-```csharp
+```razor
 @page "/FormsValidation"
 
 <h1>Starfleet Starship Database</h1>
@@ -581,7 +584,7 @@ services.AddControllersWithViews()
 
 클라이언트 프로젝트에서 `CustomValidator` 구성 요소에 대한 도움말과 함께 서버 유효성 검사 오류를 표시하도록 ‘Starfleet Starship 데이터베이스’ 양식이 업데이트됩니다. 서버 API에서 반환되는 유효성 검사 메시지는 `CustomValidator` 구성 요소의 <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessageStore>에 추가됩니다. 오류는 양식의 <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary>에서 표시하기 위해 양식의 <xref:Microsoft.AspNetCore.Components.Forms.EditContext>에서 사용할 수 있습니다.
 
-```csharp
+```razor
 @page "/FormValidation"
 @using System.Net
 @using System.Net.Http.Json
