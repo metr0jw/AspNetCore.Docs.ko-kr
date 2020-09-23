@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/troubleshoot-azure-iis
-ms.openlocfilehash: 117c777dc9ae1b8c6448f097132454b714a1b5dc
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bc968489a35405c1be0a4ac2e52e6dff4c3af050
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88632163"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009741"
 ---
 # <a name="troubleshoot-aspnet-core-on-azure-app-service-and-iis"></a>Azure App Service 및 IIS에서 ASP.NET Core 문제 해결
 
@@ -167,7 +167,7 @@ Out-of-process 요청 처리기, *aspnetcorev2_outofprocess.dll*이 *aspnetcorev
 
 ### <a name="50037-ancm-failed-to-start-within-startup-time-limit"></a>500.37 ANCM 시작 시간 제한 내에 시작하지 못함
 
-ANCM은 제공된 시작 시간 제한 내에 시작하지 못했습니다. 기본적으로 제한 시간은 120초입니다.
+제공된 시작 시간 제한 내에 ANCM을 시작하지 못했습니다. 기본적으로 제한 시간은 120초입니다.
 
 이 오류는 동일한 머신에서 많은 수의 앱을 시작할 때 발생할 수 있습니다. 시작하는 동안 서버에서 CPU/메모리 사용량이 급증하는지 확인합니다. 여러 앱의 시작 프로세스를 분산해야 합니다.
 

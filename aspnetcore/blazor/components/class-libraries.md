@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: d933a677a063d50fbe708264106e3ce19400a270
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 82969bf92965bfdeb1d1474ab47ca74ecbe6dd97
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628575"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080305"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>ASP.NET Core Razor 구성 요소 클래스 라이브러리
 
@@ -183,5 +183,16 @@ dotnet pack
 
 ## <a name="additional-resources"></a>추가 자료
 
+::: moniker range=">= aspnetcore-5.0"
+
 * <xref:razor-pages/ui-class>
-* [라이브러리에 XML 링커 구성 파일 추가](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
+* [라이브러리에 XML IL(중간 언어) 트리머 구성 파일 추가](xref:blazor/host-and-deploy/configure-trimmer)
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+* <xref:razor-pages/ui-class>
+* [라이브러리에 XML IL(중간 언어) 링커 구성 파일 추가](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
+
+::: moniker-end

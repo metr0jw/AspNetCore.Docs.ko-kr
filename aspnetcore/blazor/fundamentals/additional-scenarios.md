@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: 6f092f3f9a18883c31b217b59d0b0abe802aff01
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 870509a3cbbcbea9b1c4804185c49a831af22630
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628303"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009637"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>ASP.NET Core Blazor 호스팅 모델 구성
 
@@ -128,20 +128,62 @@ Blazor Server 앱은 기본적으로 클라이언트가 서버에 연결되기 �
 
 정적 HTML 페이지에서 서버 구성 요소를 렌더링할 수는 없습니다.
 
-## <a name="configure-the-no-locsignalr-client-for-no-locblazor-server-apps"></a>Blazor Server 앱에 적합하게 SignalR 클라이언트 구성
+## <a name="initialize-the-no-locblazor-circuit"></a>Blazor 회로 초기화
 
 ‘이 섹션은 Blazor Server에 적용됩니다.’
 
-`Pages/_Host.cshtml` 파일에서 Blazor Server 앱이 사용하는 SignalR 클라이언트를 구성합니다. `Blazor.start`를 호출하는 스크립트를 `_framework/blazor.server.js` 스크립트 뒤, `</body>` 태그 안에 넣습니다.
-
-### <a name="logging"></a>로깅
-
-SignalR 클라이언트 로깅을 구성하려면
+`Pages/_Host.cshtml` 파일에서 Blazor Server 앱의 [SignalR 회로](xref:blazor/hosting-models#circuits)의 수동 시작을 구성합니다.
 
 * `blazor.server.js` 스크립트의 `<script>` 태그에 `autostart="false"` 특성을 추가합니다.
-* 클라이언트 작성기에서 로그 수준을 사용하여 `configureLogging`을 호출하는 구성 개체(`configureSignalR`)를 전달합니다.
+* `Blazor.start`를 호출하는 스크립트를 `blazor.server.js` 스크립트의 태그 뒤, 닫는 `</body>` 태그 안에 넣습니다.
+
+`autostart`를 사용하지 않도록 설정하면 회로에 종속되지 않는 앱의 일부분도 정상적으로 작동합니다. 예를 들어 클라이언트 쪽 라우팅이 작동합니다. 그러나 회로에 종속되는 모든 측면은 `Blazor.start`가 호출된 다음에야 작동합니다. 설정된 회로가 없으면 앱 동작을 예측할 수 없습니다. 예를 들어 회로의 연결이 끊어지면 구성 요소 메서드가 실행되지 않습니다.
+
+### <a name="initialize-no-locblazor-when-the-document-is-ready"></a>문서가 준비되면 Blazor 초기화
+
+문서가 준비되었을 때 Blazor 앱을 초기화하려면 다음을 수행합니다.
 
 ```cshtml
+<body>
+
+    ...
+
+    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        Blazor.start();
+      });
+    </script>
+</body>
+```
+
+### <a name="chain-to-the-promise-that-results-from-a-manual-start"></a>수동 시작의 결과로 생성되는 `Promise`에 연결
+
+JS interop 초기화와 같은 추가 작업을 수행하려면 `then`을 사용하여 수동 Blazor 앱 시작의 결과로 생성되는 `Promise`에 연결합니다.
+
+```cshtml
+<body>
+
+    ...
+
+    <script autostart="false" src="_framework/blazor.server.js"></script>
+    <script>
+      Blazor.start().then(function () {
+        ...
+      });
+    </script>
+</body>
+```
+
+### <a name="configure-the-no-locsignalr-client"></a>SignalR 클라이언트 구성
+
+#### <a name="logging"></a>로깅
+
+SignalR 클라이언트 로깅을 구성하려면 클라이언트 작성기의 로그 수준으로 `configureLogging`을 호출하는 구성 개체(`configureSignalR`)를 전달합니다.
+
+```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -164,12 +206,16 @@ SignalR 클라이언트 로깅을 구성하려면
 * 연결이 삭제되는 경우 사용자에게 알립니다.
 * 회로가 연결된 경우 클라이언트에서 로깅을 수행합니다.
 
-연결 이벤트를 수정하려면
+연결 이벤트를 수정하려면 다음과 같은 연결 변경 내용에 대한 콜백을 등록합니다.
 
-* `blazor.server.js` 스크립트의 `<script>` 태그에 `autostart="false"` 특성을 추가합니다.
-* 삭제된 연결(`onConnectionDown`) 및 설정/다시 설정된 연결(`onConnectionUp`)의 연결 변경에 대한 콜백을 등록합니다. `onConnectionDown`과 `onConnectionUp`을 **모두** 지정해야 합니다.
+* 끊어진 연결은 `onConnectionDown`을 사용합니다.
+* 설정된 연결/다시 설정된 연결은 `onConnectionUp`을 사용합니다.
+
+`onConnectionDown`과 `onConnectionUp`을 **모두** 다음과 같이 지정해야 합니다.
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -186,12 +232,11 @@ SignalR 클라이언트 로깅을 구성하려면
 
 ### <a name="adjust-the-reconnection-retry-count-and-interval"></a>다시 연결 다시 시도 횟수 및 간격 조정
 
-다시 연결 다시 시도 횟수 및 간격을 조정하려면
-
-* `blazor.server.js` 스크립트의 `<script>` 태그에 `autostart="false"` 특성을 추가합니다.
-* 다시 시도 횟수(`maxRetries`)와 각 다시 시도에 허용되는 기간(밀리초)(`retryIntervalMilliseconds`)을 설정합니다.
+다시 연결 다시 시도 횟수 및 간격을 조정하려면 다시 시도 횟수(`maxRetries`) 및 각 다시 시도에 허용되는 기간(밀리초)(`retryIntervalMilliseconds`)을 설정합니다.
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -206,14 +251,13 @@ SignalR 클라이언트 로깅을 구성하려면
 </body>
 ```
 
-### <a name="hide-or-replace-the-reconnection-display"></a>다시 연결 표시 숨기기 또는 바꾸기
+## <a name="hide-or-replace-the-reconnection-display"></a>다시 연결 표시 숨기기 또는 바꾸기
 
-다시 연결 표시를 숨기려면
-
-* `blazor.server.js` 스크립트의 `<script>` 태그에 `autostart="false"` 특성을 추가합니다.
-* 다시 연결 처리기의 `_reconnectionDisplay`를 빈 개체(`{}` 또는 `new Object()`)로 설정합니다.
+다시 연결 표시를 숨기려면 다시 연결 처리기의 `_reconnectionDisplay`를 빈 개체(`{}` 또는 `new Object()`)로 설정합니다.
 
 ```cshtml
+<body>
+
     ...
 
     <script autostart="false" src="_framework/blazor.server.js"></script>
@@ -221,6 +265,8 @@ SignalR 클라이언트 로깅을 구성하려면
       window.addEventListener('beforeunload', function () {
         Blazor.defaultReconnectionHandler._reconnectionDisplay = {};
       });
+
+      Blazor.start();
     </script>
 </body>
 ```
@@ -233,6 +279,18 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 ```
 
 자리 표시자 `{ELEMENT ID}`는 표시할 HTML 요소의 ID입니다.
+
+::: moniker range=">= aspnetcore-5.0"
+
+앱의 CSS(`wwwroot/css/site.css`)에서 모달 요소에 대해 `transition-delay` 속성을 설정하여 다시 연결 표시가 나타나기 전의 지연을 사용자 지정합니다. 다음 예제에서는 전환 지연 시간을 500ms(기본값)에서 1,000ms(1초)로 설정합니다.
+
+```css
+#components-reconnect-modal {
+    transition: visibility 0s linear 1000ms;
+}
+```
+
+::: moniker-end
 
 ## <a name="influence-html-head-tag-elements"></a>HTML `<head>` 태그 요소에 영향
 

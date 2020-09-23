@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/hosting-models
-ms.openlocfilehash: a8d2ceaffb670723d7662234f3dc964c864e6763
-ms.sourcegitcommit: 8ed9a413bdc2d665ad11add8828898d726ccb106
+ms.openlocfilehash: 0830214029d59d0820ed3c5806267c766314c74f
+ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "89280428"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90009676"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-models"></a>ASP.NET Core Blazor 호스팅 모델
 
@@ -41,7 +41,7 @@ Blazor의 주요 호스팅 모델은 WebAssembly의 브라우저에서 클라이
 
 **Blazor WebAssembly 앱** 템플릿을 선택한 후 **ASP.NET Core에서 호스트됨** 확인란을 선택하여 ASP.NET Core 백 엔드를 사용하도록 앱을 구성할 수 있습니다([`dotnet new blazorwasm --hosted`](/dotnet/core/tools/dotnet-new)). ASP.NET Core 앱은 클라이언트에 Blazor 앱을 제공합니다. ASP.NET Core 백 엔드를 사용하는 앱은 ‘호스트형 Blazor WebAssembly 앱’이라고 합니다. Blazor WebAssembly 앱은 웹 API 호출 또는 [SignalR](xref:signalr/introduction)(<xref:tutorials/signalr-blazor-webassembly>)을 사용하여 네트워크를 통해 서버와 상호 작용할 수 있습니다.
 
-템플릿에는 다음을 처리하는 `blazor.webassembly.js` 스크립트가 포함되어 있습니다.
+`blazor.webassembly.js` 스크립트는 프레임워크 및 핸들에서 제공됩니다.
 
 * .NET 런타임, 앱, 앱 종속성 다운로드
 * 앱을 실행할 런타임 초기화
@@ -75,7 +75,7 @@ ASP.NET Core 앱은 앱의 `Startup` 클래스를 참조하여 다음을 추가�
 * 서버 쪽 서비스
 * 요청 처리 파이프라인에 앱 추가
 
-`blazor.server.js` 스크립트는 클라이언트 연결을 설정합니다. 필요에 따라(예: 네트워크 연결이 끊어진 경우) 앱 상태를 유지하고 복원하는 것은 앱의 책임입니다. `blazor.server.js` 스크립트는 ASP.NET Core 공유 프레임워크의 포함 리소스에서 제공됩니다.
+클라이언트에서 `blazor.server.js` 스크립트는 서버와의 SignalR 연결을 설정합니다. 이 스크립트는 ASP.NET Core 공유 프레임워크의 포함 리소스에서 클라이언트 쪽 앱에 제공됩니다. 클라이언트 쪽 앱은 필요에 따라 앱 상태를 유지하고 복원해야 합니다. 
 
 Blazor Server 호스팅 모델은 다음과 같은 몇 가지 혜택을 제공합니다.
 

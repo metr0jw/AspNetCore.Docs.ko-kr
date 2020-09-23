@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/globalization-localization
-ms.openlocfilehash: deb68b50f408532af22d20ba9b06a9ee3eccb335
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 2b8820acba564bdfb85f8338ed5482573960fbb4
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628224"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080279"
 ---
 # <a name="aspnet-core-no-locblazor-globalization-and-localization"></a>ASP.NET Core Blazor 세계화 및 지역화
 
@@ -74,7 +74,23 @@ Blazor WebAssembly 앱은 사용자의 [언어 기본 설정](https://developer.
 
 문화권을 명시적으로 구성하려면 `Program.Main`에서 <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>와 <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>를 설정하세요.
 
-기본적으로 Blazor WebAssembly 앱에 대한 Blazor의 링커 구성은 명시적으로 요청된 로캘을 제외하고 국제화 정보를 제거합니다. 링커 동작을 제어하는 방법에 대한 자세한 내용과 지침은 <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>을 참조하세요.
+::: moniker range=">= aspnetcore-5.0"
+
+기본적으로 Blazor WebAssembly는 날짜 및 통화와 같은 값을 사용자의 문화권에 표시하는 데 필요한 세계화 리소스를 전달합니다. 앱에 지역화가 필요하지 않은 경우 `en-US` 문화권을 기반으로 하는 고정 문화권을 지원하도록 앱을 구성할 수 있습니다.
+
+```xml
+<PropertyGroup>
+  <InvariantGlobalization>true</InvariantGlobalization>
+</PropertyGroup>
+```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+기본적으로 Blazor WebAssembly 앱에 대한 IL(중간 언어) 링커 구성에서는 명시적으로 요청된 로캘을 제외한 국제화 정보를 제거합니다. 자세한 내용은 <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>를 참조하세요.
+
+::: moniker-end
 
 Blazor가 선택하는 문화권은 대부분의 사용자에게 충분할 수 있지만 사용자가 원하는 로캘을 지정할 방법을 제공하는 방안도 고려하세요. 문화권 선택기가 포함된 Blazor WebAssembly 샘플 앱을 살펴보려면 [`LocSample`](https://github.com/pranavkm/LocSample) 지역화 샘플 앱을 참조하세요.
 

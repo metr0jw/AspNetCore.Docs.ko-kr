@@ -5,7 +5,7 @@ description: ASP.NET Core Blazor WebAssembly 앱의 성능을 높이고 일반�
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/25/2020
+ms.date: 09/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 819947be90e7f09c7ba853df1af1f3c7066c0219
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5d3cd1480dd37f437b2d6d5a89af0a842286be95
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625819"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080266"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>ASP.NET Core Blazor WebAssembly 성능 모범 사례
 
@@ -141,9 +141,21 @@ Blazor WebAssembly는 Blazor Server 앱에서 사용 가능한 단일 버전에 
 
 ## <a name="reduce-app-size"></a>앱 크기 줄이기
 
+::: moniker range=">= aspnetcore-5.0"
+
+### <a name="intermediate-language-il-trimming"></a>IL(중간 언어) 트리밍
+
+[Blazor WebAssembly 앱에서 사용되지 않는 어셈블리를 트리밍](xref:blazor/host-and-deploy/configure-trimmer)하면 앱의 이진 파일에서 사용되지 않는 코드를 제거하여 앱 크기를 줄일 수 있습니다. 기본적으로 트리머는 애플리케이션을 게시할 때 실행됩니다. 트리밍의 장점을 활용하려면 [`dotnet publish`](/dotnet/core/tools/dotnet-publish) 명령에서 [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) 옵션을 `Release`로 설정하여 배포용 앱을 게시합니다.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ### <a name="intermediate-language-il-linking"></a>IL(중간 언어) 연결
 
-[Blazor WebAssembly 앱을 연결](xref:blazor/host-and-deploy/configure-linker)하면 앱의 이진 파일에서 사용되지 않는 코드를 잘라내어 앱 크기를 줄일 수 있습니다. 기본적으로 링커는 `Release` 구성에서 빌드할 때만 사용하도록 설정됩니다. 이 기능의 이점을 활용하려면 [`dotnet publish`](/dotnet/core/tools/dotnet-publish) 명령에서 [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) 옵션을 `Release`로 설정하여 배포를 위해 앱을 게시합니다.
+[Blazor WebAssembly 앱을 연결](xref:blazor/host-and-deploy/configure-linker)하면 앱의 이진 파일에서 사용되지 않는 코드를 잘라내어 앱 크기를 줄일 수 있습니다. 기본적으로 IL(중간 언어) 링커는 `Release` 구성으로 빌드할 때만 사용할 수 있습니다. 이 기능의 이점을 활용하려면 [`dotnet publish`](/dotnet/core/tools/dotnet-publish) 명령에서 [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) 옵션을 `Release`로 설정하여 배포를 위해 앱을 게시합니다.
+
+::: moniker-end
 
 ```dotnetcli
 dotnet publish -c Release
@@ -171,6 +183,20 @@ Blazor WebAssembly의 런타임에는 앱에서 더 작은 페이로드 크기�
   </PropertyGroup>
   ```
 
+::: moniker range=">= aspnetcore-5.0"
+
+* 기본적으로 Blazor WebAssembly는 날짜 및 통화와 같은 값을 사용자의 문화권에 표시하는 데 필요한 세계화 리소스를 전달합니다. 앱에 지역화가 필요하지 않은 경우 `en-US` 문화권을 기반으로 하는 [고정 문화권을 지원하도록 앱을 구성](xref:blazor/globalization-localization)할 수 있습니다.
+
+  ```xml
+  <PropertyGroup>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+  ```
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 * <xref:System.StringComparison.InvariantCultureIgnoreCase?displayProperty=nameWithType>와 같은 API의 올바른 작동을 위해 데이터 정렬 정보가 포함되어 있습니다. 앱에서 데이터 정렬 데이터가 필요하지 않은 경우 앱의 프로젝트 파일에서 `BlazorWebAssemblyPreserveCollationData` MSBuild 속성을 `false`로 설정하여 사용하지 않도록 설정하는 것이 좋습니다.
 
   ```xml
@@ -178,3 +204,5 @@ Blazor WebAssembly의 런타임에는 앱에서 더 작은 페이로드 크기�
     <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
   </PropertyGroup>
   ```
+
+::: moniker-end

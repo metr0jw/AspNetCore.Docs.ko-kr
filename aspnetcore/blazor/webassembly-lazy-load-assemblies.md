@@ -5,7 +5,7 @@ description: ASP.NET Core Blazor WebAssembly 앱에서 어셈블리를 지연 �
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/25/2020
+ms.date: 09/09/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: 46f98080ad40f614f9cb1af2190f263d205c1016
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: eb4aaa2f3d412cdf650ed2daf7c12166991d92a1
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865152"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592906"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly의 어셈블리 지연 로드
 
@@ -42,20 +42,9 @@ Blazor의 지연 로드 기능을 사용하면 사용자가 특정 경로로 이
 
 ```xml
 <ItemGroup>
-  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls" />
+  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
 </ItemGroup>
 ```
-
-앱이 사용하는 어셈블리만 지연 로드될 수 있습니다. 링커는 게시된 출력에서 사용되지 않는 어셈블리를 제거합니다.
-
-> [!NOTE]
-> 9월 중순에 출시되는 .NET 5 RC1(릴리스 후보 1) 이상에서 어셈블리 이름에 `.dll` 확장명이 필요합니다.
->
-> ```xml
-> <ItemGroup>
->  <BlazorWebAssemblyLazyLoad Include="GrantImaharaRobotControls.dll" />
-> </ItemGroup>
-> ```
 
 ## <a name="router-component"></a>`Router` 구성 요소
 
@@ -114,8 +103,11 @@ Blazor의 `Router` 구성 요소는 Blazor가 라우팅 가능한 구성 요소�
 * JS interop을 사용하여 네트워크 호출을 통해 어셈블리를 가져옵니다.
 * 브라우저의 WebAssembly에서 실행되는 런타임에 어셈블리를 로드합니다.
 
-> [!NOTE]
-> 프레임워크의 지연 로드 구현은 서버에서의 미리 렌더링을 지원합니다. 미리 렌더링 중에는 지연 로드로 표시된 어셈블리를 포함한 모든 어셈블리가 로드된다고 가정합니다.
+프레임워크의 지연 로드 구현에서는 호스트된 Blazor 솔루션에서 미리 렌더링으로 지연 로드를 지원합니다. 미리 렌더링 중에는 지연 로드로 표시된 어셈블리를 포함한 모든 어셈블리가 로드된다고 가정합니다. *Server* 프로젝트의 `Startup.ConfigureServices` 메서드(`Startup.cs`)에서 `LazyAssemblyLoader`를 수동으로 등록합니다.
+
+```csharp
+services.AddSingleton<LazyAssemblyLoader>();
+```
 
 ### <a name="user-interaction-with-navigating-content"></a>`<Navigating>` 콘텐츠와의 사용자 상호 작용
 

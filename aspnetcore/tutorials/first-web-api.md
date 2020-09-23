@@ -16,13 +16,14 @@ no-loc:
 - Let's Encrypt
 - Razor
 - SignalR
+- Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 3d83141b8b638a369b08b0fadafccd96c0b48214
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: ebce9f2f4992d83c6b28edb5c771cdfc8a7a0b6a
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876791"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080383"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>자습서: ASP.NET Core를 사용하여 웹 API 만들기
 
@@ -197,7 +198,7 @@ Ctrl+F5 키를 눌러 앱을 실행합니다. 브라우저에서 `https://localh
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭합니다. **추가** > **새 폴더**를 선택합니다. 폴더 이름을 *Models*로 지정합니다.
+* **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭합니다. **추가** > **새 폴더**를 선택합니다. 폴더 이름을 *Models* 로 지정합니다.
 
 * *Models* 폴더를 마우스 오른쪽 단추로 클릭하고 **추가** > **클래스**를 선택합니다. 클래스 이름을 *TodoItem*으로 지정하고 **추가**를 선택합니다.
 
@@ -211,7 +212,7 @@ Ctrl+F5 키를 눌러 앱을 실행합니다. 브라우저에서 `https://localh
 
 # <a name="visual-studio-for-mac"></a>[Mac용 Visual Studio](#tab/visual-studio-mac)
 
-* 프로젝트를 마우스 오른쪽 단추로 클릭합니다. **추가** > **새 폴더**를 선택합니다. 폴더 이름을 *Models*로 지정합니다.
+* 프로젝트를 마우스 오른쪽 단추로 클릭합니다. **추가** > **새 폴더**를 선택합니다. 폴더 이름을 *Models* 로 지정합니다.
 
   ![새 폴더](first-web-api-mac/_static/folder.png)
 
@@ -282,8 +283,8 @@ ASP.NET Core에서는 DB 컨텍스트와 같은 서비스를 [DI(종속성 주�
 * **Entity Framework를 사용하며 동작이 포함된 API 컨트롤러**를 선택하고 **추가**를 선택합니다.
 * **Entity Framework를 사용하며 동작이 포함된 API 컨트롤러 추가** 대화 상자에서:
 
-  * **모델 클래스**에서 **TodoItem (TodoApi.Models)** 을 선택합니다.
-  * **데이터 컨텍스트 클래스**에서 **TodoContext (TodoApi.Models)** 를 선택합니다.
+  * **모델 클래스**에서 **TodoItem(TodoApi.Models)** 을 선택합니다.
+  * **데이터 컨텍스트 클래스**에서 **TodoContext(TodoApi.Models)** 를 선택합니다.
   * **추가**를 선택합니다.
 
 # <a name="visual-studio-code--visual-studio-for-mac"></a>[Visual Studio Code / Mac용 Visual Studio](#tab/visual-studio-code+visual-studio-mac)
@@ -639,7 +640,7 @@ Ctrl+F5 키를 눌러 앱을 실행합니다. 브라우저에서 `https://localh
 
 # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
-* **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭합니다. **추가** > **새 폴더**를 선택합니다. 폴더 이름을 *Models*로 지정합니다.
+* **솔루션 탐색기**에서 프로젝트를 마우스 오른쪽 단추로 클릭합니다. **추가** > **새 폴더**를 선택합니다. 폴더 이름을 *Models* 로 지정합니다.
 
 * *Models* 폴더를 마우스 오른쪽 단추로 클릭하고 **추가** > **클래스**를 선택합니다. 클래스 이름을 *TodoItem*으로 지정하고 **추가**를 선택합니다.
 
@@ -653,7 +654,7 @@ Ctrl+F5 키를 눌러 앱을 실행합니다. 브라우저에서 `https://localh
 
 # <a name="visual-studio-for-mac"></a>[Mac용 Visual Studio](#tab/visual-studio-mac)
 
-* 프로젝트를 마우스 오른쪽 단추로 클릭합니다. **추가** > **새 폴더**를 선택합니다. 폴더 이름을 *Models*로 지정합니다.
+* 프로젝트를 마우스 오른쪽 단추로 클릭합니다. **추가** > **새 폴더**를 선택합니다. 폴더 이름을 *Models* 로 지정합니다.
 
   ![새 폴더](first-web-api-mac/_static/folder.png)
 

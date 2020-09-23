@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 28e4f372e301a673644bfa97763ebc930f2d0ad5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9406c2a34126f3e5cd1406a55c3585e7a28f3dd9
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634334"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90593049"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>.NET 클라이언트를 사용하여 gRPC 서비스 호출
 
@@ -260,7 +260,18 @@ catch (RpcException ex)
 }
 ```
 
+## <a name="configure-deadline"></a>최종 기한 구성
+
+gRPC 호출 최종 기한 구성은 호출을 실행할 수 있는 기간에 대한 상한을 제공하기 때문에 권장됩니다. 또한 오작동하는 서비스가 계속 실행되어 서버 리소스가 소진되는 것을 방지합니다. 최종 기한은 안정적인 앱을 빌드하는 데 유용한 도구입니다.
+
+`CallOptions.Deadline`을 구성하여 gRPC 호출의 최종 기한을 설정합니다.
+
+[!code-csharp[](~/grpc/deadlines-cancellation/deadline-client.cs?highlight=7,12)]
+
+자세한 내용은 <xref:grpc/deadlines-cancellation#deadlines>를 참조하세요.
+
 ## <a name="additional-resources"></a>추가 자료
 
 * <xref:grpc/clientfactory>
+* <xref:grpc/deadlines-cancellation>
 * <xref:grpc/basics>

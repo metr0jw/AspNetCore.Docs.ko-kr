@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: 6b4c3d55d77af104c969cac0fcbf642f35c7dd7f
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: dadf6076e7f07c07381856aa225667a6eb38046a
+ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865264"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90080318"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core 호스트 및 배포 Blazor WebAssembly
 
@@ -708,9 +708,21 @@ URL 다시 쓰기를 처리하려면 `index.html` 페이지로 요청 리디렉�
   --urls=http://127.0.0.1:0
   ```
 
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="configure-the-trimmer"></a>트리머 구성
+
+Blazor는 각 릴리스 빌드에 IL(중간 언어) 트리밍을 수행하여 출력 어셈블리에서 필요 없는 IL을 제거합니다. 자세한 내용은 <xref:blazor/host-and-deploy/configure-trimmer>를 참조하세요.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
 ## <a name="configure-the-linker"></a>링커 구성
 
 Blazor는 각 릴리스 빌드에 대해 IL(중간 언어) 연결을 수행하여 출력 어셈블리에서 불필요한 IL을 제거합니다. 자세한 내용은 <xref:blazor/host-and-deploy/configure-linker>를 참조하세요.
+
+::: moniker-end
 
 ## <a name="custom-boot-resource-loading"></a>사용자 지정 부팅 리소스 로드
 
@@ -722,7 +734,7 @@ Blazor는 각 릴리스 빌드에 대해 IL(중간 언어) 연결을 수행하�
 
 `loadBootResource` 매개 변수는 다음 표에 나와 있습니다.
 
-| 매개 변수    | Description |
+| 매개 변수    | 설명 |
 | ------------ | ----------- |
 | `type`       | 리소스 형식입니다. 허용되는 형식: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, `timezonedata` |
 | `name`       | 리소스의 이름입니다. |

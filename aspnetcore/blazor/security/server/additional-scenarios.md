@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: 4d3aa2db7939313088fbc7b20e7cba2d75463b84
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: c8bce9572f0c21fdbd7ed585772c2b7965f40598
+ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865141"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90592945"
 ---
 # <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>ASP.NET Core Blazor Server 추가 보안 시나리오
 
@@ -123,25 +123,31 @@ services.AddScoped<TokenProvider>();
 }
 ```
 
+[Microsoft.AspNet.WebApi.Client](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet 패키지용 앱에 패키지 참조를 추가합니다.
+
 보안 API 요청을 만드는 서비스에서 토큰 공급자를 주입하고 토큰을 가져와서 API를 호출합니다.
 
 ```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 public class WeatherForecastService
 {
-    private readonly TokenProvider _store;
+    private readonly TokenProvider store;
 
     public WeatherForecastService(IHttpClientFactory clientFactory, 
         TokenProvider tokenProvider)
     {
         Client = clientFactory.CreateClient();
-        _store = tokenProvider;
+        store = tokenProvider;
     }
 
     public HttpClient Client { get; }
 
     public async Task<WeatherForecast[]> GetForecastAsync(DateTime startDate)
     {
-        var token = _store.AccessToken;
+        var token = store.AccessToken;
         var request = new HttpRequestMessage(HttpMethod.Get, 
             "https://localhost:5003/WeatherForecast");
         request.Headers.Add("Authorization", $"Bearer {token}");
