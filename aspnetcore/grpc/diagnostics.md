@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/diagnostics
-ms.openlocfilehash: 5c4c05e74a8223db3ade03b067bd66921439c99f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 7d2da20d04b93ebcd16fb58a4b74b5b67d37bd72
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633268"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722925"
 ---
 # <a name="logging-and-diagnostics-in-grpc-on-net"></a>.NET의 gRPC에서 로깅 및 진단
 
@@ -31,8 +31,8 @@ ms.locfileid: "88633268"
 이 문서에서는 문제 해결을 위해 gRPC 앱에서 진단 정보를 수집하는 방법에 대한 지침을 제공합니다. 다음 내용을 다룹니다.
 
 * **로깅** - [.NET Core 로깅](xref:fundamentals/logging/index)에 기록되는 구조적 로그입니다. <xref:Microsoft.Extensions.Logging.ILogger>는 앱 프레임워크에서 로그를 기록하고 사용자가 앱에서 자체 로깅을 유지하는 데 사용됩니다.
-* **추적** - `DiaganosticSource` 및 `Activity`를 사용하여 기록되는 작업 관련 이벤트입니다. 진단 소스에서의 추적은 일반적으로 [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) 및 [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet)와 같은 라이브러리에서 앱 원격 분석을 수집하는 데 사용됩니다.
-* **메트릭** - 시간 간격에 따른 데이터 측정값 표시입니다(예: 초당 요청 수). `EventCounter`를 사용하여 메트릭을 내보내고, [dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters) 명령줄 도구 또는 [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters)를 사용하여 확인할 수 있습니다.
+* **추적** - `DiaganosticSource` 및 `Activity`를 사용하여 기록되는 작업 관련 이벤트입니다. 진단 소스에서의 추적은 일반적으로 [Application Insights](/azure/azure-monitor/app/asp-net-core) 및 [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet)와 같은 라이브러리에서 앱 원격 분석을 수집하는 데 사용됩니다.
+* **메트릭** - 시간 간격에 따른 데이터 측정값 표시입니다(예: 초당 요청 수). `EventCounter`를 사용하여 메트릭을 내보내고, [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) 명령줄 도구 또는 [Application Insights](/azure/azure-monitor/app/eventcounters)를 사용하여 확인할 수 있습니다.
 
 ## <a name="logging"></a>로깅
 
@@ -111,7 +111,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 #### <a name="grpc-client-log-scopes"></a>gRPC 클라이언트 로그 범위
 
-gRPC 클라이언트는 gRPC 호출 중에 생성된 로그에 [로깅 범위](https://docs.microsoft.com/aspnet/core/fundamentals/logging#log-scopes)를 추가합니다. 범위에는 gRPC 호출과 관련된 메타데이터가 있습니다.
+gRPC 클라이언트는 gRPC 호출 중에 생성된 로그에 [로깅 범위](../fundamentals/logging/index.md#log-scopes)를 추가합니다. 범위에는 gRPC 호출과 관련된 메타데이터가 있습니다.
 
 * **GrpcMethodType** - gRPC 메서드 형식입니다. 가능한 값은 `Grpc.Core.MethodType` 열거형의 이름입니다(예: 단항).
 * **GrpcUri** - gRPC 메서드의 상대 URI입니다(예: /greet.Greeter/SayHellos).
@@ -133,7 +133,7 @@ dbug: Grpc.Net.Client.Internal.GrpcCall[4]
 
 ## <a name="tracing"></a>추적
 
-gRPC 서비스와 gRPC 클라이언트는 [DiagnosticSource](https://docs.microsoft.com/dotnet/api/system.diagnostics.diagnosticsource) 및 [Activity](https://docs.microsoft.com/dotnet/api/system.diagnostics.activity)를 사용하여 gRPC 호출에 대한 정보를 제공합니다.
+gRPC 서비스와 gRPC 클라이언트는 [DiagnosticSource](/dotnet/api/system.diagnostics.diagnosticsource) 및 [Activity](/dotnet/api/system.diagnostics.activity)를 사용하여 gRPC 호출에 대한 정보를 제공합니다.
 
 * .NET gRPC는 작업을 사용하여 gRPC 호출을 나타냅니다.
 * 추적 이벤트는 gRPC 호출 작업을 시작하고 중지할 때 진단 소스에 기록됩니다.
@@ -159,7 +159,7 @@ gRPC 서비스는 들어오는 HTTP 요청에 대한 이벤트를 보고하는 A
 
 ### <a name="collecting-tracing"></a>추적 수집
 
-`DiagnosticSource`를 사용하는 가장 간편한 방법은 앱에서 [Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core) 또는 [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet)와 같은 원격 분석 라이브러리를 구성하는 것입니다. 라이브러리는 다른 앱 원격 분석과 함께 gRPC 호출 정보를 처리합니다.
+`DiagnosticSource`를 사용하는 가장 간편한 방법은 앱에서 [Application Insights](/azure/azure-monitor/app/asp-net-core) 또는 [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet)와 같은 원격 분석 라이브러리를 구성하는 것입니다. 라이브러리는 다른 앱 원격 분석과 함께 gRPC 호출 정보를 처리합니다.
 
 Application Insights와 같은 관리형 서비스에서 추적을 볼 수 있으며, 고유한 분산 추적 시스템을 실행할 수도 있습니다. OpenTelemetry는 추적 데이터를 [Jaeger](https://www.jaegertracing.io/) 및 [Zipkin](https://zipkin.io/)으로 내보내는 기능을 지원합니다.
 
@@ -203,7 +203,7 @@ gRPC 클라이언트 메트릭은 `Grpc.Net.Client` 이벤트 원본에 보고�
 
 ### <a name="observe-metrics"></a>메트릭 확인
 
-[dotnet-counters](https://docs.microsoft.com/dotnet/core/diagnostics/dotnet-counters)는 임시 상태 모니터링 및 1단계 수준 성능 조사를 위한 성능 모니터링 도구입니다. 공급자 이름이 `Grpc.AspNetCore.Server` 또는 `Grpc.Net.Client`인 .NET 앱을 모니터링합니다.
+[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters)는 임시 상태 모니터링 및 1단계 수준 성능 조사를 위한 성능 모니터링 도구입니다. 공급자 이름이 `Grpc.AspNetCore.Server` 또는 `Grpc.Net.Client`인 .NET 앱을 모니터링합니다.
 
 ```console
 > dotnet-counters monitor --process-id 1902 Grpc.AspNetCore.Server
@@ -220,7 +220,7 @@ Press p to pause, r to resume, q to quit.
     Total Calls Unimplemented                   0
 ```
 
-gRPC 메트릭을 확인하는 또 다른 방법은 Application Insights의 [Microsoft.ApplicationInsights.EventCounterCollector 패키지](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters)를 사용하여 카운터 데이터를 캡처하는 것입니다. 설정이 완료되면 Application Insights는 런타임에 일반적인 .NET 카운터를 수집합니다. gRPC 카운터는 기본적으로 수집되지 않지만, [추가 카운터를 포함하도록 App Insights를 사용자 지정](https://docs.microsoft.com/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected)할 수 있습니다.
+gRPC 메트릭을 확인하는 또 다른 방법은 Application Insights의 [Microsoft.ApplicationInsights.EventCounterCollector 패키지](/azure/azure-monitor/app/eventcounters)를 사용하여 카운터 데이터를 캡처하는 것입니다. 설정이 완료되면 Application Insights는 런타임에 일반적인 .NET 카운터를 수집합니다. gRPC 카운터는 기본적으로 수집되지 않지만, [추가 카운터를 포함하도록 App Insights를 사용자 지정](/azure/azure-monitor/app/eventcounters#customizing-counters-to-be-collected)할 수 있습니다.
 
 *Startup.cs*에서 수집할 Application Insight의 gRPC 카운터를 지정합니다.
 

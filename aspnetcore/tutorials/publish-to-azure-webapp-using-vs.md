@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/publish-to-azure-webapp-using-vs
-ms.openlocfilehash: 380e18d1826159fa0780909aba58fe8334ede8bb
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ebfe89d68725d597d6975015bbf84414ff818829
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88631942"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722912"
 ---
 # <a name="publish-an-aspnet-core-app-to-azure-with-visual-studio"></a>Visual Studio를 사용하여 Azure에 ASP.NET Core 앱 게시
 
@@ -34,7 +34,7 @@ ms.locfileid: "88631942"
 ::: moniker-end
 
 
-macOS에서 작업하는 경우 [Mac용 Visual Studio를 사용하여 Azure App Service에 웹 앱 게시](https://docs.microsoft.com/visualstudio/mac/publish-app-svc?view=vsmac-2019)를 참조하세요.
+macOS에서 작업하는 경우 [Mac용 Visual Studio를 사용하여 Azure App Service에 웹 앱 게시](/visualstudio/mac/publish-app-svc?view=vsmac-2019)를 참조하세요.
 
 App Service 배포 문제를 해결하려면 <xref:test/troubleshoot-azure-iis>을 참조하세요.
 

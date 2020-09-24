@@ -4,7 +4,7 @@ author: rick-anderson
 description: Entity Framework Core를 사용하여 Razor Pages 앱을 만드는 방법을 보여 줍니다.
 ms.author: riande
 ms.custom: mvc, seodec18
-ms.date: 09/26/2019
+ms.date: 9/26/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/intro
-ms.openlocfilehash: 00d5c348b7ab06f9044e6705026e43feb7807ae3
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9dd8d293e189eebe6b61f6f0b35aee71977d2f77
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630307"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722555"
 ---
 # <a name="no-locrazor-pages-with-entity-framework-core-in-aspnet-core---tutorial-1-of-8"></a>ASP.NET Core에서 Entity Framework Core를 사용한 Razor Pages - 자습서 1/8
 
 작성자: [Tom Dykstra](https://github.com/tdykstra) 및 [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-::: moniker range=">= aspnetcore-3.0"
+::: moniker range=">= aspnetcore-5.0"
 
 [ASP.NET Core Razor Pages](xref:razor-pages/index) 앱에서 EF(Entity Framework) Core를 사용하는 방법을 보여 주는 자습서 시리즈 중 첫 번째 자습서입니다. 이 자습서에서는 가상 Contoso 대학의 웹 사이트를 빌드합니다. 이 사이트에는 학생 입학, 강좌 개설 및 강사 할당과 같은 기능이 있습니다. 이 자습서에서는 Code First 방법을 사용합니다. Database First 방법을 사용하여 이 자습서를 수행하는 데 대한 정보는 [이 Github 문제](https://github.com/dotnet/AspNetCore.Docs/issues/16897)를 참조하세요.
 
@@ -188,7 +188,442 @@ SQLite를 사용하도록 선택하는 경우 [SQLite용 DB 브라우저](https:
 
 `EnrollmentID` 속성은 기본 키입니다. 이 엔터티는 자체적으로 `ID` 대신 `classnameID` 패턴을 사용합니다. 프로덕션 데이터 모델의 경우 하나의 패턴을 선택하고 일관되게 사용합니다. 이 자습서에서는 두 항목이 작동하는 것을 보여 주기 위해 둘 다 사용합니다. `classname` 없이 `ID`를 사용하면 특정 종류의 데이터 모델 변경 내용을 더 쉽게 구현할 수 있습니다.
 
-`Grade` 속성은 `enum`입니다. `Grade` 형식 선언 뒤에 있는 물음표는 `Grade` 속성이 [nullable](https://docs.microsoft.com/dotnet/csharp/programming-guide/nullable-types/)이라는 것을 나타냅니다. Null인 등급은 0등급과는 다릅니다. Null은 알 수 없거나 아직 할당되지 않은 등급을 의미합니다.
+`Grade` 속성은 `enum`입니다. `Grade` 형식 선언 뒤에 있는 물음표는 `Grade` 속성이 [nullable](/dotnet/csharp/programming-guide/nullable-types/)이라는 것을 나타냅니다. Null인 등급은 0등급과는 다릅니다. Null은 알 수 없거나 아직 할당되지 않은 등급을 의미합니다.
+
+`StudentID` 속성은 외래 키로, 해당 탐색 속성은 `Student`입니다. `Enrollment` 엔터티는 하나의 `Student` 엔터티와 연결되므로 속성은 단일 `Student` 엔터티를 포함합니다.
+
+`CourseID` 속성은 외래 키로, 해당 탐색 속성은 `Course`입니다. `Enrollment` 엔터티는 하나의 `Course` 엔터티와 연결됩니다.
+
+EF Core는 속성 이름이 `<navigation property name><primary key property name>`인 경우 외래 키로 해석합니다. 예를 들어 `Student` 엔터티의 기본 키는 `ID`이므로 `StudentID`는 `Student` 탐색 속성의 외래 키입니다. 외래 키 속성의 이름은 `<primary key property name>`으로 지정할 수 있습니다. 예를 들어 `Course` 엔터티의 기본 키가 `CourseID`이므로 `CourseID`라고 할 수 있습니다.
+
+## <a name="the-course-entity"></a>강좌 엔터티
+
+![강좌 엔터티 다이어그램](intro/_static/course-entity.png)
+
+다음 코드로 *Models/Course.cs*를 만듭니다.
+
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Course.cs)]
+
+`Enrollments` 속성은 탐색 속성입니다. `Course` 엔터티는 `Enrollment` 엔터티의 개수와 관련이 있을 수 있습니다.
+
+`DatabaseGenerated` 특성을 사용하면 데이터베이스에서 기본 키를 생성하도록 하지 않고 앱에서 기본 키를 지정할 수 있습니다.
+
+프로젝트를 빌드하여 컴파일러 오류가 없는지 유효성을 검사합니다.
+
+## <a name="scaffold-student-pages"></a>학생 페이지 스캐폴드
+
+이 섹션에서는 ASP.NET Core 스캐폴딩 도구를 사용하여 다음을 생성합니다.
+
+* EF Core ‘컨텍스트’ 클래스. 컨텍스트는 특정 데이터 모델에 맞게 Entity Framework 기능을 조정하는 주 클래스입니다. 이 클래스는 `Microsoft.EntityFrameworkCore.DbContext` 클래스에서 파생됩니다.
+* `Student` 엔터티에 대한 CRUD(만들기, 읽기, 업데이트 및 삭제) 작업을 처리하는 Razor 페이지.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* *Pages* 폴더에 *Students* 폴더를 만듭니다.
+* **솔루션 탐색기**에서 *Pages/Students* 폴더를 마우스 오른쪽 단추로 클릭하고 **추가** > **스캐폴드 항목 새로 만들기**를 선택합니다.
+* **스캐폴드 추가** 대화 상자에서 **Entity Framework를 사용한 Razor Pages(CRUD)** > **추가**를 선택합니다.
+* **Entity Framework(CRUD)를 사용한 Razor Pages 추가** 대화 상자에서 다음 작업을 수행합니다.
+  * **모델 클래스** 드롭다운에서 **학생(ContosoUniversity.Models)** 을 선택합니다.
+  * **데이터 컨텍스트 클래스** 행에서 **+** (더하기) 기호를 선택합니다.
+  * 데이터 컨텍스트 이름을 *ContosoUniversity.Models.ContosoUniversityContext*에서 *ContosoUniversity.Data.SchoolContext*로 변경합니다.
+  * **추가**를 선택합니다.
+
+다음 패키지가 자동으로 설치됩니다.
+
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
+* `Microsoft.EntityFrameworkCore.SqlServer`
+* `Microsoft.Extensions.Logging.Debug`
+* `Microsoft.EntityFrameworkCore.Tools`
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* 다음 .NET Core CLI 명령을 실행하여 필요한 NuGet 패키지를 설치합니다.
+<!-- TO DO  After testing, Replace with
+[!INCLUDE[](~/includes/includes/add-EF-NuGet-SQLite-CLI.md)]
+remove dotnet tool install --global  below
+ -->
+  ```dotnetcli
+  dotnet add package Microsoft.EntityFrameworkCore.SQLite
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  dotnet add package Microsoft.EntityFrameworkCore.Tools
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+  dotnet add package Microsoft.Extensions.Logging.Debug
+  ```
+
+  스캐폴딩에는 Microsoft.VisualStudio.Web.CodeGeneration.Design 패키지가 필요합니다. 앱은 SQL Server를 사용하지 않지만 스캐폴딩 도구에는 SQL Server 패키지가 필요합니다.
+
+* *Pages/Students* 폴더를 만듭니다.
+
+* 다음 명령을 실행하여 [aspnet-codegenerator 스캐폴딩 도구](xref:fundamentals/tools/dotnet-aspnet-codegenerator)를 설치합니다.
+
+  ```dotnetcli
+  dotnet tool install --global dotnet-aspnet-codegenerator
+  ```
+
+* 다음 명령을 실행하여 학생 페이지를 스캐폴드합니다.
+
+  **Windows**
+
+  ```dotnetcli
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages\Students --referenceScriptLibraries
+  ```
+
+  **macOS 또는 Linux**
+
+  ```dotnetcli
+  dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries
+  ```
+
+---
+
+이전 단계에서 문제가 발생하면 프로젝트를 빌드하고 스캐폴드 단계를 다시 시도합니다.
+
+스캐폴딩 프로세스:
+
+* *Pages/Students* 폴더에서 다음 Razor 페이지를 만듭니다.
+  * *Create.cshtml* 및 *Create.cshtml.cs*
+  * *Delete.cshtml* 및 *Delete.cshtml.cs*
+  * *Details.cshtml* 및 *Details.cshtml.cs*
+  * *Edit.cshtml* 및 *Edit.cshtml.cs*
+  * *Index.cshtml* 및 *Index.cshtml.cs*
+* *Data/SchoolContext.cs*를 만듭니다.
+* *Startup.cs*의 종속성 주입에 컨텍스트를 추가합니다.
+* *appsettings.json*에 데이터베이스 연결 문자열을 추가합니다.
+
+## <a name="database-connection-string"></a>데이터베이스 연결 문자열
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+연결 문자열은 [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb)를 지정합니다. 
+
+[!code-json[Main](intro/samples/cu30/appsettings.json?highlight=11)]
+
+LocalDB는 프로덕션 사용이 아닌 앱 개발용으로 고안된 SQL Server Express 데이터베이스 엔진의 경량 버전입니다. 기본적으로 LocalDB는 `C:/Users/<user>` 디렉터리에 *.mdf* 파일을 만듭니다.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+*CU.db*라는 SQLite 데이터베이스 파일을 가리키도록 연결 문자열을 변경합니다.
+
+[!code-json[Main](intro/samples/cu30/appsettingsSQLite.json?highlight=11)]
+
+---
+
+## <a name="update-the-database-context-class"></a>데이터베이스 컨텍스트 클래스 업데이트
+
+특정 데이터 모델에 맞게 EF Core 기능을 조정하는 주 클래스는 데이터베이스 컨텍스트 클래스입니다. 컨텍스트는 [Microsoft.EntityFrameworkCore.DbContext](/dotnet/api/microsoft.entityframeworkcore.dbcontext)에서 파생됩니다. 컨텍스트는 데이터 모델에 포함되는 엔터티를 지정합니다. 이 프로젝트에서 클래스 이름은 `SchoolContext`로 지정됩니다.
+
+*SchoolContext.cs*를 다음 코드로 업데이트합니다.
+
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
+
+강조 표시된 코드는 각 엔터티 집합에 대해 [DbSet\<TEntity>](/dotnet/api/microsoft.entityframeworkcore.dbset-1) 속성을 생성합니다. EF Core 용어에서:
+
+* 엔터티 집합은 일반적으로 데이터베이스 테이블에 해당합니다.
+* 엔터티는 테이블의 행에 해당합니다.
+
+엔터티 집합은 여러 엔터티를 포함하므로 DBSet 속성은 복수형 이름이어야 합니다. 스캐폴딩 도구로 `Student` DBSet를 만들었으므로 이 단계에서는 이 DBSet를 복수형 `Students`로 변경합니다. 
+
+Razor Pages 코드가 새 DBSet 이름과 일치하게 만들려면 전체 프로젝트에서 `_context.Student`를 `_context.Students`로 전체 변경합니다.  8개 발생 항목이 있습니다.
+
+프로젝트를 빌드하여 컴파일러 오류가 없는지 확인합니다.
+
+## <a name="startupcs"></a>Startup.cs
+
+ASP.NET Core는 [종속성 주입](xref:fundamentals/dependency-injection)을 사용하여 빌드됩니다. 서비스(예: EF Core 데이터베이스 컨텍스트)는 애플리케이션 시작 중에 종속성 주입에 등록됩니다. 이러한 서비스(예: Razor Pages)가 필요한 구성 요소는 생성자 매개 변수를 통해 해당 서비스를 제공받습니다. 데이터베이스 컨텍스트 인스턴스를 가져오는 생성자 코드는 자습서 뒷부분에 나옵니다.
+
+스캐폴딩 도구는 종속성 주입 컨테이너에 컨텍스트 클래스를 자동으로 등록합니다.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* `ConfigureServices`에서 강조 표시된 줄은 스캐폴더에서 추가되었습니다.
+
+  [!code-csharp[Main](intro/samples/cu30/Startup.cs?name=snippet_ConfigureServices&highlight=5-6)]
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* `ConfigureServices`에서 스캐폴더에서 추가된 코드가 `UseSqlite`를 호출하는지 확인합니다.
+
+  [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
+
+---
+
+연결 문자열 이름은 [DbContextOptions](/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions) 개체의 메서드를 호출하여 컨텍스트에 전달됩니다. 로컬 개발의 경우 [ASP.NET Core 구성 시스템](xref:fundamentals/configuration/index)은 *appsettings.json* 파일에서 연결 문자열을 읽습니다.
+
+## <a name="create-the-database"></a>데이터베이스 만들기
+
+*Program.cs*를 업데이트하여 데이터베이스가 없는 경우 데이터베이스를 만듭니다.
+
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
+
+[EnsureCreated](/dotnet/api/microsoft.entityframeworkcore.infrastructure.databasefacade.ensurecreated#Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_EnsureCreated) 메서드는 컨텍스트의 데이터베이스가 있는 경우 아무 작업도 수행하지 않습니다. 데이터베이스가 없는 경우 데이터베이스 및 스키마를 만듭니다. `EnsureCreated`를 사용하면 다음 워크플로가 데이터 모델 변경 내용을 처리할 수 있습니다.
+
+* 데이터베이스를 삭제합니다. 모든 기존 데이터가 손실됩니다.
+* 데이터 모델을 변경합니다. 예를 들어 `EmailAddress` 필드를 추가합니다.
+* 앱을 실행합니다.
+* `EnsureCreated`는 새 스키마를 사용하여 데이터베이스를 만듭니다.
+
+이 워크플로는 데이터를 보존할 필요가 없는 경우 스키마가 빠르게 업데이트되는 개발 초기에 적합합니다. 데이터베이스에 입력된 데이터를 보존해야 하는 경우는 상황이 다릅니다. 이 경우에는 마이그레이션을 사용합니다.
+
+자습서 시리즈의 뒷부분에서는 `EnsureCreated`에서 만든 데이터베이스를 삭제하고 마이그레이션을 대신 사용합니다. `EnsureCreated`에서 만든 데이터베이스는 마이그레이션을 사용하여 업데이트할 수 없습니다.
+
+### <a name="test-the-app"></a>앱을 테스트합니다.
+
+* 앱을 실행합니다.
+* **학생** 링크 및 **새로 만들기**를 차례로 선택합니다.
+* 편집, 세부 정보 및 삭제 링크를 테스트합니다.
+
+## <a name="seed-the-database"></a>데이터베이스 시드
+
+`EnsureCreated` 메서드는 빈 데이터베이스를 만듭니다. 이 섹션에서는 테스트 데이터로 데이터베이스를 채우는 코드를 추가합니다.
+
+다음 코드로 *Data/DbInitializer.cs*를 만듭니다.
+<!-- next update, keep this file in the project and surround with #if -->
+  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/DbInitializer.cs)]
+
+  이 코드는 데이터베이스에 학생이 있는지 확인합니다. 학생이 없는 경우 테스트 데이터를 데이터베이스에 추가합니다. `List<T>` 컬렉션이 아닌 배열에 테스트 데이터를 만들어 성능을 최적화합니다.
+
+* *Program.cs*에서 `EnsureCreated` 호출을 `DbInitializer.Initialize` 호출로 바꿉니다.
+
+  ```csharp
+  // context.Database.EnsureCreated();
+  DbInitializer.Initialize(context);
+  ```
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+앱이 실행 중이라면 중지하고 **패키지 관리자 콘솔**(PMC)에서 다음 명령을 실행합니다.
+
+```powershell
+Drop-Database
+```
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* 실행 중인 경우 앱을 중지하고 *CU.db* 파일을 삭제합니다.
+
+---
+
+* 앱을 다시 시작합니다.
+
+* 학생 페이지를 선택하여 시드된 데이터를 확인합니다.
+
+## <a name="view-the-database"></a>데이터베이스 보기
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Visual Studio의 **보기** 메뉴에서 **SSOX(SQL Server 개체 탐색기)** 를 엽니다.
+* SSOX에서 **(localdb)\MSSQLLocalDB > Databases > SchoolContext-{GUID}** 를 선택합니다. 데이터베이스 이름은 이전에 제공한 컨텍스트 이름과 대시 및 GUID를 사용하여 생성됩니다.
+* **테이블** 노드를 확장합니다.
+* **학생** 테이블을 마우스 오른쪽 단추로 클릭하고, **데이터 보기**를 클릭하여 만든 열 및 테이블에 삽입된 행을 볼 수 있습니다.
+* **Student** 테이블을 마우스 오른쪽 단추로 클릭하고 **코드 보기**를 클릭하여 `Student` 모델이 `Student` 테이블 스키마에 어떻게 매핑되는지 확인합니다.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+SQLite 도구를 사용하여 데이터베이스 스키마 및 시드된 데이터를 표시합니다. 데이터베이스 파일은 *CU.db*로 이름이 지정되고 프로젝트 폴더에 배치됩니다.
+
+---
+
+## <a name="asynchronous-code"></a>비동기 코드
+
+비동기 프로그래밍은 ASP.NET Core 및 EF Core에 대한 기본 모드입니다.
+
+웹 서버에는 사용할 수 있는 스레드 수가 제한적이며, 로드 양이 많은 상황에서는 사용 가능한 모든 스레드가 사용될 수 있습니다. 이 경우 서버는 스레드가 해제될 때까지 새 요청을 처리할 수 없습니다. 동기 코드를 사용하면 I/O 완료를 대기하느라 작업을 실제로 수행하지 않는 동안에 많은 스레드가 정체될 수 있습니다. 비동기 코드를 사용하면 프로세스가 I/O 완료를 대기할 때 다른 요청을 처리하는 데 사용하도록 해당 스레드가 서버에서 해제됩니다. 따라서 비동기 코드를 사용하면 서버 리소스를 더 효율적으로 사용할 수 있으며 서버가 지연 없이 더 많은 트래픽을 처리할 수 있습니다.
+
+비동기 코드는 런타임 시 약간의 오버헤드를 도입합니다. 트래픽이 높은 상황에서는 잠재적 성능 향상이 상당한 반면, 트래픽이 낮은 상황의 경우 성능 저하는 미미합니다.
+
+다음 코드에서 [async](/dotnet/csharp/language-reference/keywords/async) 키워드, `Task<T>` 반환 값, `await` 키워드 및 `ToListAsync` 메서드는 비동기적으로 코드 실행을 수행합니다.
+
+```csharp
+public async Task OnGetAsync()
+{
+    Students = await _context.Students.ToListAsync();
+}
+```
+
+* `async` 키워드는 컴파일러가 다음을 수행하도록 합니다.
+  * 메서드 본문의 부분에 대한 콜백을 생성합니다.
+  * 반환되는 [Task](/dotnet/csharp/programming-guide/concepts/async/async-return-types#BKMK_TaskReturnType) 개체를 만듭니다.
+* `Task<T>` 반환 형식은 진행 중인 작업을 나타냅니다.
+* `await` 키워드로 인해 컴파일러는 메서드를 두 부분으로 분할합니다. 첫 번째 부분은 비동기적으로 시작되는 작업을 종료합니다. 두 번째 부분은 작업이 완료될 때 호출되는 콜백 메서드에 배치됩니다.
+* `ToListAsync`는 `ToList` 확장 메서드의 비동기 버전입니다.
+
+EF Core를 사용하는 비동기 코드를 작성할 때 고려해야 할 몇 가지 사항은 다음과 같습니다.
+
+* 쿼리 또는 명령을 데이터베이스에 보내는 명령문만 비동기적으로 실행됩니다. 여기에는 `ToListAsync`, `SingleOrDefaultAsync`, `FirstOrDefaultAsync` 및 `SaveChangesAsync`가 포함됩니다. `var students = context.Students.Where(s => s.LastName == "Davolio")`와 같은 `IQueryable`을 변경하는 명령문은 포함되지 않습니다.
+* EF Core 컨텍스트는 스레드로부터 안전하지 않습니다. 동시에 여러 작업을 수행하지 마십시오.
+* 비동기 코드의 성능 이점을 이용하려면 라이브러리 패키지(예: 페이징)가 쿼리를 데이터베이스에 보내는 EF Core 메서드를 호출하는 경우 비동기를 사용하는지 확인합니다.
+
+.NET에서의 비동기 프로그래밍에 대한 자세한 내용은 [비동기 개요](/dotnet/standard/async) 및 [Async 및 Await를 사용한 비동기 프로그래밍](/dotnet/csharp/programming-guide/concepts/async/)을 참조하세요.
+
+## <a name="next-steps"></a>다음 단계
+
+> [!div class="step-by-step"]
+> [다음 자습서](xref:data/ef-rp/crud)
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+[ASP.NET Core Razor Pages](xref:razor-pages/index) 앱에서 EF(Entity Framework) Core를 사용하는 방법을 보여 주는 자습서 시리즈 중 첫 번째 자습서입니다. 이 자습서에서는 가상 Contoso 대학의 웹 사이트를 빌드합니다. 이 사이트에는 학생 입학, 강좌 개설 및 강사 할당과 같은 기능이 있습니다. 이 자습서에서는 Code First 방법을 사용합니다. Database First 방법을 사용하여 이 자습서를 수행하는 데 대한 정보는 [이 Github 문제](https://github.com/dotnet/AspNetCore.Docs/issues/16897)를 참조하세요.
+
+[완성된 앱을 다운로드하거나 확인하세요.](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples) [지침을 다운로드하세요](xref:index#how-to-download-a-sample).
+
+## <a name="prerequisites"></a>사전 요구 사항
+
+* Razor Pages를 처음 사용한다면 이 자습서를 시작하기 전에 Razor [Razor Pages 시작](xref:tutorials/razor-pages/razor-pages-start) 자습서 시리즈를 진행하세요.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-3.0.md)]
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[VS Code prereqs](~/includes/net-core-prereqs-vsc-3.0.md)]
+
+---
+
+## <a name="database-engines"></a>데이터베이스 엔진
+
+Visual Studio 지침에서는 Windows에서만 실행되는 SQL Server Express 버전인 [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb)를 사용합니다.
+
+Visual Studio Code 지침에서는 플랫폼 간 데이터베이스 엔진인 [SQLite](https://www.sqlite.org/)를 사용합니다.
+
+SQLite를 사용하도록 선택하는 경우 [SQLite용 DB 브라우저](https://sqlitebrowser.org/)와 같이 SQLite 데이터베이스를 관리하고 볼 수 있는 타사 도구를 다운로드하여 설치합니다.
+
+## <a name="troubleshooting"></a>문제 해결
+
+해결할 수 없는 문제가 발생한 경우 [완료된 프로젝트](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intro/samples)와 코드를 비교합니다. 도움을 얻으려면 [ASP.NET Core 태그](https://stackoverflow.com/questions/tagged/asp.net-core) 또는 [EF Core 태그](https://stackoverflow.com/questions/tagged/entity-framework-core)를 사용하여 StackOverflow.com에 질문을 게시하는 것이 좋습니다.
+
+## <a name="the-sample-app"></a>샘플 앱
+
+이러한 자습서에서 빌드한 앱은 기본 대학 웹 사이트입니다. 사용자는 학생, 강좌 및 강사 정보를 보고 업데이트할 수 있습니다. 자습서에서 만든 화면 중 몇 가지 예가 나와 있습니다.
+
+![학생 인덱스 페이지](intro/_static/students-index30.png)
+
+![학생 편집 페이지](intro/_static/student-edit30.png)
+
+이 사이트의 UI 스타일은 기본 제공 프로젝트 템플릿을 기반으로 합니다. 이 자습서에서는 UI를 사용자 지정하는 방법이 아닌 EF Core를 사용하는 방법을 중점적으로 설명합니다.
+
+페이지 맨 위에 있는 링크를 따라 완료된 프로젝트의 소스 코드를 가져옵니다. *cu30* 폴더에는 자습서의 ASP.NET Core 3.0 버전에 대한 코드가 있습니다. 자습서 1~7의 코드 상태를 반영하는 파일은 *cu30snapshots* 폴더에서 찾을 수 있습니다.
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+완료된 프로젝트를 다운로드한 후 앱을 실행하려면 다음을 수행합니다.
+
+* 프로젝트를 빌드합니다.
+* PMC(패키지 관리자 콘솔)에서 다음 명령을 실행합니다.
+
+  ```powershell
+  Update-Database
+  ```
+
+* 프로젝트를 실행하여 데이터베이스를 시드합니다.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+완료된 프로젝트를 다운로드한 후 앱을 실행하려면 다음을 수행합니다.
+
+* *ContosoUniversity.csproj*를 삭제하고 *ContosoUniversitySQLite.csproj*의 이름을 *ContosoUniversity.csproj*로 바꿉니다.
+* *Program.cs*에서 `StartupSQLite`를 사용하도록 `#define Startup`을 주석으로 처리합니다.
+* *appSettings.json*을 삭제하고 *appSettingsSQLite.json*의 이름을 *appSettings.json*으로 바꿉니다.
+* *Migrations* 폴더를 삭제하고 *MigrationsSQL*의 이름을 *Migrations*로 바꿉니다.
+* `#if SQLiteVersion`에 대한 전체 검색을 수행하고 `#if SQLiteVersion` 및 관련된 `#endif` 문을 제거합니다.
+* 프로젝트를 빌드합니다.
+* 프로젝트 폴더의 명령 프롬프트에서 다음 명령을 실행합니다.
+
+  ```dotnetcli
+  dotnet tool install --global dotnet-ef
+  dotnet ef database update
+  ```
+
+* SQLite 도구에서 다음 SQL 문을 실행합니다.
+
+  ```sql
+  UPDATE Department SET RowVersion = randomblob(8)
+  ```
+
+* 프로젝트를 실행하여 데이터베이스를 시드합니다.
+
+---
+
+## <a name="create-the-web-app-project"></a>웹앱 프로젝트 만들기
+
+# <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
+
+* Visual Studio **파일** 메뉴에서 **새로 만들기** >**프로젝트**를 선택합니다.
+* **새 ASP.NET Core 웹 애플리케이션**을 선택합니다.
+* 프로젝트 이름을 *ContosoUniversity*로 지정합니다. 코드를 복사하여 붙여넣을 때 네임스페이스가 일치하도록 대문자 표시를 포함하여 정확한 이름을 사용해야 합니다.
+* 드롭다운에서 **.NET Core** 및 **ASP.NET Core 3.0**을 선택한 후 **웹 애플리케이션**을 선택합니다.
+
+# <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
+
+* 터미널에서 프로젝트 폴더를 만들어야 하는 폴더로 이동합니다.
+
+* 다음 명령을 실행하여 Razor Pages 프로젝트를 만들고 `cd`를 사용하여 새 프로젝트 폴더로 이동합니다.
+
+  ```dotnetcli
+  dotnet new webapp -o ContosoUniversity
+  cd ContosoUniversity
+  ```
+
+---
+
+## <a name="set-up-the-site-style"></a>사이트 스타일 설정
+
+*Pages/Shared/_Layout.cshtml*을 업데이트하여 사이트 헤더, 바닥글 및 메뉴를 설정합니다.
+
+* 모든 “ContosoUniversity”를 “Contoso University”로 변경합니다. 세 번 나옵니다.
+
+* **홈** 및 **프라이버시** 메뉴 항목을 삭제하고 **정보**, **학생**, **과정**, **강사** 및 **부서** 항목을 추가합니다.
+
+변경 내용은 강조 표시되어 있습니다.
+
+[!code-cshtml[Main](intro/samples/cu30/Pages/Shared/_Layout.cshtml?highlight=6,14,21-35,49)]
+
+*Pages/Index.cshtml*에서 다음 코드로 파일의 콘텐츠를 텍스트를 대체하여 ASP.NET Core에 대한 텍스트를 이 앱에 대한 텍스트로 바꿉니다.
+
+[!code-cshtml[Main](intro/samples/cu30/Pages/Index.cshtml)]
+
+앱을 실행하여 홈페이지가 표시되는지 확인합니다.
+
+## <a name="the-data-model"></a>데이터 모델
+
+다음 섹션에서는 데이터 모델을 만듭니다.
+
+![과정-등록-학생 데이터 모델 다이어그램](intro/_static/data-model-diagram.png)
+
+학생은 개수와 관계없이 원하는 과정에 등록할 수 있으며 한 과정에는 여러 명이 등록될 수 있습니다.
+
+## <a name="the-student-entity"></a>학생 엔터티
+
+![학생 엔터티 다이어그램](intro/_static/student-entity.png)
+
+* 프로젝트 폴더에 *Models* 폴더를 만듭니다. 
+
+* 다음 코드로 *Models/Student.cs*를 만듭니다.
+
+  [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Student.cs)]
+
+`ID` 속성은 이 클래스에 해당하는 데이터베이스 테이블의 기본 키 열이 됩니다. 기본적으로 EF 코어는 `ID` 또는 `classnameID`로 명명된 속성을 기본 키로 해석합니다. 따라서 `Student` 클래스 기본 키의 자동으로 인식되는 대체 이름은 `StudentID`입니다. 자세한 내용은 [EF Core - 키](/ef/core/modeling/keys?tabs=data-annotations)를 참조하세요.
+
+`Enrollments` 속성은 [탐색 속성](/ef/core/modeling/relationships)입니다. 탐색 속성은 이 엔터티와 관련된 다른 엔터티를 포함합니다. 이 경우 `Student` 엔터티의 `Enrollments` 속성은 해당 Student에 관련된 모든 `Enrollment` 엔터티를 포함합니다. 예를 데이터베이스의 Student 행에 두 개의 관련 Enrollment 행이 있는 경우 `Enrollments` 탐색 속성은 그 두 Enrollment 엔터티를 포함합니다. 
+
+데이터베이스에서 StudentID 열에 학생 ID 값이 포함된 경우 Enrollment 행은 Student 행과 관련됩니다. 예를 들어 Student 행에 ID=1이 있다고 가정합니다. 관련 Enrollment 행에는 StudentID=1이 포함됩니다. StudentID는 Enrollment 테이블의 ‘외래 키’입니다. 
+
+관련 Enrollment 엔터티가 여러 개 있을 수 있으므로 `Enrollments` 속성은 `ICollection<Enrollment>`로 정의됩니다. `List<Enrollment>` 또는`HashSet<Enrollment>`와 같은 다른 컬렉션 형식을 사용할 수 있습니다. `ICollection<Enrollment>`가 사용되는 경우 EF Core는 기본적으로 `HashSet<Enrollment>` 컬렉션을 만듭니다.
+
+## <a name="the-enrollment-entity"></a>등록 엔터티
+
+![등록 엔터티 다이어그램](intro/_static/enrollment-entity.png)
+
+다음 코드로 *Models/Enrollment.cs*를 만듭니다.
+
+[!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Models/Enrollment.cs)]
+
+`EnrollmentID` 속성은 기본 키입니다. 이 엔터티는 자체적으로 `ID` 대신 `classnameID` 패턴을 사용합니다. 프로덕션 데이터 모델의 경우 하나의 패턴을 선택하고 일관되게 사용합니다. 이 자습서에서는 두 항목이 작동하는 것을 보여 주기 위해 둘 다 사용합니다. `classname` 없이 `ID`를 사용하면 특정 종류의 데이터 모델 변경 내용을 더 쉽게 구현할 수 있습니다.
+
+`Grade` 속성은 `enum`입니다. `Grade` 형식 선언 뒤에 있는 물음표는 `Grade` 속성이 [nullable](/dotnet/csharp/programming-guide/nullable-types/)이라는 것을 나타냅니다. Null인 등급은 0등급과는 다릅니다. Null은 알 수 없거나 아직 할당되지 않은 등급을 의미합니다.
 
 `StudentID` 속성은 외래 키로, 해당 탐색 속성은 `Student`입니다. `Enrollment` 엔터티는 하나의 `Student` 엔터티와 연결되므로 속성은 단일 `Student` 엔터티를 포함합니다.
 

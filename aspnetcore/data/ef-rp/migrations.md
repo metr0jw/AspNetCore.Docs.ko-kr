@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/migrations
-ms.openlocfilehash: d922e3a4ad3660bdd1c70dc262acc2f87bdd4214
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 78eb466fcfeb130e411df490f033114b3fdebeef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627002"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722633"
 ---
 # <a name="part-4-no-locrazor-pages-with-ef-core-migrations-in-aspnet-core"></a>4부. ASP.NET Core에서 EF Core 마이그레이션을 사용한 Razor Pages
 
@@ -132,7 +132,7 @@ context.Database.EnsureCreated();
 
 ## <a name="applying-migrations-in-production"></a>프로덕션 환경에서 마이그레이션 적용
 
-프로덕션 앱은 애플리케이션 시작 시 [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_)를 호출하지 **않는 것이** 좋습니다. `Migrate`는 서버 팜에 배포된 앱에서 호출하면 안 됩니다. 앱이 여러 서버 인스턴스로 확장되는 경우 데이터베이스 스키마 업데이트가 여러 서버에서 발생하거나 읽기/쓰기 권한과 충돌하지 않도록 하는 것이 어렵습니다.
+프로덕션 앱은 애플리케이션 시작 시 [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_)를 호출하지 **않는 것이** 좋습니다. `Migrate`는 서버 팜에 배포된 앱에서 호출하면 안 됩니다. 앱이 여러 서버 인스턴스로 확장되는 경우 데이터베이스 스키마 업데이트가 여러 서버에서 발생하거나 읽기/쓰기 권한과 충돌하지 않도록 하는 것이 어렵습니다.
 
 데이터베이스 마이그레이션은 배포의 일부로 제어된 방식으로 수행되어야 합니다. 프로덕션 데이터베이스 마이그레이션 방법은 다음과 같습니다.
 
@@ -295,7 +295,7 @@ context.Database.EnsureCreated();
 
 ## <a name="applying-migrations-in-production"></a>프로덕션 환경에서 마이그레이션 적용
 
-프로덕션 앱은 애플리케이션 시작 시 [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate?view=efcore-2.0#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_)를 호출하지 **않는 것이** 좋습니다. 서버 팜의 앱에서 `Migrate`를 호출하면 안됩니다. 예를 들어, 앱이 스케일 아웃으로 클라우드에 배포된 경우(앱의 여러 인스턴스가 실행 중임)
+프로덕션 앱은 애플리케이션 시작 시 [Database.Migrate](/dotnet/api/microsoft.entityframeworkcore.relationaldatabasefacadeextensions.migrate#Microsoft_EntityFrameworkCore_RelationalDatabaseFacadeExtensions_Migrate_Microsoft_EntityFrameworkCore_Infrastructure_DatabaseFacade_)를 호출하지 **않는 것이** 좋습니다. 서버 팜의 앱에서 `Migrate`를 호출하면 안됩니다. 예를 들어, 앱이 스케일 아웃으로 클라우드에 배포된 경우(앱의 여러 인스턴스가 실행 중임)
 
 데이터베이스 마이그레이션은 배포의 일부로 제어된 방식으로 수행되어야 합니다. 프로덕션 데이터베이스 마이그레이션 방법은 다음과 같습니다.
 

@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/routing
-ms.openlocfilehash: cf450385db3c7327de233357d4c13d556ee44bad
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1b8ccb510927fbc8a40f7424ae1ca4a131799095
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633671"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722886"
 ---
 # <a name="routing-in-aspnet-core"></a>ASP.NET Core에서 라우팅
 
@@ -50,7 +50,7 @@ ms.locfileid: "88633671"
 이 문서에서 설명하는 엔드포인트 라우팅 시스템은 ASP.NET Core 3.0 이상에 적용됩니다. <xref:Microsoft.AspNetCore.Routing.IRouter> 기반의 이전 라우팅 시스템에 대한 자세한 내용은 다음 접근 방법 중 하나를 사용하여 ASP.NET Core 2.1 버전을 선택합니다.
 
 * 이전 버전의 버전 선택기
-* [ASP.NET Core 2.1 라우팅](https://docs.microsoft.com/aspnet/core/fundamentals/routing?view=aspnetcore-2.1) 선택
+* [ASP.NET Core 2.1 라우팅](?view=aspnetcore-2.1) 선택
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/routing/samples/3.x) ([다운로드 방법](xref:index#how-to-download-a-sample))
 
@@ -1025,7 +1025,7 @@ services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 ```
 
-<xref:Microsoft.AspNetCore.Routing.IRouter> 기반 라우팅에 대한 자세한 내용은 [이 항목의 ASP.NET Core 2.1 버전](/aspnet/core/fundamentals/routing?view=aspnetcore-2.1)을 참조하세요.
+<xref:Microsoft.AspNetCore.Routing.IRouter> 기반 라우팅에 대한 자세한 내용은 [이 항목의 ASP.NET Core 2.1 버전](?view=aspnetcore-2.1)을 참조하세요.
 
 > [!IMPORTANT]
 > 이 문서에서는 낮은 수준의 ASP.NET Core 라우팅을 설명합니다. ASP.NET Core MVC 라우팅에 대한 내용은 <xref:mvc/controllers/routing>을 참조하세요. Razor Pages의 라우팅 규칙에 대한 내용은 <xref:razor-pages/razor-pages-conventions>을 참조하세요.
@@ -1557,8 +1557,8 @@ routes.MapRoute(
 
 ASP.NET Core는 생성된 경로와 함께 매개 변수 변환기를 사용하기 위한 API 규칙을 제공합니다.
 
-* ASP.NET Core MVC에는 `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention` API 규칙이 있습니다. 이 규칙은 앱의 모든 특성 경로에 지정된 매개 변수 변환기를 적용합니다. 매개 변수 변환기는 특성 경로 토큰이 교체될 때 변환합니다. 자세한 내용은 [매개 변수 변환기를 사용하여 토큰 교체 사용자 지정](/aspnet/core/mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement)을 참조하세요.
-* Razor Pages에는 `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention` API 규칙이 있습니다. 이 규칙은 자동으로 검색된 모든 Razor Pages에 지정된 매개 변수 변환기를 적용합니다. 매개 변수 변환기는 Razor Pages 경로의 폴더와 파일 이름 부분을 변환합니다. 자세한 내용은 [매개 변수 변환기를 사용하여 페이지 경로 사용자 지정](/aspnet/core/razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes)을 참조하세요.
+* ASP.NET Core MVC에는 `Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention` API 규칙이 있습니다. 이 규칙은 앱의 모든 특성 경로에 지정된 매개 변수 변환기를 적용합니다. 매개 변수 변환기는 특성 경로 토큰이 교체될 때 변환합니다. 자세한 내용은 [매개 변수 변환기를 사용하여 토큰 교체 사용자 지정](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement)을 참조하세요.
+* Razor Pages에는 `Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention` API 규칙이 있습니다. 이 규칙은 자동으로 검색된 모든 Razor Pages에 지정된 매개 변수 변환기를 적용합니다. 매개 변수 변환기는 Razor Pages 경로의 폴더와 파일 이름 부분을 변환합니다. 자세한 내용은 [매개 변수 변환기를 사용하여 페이지 경로 사용자 지정](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes)을 참조하세요.
 
 ## <a name="url-generation-reference"></a>URL 생성 참조
 

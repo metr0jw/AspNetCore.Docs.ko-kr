@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-performance-best-practices
-ms.openlocfilehash: 5d3cd1480dd37f437b2d6d5a89af0a842286be95
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: d1ad646f82e5c9ba611a60fc9be8378bedef8dee
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080266"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721725"
 ---
 # <a name="aspnet-core-no-locblazor-webassembly-performance-best-practices"></a>ASP.NET Core Blazor WebAssembly 성능 모범 사례
 
@@ -81,10 +81,7 @@ Blazor의 diff 알고리즘은 알고리즘에서 구성 요소가 변경되지 
 
 구성 요소는 코드와 태그의 재사용 가능한 조각을 생성하는 편리한 방법을 제공합니다. 일반적으로 앱의 요구 사항에 가장 잘 맞는 개별 구성 요소를 작성하는 것이 좋습니다. 한 가지 주의할 점은 각 추가 자식 구성 요소가 부모 구성 요소를 렌더링하는 데 소요되는 총 시간에 기여한다는 것입니다. 대부분의 앱에서 추가 오버헤드는 무시해도 되는 정도입니다. 많은 수의 구성 요소를 생성하는 앱은 렌더링된 구성 요소의 수를 제한하는 등 처리 오버헤드를 줄이기 위한 전략을 고려해야 합니다.
 
-예를 들어 구성 요소를 포함하는 수백 개의 행을 렌더링하는 그리드 또는 목록은 렌더링할 때 프로세서를 많이 사용합니다. 어떤 시점에도 구성 요소의 하위 집합만 렌더링되도록 그리드 또는 목록 레이아웃을 가상화하는 것이 좋습니다. 구성 요소 하위 집합 렌더링 예제는 [`Virtualization` 샘플 앱(aspnet/samples GitHub 리포지토리)](https://github.com/aspnet/samples/tree/master/samples/aspnetcore/blazor/Virtualization)에서 다음 구성 요소를 참조하세요.
-
-* `Virtualize` 구성 요소([`Shared/Virtualize.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Shared/Virtualize.cs)): <xref:Microsoft.AspNetCore.Components.ComponentBase>를 구현하는 C#으로 작성된 구성 요소로, 사용자 스크롤을 기준으로 날씨 데이터 행 세트를 렌더링합니다.
-* `FetchData` 구성 요소([`Pages/FetchData.razor`](https://github.com/aspnet/samples/blob/master/samples/aspnetcore/blazor/Virtualization/Pages/FetchData.razor)): `Virtualize` 구성 요소를 사용하여 한 번에 25개의 날씨 데이터 행을 표시합니다.
+자세한 내용은 <xref:blazor/components/virtualization>를 참조하세요.
 
 ## <a name="avoid-javascript-interop-to-marshal-data"></a>JavaScript interop의 데이터 마샬링 방지
 

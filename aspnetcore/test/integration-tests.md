@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: test/integration-tests
-ms.openlocfilehash: b06c06fb5e525a0bdc3df1de50236fa8f76daca9
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 9b36a77730a43c7515fcd2c56621412453784c9d
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635114"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722542"
 ---
 # <a name="integration-tests-in-aspnet-core"></a>ASP.NET Core의 통합 테스트
 
@@ -388,7 +388,7 @@ SUT는 다음과 같은 특징을 가진 Razor Pages 메시지 시스템입니�
 
 EF 항목 [InMemory로 테스트](/ef/core/miscellaneous/testing/in-memory)에서는 MSTest를 사용하여 테스트에 메모리 내 데이터베이스를 사용하는 방법을 설명합니다. 이 항목에서는 [xUnit](https://xunit.github.io/) 테스트 프레임워크를 사용합니다. 여러 테스트 프레임워크의 테스트 개념 및 테스트 구현은 비슷하지만 동일하지는 않습니다.
 
-앱은 리포지토리 패턴을 사용하지 않고 [UoW(작업 단위) 패턴](https://martinfowler.com/eaaCatalog/unitOfWork.html)의 효과적인 예가 아니지만 Razor Pages는 이러한 개발 패턴을 지원합니다. 자세한 내용은 [인프라 지속성 계층 디자인](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) 및 [테스트 컨트롤러 논리](/aspnet/core/mvc/controllers/testing)(샘플에서 리포지토리 패턴 구현)를 참조하세요.
+앱은 리포지토리 패턴을 사용하지 않고 [UoW(작업 단위) 패턴](https://martinfowler.com/eaaCatalog/unitOfWork.html)의 효과적인 예가 아니지만 Razor Pages는 이러한 개발 패턴을 지원합니다. 자세한 내용은 [인프라 지속성 계층 디자인](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) 및 [테스트 컨트롤러 논리](../mvc/controllers/testing.md)(샘플에서 리포지토리 패턴 구현)를 참조하세요.
 
 ### <a name="test-app-organization"></a>테스트 앱 구성
 
@@ -779,7 +779,7 @@ SUT는 다음과 같은 특징을 가진 Razor Pages 메시지 시스템입니�
 
 EF 항목 [InMemory로 테스트](/ef/core/miscellaneous/testing/in-memory)에서는 MSTest를 사용하여 테스트에 메모리 내 데이터베이스를 사용하는 방법을 설명합니다. 이 항목에서는 [xUnit](https://xunit.github.io/) 테스트 프레임워크를 사용합니다. 여러 테스트 프레임워크의 테스트 개념 및 테스트 구현은 비슷하지만 동일하지는 않습니다.
 
-앱은 리포지토리 패턴을 사용하지 않고 [UoW(작업 단위) 패턴](https://martinfowler.com/eaaCatalog/unitOfWork.html)의 효과적인 예가 아니지만 Razor Pages는 이러한 개발 패턴을 지원합니다. 자세한 내용은 [인프라 지속성 계층 디자인](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) 및 [테스트 컨트롤러 논리](/aspnet/core/mvc/controllers/testing)(샘플에서 리포지토리 패턴 구현)를 참조하세요.
+앱은 리포지토리 패턴을 사용하지 않고 [UoW(작업 단위) 패턴](https://martinfowler.com/eaaCatalog/unitOfWork.html)의 효과적인 예가 아니지만 Razor Pages는 이러한 개발 패턴을 지원합니다. 자세한 내용은 [인프라 지속성 계층 디자인](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) 및 [테스트 컨트롤러 논리](../mvc/controllers/testing.md)(샘플에서 리포지토리 패턴 구현)를 참조하세요.
 
 ### <a name="test-app-organization"></a>테스트 앱 구성
 

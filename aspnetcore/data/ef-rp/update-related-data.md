@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/update-related-data
-ms.openlocfilehash: 603c5e7c9f095c380461f8c6e4ead783ad35abe2
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 17b200f0ba90035c417c96689798263af16551de
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630863"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722821"
 ---
 # <a name="part-7-no-locrazor-pages-with-ef-core-in-aspnet-core---update-related-data"></a>7부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 관련 데이터 업데이트
 
@@ -46,7 +46,7 @@ ms.locfileid: "88630863"
 
 [!code-csharp[](intro/samples/cu30/Pages/Courses/DepartmentNamePageModel.cs)]
 
-위의 코드에서는 부서 이름의 목록을 포함하도록 [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0)를 만듭니다. `selectedDepartment`가 지정된 경우 해당 부서는 `SelectList`에서 선택됩니다.
+위의 코드에서는 부서 이름의 목록을 포함하도록 [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist)를 만듭니다. `selectedDepartment`가 지정된 경우 해당 부서는 `SelectList`에서 선택됩니다.
 
 만들기 및 편집 페이지 모델 클래스는 `DepartmentNamePageModel`에서 파생됩니다.
 
@@ -111,7 +111,7 @@ Razor 페이지는 [Select 태그 도우미](xref:mvc/views/working-with-forms#t
 
 ## <a name="update-the-course-details-and-delete-pages"></a>과정 세부 정보 및 삭제 페이지 업데이트
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__)은 추적이 필요하지 않은 경우 성능을 향상시킬 수 있습니다.
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__)은 추적이 필요하지 않은 경우 성능을 향상시킬 수 있습니다.
 
 ### <a name="update-the-course-page-models"></a>과정 페이지 모델 업데이트
 
@@ -263,7 +263,7 @@ Razor 페이지에는 과정 엔터티의 컬렉션이 없으므로 모델 바�
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/DepartmentNamePageModel.cshtml.cs?highlight=9,11,20-21)]
 
-위의 코드에서는 부서 이름의 목록을 포함하도록 [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist?view=aspnetcore-2.0)를 만듭니다. `selectedDepartment`가 지정된 경우 해당 부서는 `SelectList`에서 선택됩니다.
+위의 코드에서는 부서 이름의 목록을 포함하도록 [SelectList](/dotnet/api/microsoft.aspnetcore.mvc.rendering.selectlist)를 만듭니다. `selectedDepartment`가 지정된 경우 해당 부서는 `SelectList`에서 선택됩니다.
 
 만들기 및 편집 페이지 모델 클래스는 `DepartmentNamePageModel`에서 파생됩니다.
 
@@ -328,7 +328,7 @@ Razor 페이지는 [Select 태그 도우미](xref:mvc/views/working-with-forms#t
 
 ## <a name="add-asnotracking-to-the-details-and-delete-page-models"></a>세부 정보 및 삭제 페이지 모델에 AsNoTracking 추가
 
-[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking?view=efcore-2.0#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__)은 추적이 필요하지 않은 경우 성능을 향상시킬 수 있습니다. 삭제 및 세부 정보 페이지 모델에 `AsNoTracking`을 추가합니다. 다음 코드에서는 업데이트된 삭제 페이지 모델을 보여 줍니다.
+[AsNoTracking](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.asnotracking#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_AsNoTracking__1_System_Linq_IQueryable___0__)은 추적이 필요하지 않은 경우 성능을 향상시킬 수 있습니다. 삭제 및 세부 정보 페이지 모델에 `AsNoTracking`을 추가합니다. 다음 코드에서는 업데이트된 삭제 페이지 모델을 보여 줍니다.
 
 [!code-csharp[](intro/samples/cu/Pages/Courses/Delete.cshtml.cs?name=snippet&highlight=21,23,40,41)]
 

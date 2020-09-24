@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: d5be01c67f455a2706a654574ef9f5e273551e70
-ms.sourcegitcommit: f09407d128634d200c893bfb1c163e87fa47a161
+ms.openlocfilehash: 478e9e58f265a8c372dd048f9ba8593424050e01
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88865439"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722672"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>ASP.NET Core에서 세계화 및 지역화
 
@@ -66,7 +66,7 @@ HTML을 포함하는 리소스에 대해 `IHtmlLocalizer<T>` 구현을 사용합
 
 컨트롤러, 영역으로 지역화된 문자열을 분할하거나 하나의 컨테이너만을 가질 수 있습니다. 샘플 앱에서 `SharedResource`라는 더미 클래스는 공유 리소스에 사용됩니다.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 일부 개발자는 `Startup` 클래스를 사용하여 전역 또는 공유 문자열을 포함합니다. 아래 샘플에서 `InfoController` 및 `SharedResource` 로컬라이저가 사용됩니다.
 
@@ -420,7 +420,7 @@ HTML을 포함하는 리소스에 대해 `IHtmlLocalizer<T>` 구현을 사용합
 
 컨트롤러, 영역으로 지역화된 문자열을 분할하거나 하나의 컨테이너만을 가질 수 있습니다. 샘플 앱에서 `SharedResource`라는 더미 클래스는 공유 리소스에 사용됩니다.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 일부 개발자는 `Startup` 클래스를 사용하여 전역 또는 공유 문자열을 포함합니다. 아래 샘플에서 `InfoController` 및 `SharedResource` 로컬라이저가 사용됩니다.
 
@@ -775,7 +775,7 @@ HTML을 포함하는 리소스에 대해 `IHtmlLocalizer<T>` 구현을 사용합
 
 컨트롤러, 영역으로 지역화된 문자열을 분할하거나 하나의 컨테이너만을 가질 수 있습니다. 샘플 앱에서 `SharedResource`라는 더미 클래스는 공유 리소스에 사용됩니다.
 
-[!code-csharp[](localization/sample/3.x/Localization/Resources/SharedResource.cs)]
+[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
 
 일부 개발자는 `Startup` 클래스를 사용하여 전역 또는 공유 문자열을 포함합니다. 아래 샘플에서 `InfoController` 및 `SharedResource` 로컬라이저가 사용됩니다.
 

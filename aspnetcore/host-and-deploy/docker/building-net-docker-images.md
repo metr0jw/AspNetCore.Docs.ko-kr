@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/docker/building-net-docker-images
-ms.openlocfilehash: dfb807d5e8d8b949feb0ea87f7f6bcecd04817e8
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 791cc14feac30ad8a571d155624ab821dfd77981
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627327"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722860"
 ---
 # <a name="docker-images-for-aspnet-core"></a>ASP.NET Core의 Docker 이미지
 
@@ -264,8 +264,8 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Docker 빌드 명령](https://docs.docker.com/engine/reference/commandline/build)
 * [Docker 실행 명령](https://docs.docker.com/engine/reference/commandline/run)
 * [ASP.NET Core Docker 샘플](https://github.com/dotnet/dotnet-docker)(이 자습서에서 사용되는 샘플)
-* [프록시 서버 및 부하 분산 장치를 사용하도록 ASP.NET Core 구성](/aspnet/core/host-and-deploy/proxy-load-balancer)
-* [Visual Studio Docker 도구로 작업](https://docs.microsoft.com/aspnet/core/publishing/visual-studio-tools-for-docker)
+* [프록시 서버 및 부하 분산 장치를 사용하도록 ASP.NET Core 구성](../proxy-load-balancer.md)
+* [Visual Studio Docker 도구로 작업](./visual-studio-tools-for-docker.md)
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)(Visual Studio Code를 사용한 디버깅)
 * [GC using Docker and small containers](xref:performance/memory#sc)(Docker 및 소형 컨테이너를 사용하는 GC)
 

@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/complex-data-model
-ms.openlocfilehash: 3fab57df84e6902a8041940939c067da41f1674c
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 55269c6985534b49cc2567b2d197e46d9b7b1fd7
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88629732"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722529"
 ---
 # <a name="part-5-no-locrazor-pages-with-ef-core-in-aspnet-core---data-model"></a>5부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 데이터 모델
 
@@ -70,7 +70,7 @@ ms.locfileid: "88629732"
 
 학생 등록 날짜의 경우 해당 날짜만 관련이 있지만 모든 페이지에는 현재 해당 날짜와 함께 하루의 시간이 표시됩니다. 데이터 주석 특성을 사용하면 데이터를 표시하는 모든 페이지에서 표시 형식을 해결하는 하나의 코드 변경을 만들 수 있습니다. 
 
-[DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) 특성은 데이터베이스 내장 형식보다 구체적인 데이터 형식을 지정합니다. 이 경우 날짜 및 시간이 아닌 날짜만 표시되어야 합니다. [DataType 열거형](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1)은 날짜, 시간, 전화 번호, 통화, 이메일 주소 등과 같은 많은 데이터 형식을 제공합니다. `DataType` 특성을 통해 앱에서 자동으로 유형별 기능을 제공하도록 설정할 수도 있습니다. 예를 들어:
+[DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) 특성은 데이터베이스 내장 형식보다 구체적인 데이터 형식을 지정합니다. 이 경우 날짜 및 시간이 아닌 날짜만 표시되어야 합니다. [DataType 열거형](/dotnet/api/system.componentmodel.dataannotations.datatype)은 날짜, 시간, 전화 번호, 통화, 이메일 주소 등과 같은 많은 데이터 형식을 제공합니다. `DataType` 특성을 통해 앱에서 자동으로 유형별 기능을 제공하도록 설정할 수도 있습니다. 예를 들어:
 
 * `mailto:` 링크는 `DataType.EmailAddress`에 대해 자동으로 만들어집니다.
 * 날짜 선택기는 대부분의 브라우저에서 `DataType.Date`에 대해 제공됩니다.
@@ -100,11 +100,11 @@ ms.locfileid: "88629732"
 [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
 ```
 
-데이터 유효성 검사 규칙 및 유효성 검사 오류 메시지는 특성으로 지정될 수 있습니다. [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) 특성은 데이터 필드에서 허용되는 최소 및 최대 문자 길이를 지정합니다. 표시된 코드는 이름을 최대 50자로 제한합니다. 최소 문자열 길이를 설정하는 예제는 [뒷부분](#the-required-attribute)에 나와 있습니다.
+데이터 유효성 검사 규칙 및 유효성 검사 오류 메시지는 특성으로 지정될 수 있습니다. [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute) 특성은 데이터 필드에서 허용되는 최소 및 최대 문자 길이를 지정합니다. 표시된 코드는 이름을 최대 50자로 제한합니다. 최소 문자열 길이를 설정하는 예제는 [뒷부분](#the-required-attribute)에 나와 있습니다.
 
 `StringLength` 특성은 또한 클라이언트 쪽 및 서버 쪽 유효성 검사를 제공합니다. 최소값은 데이터베이스 스키마에 영향을 주지 않습니다.
 
-`StringLength` 특성은 이름에 공백을 입력할 수 있습니다. [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) 특성은 입력에 제한을 적용하는 데 사용될 수 있습니다. 예를 들어 다음 코드는 첫 번째 문자가 대문자여야 하고, 나머지 문자는 알파벳순이어야 합니다.
+`StringLength` 특성은 이름에 공백을 입력할 수 있습니다. [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute) 특성은 입력에 제한을 적용하는 데 사용될 수 있습니다. 예를 들어 다음 코드는 첫 번째 문자가 대문자여야 하고, 나머지 문자는 알파벳순이어야 합니다.
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
@@ -760,7 +760,7 @@ https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intr
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
-[DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute?view=netframework-4.7.1) 특성은 데이터베이스 내장 형식보다 구체적인 데이터 형식을 지정합니다. 이 경우 날짜 및 시간이 아닌 날짜만 표시되어야 합니다. [DataType 열거형](/dotnet/api/system.componentmodel.dataannotations.datatype?view=netframework-4.7.1)은 날짜, 시간, 전화 번호, 통화, 이메일 주소 등과 같은 많은 데이터 형식을 제공합니다. `DataType` 특성을 통해 앱에서 자동으로 유형별 기능을 제공하도록 설정할 수도 있습니다. 예를 들어:
+[DataType](/dotnet/api/system.componentmodel.dataannotations.datatypeattribute) 특성은 데이터베이스 내장 형식보다 구체적인 데이터 형식을 지정합니다. 이 경우 날짜 및 시간이 아닌 날짜만 표시되어야 합니다. [DataType 열거형](/dotnet/api/system.componentmodel.dataannotations.datatype)은 날짜, 시간, 전화 번호, 통화, 이메일 주소 등과 같은 많은 데이터 형식을 제공합니다. `DataType` 특성을 통해 앱에서 자동으로 유형별 기능을 제공하도록 설정할 수도 있습니다. 예를 들어:
 
 * `mailto:` 링크는 `DataType.EmailAddress`에 대해 자동으로 만들어집니다.
 * 날짜 선택기는 대부분의 브라우저에서 `DataType.Date`에 대해 제공됩니다.
@@ -790,13 +790,13 @@ https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/data/ef-rp/intr
 
 ### <a name="the-stringlength-attribute"></a>StringLength 특성
 
-데이터 유효성 검사 규칙 및 유효성 검사 오류 메시지는 특성으로 지정될 수 있습니다. [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute?view=netframework-4.7.1) 특성은 데이터 필드에서 허용되는 최소 및 최대 문자 길이를 지정합니다. `StringLength` 특성은 또한 클라이언트 쪽 및 서버 쪽 유효성 검사를 제공합니다. 최소값은 데이터베이스 스키마에 영향을 주지 않습니다.
+데이터 유효성 검사 규칙 및 유효성 검사 오류 메시지는 특성으로 지정될 수 있습니다. [StringLength](/dotnet/api/system.componentmodel.dataannotations.stringlengthattribute) 특성은 데이터 필드에서 허용되는 최소 및 최대 문자 길이를 지정합니다. `StringLength` 특성은 또한 클라이언트 쪽 및 서버 쪽 유효성 검사를 제공합니다. 최소값은 데이터베이스 스키마에 영향을 주지 않습니다.
 
 `Student` 모델을 다음 코드로 업데이트합니다.
 
 [!code-csharp[](intro/samples/cu21/Models/Student.cs?name=snippet_StringLength&highlight=10,12)]
 
-위의 코드는 이름을 최대 50자로 제한합니다. `StringLength` 특성은 이름에 공백을 입력할 수 있습니다. [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute?view=netframework-4.7.1) 특성은 입력에 제한을 적용하는 데 사용됩니다. 예를 들어 다음 코드는 첫 번째 문자가 대문자여야 하고, 나머지 문자는 사전순이어야 합니다.
+위의 코드는 이름을 최대 50자로 제한합니다. `StringLength` 특성은 이름에 공백을 입력할 수 있습니다. [RegularExpression](/dotnet/api/system.componentmodel.dataannotations.regularexpressionattribute) 특성은 입력에 제한을 적용하는 데 사용됩니다. 예를 들어 다음 코드는 첫 번째 문자가 대문자여야 하고, 나머지 문자는 사전순이어야 합니다.
 
 ```csharp
 [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
