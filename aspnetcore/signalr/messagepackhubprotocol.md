@@ -5,7 +5,7 @@ description: ASP.NET Core에 MessagePack Hub 프로토콜을 추가 SignalR 합�
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 04/13/2020
+ms.date: 09/24/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/messagepackhubprotocol
-ms.openlocfilehash: ab9bd11e37182f5b24db5595d5d050f4cc0e32da
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 15ae8911e2ffba43c7bb885efd153d8b6803bc2a
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626651"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393680"
 ---
 # <a name="use-messagepack-hub-protocol-in-no-locsignalr-for-aspnet-core"></a>ASP.NET Core에 대해에서 MessagePack Hub 프로토콜 사용 SignalR
 
@@ -72,6 +72,9 @@ services.AddSignalR()
 .NET 클라이언트에서 MessagePack를 사용 하도록 설정 하려면 패키지를 설치 하 `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` 고 `AddMessagePackProtocol` 에서를 호출 `HubConnectionBuilder` 합니다.
 
 ```csharp
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+
 var hubConnection = new HubConnectionBuilder()
                         .WithUrl("/chathub")
                         .AddMessagePackProtocol()
@@ -132,7 +135,7 @@ public class ChatMessage
 }
 ```
 
-JavaScript 클라이언트에서 전송 하는 경우 `PascalCased` 대/소문자 구분이 c # 클래스와 정확 하 게 일치 해야 하므로 속성 이름을 사용 해야 합니다. 다음은 그 예입니다. 
+JavaScript 클라이언트에서 전송 하는 경우 `PascalCased` 대/소문자 구분이 c # 클래스와 정확 하 게 일치 해야 하므로 속성 이름을 사용 해야 합니다. 예를 들면 다음과 같습니다.
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
@@ -184,7 +187,7 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 이 제한 사항에 대 한 자세한 내용은 GitHub 문제 [aspnet/ SignalR #2937](https://github.com/aspnet/SignalR/issues/2937)를 참조 하세요.
 
-## <a name="related-resources"></a>관련 리소스
+## <a name="related-resources"></a>관련 참고 자료
 
 * [시작](xref:tutorials/signalr)
 * [.NET 클라이언트](xref:signalr/dotnet-client)
@@ -226,9 +229,11 @@ services.AddSignalR()
 ```
 
 > [!WARNING]
-> [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) 을 검토 하 고 권장 되는 패치를 적용 하는 것이 좋습니다. 예를 들어 `MessagePackSecurity.Active` 정적 속성을로 설정 `MessagePackSecurity.UntrustedData` 합니다. 을 설정 `MessagePackSecurity.Active` 하려면 [MessagePack의 1.9 버전](https://www.nuget.org/packages/MessagePack/1.9.3)을 수동으로 설치 해야 합니다. `MessagePack`버전 1.9. x 업그레이드를 설치 SignalR 하는 데 사용 됩니다. `MessagePackSecurity.Active`가로 설정 되어 있지 않으면 `MessagePackSecurity.UntrustedData` 악의적인 클라이언트에서 서비스 거부를 유발할 수 있습니다. `MessagePackSecurity.Active` `Program.Main` 다음 코드와 같이에서 설정 합니다.
+> [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) 을 검토 하 고 권장 되는 패치를 적용 하는 것이 좋습니다. 예를 들어 `MessagePackSecurity.Active` 정적 속성을로 설정 `MessagePackSecurity.UntrustedData` 합니다. 을 설정 `MessagePackSecurity.Active` 하려면 [MessagePack의 1.9 버전](https://www.nuget.org/packages/MessagePack/1.9.3)을 수동으로 설치 해야 합니다. `MessagePack`버전 1.9. x 업그레이드를 설치 SignalR 하는 데 사용 됩니다. `MessagePack` 버전 2.x에는 주요 변경 내용이 도입 되었으며 SignalR 3.1 이전 버전과 호환 되지 않습니다. 가 `MessagePackSecurity.Active` 로 설정 되어 있지 않으면 `MessagePackSecurity.UntrustedData` 악의적인 클라이언트에서 서비스 거부를 유발할 수 있습니다. `MessagePackSecurity.Active` `Program.Main` 다음 코드와 같이에서 설정 합니다.
 
 ```csharp
+using MessagePack;
+
 public static void Main(string[] args)
 {
   MessagePackSecurity.Active = MessagePackSecurity.UntrustedData;
@@ -247,6 +252,9 @@ public static void Main(string[] args)
 .NET 클라이언트에서 MessagePack를 사용 하도록 설정 하려면 패키지를 설치 하 `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` 고 `AddMessagePackProtocol` 에서를 호출 `HubConnectionBuilder` 합니다.
 
 ```csharp
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+
 var hubConnection = new HubConnectionBuilder()
                         .WithUrl("/chathub")
                         .AddMessagePackProtocol()
@@ -307,7 +315,7 @@ public class ChatMessage
 }
 ```
 
-JavaScript 클라이언트에서 전송 하는 경우 `PascalCased` 대/소문자 구분이 c # 클래스와 정확 하 게 일치 해야 하므로 속성 이름을 사용 해야 합니다. 다음은 그 예입니다. 
+JavaScript 클라이언트에서 전송 하는 경우 `PascalCased` 대/소문자 구분이 c # 클래스와 정확 하 게 일치 해야 하므로 속성 이름을 사용 해야 합니다. 예를 들면 다음과 같습니다.
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
@@ -359,7 +367,7 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 이 제한 사항에 대 한 자세한 내용은 GitHub 문제 [aspnet/ SignalR #2937](https://github.com/aspnet/SignalR/issues/2937)를 참조 하세요.
 
-## <a name="related-resources"></a>관련 리소스
+## <a name="related-resources"></a>관련 참고 자료
 
 * [시작](xref:tutorials/signalr)
 * [.NET 클라이언트](xref:signalr/dotnet-client)
@@ -404,6 +412,8 @@ services.AddSignalR()
 > [CVE-2020-5234](https://github.com/neuecc/MessagePack-CSharp/security/advisories/GHSA-7q36-4xx7-xcxf) 을 검토 하 고 권장 되는 패치를 적용 하는 것이 좋습니다. 예를 들어 `MessagePackSecurity.Active` 정적 속성을로 설정 `MessagePackSecurity.UntrustedData` 합니다. 을 설정 `MessagePackSecurity.Active` 하려면 [MessagePack의 1.9 버전](https://www.nuget.org/packages/MessagePack/1.9.3)을 수동으로 설치 해야 합니다. `MessagePack`버전 1.9. x 업그레이드를 설치 SignalR 하는 데 사용 됩니다. `MessagePackSecurity.Active`가로 설정 되어 있지 않으면 `MessagePackSecurity.UntrustedData` 악의적인 클라이언트에서 서비스 거부를 유발할 수 있습니다. `MessagePackSecurity.Active` `Program.Main` 다음 코드와 같이에서 설정 합니다.
 
 ```csharp
+using MessagePack;
+
 public static void Main(string[] args)
 {
   MessagePackSecurity.Active = MessagePackSecurity.UntrustedData;
@@ -422,6 +432,9 @@ public static void Main(string[] args)
 .NET 클라이언트에서 MessagePack를 사용 하도록 설정 하려면 패키지를 설치 하 `Microsoft.AspNetCore.SignalR.Protocols.MessagePack` 고 `AddMessagePackProtocol` 에서를 호출 `HubConnectionBuilder` 합니다.
 
 ```csharp
+using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyInjection;
+
 var hubConnection = new HubConnectionBuilder()
                         .WithUrl("/chathub")
                         .AddMessagePackProtocol()
@@ -482,7 +495,7 @@ public class ChatMessage
 }
 ```
 
-JavaScript 클라이언트에서 전송 하는 경우 `PascalCased` 대/소문자 구분이 c # 클래스와 정확 하 게 일치 해야 하므로 속성 이름을 사용 해야 합니다. 다음은 그 예입니다. 
+JavaScript 클라이언트에서 전송 하는 경우 `PascalCased` 대/소문자 구분이 c # 클래스와 정확 하 게 일치 해야 하므로 속성 이름을 사용 해야 합니다. 예를 들면 다음과 같습니다.
 
 ```javascript
 connection.invoke("SomeMethod", { Sender: "Sally", Message: "Hello!" });
@@ -534,7 +547,7 @@ InvalidDataException: Error binding arguments. Make sure that the types of the p
 
 이 제한 사항에 대 한 자세한 내용은 GitHub 문제 [aspnet/ SignalR #2937](https://github.com/aspnet/SignalR/issues/2937)를 참조 하세요.
 
-## <a name="related-resources"></a>관련 리소스
+## <a name="related-resources"></a>관련 참고 자료
 
 * [시작](xref:tutorials/signalr)
 * [.NET 클라이언트](xref:signalr/dotnet-client)

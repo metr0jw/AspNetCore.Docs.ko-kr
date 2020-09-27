@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/models/model-binding
-ms.openlocfilehash: ec36ff6d646e0554550a4372389aed89aa267b1f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: ca2f071ccb84fdb2eb06f533fc4d088ad1b1c785
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88633983"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393888"
 ---
 # <a name="model-binding-in-aspnet-core"></a>ASP.NET Core의 모델 바인딩
 
@@ -147,7 +147,7 @@ public class Pet
 }
 ```
 
-앞의 예제에서:
+이전 예제에서는 다음을 수행합니다.
 
 * `[FromQuery]` 특성은 무시됩니다.
 * `Breed` 속성은 쿼리 문자열 매개 변수에서 채워지지 않습니다. 
@@ -217,7 +217,7 @@ public class Pet
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
-* [버전](xref:System.ComponentModel.VersionConverter)
+* [Version](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>복합 형식
 
@@ -317,7 +317,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>컬렉션
 
-단순 형식의 컬렉션인 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 다음은 그 예입니다. 
+단순 형식의 컬렉션인 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 예를 들면 다음과 같습니다.
 
 * 바인딩되는 매개 변수가 `selectedCourses`라는 배열이라고 가정합니다.
 
@@ -362,7 +362,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>사전
 
-`Dictionary` 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 다음은 그 예입니다. 
+`Dictionary` 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 예를 들면 다음과 같습니다.
 
 * 대상 매개 변수가 `selectedCourses`라는 `Dictionary<int, string>`라고 가정합니다.
 
@@ -393,6 +393,47 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
+  
+::: moniker-end
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="constructor-binding-and-record-types"></a>생성자 바인딩 및 레코드 형식
+
+모델 바인딩을 사용 하려면 복합 형식에 매개 변수가 없는 생성자가 있어야 합니다. `System.Text.Json`및 `Newtonsoft.Json` 기반 입력 포맷터는 모두 매개 변수가 없는 생성자가 없는 클래스의 deserialization을 지원 합니다. 
+
+C # 9에서는 네트워크를 통해 데이터를 간략하게 표현할 수 있는 좋은 방법인 레코드 형식을 소개 합니다. ASP.NET Core는 단일 생성자를 사용 하 여 모델 바인딩 및 레코드 형식 유효성 검사에 대 한 지원을 추가 합니다.
+
+```csharp
+public record Person([Required] string Name, [Range(0, 150)] int Age);
+
+public class PersonController
+{
+   public IActionResult Index() => View();
+
+   [HttpPost]
+   public IActionResult Index(Person person)
+   {
+       ...
+   }
+}
+```
+
+`Person/Index.cshtml`:
+
+```cshtml
+@model Person
+
+Name: <input asp-for="Name" />
+...
+Age: <input asp-for="Age" />
+```
+
+레코드 형식의 유효성을 검사할 때 런타임에서는 속성이 아닌 매개 변수에 대 한 유효성 검사 메타 데이터를 검색 합니다.
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-3.0"
 
 <a name="glob"></a>
 
@@ -512,6 +553,7 @@ ASP.NET Core는 [Consumes](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) 특�
 * <xref:mvc/advanced/custom-model-binding>
 
 ::: moniker-end
+
 ::: moniker range="< aspnetcore-3.0"
 
 이 문서는 모델 바인딩이 무엇인지, 작동 방법 및 해당 동작을 사용자 지정하는 방법을 설명합니다.
@@ -633,7 +675,7 @@ public class Pet
 }
 ```
 
-앞의 예제에서:
+이전 예제에서는 다음을 수행합니다.
 
 * `[FromQuery]` 특성은 무시됩니다.
 * `Breed` 속성은 쿼리 문자열 매개 변수에서 채워지지 않습니다. 
@@ -703,7 +745,7 @@ public class Pet
 * [TimeSpan](xref:System.ComponentModel.TimeSpanConverter)
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
-* [버전](xref:System.ComponentModel.VersionConverter)
+* [Version](xref:System.ComponentModel.VersionConverter)
 
 ## <a name="complex-types"></a>복합 형식
 
@@ -803,7 +845,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="collections"></a>컬렉션
 
-단순 형식의 컬렉션인 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 다음은 그 예입니다. 
+단순 형식의 컬렉션인 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 예를 들면 다음과 같습니다.
 
 * 바인딩되는 매개 변수가 `selectedCourses`라는 배열이라고 가정합니다.
 
@@ -848,7 +890,7 @@ public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor 
 
 ## <a name="dictionaries"></a>사전
 
-`Dictionary` 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 다음은 그 예입니다. 
+`Dictionary` 대상의 경우 모델 바인딩은 *parameter_name* 또는 *property_name*에 대한 일치 항목을 찾습니다. 일치하는 항목이 없는 경우 접두사 없이 지원되는 양식 중 하나를 찾습니다. 예를 들면 다음과 같습니다.
 
 * 대상 매개 변수가 `selectedCourses`라는 `Dictionary<int, string>`라고 가정합니다.
 

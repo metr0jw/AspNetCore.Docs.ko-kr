@@ -17,18 +17,18 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/views/partial
-ms.openlocfilehash: 7a370042520adfe5b06784b76acf41a81eb2c72d
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: bb75d8b7d78c82c9c32605ac645b8895fdfb78e3
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630629"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393654"
 ---
 # <a name="partial-views-in-aspnet-core"></a>ASP.NET Core의 부분 보기
 
 작성자: [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT) 및 [Scott Sauber](https://twitter.com/scottsauber)
 
-부분 보기는 [Razor](xref:mvc/views/razor) 다른 태그 파일의 렌더링 된 출력 *내에서* HTML 출력을 렌더링 하는 태그 파일 (*cshtml*)입니다.
+부분 뷰는 [Razor](xref:mvc/views/razor) *.cshtml* [`@page`](xref:mvc/views/razor#page) 다른 태그 파일의 렌더링 된 출력 *내에서* HTML 출력을 렌더링 하는 지시문이 없는 태그 파일 (cshtml)입니다.
 
 ::: moniker range=">= aspnetcore-2.1"
 
@@ -57,7 +57,7 @@ ms.locfileid: "88630629"
 
 ::: moniker range=">= aspnetcore-2.0"
 
-부분 보기는 *Views* 폴더 (MVC) 또는 *pages* 폴더 (페이지) 내에서 유지 관리 되는 *cshtml* 태그 파일입니다 Razor .
+부분 뷰는 *.cshtml* [`@page`](xref:mvc/views/razor#page) *Views* 폴더 (MVC) 또는 *pages* 폴더 (페이지) 내에서 지시문을 유지 하지 않고. s t a t 마크업 파일입니다 Razor .
 
 ASP.NET Core MVC에서 컨트롤러의 <xref:Microsoft.AspNetCore.Mvc.ViewResult>는 보기 또는 부분 보기를 반환할 수 있습니다. Razor페이지에서는 <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> 개체로 표시 된 부분 뷰를 반환할 수 있습니다 <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> . 부분 보기 참조 및 렌더링은 [부분 보기 참조](#reference-a-partial-view) 섹션에 설명되어 있습니다.
 
@@ -168,7 +168,7 @@ ASP.NET Core 2.2 이상에서 처리기 메서드는 <xref:Microsoft.AspNetCore.
 <partial name="../Account/_PartialName.cshtml" />
 ```
 
-자세한 내용은 <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>을 참조하세요.
+자세한 내용은 <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>를 참조하세요.
 
 ::: moniker-end
 

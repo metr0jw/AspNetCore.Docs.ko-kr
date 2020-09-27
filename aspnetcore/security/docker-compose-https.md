@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/docker-compose-https
-ms.openlocfilehash: 71ead7dcce32dab090a9b0b3573aa855d00fa7f1
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: cd46fdcbe10dc0b7829fbe7eaef821889f395df4
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722763"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393706"
 ---
 # <a name="hosting-aspnet-core-images-with-docker-compose-over-https"></a>HTTPS를 통해 Docker Compose를 사용 하 여 ASP.NET Core 이미지 호스팅
 
@@ -36,7 +36,7 @@ ASP.NET Core는 [기본적으로 HTTPS를](./enforcing-ssl.md)사용 합니다. 
 
 이 샘플에는 docker [클라이언트](https://www.docker.com/products/docker)의 [docker 17.06](https://docs.docker.com/release-notes/docker-ce) 이상이 필요 합니다.
 
-## <a name="prerequisites"></a>필수 구성 요소
+## <a name="prerequisites"></a>사전 요구 사항
 
 이 문서의 지침 중 일부에는 [.Net Core 2.2 SDK](https://dotnet.microsoft.com/download) 이상이 필요 합니다.
 
@@ -74,7 +74,7 @@ dotnet dev-certs https --trust
 
 다음 콘텐츠를 사용 하 여 _docker-compose.ci.build.yml_ 파일을 만듭니다.
 
-```json
+```yaml
 version: '3.4'
 
 services:
@@ -114,7 +114,7 @@ dotnet dev-certs https --trust
 
 다음 콘텐츠를 사용 하 여 _docker-compose.ci.build.yml_ 파일을 만듭니다.
 
-```json
+```yaml
 version: '3.4'
 
 services:
@@ -152,7 +152,7 @@ dotnet dev-certs https --trust
 
 다음 콘텐츠를 사용 하 여 _docker-compose.ci.build.yml_ 파일을 만듭니다.
 
-```json
+```yaml
 version: '3.4'
 
 services:

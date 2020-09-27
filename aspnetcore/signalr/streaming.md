@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/streaming
-ms.openlocfilehash: 29748ebe24fea03415b5a01b21300433e3fbc0f0
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 5a172818f8910a637b731dc1b1315965f448b2ba
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634217"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393576"
 ---
 # <a name="use-streaming-in-aspnet-core-no-locsignalr"></a>ASP.NET Core에서 스트리밍 사용 SignalR
 
@@ -74,7 +74,7 @@ ASP.NET Core SignalR 는 서버 메서드의 스트리밍 반환 값을 지원 �
 > [!NOTE]
 > `ChannelWriter<T>`백그라운드 스레드에서에 쓰고 가능한 한 빨리를 반환 합니다 `ChannelReader` . 다른 허브 호출은가 반환 될 때까지 차단 됩니다 `ChannelReader` .
 >
-> 에서 논리를 래핑합니다 `try ... catch` . `Channel` `catch` `catch` 허브 메서드 호출이 제대로 완료 되었는지 확인 하려면 외부 및 외부에서를 완료 합니다.
+> [ `try ... catch` 문에서](/dotnet/csharp/language-reference/keywords/try-catch)논리를 래핑합니다. `Channel` [ `finally` 블록](/dotnet/csharp/language-reference/keywords/try-catch-finally)에서를 완료 합니다. 오류를 전달 하려면 `catch` 블록 내에서 캡처한 다음 블록에 씁니다 `finally` .
 
 ::: moniker range=">= aspnetcore-3.0"
 

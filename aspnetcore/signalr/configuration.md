@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/configuration
-ms.openlocfilehash: fc0e6398884bb5c3b806a587a8a361d7f279461f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 579491cfe60a26593ca038a1691f9b52f0fb1d06
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88625559"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393875"
 ---
 # <a name="aspnet-core-no-locsignalr-configuration"></a>ASP.NET Core SignalR 구성
 
@@ -85,6 +85,7 @@ MessagePack serialization은 [Addmessagepackprotocol](/dotnet/api/microsoft.exte
 | `EnableDetailedErrors` | `false` | 이면 `true` 허브 메서드에서 예외가 throw 될 때 자세한 예외 메시지가 클라이언트에 반환 됩니다. 기본값은입니다 `false` . 이러한 예외 메시지에는 중요 한 정보가 포함 될 수 있기 때문입니다. |
 | `StreamBufferCapacity` | `10` | 클라이언트 업로드 스트림에 대해 버퍼링 할 수 있는 최대 항목 수입니다. 이 제한에 도달 하면 서버에서 스트림 항목을 처리할 때까지 호출 처리가 차단 됩니다.|
 | `MaximumReceiveMessageSize` | 32KB | 들어오는 단일 허브 메시지의 최대 크기입니다. |
+| `MaximumParallelInvocationsPerClient` | 1 | 각 클라이언트가 큐에 대기 하기 전에 병렬로 호출할 수 있는 최대 허브 메서드 수입니다. |
 
 에서 호출에 대 한 옵션 대리자를 제공 하 여 모든 허브에 대 한 옵션을 구성할 수 있습니다 `AddSignalR` `Startup.ConfigureServices` .
 

@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: mvc/controllers/routing
-ms.openlocfilehash: 08cd6396cca78488827dfa7c2cca62a35c500dbd
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: e451d511ab7791a05024d88635d8005132ad4edd
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009702"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393927"
 ---
 # <a name="routing-to-controller-actions-in-aspnet-core"></a>ASP.NET Core의 컨트롤러 작업에 라우팅
 
@@ -277,7 +277,7 @@ REST Api는 특성 라우팅을 사용 하 여 응용 프로그램의 기능을 
 
 위의 코드에서 <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> 는 `UseEndpoints` 특성 라우트된 컨트롤러를 매핑하기 위해 내부에서 호출 됩니다.
 
-다음 예제에서,
+다음 예제에서는
 
 * 위의 `Configure` 메서드가 사용 됩니다.
 * `HomeController` 기본 기본 경로와 유사한 Url 집합과 일치 `{controller=Home}/{action=Index}/{id?}` 합니다.
@@ -353,7 +353,7 @@ ASP.NET Core에는 다음과 같은 경로 템플릿이 있습니다.
 위의 코드에서
 
 * 각 작업에는 `[HttpGet]` HTTP GET 요청에 대해서만 일치를 제한 하는 특성이 포함 됩니다.
-* `GetProduct`작업은 템플릿을 포함 `"{id}"` 하므로 `id` `"api/[controller]"` 컨트롤러의 템플릿에 추가 됩니다. 메서드 템플릿은 `"api/[controller]/"{id}""` 입니다. 따라서이 작업은,, 등에 대 한 GET 요청만 `/api/test2/xyz` 일치 `/api/test2/123` `/api/test2/{any string}` 합니다.
+* `GetProduct`작업은 템플릿을 포함 `"{id}"` 하므로 `id` `"api/[controller]"` 컨트롤러의 템플릿에 추가 됩니다. 메서드 템플릿은 `"api/[controller]/"{id}""` 입니다. 따라서이 작업은,, 등의 폼에 대 한 GET 요청만 일치 `/api/test2/xyz` `/api/test2/123` `/api/test2/{any string}` 합니다.
   [!code-csharp[](routing/samples/3.x/main/Controllers/Test2Controller.cs?name=snippet2)]
 * 작업에는 `GetIntProduct` 템플릿이 포함 되어 있습니다 `"int/{id:int}")` . `:int`템플릿의 부분은 `id` 정수로 변환할 수 있는 문자열에 대 한 경로 값을 제한 합니다. GET 요청 대상 `/api/test2/int/abc` :
   * 이 작업과 일치 하지 않습니다.
@@ -416,7 +416,7 @@ REST Api는 특성 라우팅을 사용 하 여 응용 프로그램의 기능을 
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/ProductsApiController.cs?name=snippet)]
 
-앞의 예제에서:
+이전 예제에서는 다음을 수행합니다.
 
 * URL 경로가 `/products` 일치 하는 경우 `ProductsApi.ListProducts`
 * URL 경로는 `/products/5` 와 일치할 수 있습니다 `ProductsApi.GetProduct(int)` .
@@ -433,7 +433,7 @@ REST Api는 특성 라우팅을 사용 하 여 응용 프로그램의 기능을 
 | ----------------- | ------------ | --------- |
 | `[Route("")]` | 예 | `"Home"` |
 | `[Route("Index")]` | 예 | `"Home/Index"` |
-| `[Route("/")]` | ‘아니요’**** | `""` |
+| `[Route("/")]` | **아니요** | `""` |
 | `[Route("About")]` | 예 | `"Home/About"` |
 
 <a name="routing-ordering-ref-label"></a>
@@ -1410,7 +1410,7 @@ MVC 애플리케이션은 규칙 기반 라우팅과 특성 라우팅을 혼합�
 
 ## <a name="complex-segments"></a>복잡한 세그먼트
 
-복잡한 세그먼트(예: `[Route("/dog{token}cat")]`)는 non-greedy 방식으로 오른쪽에서 왼쪽으로 리터럴을 매칭하여 처리됩니다. 자세한 내용은 [소스 코드](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L296)를 참조하세요. 자세한 내용은 [이 문제](https://github.com/dotnet/AspNetCore.Docs/issues/8197)를 참조하세요.
+복잡한 세그먼트(예: `[Route("/dog{token}cat")]`)는 non-greedy 방식으로 오른쪽에서 왼쪽으로 리터럴을 매칭하여 처리됩니다. 자세한 내용은 [소스 코드](https://github.com/aspnet/Routing/blob/9cea167cfac36cf034dbb780e3f783114ef94780/src/Microsoft.AspNetCore.Routing/Patterns/RoutePatternMatcher.cs#L296)를 참조하세요. 자세한 내용은 [이 문제](https://github.com/dotnet/AspNetCore.Docs/issues/8197)를 참조 하세요.
 
 <a name="routing-url-gen-ref-label"></a>
 
