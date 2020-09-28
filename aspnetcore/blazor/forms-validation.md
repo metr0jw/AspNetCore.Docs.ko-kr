@@ -5,7 +5,7 @@ description: Blazor에서 양식 및 필드 유효성 검사 시나리오를 사
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/18/2020
+ms.date: 09/17/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/forms-validation
-ms.openlocfilehash: 5efea1728a1460c728a0d90002fb1504fe5b3bbb
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 63cda3348073418e95dd9a0cbdb62e0b5f606383
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90593023"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721803"
 ---
 # <a name="aspnet-core-no-locblazor-forms-and-validation"></a>ASP.NET Core Blazor 양식 및 유효성 검사
 
@@ -86,6 +86,7 @@ public class ExampleModel
 | --------------- | ------------------- |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputCheckbox> | `<input type="checkbox">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> | `<input type="date">` |
+| [`InputFile`](xref:blazor/file-uploads) | `<input type="file">` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> | `<input type="number">` |
 | [`InputRadio`](#radio-buttons) | `<input type="radio">` |
 | [`InputRadioGroup`](#radio-buttons) | `<input type="radio">` |
@@ -239,7 +240,7 @@ public class Starship
 * 유효성 검사 결과에 따라 추가 코드가 실행됩니다. <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>에 할당된 메서드에 비즈니스 논리를 삽입합니다.
 
 ```razor
-<EditForm EditContext="@editContext" OnSubmit="HandleSubmit">
+<EditForm EditContext="@editContext" OnSubmit="@HandleSubmit">
 
     ...
 
@@ -1030,6 +1031,32 @@ private class CustomValidator : ValidationAttribute
 > [!NOTE]
 > <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType>이(가) `null`인 경우 `IsValid` 메서드에서 유효성 검사를 위한 서비스 삽입은 지원되지 않습니다.
 
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="custom-validation-class-attributes"></a>사용자 지정 유효성 검사 클래스 특성
+
+사용자 지정 유효성 검사 클래스 이름은 [부트스트랩](https://getbootstrap.com/) 같은 CSS 프레임워크와 통합하는 경우에 유용합니다. 사용자 지정 유효성 검사 클래스 이름을 지정하려면 `FieldCssClassProvider`에서 파생된 클래스를 만들고 <xref:Microsoft.AspNetCore.Components.Forms.EditContext> 인스턴스에서 클래스를 설정합니다.
+
+```csharp
+var editContext = new EditContext(model);
+editContext.SetFieldCssClassProvider(new MyFieldClassProvider());
+
+...
+
+private class MyFieldClassProvider : FieldCssClassProvider
+{
+    public override string GetFieldCssClass(EditContext editContext, 
+        in FieldIdentifier fieldIdentifier)
+    {
+        var isValid = !editContext.GetValidationMessages(fieldIdentifier).Any();
+
+        return isValid ? "good field" : "bad field";
+    }
+}
+```
+
+::: moniker-end
+
 ### <a name="no-locblazor-data-annotations-validation-package"></a>Blazor 데이터 주석 유효성 검사 패키지
 
 [`Microsoft.AspNetCore.Components.DataAnnotations.Validation`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.DataAnnotations.Validation)는 <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> 구성 요소를 사용하여 유효성 검사 환경 차이를 완화하는 패키지입니다. 이 패키지는 현재 ‘실험적’입니다.
@@ -1085,7 +1112,7 @@ public class ShipDescription
     [Required]
     [StringLength(40, ErrorMessage = "Description too long (40 char).")]
     public string ShortDescription { get; set; }
-    
+
     [Required]
     [StringLength(240, ErrorMessage = "Description too long (240 char).")]
     public string LongDescription { get; set; }
@@ -1182,3 +1209,7 @@ public class ShipDescription
 ```csharp
 private ExampleModel exampleModel = new ExampleModel();
 ```
+
+## <a name="additional-resources"></a>추가 리소스
+
+* <xref:blazor/file-uploads>

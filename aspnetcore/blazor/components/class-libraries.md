@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/class-libraries
-ms.openlocfilehash: 82969bf92965bfdeb1d1474ab47ca74ecbe6dd97
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: afd1bfffae11520a5d9abccc1d2ee4cf3a46a4bf
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080305"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722464"
 ---
 # <a name="aspnet-core-no-locrazor-components-class-libraries"></a>ASP.NET Core Razor 구성 요소 클래스 라이브러리
 
@@ -170,6 +170,43 @@ RCL에는 정적 자산이 포함될 수 있습니다. 정적 자산은 라이�
 ## <a name="supply-components-and-static-assets-to-multiple-hosted-no-locblazor-apps"></a>호스트된 여러 Blazor 앱에 구성 요소 및 정적 자산 제공
 
 자세한 내용은 <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries>를 참조하세요.
+
+::: moniker range=">= aspnetcore-5.0"
+
+## <a name="browser-compatibility-analyzer-for-no-locblazor-webassembly"></a>Blazor WebAssembly용 브라우저 호환성 분석기
+
+Blazor WebAssembly 앱은 전체 .NET API 노출 영역을 대상으로 하지만 일부 .NET API는 브라우저 샌드박스 제약 조건으로 인해 WebAssembly에서 지원되지 않습니다. 지원되지 않는 API는 WebAssembly에서 실행될 때 <xref:System.PlatformNotSupportedException>을 throw합니다. 플랫폼 호환성 분석기는 앱이 앱의 대상 플랫폼에서 지원하지 않는 API를 사용하는 경우 개발자에게 경고합니다. Blazor WebAssembly 앱에서는 API가 브라우저에서 지원되는지를 확인한다는 의미입니다. 호환성 분석기용 .NET Framework API에 주석 달기는 지속적인 프로세스이므로 일부 .NET Framework API에는 현재 주석이 달려 있지 않습니다.
+
+Blazor WebAssembly 및 Razor 클래스 라이브러리 프로젝트는 `SupportedPlatform` MSBuild 항목을 사용하여 지원되는 플랫폼으로 `browser`를 추가함으로써 브라우저 호환성 검사를 ‘자동으로’ 사용하도록 설정합니다. 라이브러리 개발자는 라이브러리의 프로젝트 파일에 `SupportedPlatform` 항목을 수동으로 추가하여 기능을 사용하도록 설정할 수 있습니다.
+
+```xml
+<ItemGroup>
+  <SupportedPlatform Include="browser" />
+</ItemGroup>
+```
+
+라이브러리를 작성할 때 `browser`를 <xref:System.Runtime.Versioning.UnsupportedOSPlatformAttribute>로 지정하여 특정 API가 브라우저에서 지원되지 않음을 나타냅니다.
+
+```csharp
+[UnsupportedOSPlatform("browser")]
+private static string GetLoggingDirectory()
+{
+    ...
+}
+```
+
+자세한 내용은 [Annotating APIs as unsupported on specific platforms(dotnet/designs GitHub repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms)(특정 플랫폼에서 지원되지 않음으로 API에 주석 달기(dotnet/designs GitHub 리포지토리))를 참조하세요.
+
+## <a name="no-locblazor-javascript-isolation-and-object-references"></a>Blazor JavaScript 격리 및 개체 참조
+
+Blazor에서는 표준 [JavaScript 모듈](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules)에서 JavaScript 격리를 사용하도록 설정합니다. JavaScript 격리는 다음과 같은 이점을 제공합니다.
+
+* 가져온 JavaScript는 전역 네임스페이스를 더 이상 오염시키지 않습니다.
+* 라이브러리 및 구성 요소의 소비자는 관련 JavaScript를 수동으로 가져올 필요가 없습니다.
+
+자세한 내용은 <xref:blazor/call-javascript-from-dotnet#blazor-javascript-isolation-and-object-references>를 참조하세요.
+
+::: moniker-end
 
 ## <a name="build-pack-and-ship-to-nuget"></a>빌드, 패키지 및 NuGet에 제공
 

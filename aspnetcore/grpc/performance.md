@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/performance
-ms.openlocfilehash: a0a1a6901e07fb0074ca403870378f267d3d4403
-ms.sourcegitcommit: c9b03d8a6a4dcc59e4aacb30a691f349235a74c8
+ms.openlocfilehash: 4d50698b8c55f7fb3ef9a2c3102e73e046a22a9c
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89379447"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722847"
 ---
 # <a name="performance-best-practices-with-grpc"></a>gRPC 관련 성능 모범 사례
 
@@ -121,6 +121,12 @@ L7(애플리케이션) 프록시는 L4(전송) 프록시보다 더 높은 수준
 * [YARP: 역방향 프록시](https://microsoft.github.io/reverse-proxy/) - .NET으로 작성된 미리 보기 오픈 소스 프록시입니다.
 
 ::: moniker range=">= aspnetcore-5.0"
+
+## <a name="inter-process-communication"></a>프로세스 간 통신
+
+클라이언트와 서비스 간의 gRPC 호출은 일반적으로 TCP 소켓을 통해 전송됩니다. TCP는 네트워크를 통해 통신하는 데 유용하지만, 클라이언트와 서비스가 동일한 머신에 있는 경우에는 [IPC(프로세스 간 통신)](https://wikipedia.org/wiki/Inter-process_communication)가 더 효율적입니다.
+
+동일한 머신에 있는 프로세스 간 gRPC 호출에는 Unix 도메인 소켓이나 명명된 파이프와 같은 전송을 사용하는 것이 좋습니다. 자세한 내용은 <xref:grpc/interprocess>를 참조하세요.
 
 ## <a name="keep-alive-pings"></a>연결 유지 ping
 

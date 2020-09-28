@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/protobuf
-ms.openlocfilehash: 60af1add9ae2f8b2b94bc19b65667d7af91fb122
-ms.sourcegitcommit: 7258e94cf60c16e5b6883138e5e68516751ead0f
+ms.openlocfilehash: ea46e04bc4aa6269efbf8917d5f32194402a66ef
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/29/2020
-ms.locfileid: "89102668"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722698"
 ---
 # <a name="create-protobuf-messages-for-net-apps"></a>.NET 앱에 대한 Protobuf 메시지 만들기
 
@@ -85,6 +85,10 @@ Protobuf는 네이티브 스칼라 값 형식의 범위를 지원합니다. 모�
 | `string`      | `string`     |
 | `bytes`       | `ByteString` |
 
+스칼라 값에는 항상 기본값이 있으며 `null`로 설정할 수 없습니다. 이 제약 조건에는 C# 클래스인 `string`과 `ByteString`이 포함됩니다. `string` 기본값은 빈 문자열 값이며 `ByteString` 기본값은 빈 바이트 값입니다. 기본값을 `null`로 설정하려고 하면 오류가 throw됩니다.
+
+[null 허용 래퍼 형식](#nullable-types)을 사용하여 null 값을 지원할 수 있습니다.
+
 ### <a name="dates-and-times"></a>날짜 및 시간
 
 네이티브 스칼라 형식은 .NET의 <xref:System.DateTimeOffset>, <xref:System.DateTime>, <xref:System.TimeSpan>에 해당하는 날짜 및 시간 값을 제공하지 않습니다. 해당 형식은 Protobuf의 ‘잘 알려진 형식’ 확장 중 일부를 사용하여 지정할 수 있습니다. 이 확장은 지원되는 플랫폼에서 복합 필드 형식을 위한 코드 생성과 런타임을 지원합니다.
@@ -145,19 +149,42 @@ message Person {
 }
 ```
 
-Protobuf는 생성된 메시지 속성에 대해 .NET null 허용 형식(예: `int?`)을 사용합니다.
+`wrappers.proto` 형식은 생성된 속성에 노출되지 않습니다. Protobuf는 C# 메시지에서 적절한 .NET null 허용 형식에 자동으로 매핑합니다. 예를 들어 `google.protobuf.Int32Value` 필드는 `int?` 속성을 생성합니다. `string` 및 `ByteString` 같은 참조 형식 속성은 오류 없이 `null`을 할당할 수 있는 경우를 제외하고는 변경되지 않습니다.
 
 다음 표에는 래퍼 형식의 전체 목록 및 이와 동등한 C# 형식이 나와 있습니다.
 
-| C# 형식   | 잘 알려진 형식 래퍼       |
-| --------- | ----------------------------- |
-| `bool?`   | `google.protobuf.BoolValue`   |
-| `double?` | `google.protobuf.DoubleValue` |
-| `float?`  | `google.protobuf.FloatValue`  |
-| `int?`    | `google.protobuf.Int32Value`  |
-| `long?`   | `google.protobuf.Int64Value`  |
-| `uint?`   | `google.protobuf.UInt32Value` |
-| `ulong?`  | `google.protobuf.UInt64Value` |
+| C# 형식      | 잘 알려진 형식 래퍼       |
+| ------------ | ----------------------------- |
+| `bool?`      | `google.protobuf.BoolValue`   |
+| `double?`    | `google.protobuf.DoubleValue` |
+| `float?`     | `google.protobuf.FloatValue`  |
+| `int?`       | `google.protobuf.Int32Value`  |
+| `long?`      | `google.protobuf.Int64Value`  |
+| `uint?`      | `google.protobuf.UInt32Value` |
+| `ulong?`     | `google.protobuf.UInt64Value` |
+| `string`     | `google.protobuf.StringValue` |
+| `ByteString` | `google.protobuf.BytesValue`  |
+
+### <a name="bytes"></a>바이트
+
+이진 페이로드는 Protobuf에서 `bytes` 스칼라 값 형식으로 지원됩니다. C#에서 생성된 속성은 `ByteString`을 속성 형식으로 사용합니다.
+
+`ByteString.CopyFrom(byte[] data)`을 사용하여 바이트 배열에서 새 인스턴스를 만듭니다.
+
+```csharp
+var data = await File.ReadAllBytesAsync(path);
+
+var payload = new PayloadResponse();
+payload.Data = ByteString.CopyFrom(data);
+```
+
+`ByteString` 데이터는 `ByteString.Span` 또는 `ByteString.Memory`를 사용하여 직접 액세스합니다. 또는 `ByteString.ToByteArray()`를 호출하여 인스턴스를 바이트 배열로 다시 변환합니다.
+
+```csharp
+var payload = await client.GetPayload(new PayloadRequest());
+
+await File.WriteAllBytesAsync(path, payload.Data.ToByteArray());
+```
 
 ### <a name="decimals"></a>10진수
 

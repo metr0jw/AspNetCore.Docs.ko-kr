@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-rp/read-related-data
-ms.openlocfilehash: 41b2ce35a6910df7587af7ebabe8a4984cda6ae5
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: dd00b9d7faf467857ec1e47f4cfb0296d84e5d3f
+ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634971"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847704"
 ---
 # <a name="part-6-no-locrazor-pages-with-ef-core-in-aspnet-core---read-related-data"></a>6부. ASP.NET Core에서 EF Core를 사용한 Razor Pages - 관련 데이터 읽기
 
@@ -63,7 +63,7 @@ ms.locfileid: "88634971"
 
   ![명시적 로드 예제](read-related-data/_static/explicit-loading.png)
 
-* [지연 로드](/ef/core/querying/related-data#lazy-loading). [지연 로드가 버전 2.1의 EF Core에 추가되었습니다](/ef/core/querying/related-data#lazy-loading). 엔터티를 처음 읽을 때 관련된 데이터가 검색되지 않습니다. 탐색 속성에 처음으로 액세스하려고 할 때 해당 탐색 속성에 필요한 데이터가 자동으로 검색됩니다. 탐색 속성에 처음으로 액세스할 때마다 쿼리가 데이터베이스에 전송됩니다.
+* [지연 로드](/ef/core/querying/related-data#lazy-loading). 엔터티를 처음 읽을 때 관련된 데이터가 검색되지 않습니다. 탐색 속성에 처음으로 액세스하려고 할 때 해당 탐색 속성에 필요한 데이터가 자동으로 검색됩니다. 탐색 속성에 처음으로 액세스할 때마다 쿼리가 데이터베이스에 전송됩니다. 개발자가 N+1 패턴을 사용하는 경우처럼 지연 로드를 사용하면 부모를 로드하고 자식을 열거하는 성능이 저하될 수 있습니다.
 
 ## <a name="create-course-pages"></a>과정 페이지 만들기
 

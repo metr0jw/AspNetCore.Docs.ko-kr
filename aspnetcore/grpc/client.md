@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: grpc/client
-ms.openlocfilehash: 9406c2a34126f3e5cd1406a55c3585e7a28f3dd9
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 6515e87845cc5aa101532c18711d175a73581bee
+ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90593049"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90722711"
 ---
 # <a name="call-grpc-services-with-the-net-client"></a>.NET 클라이언트를 사용하여 gRPC 서비스 호출
 
@@ -33,7 +33,7 @@ ms.locfileid: "90593049"
 
 ## <a name="configure-grpc-client"></a>gRPC 클라이언트 구성
 
-gRPC 클라이언트는 [ *\*.proto* 파일에서 생성](xref:grpc/basics#generated-c-assets)되는 구체적인 클라이언트 형식입니다. 구체적인 gRPC 클라이언트에는 *\*.proto* 파일에서 gRPC 서비스로 변환되는 메서드가 있습니다.
+gRPC 클라이언트는 [ *\*.proto* 파일에서 생성](xref:grpc/basics#generated-c-assets)되는 구체적인 클라이언트 형식입니다. 구체적인 gRPC 클라이언트에는 *\*.proto* 파일에서 gRPC 서비스로 변환되는 메서드가 있습니다. 예를 들어 `Greeter`라는 서비스는 서비스를 호출하는 메서드를 사용하여 `GreeterClient` 형식을 생성합니다.
 
 채널에서 gRPC 클라이언트를 만듭니다. 먼저 `GrpcChannel.ForAddress`를 사용하여 채널을 만든 다음, 채널을 사용하여 gRPC 클라이언트를 만듭니다.
 
@@ -57,7 +57,7 @@ var counterClient = new Count.CounterClient(channel);
 
 gRPC 클라이언트는 호출된 서비스와 동일한 연결 수준 보안을 사용해야 합니다. gRPC 클라이언트 TLS(전송 계층 보안)는 gRPC 채널을 만들 때 구성됩니다. gRPC 클라이언트는 서비스를 호출할 때와 채널 및 서비스의 연결 수준 보안이 일치하지 않을 때 오류를 throw합니다.
 
-TLS를 사용하도록 gRPC 채널을 구성하려면 서버 주소가 `https`로 시작하는지 확인합니다. 예를 들어 `GrpcChannel.ForAddress("https://localhost:5001")`는 HTTPS 프로토콜을 사용합니다. gRPC 채널은 TLS로 보호되는 연결을 자동으로 negotate하고 보안 연결을 사용하여 gRPC 호출을 수행합니다.
+TLS를 사용하도록 gRPC 채널을 구성하려면 서버 주소가 `https`로 시작하는지 확인합니다. 예를 들어 `GrpcChannel.ForAddress("https://localhost:5001")`는 HTTPS 프로토콜을 사용합니다. gRPC 채널은 TLS로 보호되는 연결을 자동으로 협상하고 보안 연결을 사용하여 gRPC 호출을 수행합니다.
 
 > [!TIP]
 > gRPC는 TLS를 통한 클라이언트 인증서 인증을 지원합니다. gRPC 채널을 사용하여 클라이언트 인증서를 구성하는 방법에 대한 내용은 <xref:grpc/authn-and-authz#client-certificate-authentication>를 참조하세요.
