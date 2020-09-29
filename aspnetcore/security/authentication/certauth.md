@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/certauth
-ms.openlocfilehash: 54780e2d67c70d945fd875c41c8d6483aa358bbf
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 57d46e34993148943b1e9680a372405be9c80605
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627197"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424206"
 ---
 # <a name="configure-certificate-authentication-in-aspnet-core"></a>ASP.NET Core에서 인증서 인증 구성
 
@@ -39,7 +39,7 @@ ms.locfileid: "88627197"
 
 프록시 및 부하 분산 장치를 사용 하는 환경에서 인증서 인증에 대 한 대안은 OIDC (Openid connect Connect)를 사용 하는 페더레이션 서비스 (ADFS) Active Directory입니다.
 
-## <a name="get-started"></a>시작하기
+## <a name="get-started"></a>시작
 
 HTTPS 인증서를 획득 하 고 적용 한 다음 인증서를 요구 하도록 [서버를 구성](#configure-your-server-to-require-certificates) 합니다.
 
@@ -47,7 +47,7 @@ HTTPS 인증서를 획득 하 고 적용 한 다음 인증서를 요구 하도�
 
 인증이 실패 하는 경우이 처리기는 `403 (Forbidden)` 정상적으로 응답을 반환 `401 (Unauthorized)` 합니다. 초기 TLS 연결 중에 인증이 수행 되어야 한다는 것을 의미 합니다. 처리기에 도달할 때까지 너무 늦습니다. 익명 연결에서 인증서를 사용 하는 연결로의 연결을 업그레이드할 수 있는 방법은 없습니다.
 
-또한 `app.UseAuthentication();` 메서드에를 추가 `Startup.Configure` 합니다. 그렇지 않으면 `HttpContext.User` 인증서에서 생성 된로 설정 되지 않습니다 `ClaimsPrincipal` . 다음은 그 예입니다. 
+또한 `app.UseAuthentication();` 메서드에를 추가 `Startup.Configure` 합니다. 그렇지 않으면 `HttpContext.User` 인증서에서 생성 된로 설정 되지 않습니다 `ClaimsPrincipal` . 예를 들면 다음과 같습니다.
 
 ::: moniker range=">= aspnetcore-5.0"
 
@@ -198,7 +198,7 @@ services.AddAuthentication(
             {
                 var validationService =
                     context.HttpContext.RequestServices
-                        .GetService<ICertificateValidationService>();
+                        .GetRequiredService<ICertificateValidationService>();
                 
                 if (validationService.ValidateCertificate(
                     context.ClientCertificate))
@@ -643,7 +643,7 @@ ASP.NET Core 5 preview 7 이상에서는 선택적 클라이언트 인증서에 
     * [Kestrel](/fundamentals/servers/kestrel):
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
-      * 참고 Kestrel은 현재 하나의 바인딩에서 여러 TLS 구성을 지원 하지 않으므로 고유한 Ip 또는 포트를 사용 하는 두 개의 바인딩이 필요 합니다. https://github.com/dotnet/runtime/issues/31097를 참조하세요.
+      * 참고 Kestrel은 현재 하나의 바인딩에서 여러 TLS 구성을 지원 하지 않으므로 고유한 Ip 또는 포트를 사용 하는 두 개의 바인딩이 필요 합니다. https://github.com/dotnet/runtime/issues/31097을 참조하십시오.
     * IIS
       * [IIS 호스팅](xref:host-and-deploy/iis/index#create-the-iis-site)
       * [IIS에 대 한 보안 구성](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
@@ -651,7 +651,7 @@ ASP.NET Core 5 preview 7 이상에서는 선택적 클라이언트 인증서에 
 * 클라이언트 인증서가 필요 하 고 없는 웹 앱에 대 한 요청의 경우:
   * 클라이언트 인증서 보호 된 하위 도메인을 사용 하 여 동일한 페이지로 리디렉션합니다.
   * 예를 들어를로 리디렉션합니다 `myClient.contoso.com/requestedPage` . 에 대 한 요청은와 `myClient.contoso.com/requestedPage` 다른 호스트 이름이 기 때문에 `contoso.com/requestedPage` 클라이언트에서 다른 연결을 설정 하 고 클라이언트 인증서가 제공 됩니다.
-  * 자세한 내용은 <xref:security/authorization/introduction>을 참조하세요.
+  * 자세한 내용은 <xref:security/authorization/introduction>를 참조하세요.
 
 [이 GitHub 토론](https://github.com/dotnet/AspNetCore.Docs/issues/18720) 문제에서 선택적 클라이언트 인증서에 대 한 질문, 설명 및 기타 피드백을 남겨 두세요.
 
