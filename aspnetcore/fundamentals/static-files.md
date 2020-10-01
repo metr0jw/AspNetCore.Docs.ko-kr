@@ -15,12 +15,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/static-files
-ms.openlocfilehash: 24fda96dbe48945d172eb36e8a91af31f168ff7f
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 36eeb3532ed5ea6f5f75c20cbe14331ed840a788
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88627665"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393940"
 ---
 # <a name="static-files-in-aspnet-core"></a>ASP.NET Core의 정적 파일
 
@@ -127,7 +127,7 @@ HTML, CSS, 이미지 및 JavaScript와 같은 정적 파일은 기본적으로 A
 
 디렉터리 검색을 통해 지정된 디렉터리 내에 디렉터리를 나열할 수 있습니다.
 
-기본적으로 디렉터리 검색은 보안상의 이유로 사용하지 않도록 설정됩니다. 자세한 내용은 [고려 사항](#sc)을 참조하세요.
+기본적으로 디렉터리 검색은 보안상의 이유로 사용하지 않도록 설정됩니다. 자세한 내용은 [고려 사항](#considerations)을 참조하세요.
 
 다음을 통해 디렉터리 검색을 사용하도록 설정합니다.
 
@@ -363,7 +363,7 @@ HTML, CSS, 이미지 및 JavaScript와 같은 정적 파일은 ASP.NET Core 앱�
 
 ## <a name="enable-directory-browsing"></a>디렉터리 검색 사용
 
-디렉터리 검색을 사용하면 웹앱 사용자가 지정된 디렉터리 내의 디렉터리 목록 및 파일을 볼 수 있습니다. 기본적으로 디렉터리 검색은 보안상의 이유로 비활성화되어 있습니다([고려할 사항](#sc) 참조). `Startup.Configure`에서 <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> 메서드를 호출하여 디렉터리 검색을 사용하도록 설정합니다.
+디렉터리 검색을 사용하면 웹앱 사용자가 지정된 디렉터리 내의 디렉터리 목록 및 파일을 볼 수 있습니다. 기본적으로 디렉터리 검색은 보안상의 이유로 비활성화되어 있습니다([고려할 사항](#considerations) 참조). `Startup.Configure`에서 <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser%2A> 메서드를 호출하여 디렉터리 검색을 사용하도록 설정합니다.
 
 [!code-csharp[](static-files/samples/1.x/StaticFilesSample/StartupBrowse.cs?name=snippet_ConfigureMethod&highlight=12-17)]
 

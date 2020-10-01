@@ -18,12 +18,12 @@ no-loc:
 - SignalR
 - Models
 uid: tutorials/first-web-api
-ms.openlocfilehash: 7f684d96ee9fd640abdc750503bed1b2a836a459
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: 212d8a80bdc466479c34bc5fbd9c3261ca9d54c4
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847748"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393914"
 ---
 # <a name="tutorial-create-a-web-api-with-aspnet-core"></a>자습서: ASP.NET Core를 사용하여 웹 API 만들기
 
@@ -983,7 +983,7 @@ ID = 1인 할 일 항목을 업데이트하고 해당 이름을 “feed fish”�
 
 ```json
   {
-    "Id":1,
+    "id":1,
     "name":"feed fish",
     "isComplete":true
   }
@@ -1410,7 +1410,7 @@ ID = 1인 할 일 항목을 업데이트하고 해당 이름을 “feed fish”�
 
 ```json
   {
-    "Id":1,
+    "id":1,
     "name":"feed fish",
     "isComplete":true
   }

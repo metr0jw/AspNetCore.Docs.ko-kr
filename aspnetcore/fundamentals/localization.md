@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/localization
-ms.openlocfilehash: 478e9e58f265a8c372dd048f9ba8593424050e01
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: fcf69bdaaed5cf0283ae27440c28061857d2cbcb
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722672"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606770"
 ---
 # <a name="globalization-and-localization-in-aspnet-core"></a>ASP.NET Core에서 세계화 및 지역화
 
@@ -959,7 +959,7 @@ using Microsoft.Extensions.Localization;
 
 ### <a name="querystringrequestcultureprovider"></a>QueryStringRequestCultureProvider
 
-일부 앱은 쿼리 문자열을 사용하여 <https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo?view=netcore-3.1>을 설정합니다. cookie 또는 수용-언어 헤더 방식을 사용하는 앱의 경우 URL에 쿼리 문자열을 추가하는 것은 코드 디버깅 및 테스트에 유용합니다. 기본적으로 `QueryStringRequestCultureProvider`는 `RequestCultureProvider` 목록에서 첫 번째 지역화 공급자로 등록됩니다. `culture` 및 `ui-culture`에 쿼리 문자열 매개 변수를 전달합니다. 다음 예제는 특정 문화권(언어 및 지역)을 스페인어/멕시코로 설정합니다.
+일부 앱은 쿼리 문자열을 사용하여 <xref:System.Globalization.CultureInfo>을 설정합니다. cookie 또는 수용-언어 헤더 방식을 사용하는 앱의 경우 URL에 쿼리 문자열을 추가하는 것은 코드 디버깅 및 테스트에 유용합니다. 기본적으로 `QueryStringRequestCultureProvider`는 `RequestCultureProvider` 목록에서 첫 번째 지역화 공급자로 등록됩니다. `culture` 및 `ui-culture`에 쿼리 문자열 매개 변수를 전달합니다. 다음 예제는 특정 문화권(언어 및 지역)을 스페인어/멕시코로 설정합니다.
 
 ```
 http://localhost:5000/?culture=es-MX&ui-culture=es-MX
