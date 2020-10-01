@@ -18,16 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/mfa
-ms.openlocfilehash: e224f947335ea8ea6ed8887dfadb52202bfd7866
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 76a11aa7b89b3ce60ed11bd7553a7e5898f661f4
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009507"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606796"
 ---
 # <a name="multi-factor-authentication-in-aspnet-core"></a>ASP.NET Core에서 multi-factor authentication
 
 [Damien Bowden](https://github.com/damienbod)
+
+[샘플 코드 보기 또는 다운로드 (damienbod/AspNetCoreHybridFlowWithApi GitHub 리포지토리)](https://github.com/damienbod/AspNetCoreHybridFlowWithApi)
 
 MFA (multi-factor authentication)는 추가 형태의 식별을 위해 로그인 이벤트 중에 사용자가 요청 되는 프로세스입니다. 이 메시지는 휴대폰에서 코드를 입력 하거나, FIDO2 키를 사용 하거나, 지문 검색을 제공 하는 것일 수 있습니다. 두 번째 인증 형식이 필요한 경우 보안이 강화 됩니다. 공격자가 추가 요소를 쉽게 얻거나 중복 하는 것은 아닙니다.
 
@@ -578,7 +580,7 @@ MFA 없이 로그인 하는 경우 (예: 암호 사용):
 
 ![require_mfa_oidc_01.png](mfa/_static/require_mfa_oidc_01.png)
 
-## <a name="additional-resources"></a>추가 자료
+## <a name="additional-resources"></a>추가 리소스
 
 * [ASP.NET Core에서 TOTP authenticator 앱에 대 한 QR 코드 생성 사용](xref:security/authentication/identity-enable-qrcodes)
 * [Azure Active Directory에 대 한 암호 없는 인증 옵션](/azure/active-directory/authentication/concept-authentication-passwordless)
