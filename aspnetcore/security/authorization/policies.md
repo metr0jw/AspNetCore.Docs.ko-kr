@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authorization/policies
-ms.openlocfilehash: af282ec1f82b2ac31fd0b46b2406110e24e9211b
-ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
+ms.openlocfilehash: 140969c80191c9549bc19507b9c4818b88fed0d1
+ms.sourcegitcommit: c026bf76a0e14a5ee68983519a63574c674e9ff7
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91424245"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91636805"
 ---
 # <a name="policy-based-authorization-in-aspnet-core"></a>ASP.NET Core에서 정책 기반 권한 부여
 
@@ -36,7 +36,7 @@ ms.locfileid: "91424245"
 
 위의 예에서는 "AtLeast21" 정책이 만들어집니다. &mdash;요구 사항에 대 한 매개 변수로 제공 되는 최소 연령의 단일 요구 사항이 있습니다.
 
-## <a name="iauthorizationservice"></a>IAuthorizationService 
+## <a name="iauthorizationservice"></a>IAuthorizationService
 
 권한 부여의 성공 여부를 결정 하는 기본 서비스는 <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> 다음과 같습니다.
 
