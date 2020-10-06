@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: signalr/supported-platforms
-ms.openlocfilehash: 91fd2553803d855b338b1d1b46d55e1d1e4cc21e
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a342dd787eceadd22ac26b57a3615a6b0b21f461
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635153"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754504"
 ---
 # <a name="aspnet-core-no-locsignalr-supported-platforms"></a>ASP.NET Core SignalR 지원 플랫폼
 
@@ -35,13 +35,12 @@ SignalR ASP.NET Core은 ASP.NET Core에서 지 원하는 모든 서버 플랫폼
 
 [JavaScript 클라이언트](xref:signalr/javascript-client) 는 nodejs 8 이상 버전과 다음 브라우저에서 실행 됩니다.
 
-| 브라우저                         | 버전         |
-| ------------------------------- | --------------- |
-| Microsoft Edge                  | 현재&dagger; |
-| Mozilla Firefox                 | 현재&dagger; |
-| Google Chrome; Android 포함 | 현재&dagger; |
-| Safari iOS 포함            | 현재&dagger; |
-| Microsoft Internet Explorer     | 11              |
+| 브라우저                          | 버전         |
+| -------------------------------- | --------------- |
+| IOS를 비롯 한 Apple Safari      | 현재&dagger; |
+| Google Chrome(Android 포함) | 현재&dagger; |
+| Microsoft Edge                   | 현재&dagger; |
+| Mozilla Firefox                  | 현재&dagger; |
 
 &dagger;*Current* 는 최신 버전의 브라우저를 나타냅니다.
 

@@ -18,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: security/authentication/identity/spa
-ms.openlocfilehash: 913f8f1e43586ce71353c080e72be3b80f4c0573
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 1e50fb2f2f5e3621b189f756c53e80a2dd64c8a6
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: MT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634269"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754530"
 ---
 # <a name="authentication-and-authorization-for-spas"></a>SPAs에 대 한 인증 및 권한 부여
 
-ASP.NET Core 3.0 이상에서는 API 권한 부여에 대 한 지원을 사용 하 여 SPAs (단일 페이지 앱)의 인증을 제공 합니다. ASP.NET Core Identity사용자를 인증 하 고 저장 하기 위해 Openid connect Connect를 구현 하기 위해 [ Identity 서버](https://identityserver.io/) 와 결합 됩니다.
+ASP.NET Core 3.1 이상 템플릿은 API 권한 부여에 대 한 지원을 사용 하 여 SPAs (단일 페이지 앱)의 인증을 제공 합니다. ASP.NET Core Identity사용자를 인증 하 고 저장 하기 위해 Openid connect Connect를 구현 하기 위해 [ Identity 서버](https://identityserver.io/) 와 결합 됩니다.
 
 인증 매개 변수는 **웹 응용 프로그램 (모델-뷰-컨트롤러)** (MVC) 및 **웹 응용 프로그램** (페이지) 프로젝트 템플릿의 인증 매개 변수와 비슷한 **각도** 및 **반응** 프로젝트 템플릿에 추가 되었습니다 Razor . 허용 되는 매개 변수 값은 **None** 및 **개인용**입니다. 현재 **React.js 및 Redux** 프로젝트 템플릿에서 인증 매개 변수를 지원 하지 않습니다.
 
@@ -197,7 +197,7 @@ services.Configure<JwtBearerOptions>(
 
 API의 JWT 처리기는를 사용 하 여 인증 프로세스를 제어할 수 있는 이벤트를 발생 시킵니다 `JwtBearerEvents` . API 권한 부여에 대 한 지원을 제공 하기 위해는 `AddIdentityServerJwt` 자체 이벤트 처리기를 등록 합니다.
 
-이벤트 처리를 사용자 지정 하려면 필요한 만큼 추가 논리를 사용 하 여 기존 이벤트 처리기를 래핑합니다. 다음은 그 예입니다. 
+이벤트 처리를 사용자 지정 하려면 필요한 만큼 추가 논리를 사용 하 여 기존 이벤트 처리기를 래핑합니다. 예를 들면 다음과 같습니다.
 
 ```csharp
 services.Configure<JwtBearerOptions>(
