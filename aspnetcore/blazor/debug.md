@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/debug
-ms.openlocfilehash: 7681deb70610a8fbc27ccda7317b73921646794a
-ms.sourcegitcommit: 4df148cbbfae9ec8d377283ee71394944a284051
+ms.openlocfilehash: e12b0e6d1bf9eab751f6605b9a156f637f2b0c0f
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88876778"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393836"
 ---
 # <a name="debug-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly 디버그
 
@@ -109,11 +109,55 @@ Blazor WebAssembly 앱을 디버그하는 동안 서버 코드도 디버그할 �
 > [!NOTE]
 > 앱 시작 도중 디버그 프록시가 실행되기 전에 중단점이 적중되지 **않습니다**. 여기에는 `Program.Main`(`Program.cs`)의 중단점과 애플리케이션에서 요청하는 첫 페이지에서 로드되는 구성 요소의 [`OnInitialized{Async}` 메서드](xref:blazor/components/lifecycle#component-initialization-methods)의 중단점이 포함됩니다.
 
+앱이 `/` 이외의 다른 [앱 기본 경로](xref:blazor/host-and-deploy/index#app-base-path)에서 호스팅되는 경우 `Properties/launchSettings.json`에서 앱 기본 경로를 반영하여 다음 속성을 업데이트합니다.
+
+* `applicationUrl`:
+
+  ```json
+  "iisSettings": {
+    ...
+    "iisExpress": {
+      "applicationUrl": "http://localhost:{INSECURE PORT}/{APP BASE PATH}/",
+      "sslPort": {SECURE PORT}
+    }
+  },
+  ```
+
+* 각 프로필의 `inspectUri`:
+
+  ```json
+  "profiles": {
+    ...
+    "{PROFILE 1, 2, ... N}": {
+      ...
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/{APP BASE PATH}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      ...
+    }
+  }
+  ```
+
+위의 설정에서 자리 표시자는 다음과 같습니다.
+
+* `{INSECURE PORT}`: 안전하지 않은 포트입니다. 기본적으로 임의 값이 제공되지만 사용자 지정 포트가 허용됩니다.
+* `{APP BASE PATH}`: 앱의 기본 경로입니다.
+* `{SECURE PORT}`: 보안 포트입니다. 기본적으로 임의 값이 제공되지만 사용자 지정 포트가 허용됩니다.
+* `{PROFILE 1, 2, ... N}`: 시작 설정 프로필입니다. 일반적으로 앱은 기본적으로 둘 이상의 프로필을 지정합니다(예: Kestrel 서버에서 사용되는 프로젝트 프로필 및 IIS Express에 대한 프로필).
+
+다음 예제에서 앱은 `wwwroot/index.html`에서 `<base href="/OAT/">`로 구성된 앱 기본 경로를 사용하여 `/OAT`에서 호스팅됩니다.
+
+```json
+"applicationUrl": "http://localhost:{INSECURE PORT}/OAT/",
+```
+
+```json
+"inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/OAT/_framework/debug/ws-proxy?browser={browserInspectUri}",
+```
+
+Blazor WebAssembly 앱에서의 사용자 지정 앱 기본 경로 사용에 대한 자세한 내용은 <xref:blazor/host-and-deploy/index#app-base-path>를 참조하세요.
+
 # <a name="visual-studio-code"></a>[Visual Studio Code](#tab/visual-studio-code)
 
-<a id="vscode"></a>
-
-## <a name="debug-standalone-no-locblazor-webassembly"></a>독립 실행형 Blazor WebAssembly 디버그
+<h2 id="vscode">독립 실행형 Blazor WebAssembly 디버그</h2>
 
 1. VS Code에서 독립 실행형 Blazor WebAssembly 앱을 엽니다.
 
@@ -257,7 +301,7 @@ Blazor WebAssembly 앱을 디버그하는 동안 서버 코드도 디버그할 �
 > [!NOTE]
 > 앱 시작 도중 디버그 프록시가 실행되기 전에 중단점이 적중되지 **않습니다**. 여기에는 `Program.Main`(`Program.cs`)의 중단점과 애플리케이션에서 요청하는 첫 페이지에서 로드되는 구성 요소의 [`OnInitialized{Async}` 메서드](xref:blazor/components/lifecycle#component-initialization-methods)의 중단점이 포함됩니다.
 
-자세한 내용은 [Mac용 Visual Studio를 사용하여 디버깅](/visualstudio/mac/debugging?view=vsmac-2019)을 참조하세요.
+자세한 내용은 [Mac용 Visual Studio를 사용하여 디버깅](/visualstudio/mac/debugging)을 참조하세요.
 
 ---
 

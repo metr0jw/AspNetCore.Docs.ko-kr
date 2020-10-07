@@ -16,12 +16,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/grpc/grpc-start
-ms.openlocfilehash: 5f4d9a105ad6d0ab53b23d8c1e9f645d69d25888
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 13eb57bbe671dcc70a1678222a98590f4edc6e6f
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88630278"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424258"
 ---
 # <a name="tutorial-create-a-grpc-client-and-server-in-aspnet-core"></a>자습서: ASP.NET Core에서 gRPC 클라이언트 및 서버 만들기
 
@@ -215,6 +215,12 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * gRPC 클라이언트 프로젝트에서 *Protos* 폴더를 만듭니다.
 * gRPC Greeter 서비스에서 *Protos\greet.proto* 파일을 gRPC 클라이언트 프로젝트로 복사합니다.
+* `greet.proto` 파일 내의 네임스페이스를 프로젝트의 네임스페이스로 업데이트합니다.
+
+  ```
+  option csharp_namespace = "GrpcGreeterClient";
+  ```
+
 * *GrpcGreeterClient.csproj* 프로젝트 파일을 편집합니다.
 
   # <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)

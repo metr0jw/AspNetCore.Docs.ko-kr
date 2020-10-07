@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/additional-scenarios
-ms.openlocfilehash: c8bce9572f0c21fdbd7ed585772c2b7965f40598
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: 9b3698489300e45cf77c3d51611ff44e2f4e16a5
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592945"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393667"
 ---
 # <a name="aspnet-core-no-locblazor-server-additional-security-scenarios"></a>ASP.NET Core Blazor Server 추가 보안 시나리오
 
@@ -208,15 +208,15 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme,
           options.Resource = "...";    // REMOVE THIS LINE
           ...
       }
-      ```
+  ```
 
-  For more information, see [Scopes, not resources](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#scopes-not-resources) in the Azure documentation.
+  자세한 내용은 Azure 설명서의 [리소스가 아닌 범위](/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#scopes-not-resources)를 참조하세요.
 
-### App ID URI
+### <a name="app-id-uri"></a>앱 ID URI
 
-* When using v2.0 endpoints, APIs define an *`App ID URI`*, which is meant to represent a unique identifier for the API.
-* All scopes include the App ID URI as a prefix, and v2.0 endpoints emit access tokens with the App ID URI as the audience.
-* When using V2.0 endpoints, the client ID configured in the Server API changes from the API Application ID (Client ID) to the App ID URI.
+* v2.0 엔드포인트를 사용할 경우 API는 API의 고유 식별자를 나타내는 *`App ID URI`* 를 정의합니다.
+* 모든 범위에는 앱 ID URI가 접두어로 포함되며 v2.0 엔드포인트는 앱 ID URI를 대상으로 하는 액세스 토큰을 내보냅니다.
+* V2.0 엔드포인트를 사용할 경우 서버 API에 구성된 클라이언트 ID가 API 애플리케이션 ID(클라이언트 ID)에서 앱 ID URI로 변경됩니다.
 
 `appsettings.json`:
 

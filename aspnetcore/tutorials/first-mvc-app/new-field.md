@@ -17,12 +17,12 @@ no-loc:
 - Razor
 - SignalR
 uid: tutorials/first-mvc-app/new-field
-ms.openlocfilehash: 40e615d0698a0ed1d3ef40a222e064d72184f0c8
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: a0c53755bd56b6c169437ca9f0ea915e46ad79ec
+ms.sourcegitcommit: d1a897ebd89daa05170ac448e4831d327f6b21a8
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88635296"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91606749"
 ---
 # <a name="part-8-add-a-new-field-to-an-aspnet-core-mvc-app"></a>8부. ASP.NET Core MVC 앱에 새 필드 추가
 
@@ -62,7 +62,7 @@ dotnet build
 
 ------
 
-`Movie` 클래스에 새 필드를 추가했으므로 이 새 속성이 포함되도록 바인딩 허용 목록을 수정해야 합니다. *MoviesController.cs*에서 `Rating` 속성을 포함하도록 `Create` 및 `Edit` 작업 메서드에 대한 `[Bind]` 특성을 수정합니다.
+`Movie` 클래스에 새 필드를 추가했으므로 이 새 속성이 포함되도록 속성 바인딩 목록을 업데이트해야 합니다. *MoviesController.cs*에서 `Rating` 속성을 포함하도록 `Create` 및 `Edit` 작업 메서드에 대한 `[Bind]` 특성을 수정합니다.
 
 ```csharp
 [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
@@ -133,7 +133,7 @@ DB의 모든 레코드가 삭제되면 이니셜라이즈 메서드가 DB를 시
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-데이터베이스를 삭제하고 마이그레이션을 사용하여 데이터베이스를 다시 만듭니다. 데이터베이스를 삭제하려면 데이터베이스 파일(*MvcMovie.db*)을 삭제합니다. 그런 다음, `ef database update` 명령을 실행합니다.
+데이터베이스를 삭제하고 마이그레이션을 사용하여 데이터베이스를 다시 만듭니다. 데이터베이스를 삭제하려면 *MvcMovie.db* 데이터베이스 파일을 삭제합니다. 그런 다음, `ef database update` 명령을 실행합니다.
 
 ```dotnetcli
 dotnet ef database update

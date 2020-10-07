@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/fundamentals/additional-scenarios
-ms.openlocfilehash: 870509a3cbbcbea9b1c4804185c49a831af22630
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 236d95e54b772ea522911421084ec0d9022c45ff
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009637"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424141"
 ---
 # <a name="aspnet-core-no-locblazor-hosting-model-configuration"></a>ASP.NET Core Blazor 호스팅 모델 구성
 
@@ -290,7 +290,15 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 }
 ```
 
-::: moniker-end
+## <a name="disconnect-the-no-locblazor-circuit-from-the-client"></a>클라이언트에서 Blazor 회로 연결 끊기
+
+기본적으로 [`unload` 페이지 이벤트](https://developer.mozilla.org/docs/Web/API/Window/unload_event)가 트리거될 때 Blazor 회로의 연결이 끊깁니다. 클라이언트에서 다른 시나리오에 대한 회로의 연결을 끊으려면 적절한 이벤트 처리기에서 `Blazor.disconnect`를 호출합니다. 다음 예제에서는 페이지가 숨겨질 때([`pagehide` 이벤트](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)) 회로의 연결이 끊깁니다.
+
+```javascript
+window.addEventListener('pagehide', () => {
+  Blazor.disconnect();
+});
+```
 
 ## <a name="influence-html-head-tag-elements"></a>HTML `<head>` 태그 요소에 영향
 
@@ -322,6 +330,8 @@ Blazor.defaultReconnectionHandler._reconnectionDisplay =
 
 * 애플리케이션 상태에 의해 수정될 수 있습니다. 하드 코드된 HTML 태그는 애플리케이션 상태에 의해 수정될 수 없습니다.
 * 부모 구성 요소가 더 이상 렌더링되지 않으면 HTML `<head>`에서 제거됩니다.
+
+::: moniker-end
 
 ## <a name="static-files"></a>정적 파일
 

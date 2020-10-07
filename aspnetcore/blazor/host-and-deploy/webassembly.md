@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/host-and-deploy/webassembly
-ms.openlocfilehash: dadf6076e7f07c07381856aa225667a6eb38046a
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: 3436620123618ab32daa44c4a37057aaadb89563
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080318"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393693"
 ---
 # <a name="host-and-deploy-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core 호스트 및 배포 Blazor WebAssembly
 
@@ -51,11 +51,15 @@ Blazor는 호스트를 사용하여 적절한 압축 파일을 제공합니다. 
 * IIS `web.config` 압축 구성에 대해서는 [IIS: Brotli 및 Gzip 압축](#brotli-and-gzip-compression) 섹션을 참조하세요. 
 * GitHub 페이지와 같이 정적으로 압축된 파일 콘텐츠 협상을 지원하지 않는 정적 호스팅 솔루션에서 호스트하는 경우 Brotli로 압축된 파일을 가져와 디코딩하는 앱을 구성하는 것이 좋습니다.
 
-  * [google/brotli GitHub 리포지토리](https://github.com/google/brotli)에서 JavaScript Brotli 디코더를 가져옵니다. 2020년 7월부터 디코더 파일의 이름은 `decode.min.js`이며 리포지토리의 [`js` 폴더](https://github.com/google/brotli/tree/master/js)에 있습니다.
+  * [google/brotli GitHub 리포지토리](https://github.com/google/brotli)에서 JavaScript Brotli 디코더를 가져옵니다. 2020년 9월부터 디코더 파일의 이름은 `decode.js`이며 리포지토리의 [`js` 폴더](https://github.com/google/brotli/tree/master/js)에 있습니다.
+  
+    > [!NOTE]
+    > 회귀는 [google/brotli GitHub 리포지토리](https://github.com/google/brotli)에서 `decode.js` 스크립트(`decode.min.js`)의 축소 버전으로 제공됩니다. [Window.BrotliDecode가 decode.min.js에서 설정되지 않음(google/brotli #844)](https://github.com/google/brotli/issues/844) 문제가 해결되기 전까지는 직접 스크립트를 축소하거나 [npm 패키지](https://www.npmjs.com/package/brotli)를 사용합니다. 이 섹션의 예제 코드는 **축소되지 않은** 버전의 스크립트를 사용합니다.
+
   * 디코더를 사용하도록 앱을 업데이트합니다. `wwwroot/index.html`에서 닫는 `<body>` 태그 내부의 태그를 다음과 같이 변경합니다.
   
     ```html
-    <script src="decode.min.js"></script>
+    <script src="decode.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
       Blazor.start({
@@ -734,7 +738,7 @@ Blazor는 각 릴리스 빌드에 대해 IL(중간 언어) 연결을 수행하�
 
 `loadBootResource` 매개 변수는 다음 표에 나와 있습니다.
 
-| 매개 변수    | 설명 |
+| 매개 변수    | Description |
 | ------------ | ----------- |
 | `type`       | 리소스 형식입니다. 허용되는 형식: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, `timezonedata` |
 | `name`       | 리소스의 이름입니다. |
@@ -863,5 +867,3 @@ Remove-Item $filepath\bin\Release\$tfm\wwwroot\_framework\blazor.boot.json.gz
 
 > [!NOTE]
 > 동일한 어셈블리의 이름을 바꾸고 로드를 지연하는 경우 <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>의 지침을 참조하세요.
-
-피드백을 제공하려면 [aspnetcore/issues #5477](https://github.com/dotnet/aspnetcore/issues/5477)을 방문하세요.

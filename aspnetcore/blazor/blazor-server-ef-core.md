@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/blazor-server-ef-core
-ms.openlocfilehash: e548465b3d79279802fbfacd66c69724d864d14d
-ms.sourcegitcommit: 600666440398788db5db25dc0496b9ca8fe50915
+ms.openlocfilehash: 36c0915649d9a25cf1b6b2d9ec69c3919aa7bc2c
+ms.sourcegitcommit: 6c82d78662332cd40d614019b9ed17c46e25be28
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90080331"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91424167"
 ---
 # <a name="aspnet-core-no-locblazor-server-with-entity-framework-core-efcore"></a>EFCore(Entity Framework Core)를 사용한 ASP.NET Core Blazor Server
 
@@ -202,7 +202,10 @@ EF Core에서는 <xref:Microsoft.EntityFrameworkCore.DbContext>를 사용하여 
 
 [!code-csharp[](./common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/DbContextFactory.cs)]
 
-이전 팩터리에서 <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType>은 서비스 공급자를 통해 종속 항목을 충족합니다.
+이전 팩터리에서
+
+* <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType>은 서비스 공급자를 통해 종속 항목을 충족합니다.
+* `IDbContextFactory`는 EF Core ASP.NET Core 5.0 이상에서 사용할 수 있으므로 [ASP.NET Core 3.x에 대한 샘플 앱](https://github.com/dotnet/AspNetCore.Docs/blob/master/aspnetcore/blazor/common/samples/3.x/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/IDbContextFactory.cs)에서 인터페이스가 구현됩니다.
 
 다음 예에서는 [SQLite](https://www.sqlite.org/index.html)를 구성하고 데이터 로깅을 사용하도록 설정합니다. 이 코드에서는 확장 메서드를 사용하여 DI용 데이터베이스 팩터리를 구성하고 기본 옵션을 제공합니다.
 

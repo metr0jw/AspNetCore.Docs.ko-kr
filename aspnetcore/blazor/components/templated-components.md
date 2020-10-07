@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/templated-components
-ms.openlocfilehash: 293154658e9d39166213c0a465bed1166ba39b54
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: 74601905b7317ad8d9763fe0d747ba36bd0b1389
+ms.sourcegitcommit: 74f4a4ddbe3c2f11e2e09d05d2a979784d89d3f5
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88628354"
+ms.lasthandoff: 09/27/2020
+ms.locfileid: "91393797"
 ---
 # <a name="aspnet-core-no-locblazor-templated-components"></a>ASP.NET Core Blazor 템플릿 기반 구성 요소
 
@@ -34,11 +34,13 @@ ms.locfileid: "88628354"
 * 사용자가 테이블의 헤더, 행, 바닥글의 템플릿을 지정할 수 있게 해주는 테이블 구성 요소
 * 사용자가 목록으로 항목을 렌더링하기 위한 템플릿을 지정할 수 있게 해주는 목록 구성 요소
 
+[예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/blazor/common/samples/) ([다운로드 방법](xref:index#how-to-download-a-sample))
+
 ## <a name="template-parameters"></a>템플릿 매개 변수
 
 템플릿 기반 구성 요소는 <xref:Microsoft.AspNetCore.Components.RenderFragment> 또는 <xref:Microsoft.AspNetCore.Components.RenderFragment%601> 형식의 구성 요소 매개 변수를 하나 이상 지정하여 정의합니다. 렌더링 조각은 렌더링할 UI 세그먼트를 나타냅니다. <xref:Microsoft.AspNetCore.Components.RenderFragment%601>는 렌더링 조각을 호출할 때 지정할 수 있는 형식 매개 변수를 사용합니다.
 
-`TableTemplate` 구성 요소:
+`TableTemplate` 구성 요소(`TableTemplate.razor`):
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/TableTemplate.razor)]
 
@@ -55,6 +57,21 @@ ms.locfileid: "88628354"
         <td>@context.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { PetId = 2, Name = "Mr. Bigglesworth" },
+        new Pet { PetId = 4, Name = "Salem Saberhagen" },
+        new Pet { PetId = 7, Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public int PetId { get; set; }
+        public string Name { get; set; }
+    }
+}
 ```
 
 > [!NOTE]
@@ -75,6 +92,10 @@ ms.locfileid: "88628354"
         <td>@pet.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    ...
+}
 ```
 
 또는 구성 요소 요소에 `Context` 특성을 지정할 수 있습니다. 지정한 `Context` 특성은 지정한 모든 템플릿 매개 변수에 적용됩니다. 이 기능은 래핑 자식 요소 없이 암시적 자식 콘텐츠의 콘텐츠 매개 변수 이름을 지정하려는 경우에 유용할 수 있습니다. 다음 예제에서 `Context` 특성은 `TableTemplate` 요소에 표시되고 모든 템플릿 매개 변수에 적용됩니다.
@@ -90,11 +111,15 @@ ms.locfileid: "88628354"
         <td>@pet.Name</td>
     </RowTemplate>
 </TableTemplate>
+
+@code {
+    ...
+}
 ```
 
 ## <a name="generic-typed-components"></a>제네릭 형식 구성 요소
 
-템플릿 기반 구성 요소는 제네릭 형식인 경우가 많습니다. 예를 들어 제네릭 `ListViewTemplate` 구성 요소를 사용하여 `IEnumerable<T>` 값을 렌더링할 수 있습니다. 제네릭 구성 요소를 정의하려면 [`@typeparam`](xref:mvc/views/razor#typeparam) 지시문을 사용하여 형식 매개 변수를 지정합니다.
+템플릿 기반 구성 요소는 제네릭 형식인 경우가 많습니다. 예를 들어 제네릭 `ListViewTemplate` 구성 요소(`ListViewTemplate.razor`)를 사용하여 `IEnumerable<T>` 값을 렌더링할 수 있습니다. 제네릭 구성 요소를 정의하려면 [`@typeparam`](xref:mvc/views/razor#typeparam) 지시문을 사용하여 형식 매개 변수를 지정합니다.
 
 [!code-razor[](../common/samples/3.x/BlazorWebAssemblySample/Components/ListViewTemplate.razor)]
 
@@ -106,6 +131,20 @@ ms.locfileid: "88628354"
         <li>@pet.Name</li>
     </ItemTemplate>
 </ListViewTemplate>
+
+@code {
+    private List<Pet> pets = new List<Pet>
+    {
+        new Pet { Name = "Mr. Bigglesworth" },
+        new Pet { Name = "Salem Saberhagen" },
+        new Pet { Name = "K-9" }
+    };
+
+    private class Pet
+    {
+        public string Name { get; set; }
+    }
+}
 ```
 
 불가능한 경우 형식 매개 변수 이름과 일치하는 특성을 사용하여 형식 매개 변수를 명시적으로 지정해야 합니다. 다음 예제에서 `TItem="Pet"`은 형식을 지정합니다.
@@ -116,4 +155,8 @@ ms.locfileid: "88628354"
         <li>@pet.Name</li>
     </ItemTemplate>
 </ListViewTemplate>
+
+@code {
+    ...
+}
 ```

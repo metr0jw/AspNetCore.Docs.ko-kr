@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/webassembly-lazy-load-assemblies
-ms.openlocfilehash: eb4aaa2f3d412cdf650ed2daf7c12166991d92a1
-ms.sourcegitcommit: a07f83b00db11f32313045b3492e5d1ff83c4437
+ms.openlocfilehash: e874ec6f24d8b03fc6c7133013147498cbbc293a
+ms.sourcegitcommit: 4febe4efaf6e1a7be65d772b500c00fca0af216a
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90592906"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91451160"
 ---
 # <a name="lazy-load-assemblies-in-aspnet-core-no-locblazor-webassembly"></a>ASP.NET Core Blazor WebAssembly의 어셈블리 지연 로드
 
@@ -38,7 +38,7 @@ Blazor의 지연 로드 기능을 사용하면 사용자가 특정 경로로 이
 
 ## <a name="project-file"></a>프로젝트 파일
 
-`BlazorWebAssemblyLazyLoad` 항목을 사용하여 앱의 프로젝트 파일(`.csproj`)에서 어셈블리를 지연 로드로 표시합니다. `.dll` 확장명 없이 어셈블리 이름을 사용합니다. Blazor 프레임워크는 이 항목 그룹이 지정한 어셈블리가 앱 시작 시 로드되지 않도록 합니다. 다음 예제에서는 큰 사용자 지정 어셈블리(`GrantImaharaRobotControls.dll`)를 지연 로드로 표시합니다. 지연 로드로 표시된 어셈블리에 종속성이 있는 경우 프로젝트 파일에서 종속성도 지연 로드로 표시되어야 합니다.
+`BlazorWebAssemblyLazyLoad` 항목을 사용하여 앱의 프로젝트 파일(`.csproj`)에서 어셈블리를 지연 로드로 표시합니다. `.dll` 확장명과 함께 어셈블리 이름을 사용합니다. Blazor 프레임워크는 이 항목 그룹이 지정한 어셈블리가 앱 시작 시 로드되지 않도록 합니다. 다음 예제에서는 큰 사용자 지정 어셈블리(`GrantImaharaRobotControls.dll`)를 지연 로드로 표시합니다. 지연 로드로 표시된 어셈블리에 종속성이 있는 경우 프로젝트 파일에서 종속성도 지연 로드로 표시되어야 합니다.
 
 ```xml
 <ItemGroup>
@@ -106,7 +106,7 @@ Blazor의 `Router` 구성 요소는 Blazor가 라우팅 가능한 구성 요소�
 프레임워크의 지연 로드 구현에서는 호스트된 Blazor 솔루션에서 미리 렌더링으로 지연 로드를 지원합니다. 미리 렌더링 중에는 지연 로드로 표시된 어셈블리를 포함한 모든 어셈블리가 로드된다고 가정합니다. *Server* 프로젝트의 `Startup.ConfigureServices` 메서드(`Startup.cs`)에서 `LazyAssemblyLoader`를 수동으로 등록합니다.
 
 ```csharp
-services.AddSingleton<LazyAssemblyLoader>();
+services.AddScoped<LazyAssemblyLoader>();
 ```
 
 ### <a name="user-interaction-with-navigating-content"></a>`<Navigating>` 콘텐츠와의 사용자 상호 작용

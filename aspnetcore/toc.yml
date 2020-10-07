@@ -918,18 +918,36 @@
         - name: ASP.NET Core 모듈
           displayName: 'deploy, publish'
           uid: host-and-deploy/aspnet-core-module
+        - name: In-Process 호스팅
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/in-process-hosting
+        - name: Out-of-Process 호스팅
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/out-of-process-hosting
+        - name: 호스팅 번들
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/hosting-bundle
+        - name: web.config 파일
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/web-config
         - name: Visual Studio의 IIS 지원
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/development-time-iis-support
         - name: IIS 모듈
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/modules
+        - name: 로깅 및 진단
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/logging-and-diagnostics
         - name: 문제 해결
           displayName: 'deploy, publish'
           uid: test/troubleshoot-azure-iis
         - name: 오류 참조
           displayName: 'deploy, publish'
           uid: host-and-deploy/azure-iis-errors-reference
+        - name: 고급
+          displayName: 'deploy, publish'
+          uid: host-and-deploy/iis/advanced
         - name: web.config 변환
           displayName: 'deploy, publish'
           uid: host-and-deploy/iis/transform-webconfig
