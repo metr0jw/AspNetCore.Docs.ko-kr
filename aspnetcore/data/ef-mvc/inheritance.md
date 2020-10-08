@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: data/ef-mvc/inheritance
-ms.openlocfilehash: 34c4ea28103b9eb12601b383a46091084391f120
-ms.sourcegitcommit: 62cc131969b2379f7a45c286a751e22d961dfbdb
+ms.openlocfilehash: fabb0ed9c0f64a529b516d521d60a7d862e2654a
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90847600"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754569"
 ---
 # <a name="tutorial-implement-inheritance---aspnet-mvc-with-ef-core"></a>자습서: 상속 구현 - ASP.NET MVC 및 EF Core 사용
 
@@ -64,7 +64,7 @@ School 데이터 모델의 `Instructor` 및 `Student` 클래스는 동일한 여
 다른 방법은 데이터베이스를 상속 구조와 유사하게 만드는 것입니다. 예를 들어 Person 테이블에 이름 필드만 있고 날짜 필드가 있는 별도의 Instructor 및 Student 테이블을 포함할 수 있습니다.
 
 > [!WARNING]
-> TPT(형식당 테이블)는 EF Core 3.x에서 지원되지 않지만 [EF Core 5.0](https://docs.microsoft.com/ef/core/what-is-new/ef-core-5.0/plan)에서 구현되었습니다.
+> TPT(형식당 테이블)는 EF Core 3.x에서 지원되지 않지만 [EF Core 5.0](/ef/core/what-is-new/ef-core-5.0/plan)에서 구현되었습니다.
 
 ![형식당 하나의 테이블 상속](inheritance/_static/tpt.png)
 

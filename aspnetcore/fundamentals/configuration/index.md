@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: fundamentals/configuration/index
-ms.openlocfilehash: c6b77f20792c32a697fff8d1d78ef3c2536c5f8f
-ms.sourcegitcommit: 24106b7ffffc9fff410a679863e28aeb2bbe5b7e
+ms.openlocfilehash: 7565ede55acd936072fc1930918d46808548f287
+ms.sourcegitcommit: d7991068bc6b04063f4bd836fc5b9591d614d448
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90722899"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91762349"
 ---
 # <a name="configuration-in-aspnet-core"></a>ASP.NET Core의 구성
 
@@ -41,6 +41,8 @@ ASP.NET Core에서 구성은 하나 이상의 [구성 공급자](#cp)를 사용�
 * 설치되거나 만들어진 사용자 지정 공급자
 * 디렉터리 파일
 * 메모리 내 .NET 개체
+
+이 항목에서는 ASP.NET Core의 구성에 대한 정보를 제공합니다. 콘솔 앱에서 구성을 사용하는 방법에 대한 자세한 내용은 [.NET 구성](/dotnet/core/extensions/configuration)을 참조하세요.
 
 [예제 코드 살펴보기 및 다운로드](https://github.com/dotnet/AspNetCore.Docs/tree/master/aspnetcore/fundamentals/configuration/index/samples) ([다운로드 방법](xref:index#how-to-download-a-sample))
 

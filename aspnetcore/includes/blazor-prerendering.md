@@ -1,5 +1,3 @@
----
----
 Blazor 서버 앱을 미리 렌더링 중이면 브라우저에 연결되어 있지 않으므로 JavaScript 호출 등의 특정 작업을 수행할 수 없습니다. 미리 렌더링된 경우 구성 요소를 다르게 렌더링해야 할 수 있습니다.
 
 브라우저와의 연결이 설정된 후로 JavaScript interop 호출을 지연하려면 [OnAfterRenderAsync 구성 요소 수명 주기 이벤트](xref:blazor/components/lifecycle#after-component-render)를 사용하면 됩니다. 이 이벤트는 앱이 완전히 렌더링되고 클라이언트 연결이 설정된 후에만 호출됩니다.

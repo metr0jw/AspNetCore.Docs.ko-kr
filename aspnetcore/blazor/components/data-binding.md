@@ -18,16 +18,16 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/components/data-binding
-ms.openlocfilehash: eef08d8236241d2930a1a1a45ca0181669f2432c
-ms.sourcegitcommit: 8fcb08312a59c37e3542e7a67dad25faf5bb8e76
+ms.openlocfilehash: 0884b0bedd9ed31b8c85790c6950c7c5d63bdf44
+ms.sourcegitcommit: e519d95d17443abafba8f712ac168347b15c8b57
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90009650"
+ms.lasthandoff: 10/02/2020
+ms.locfileid: "91653908"
 ---
 # <a name="aspnet-core-no-locblazor-data-binding"></a>ASP.NET Core Blazor 데이터 바인딩
 
-작성자: [Luke Latham](https://github.com/guardrex) 및 [Daniel Roth](https://github.com/danroth27)
+작성자: [Luke Latham](https://github.com/guardrex), [Daniel Roth](https://github.com/danroth27), [Steve Sanderson](https://github.com/SteveSandersonMS)
 
 Razor 구성 요소는 필드, 속성 또는 Razor 식 값을 사용하여 [`@bind`](xref:mvc/views/razor#bind)라는 HTML 요소 특성을 통해 데이터 바인딩 기능을 제공합니다.
 
@@ -293,6 +293,8 @@ Password:
 
     private Task OnPasswordChanged(ChangeEventArgs e)
     {
+        password = e.Value.ToString();
+        
         if (password.Contains(' '))
         {
             validationMessage = "Spaces not allowed!";
@@ -313,6 +315,104 @@ Password:
     }
 }
 ```
+
+## <a name="bind-across-more-than-two-components"></a>셋 이상의 구성 요소에서 바인딩
+
+중첩된 구성 요소는 개수에 관계없이 바인딩할 수 있지만 데이터의 단방향 흐름을 준수해야 합니다.
+
+* 변경 알림은 *계층 구조를 따라 올라갑니다*.
+* 새 매개 변수 값은 *계층 구조를 따라 내려옵니다*.
+
+일반적이고 권장되는 방법은 업데이트할 상태에 대한 혼동을 방지할 수 있게, 부모 구성 요소에 기본 데이터만 저장하는 것입니다.
+
+다음 구성 요소는 이 개념을 설명합니다.
+
+`ParentComponent.razor`:
+
+```razor
+<h1>Parent Component</h1>
+
+<p>Parent Property: <b>@parentValue</b></p>
+
+<p>
+    <button @onclick="ChangeValue">Change from Parent</button>
+</p>
+
+<ChildComponent @bind-Property="parentValue" />
+
+@code {
+    private string parentValue = "Initial value set in Parent";
+
+    private void ChangeValue()
+    {
+        parentValue = $"Set in Parent {DateTime.Now}";
+    }
+}
+```
+
+`ChildComponent.razor`:
+
+```razor
+<div class="border rounded m-1 p-1">
+    <h2>Child Component</h2>
+
+    <p>Child Property: <b>@Property</b></p>
+
+    <p>
+        <button @onclick="ChangeValue">Change from Child</button>
+    </p>
+
+    <GrandchildComponent @bind-Property="BoundValue" />
+</div>
+
+@code {
+    [Parameter]
+    public string Property { get; set; }
+
+    [Parameter]
+    public EventCallback<string> PropertyChanged { get; set; }
+
+    private string BoundValue
+    {
+        get => Property;
+        set => PropertyChanged.InvokeAsync(value);
+    }
+
+    private Task ChangeValue()
+    {
+        return PropertyChanged.InvokeAsync($"Set in Child {DateTime.Now}");
+    }
+}
+```
+
+`GrandchildComponent.razor`:
+
+```razor
+<div class="border rounded m-1 p-1">
+    <h3>Grandchild Component</h3>
+
+    <p>Grandchild Property: <b>@Property</b></p>
+
+    <p>
+        <button @onclick="ChangeValue">Change from Grandchild</button>
+    </p>
+</div>
+
+@code {
+    [Parameter]
+    public string Property { get; set; }
+
+    [Parameter]
+    public EventCallback<string> PropertyChanged { get; set; }
+
+    private Task ChangeValue()
+    {
+        return PropertyChanged.InvokeAsync($"Set in Grandchild {DateTime.Now}");
+    }
+}
+```
+
+중첩이 필요하지 않은 구성 요소 간에 메모리 내 데이터를 공유하는 데 적합한 다른 방법은 <xref:blazor/state-management#in-memory-state-container-service>를 참조하세요.
 
 ## <a name="additional-resources"></a>추가 자료
 

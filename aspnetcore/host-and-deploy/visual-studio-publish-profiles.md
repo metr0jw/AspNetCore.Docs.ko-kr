@@ -18,12 +18,12 @@ no-loc:
 - Razor
 - SignalR
 uid: host-and-deploy/visual-studio-publish-profiles
-ms.openlocfilehash: a7bbc3f3a0a0d5a320bd290d325f0c01390828b4
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: e86a648e2707e808452e3bc92d991058c8fde480
+ms.sourcegitcommit: d60bfd52bfb559e805abd654b87a2a0c7eb69cf8
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88634165"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91754647"
 ---
 # <a name="visual-studio-publish-profiles-pubxml-for-aspnet-core-app-deployment"></a>ASP.NET Core 앱 배포용 Visual Studio 게시 프로필(.pubxml)
 
@@ -119,7 +119,7 @@ dotnet publish -c Release -o C:\MyWebs\test
 
 다음 형식 중 하나를 사용하여 MSBuild 속성을 전달할 수 있습니다.
 
-* `p:<NAME>=<VALUE>`
+* `-p:<NAME>=<VALUE>`
 * `/p:<NAME>=<VALUE>`
 
 예를 들어 다음 명령은 `Release` 빌드를 네트워크 공유에 게시합니다. 네트워크 공유는 슬래시( *//r8/* )를 사용하여 지정하고 모든 .NET Core 지원 플랫폼에서 작동합니다.
