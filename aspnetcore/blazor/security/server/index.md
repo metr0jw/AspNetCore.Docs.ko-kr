@@ -5,7 +5,7 @@ description: Blazor Server 앱을 ASP.NET Core 애플리케이션으로 보호�
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2020
+ms.date: 10/06/2020
 no-loc:
 - ASP.NET Core Identity
 - cookie
@@ -18,18 +18,18 @@ no-loc:
 - Razor
 - SignalR
 uid: blazor/security/server/index
-ms.openlocfilehash: ba9fe3c0149679fa5760c0c9214cd426f1804c31
-ms.sourcegitcommit: 65add17f74a29a647d812b04517e46cbc78258f9
+ms.openlocfilehash: d6d0f6f859dbaef98c6c8a9c53fe9858705cdc0a
+ms.sourcegitcommit: 139c998d37e9f3e3d0e3d72e10dbce8b75957d89
 ms.translationtype: HT
 ms.contentlocale: ko-KR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88626456"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91805507"
 ---
 # <a name="secure-aspnet-core-no-locblazor-server-apps"></a>ASP.NET Core Blazor Server 앱 보호
 
 [Luke Latham](https://github.com/guardrex)으로
 
-Blazor Server 앱은 ASP.NET Core 앱과 동일한 방식으로 보안이 구성됩니다. 자세한 내용은 <xref:security/index>의 문서를 참조하세요. 이 개요의 항목은 Blazor Server에만 적용됩니다. 
+Blazor Server 앱은 ASP.NET Core 앱과 동일한 방식으로 보안이 구성됩니다. 자세한 내용은 <xref:security/index>의 문서를 참조하세요. 이 개요의 항목은 Blazor Server에만 적용됩니다.
 
 ## <a name="no-locblazor-server-project-template"></a>Blazor Server 프로젝트 템플릿
 
@@ -108,7 +108,14 @@ dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 * 프로젝트의 폴더를 만듭니다.
 * 프로젝트의 이름을 지정합니다.
 
-자세한 내용은 .NET Core 가이드의 [`dotnet new`](/dotnet/core/tools/dotnet-new) 명령을 참조하세요.
+자세한 내용은 다음을 참조하세요.
+
+* .NET Core 가이드의 [`dotnet new`](/dotnet/core/tools/dotnet-new) 명령을 참조하세요.
+* 명령 셸에서 Blazor Server 템플릿(`blazorserver`)에 대한 도움말 명령을 실행합니다.
+
+  ```dotnetcli
+  dotnet new blazorserver --help
+  ```
 
 ---
 
@@ -118,3 +125,8 @@ Blazor Server 프로젝트에 Identity를 스캐폴드합니다.
 
 * [기존 권한 없음](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization).
 * [권한 있음](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-with-authorization).
+
+## <a name="additional-resources"></a>추가 리소스
+
+* [빠른 시작: ASP.NET Core 웹앱에 Microsoft로 로그인 추가](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
+* [빠른 시작: Microsoft ID 플랫폼을 사용하여 ASP.NET Core 웹 API 보호](/azure/active-directory/develop/quickstart-v2-aspnet-core-web-api)
